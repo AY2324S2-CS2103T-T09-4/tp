@@ -21,9 +21,9 @@ We are a team based in the [School of Computing, National University of Singapor
 * Responsibilities: Overall project coordination and ensure the team is doing well.
 ### Zack Tay
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zacktay.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/Zack-Tay)] 
 [[portfolio](team/johndoe.md)]
 
 * Role: Code quality
