@@ -74,10 +74,31 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Listing all students : `list`
 
-### Adding new tutorial class : `add`
+### Adding new tutorial class : `add_class`
 
-### Deleting tutorial class : `delete`
+Adds a tutorial class with the specified module code and name.
 
+Format: `/add_class MODULE_CODE TUTORIAL_CLASS`
+
+- If none of the parameters is specified, or if only one is specified, returns an error.
+
+Examples:
+- `/add_class CS2103T T10`
+- `/add_class CS2109S T01`
+
+### Deleting tutorial class : `delete_class`
+
+Deletes a specified tutorial class from the list of classes.
+
+Format: `/delete_class MODULE_CODE TUTORIAL_CLASS`
+
+- If the module code does not exist, it returns an error.
+- If the tutorial class within that module code does not exist, it returns an error and the list of tutorial classes in that module code.
+- If no parameters are specified, returns an error
+
+Examples:
+- `/delete_class CS2103T T10`
+- `/delete_class CS2109S T01`
 ### Listing all classes: `list`
 
 Shows a list of all persons in the address book.

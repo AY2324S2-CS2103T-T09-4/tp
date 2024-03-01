@@ -314,7 +314,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case 5: Add new tutorial class**
 
+**MSS:**
+1. User specifies the tutorial class to be added
+2. TAHelper adds the tutorial class
+
+**Extensions:**
+- 2a: The tutorial class is not specified.
+  - Use case ends
+
 **Use case 6: Delete tutorial class**
+
+**MSS:**
+1. User specifies the tutorial class to be deleted
+2. TAHelper deletes the tutorial class
+
+**Extensions:**
+- 2a: The tutorial class is not specified.
+    - Returns an error. Use case ends.
+  - 3a: The tutorial class does not exist.
+    -  Returns an error, and shows the list of tutorial classes available for that module. Use case ends.
 
 **Use case 7: View all classes**
 

@@ -50,9 +50,9 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Mahadhir
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mahadhir247.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/mahadhir247)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Code quality
