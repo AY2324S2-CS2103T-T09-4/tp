@@ -17,27 +17,26 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/Jajared)]
 [[portfolio](team/johndoe.md)]
 
-- Role: Team Lead
-- Responsibilities: Overall project coordination and ensure the team is doing well.
-
+* Role: Team Lead
+* Responsibilities: Overall project coordination and ensure the team is doing well.
 ### Zack Tay
 
-<img src="images/zack-tay.png" width="200px">
+<img src="images/zacktay.png" width="200px">
 
-[[github](http://github.com/Zack-Tay)]
+[[github](http://github.com/Zack-Tay)] 
 [[portfolio](team/johndoe.md)]
 
-- Role: Code quality
-- Responsibilities: Looks after code quality, ensures adherence to coding standards, etc. Also in charge of reviewing PRs and testing of project code before upload
+* Role: Code quality
+* Responsibilities: Looks after code quality, ensures adherence to coding standards, etc. Also in charge of reviewing PRs and testing of project code before upload
 
 ### Tan Qin Xu
 
-<img src="images/qinxutan.png" width="200px">
+<img src="images/qinxu.png" width="200px">
 
 [[github](http://github.com/qinxutan)] [[portfolio](team/johndoe.md)]
 
-- Role: Documentation
-- Responsibilities: Responsible for the quality of various project documents, including README, User Guide and Developer Guide.
+* Role: Documentation
+* Responsibilities: Responsible for the quality of various project documents, including README, User Guide and Developer Guide.
 
 ### Whelan Low
 
@@ -46,8 +45,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/whelan-low)]
 [[portfolio](team/johndoe.md)]
 
-- Role: Deliverables and deadlines
-- Responsibilities: Ensure project deliverables are done on time and in the right format. In charge of submitting the deliverables
+* Role: Deliverables and deadlines
+* Responsibilities: Ensure project deliverables are done on time and in the right format. In charge of submitting the deliverables
 
 ### Mahadhir
 
@@ -56,5 +55,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/mahadhir247)]
 [[portfolio](team/johndoe.md)]
 
-- Role: Code quality
-- Responsibilities: Looks after code quality, ensures adherence to coding standards, etc. Also in charge of reviewing PRs and testing of project code before upload
+* Role: Code quality
+* Responsibilities: Looks after code quality, ensures adherence to coding standards, etc. Also in charge of reviewing PRs and testing of project code before upload
