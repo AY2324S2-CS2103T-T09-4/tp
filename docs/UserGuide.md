@@ -28,15 +28,19 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - `list` : Lists all contacts.
+   - `/list_student` : View the list of all students available.
 
-   - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   - `/add_student /name Dohn Joe /email johndoe@gmail.com /id A0123456A /tc CS2103T T09` : Adds a new student contact with all the details that have been specified to the relevant module and tutorial class.
 
-   - `delete 3` : Deletes the 3rd contact shown in the current list.
+   - `/delete_student /id A0259209B | /delete_student /email johndoe@gmail.com` : Deletes a student contact with email `johndoe@gmail.com` or id `A0259209B`.
 
-   - `clear` : Deletes all contacts.
+   - `/search_student /id A0123456A` : Searches for a student with id `A0123456A`.
 
-   - `exit` : Exits the app.
+   - `/add_class CS2103T T09` : Adds a new tutorial class `T09` under the module `2103T`.
+
+   - `/delete_class CS2103T T09` : Deletes a tutorial class `T09` under the module `2103T`.
+
+   - `/list_class` : List of all tutorial classes available.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -66,13 +70,34 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
 
-### Adding new students : `add`
+### Adding new students : `add_student`
+
+Adds a new student contact with all the details that have been specified by the user to the relevant module and tutorial class
+
+Format: `/add_student /name NAME /email EMAIL /id STUDENT_ID /tc TUTORIAL_CLASS`
+
+- The following parameters to add a student contact are supported:
+    1. Name
+    2. Email
+    3. Student ID
+    4. Tutorial class
+
+- Leading/trailing spaces are removed
+- The parameter is case insensitive
+- If none of the paremeters or an invalid parameter is specified, the command will return an error message indicating that a valid parameter must be provided.
+
+Expected output:
+Upon a successful add, the command will return a confirmation messaging stating that the specified student contact has been added.
+
+Examples:
+- `/add_student /name Dohn Joe /email johndoe@gmail.com /id A0123456A /tc CS2103T T09`
+
 
 ### Deleting students : `delete_student`
 
 Delete a student contact based on the parameter specified by the user.
 
-Format: `/delete_student id/STUDENT_ID email/EMAIL`
+Format: `/delete_student /id STUDENT_ID /email EMAIL`
 
 - The following parameters to delete a student contact are supported:
   1. Student ID
@@ -86,8 +111,8 @@ Upon successful deletion, the command will return a confirmation messaging stati
 
 Examples:
 
-- Delete by student ID: `/delete_student id/A01234567X`
-- Delete by email: `/delete_student email/e0123456@u.nus.edu`
+- Delete by student ID: `/delete_student /id A01234567X`
+- Delete by email: `/delete_student /email e0123456@u.nus.edu`
 
 ### Searching for students : `search`
 
@@ -249,7 +274,7 @@ Format: `list`
 ## Command summary
 
 | Action                     | Format, Examples                                                                                                                                                                               |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add New Students**       | `add_student /name <student_name> /email <student_email> /id <student_id> /tc <tutorial_class>` <br> e.g., `add_student /name Dohn Joe /email johndoe@gmail.com /id A0123456A /tc CS2103T T09` |
 | **Delete students**        | `delete_student </id, /email> <id or email>`<br> e.g., `delete_student /id A0259209B` or `/delete_student email johndoe@gmail.com`                                                             |
 | **Search for students**    | `search_student </id, /email, /tc, /name> <search_query>`<br> e.g.,`search_student /id A0123456A`                                                                                              |
