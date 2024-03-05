@@ -306,95 +306,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case 1: Add new students**
 
-**MSS:**
-1. TA specifies the student to be added.
-2. TAHelper adds the student to the TA's list of students.
-
-**Extensions:**
-- 1a: Student's name, email, id is not specified.
-    - 1a1. Returns an error that tells the TA to specify the missing field.
-    - Use case ends.
-
-
-- 1b: The current email or id already exists in the list.
-    - 1b1. Returns an error indicating that there is an existing entry with the same value.
-    - Use case ends.
-
-
-- 2a: Student's tutorial class is not specified.
-    - 2a1. TAHelper adds this student into a list of all students the TA has.
-    - 2a2. Student will not be placed under any tutorial group.
-    - Use case ends.
-
-
-- 2b: The input command /add_student is wrongly specified.
-    - 2b1. Return an error indicating command not recognised.
-    - Use case ends.
-
 **Use case 2: Delete students**
-
-**MSS:**
-1. TA specifies the student to be deleted, either by student_id or student_email.
-2. TAHelper deletes the student from the TA's list of students and tutorial group (if it is specified).
-
-**Extensions:**
-- 2a: The attribute value specified does not exist in the system.
-    - 2a1: Returns an error indicating that the value does not exist.
-
-
-- 2b: The input command /delete_student is wrongly specified.
-    - 2b1: Returns an error indicating command not recognised.
 
 **Use case 3: Search for students**
 
-**MSS:**
-1. TA specifies the student's attribute to search by.
-2. TA specifies the attribute value to search by.
-3. TAHelpers generate a list of matching entries according to attribute and attribute value.
-
-**Extensions:**
-- 1a/2a: The attribute or attribute value is not specified.
-    - 1a1/2a1. Returns an error that tells the TA to specify the missing field.
-    - Use case ends.
-
-
-- 3a: Partial match
-    - 3a1. will be processed accordingly
-    - 3a2. TAHelper will display all matching results for that attribute value.
-    - Use case ends.
-
-
-- 3b: The input command /search_student is wrongly specified.
-    - 3b1. Return an error indicating command not recognised.
-    - Use case ends.
-
 **Use case 4: View all students**
-
-**MSS:**
-1. TA specifies the command /list_students and enters.
-2. TAHelper displays student's name, email, student id and tutorial class for each student.
-
-**Extensions:**
-- 1a: The input command /list_student is wrongly specified.
-    - 1a1. Returns an error indicating command not recognised.
-    - Use case ends.
-
-
-- 2a: Additional arguments is specified after the command.
-    - 2a1: TAHelper will ignore those arguments and execute /list_students as usual.
-    - Use case ends.
-
 
 **Use case 5: Add new tutorial class**
 
 **MSS:**
-1. TA specifies the tutorial class to be added
+1. User specifies the tutorial class to be added
 2. TAHelper adds the tutorial class
 
 **Extensions:**
 - 2a: The tutorial class is not specified.
-    - 2a1: Returns an error indicating that user has to specify tutorial class.
-    - Use case ends
+  - Use case ends
 
 **Use case 6: Delete tutorial class**
 
@@ -405,9 +331,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 - 2a: The tutorial class is not specified.
     - Returns an error. Use case ends.
-
-
-- 3a: The tutorial class does not exist.
+  - 3a: The tutorial class does not exist.
     -  Returns an error, and shows the list of tutorial classes available for that module. Use case ends.
 
 **Use case 7: View all classes**
