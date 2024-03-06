@@ -4,9 +4,9 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# TAHelper User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+TAHelper is a **desktop app for managing contacts, optimized for use via a Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAHelper can get your students' contact management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -17,24 +17,24 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `tahelper.jar` from [here](https://github.com/AY2324S2-CS2103T-T09-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your TAHelper.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tahelper.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`list_student`** and pressing Enter will display a list of students.<br>
    Some example commands you can try:
 
-   - `/list_student` : View the list of all students available.
-
    - `/add_student name/Dohn Joe email/johndoe@gmail.com id/A0123456A module/CS2103T class/T09` : Adds a new student contact with all the details that have been specified to the relevant module and tutorial class.
 
    - `/delete_student id/A0259209B | /delete_student email/johndoe@gmail.com` : Deletes a student contact with email `johndoe@gmail.com` or id `A0259209B`.
 
    - `/search_student id/A0123456A` : Searches for a student with id `A0123456A`.
+
+   - `/list_student` : View the list of all students available.
 
    - `/add_class module/CS2103T class/T09` : Adds a new tutorial class `T09` under the module `2103T`.
 
@@ -71,7 +71,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 Adds a new student contact with all the details that have been specified by the user to the relevant module and tutorial class
 
-Format: `/add_student name/NAME email/EMAIL id/STUDENT_ID module/MODULE_CODE class/TUTORIAL_CLASS`
+Format: `/add_student name/NAME email/EMAIL id/STUDENT_ID module/MODULE_CODE tutorial/TUTORIAL_CLASS`
 
 - The following parameters to add a student contact are supported:
     1. Name
@@ -89,7 +89,7 @@ Expected output:
 Upon a successful add, the command will return a confirmation messaging stating that the specified student contact has been added.
 
 Examples:
-- `/add_student /name Dohn Joe /email johndoe@gmail.com /id A0123456A /tc CS2103T T09`
+- `/add_student name/Dohn Joe email/johndoe@gmail.com id/A0123456A module/CS2103T tutorial/T09`
 
 
 ### Deleting students : `delete_student`
@@ -165,7 +165,7 @@ Examples:
 - `/delete_class module/CS2103T class/T10`
 - `/delete_class module/CS2109S class/T01`
 
-### Listing all classes: `list`
+### Listing all classes: `list_class`
 
 Shows a list of all persons in the address book.
 
@@ -263,12 +263,12 @@ Format: `list`
 
 ## Command summary
 
-| Action                     | Format, Examples                                                                                                                                                                               |
-|----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add New Students**       | `add_student /name <student_name> /email <student_email> /id <student_id> /tc <tutorial_class>` <br> e.g., `add_student /name Dohn Joe /email johndoe@gmail.com /id A0123456A /tc CS2103T T09` |
-| **Delete students**        | `delete_student </id, /email> <id or email>`<br> e.g., `delete_student /id A0259209B` or `/delete_student email johndoe@gmail.com`                                                             |
-| **Search for students**    | `search_student </id, /email, /tc, /name> <search_query>`<br> e.g.,`search_student /id A0123456A`                                                                                              |
-| **View all students**      | `list_student`                                                                                                                                                                                 |
-| **Add new tutorial class** | `add_class <module_code> <tutorial_class>` <br> e.g., `add_class CS2103T T09`                                                                                                                  |
-| **Delete tutorial class**  | `delete_class <module_code> <tutorial_class>` <br> e.g., `delete_class CS2103T T09`                                                                                                            |
-| **View all classes**       | `list_class`                                                                                                                                                                                   |
+| Action                     | Format, Examples                                                                                                                                                                                                       |
+|----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add New Students**       | `add_student name/ <student_name> email/ <student_email> id/ <student_id> module/ <module> tutorial/ <class>` <br> e.g., `/add_student name/Dohn Joe email/johndoe@gmail.com id/A0123456A module/CS2103T tutorial/T09` |
+| **Delete students**        | `delete_student <id/, email/> <id or email>`<br> e.g., `delete_student id/A0259209B` or `/delete_student email/johndoe@gmail.com`                                                                                      |
+| **Search for students**    | `search_student <id/, email/, tc/, name/> <id or email or tutorial or name>`<br> e.g.,`search_student id/A0123456A`                                                                                                    |
+| **View all students**      | `list_student`                                                                                                                                                                                                         |
+| **Add new tutorial class** | `add_class <module_code> <tutorial_class>` <br> e.g., `add_class module/CS2103T tutorial/T09`                                                                                                                          |
+| **Delete tutorial class**  | `delete_class <module_code> <tutorial_class>` <br> e.g., `delete_class module/CS2103T tutorial/T09`                                                                                                                    |
+| **View all classes**       | `list_class`                                                                                                                                                                                                           |
