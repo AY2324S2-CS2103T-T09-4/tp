@@ -116,6 +116,19 @@ Examples:
 
 ### Searching for students : `search`
 
+Search for a student's contact based on specified query.
+
+Format: `/search_student [id/STUDENT_ID] [email/EMAIL] [class/TUTORIAL_CLASS] [name/NAME]`
+
+- At least one of the optional attributes must be provided.
+- The search query is case-insensitive. e.g. `ian` will match `Ian`
+- The search query will match information corresponding to the optional attribute. e.g. `id/` will only search for IDs
+- Partial matches will also be displayed e.g. `@gmail` will return **ALL** emails containing `@gmail`
+
+Examples:
+- `/search_student id/A012345A` Returns student with corresponding id
+- `/search_student email/@GMAIL` Returns all students who have `@gmail` in their email
+
 ### Listing all students : `list_student`
 
 View the list of all students available
@@ -129,20 +142,20 @@ The command will display the list of all students along with their student infor
 
 Adds a tutorial class with the specified module code and name.
 
-Format: `/add_class MODULE_CODE TUTORIAL_CLASS`
+Format: `/add_class module/MODULE_CODE class/TUTORIAL_CLASS`
 
 - If none of the parameters is specified, or if only one is specified, returns an error.
 
 Examples:
 
-- `/add_class CS2103T T10`
-- `/add_class CS2109S T01`
+- `/add_class module/CS2103T class/T10`
+- `/add_class module/CS2109S class/T01`
 
 ### Deleting tutorial class : `delete_class`
 
 Deletes a specified tutorial class from the list of classes.
 
-Format: `/delete_class MODULE_CODE TUTORIAL_CLASS`
+Format: `/delete_class module/MODULE_CODE class/TUTORIAL_CLASS`
 
 - If the module code does not exist, it returns an error.
 - If the tutorial class within that module code does not exist, it returns an error and the list of tutorial classes in that module code.
@@ -150,8 +163,8 @@ Format: `/delete_class MODULE_CODE TUTORIAL_CLASS`
 
 Examples:
 
-- `/delete_class CS2103T T10`
-- `/delete_class CS2109S T01`
+- `/delete_class module/CS2103T class/T10`
+- `/delete_class module/CS2109S class/T01`
 
 ### Listing all classes: `list`
 
