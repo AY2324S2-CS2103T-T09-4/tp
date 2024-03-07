@@ -241,15 +241,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
+- **Alternative 1 (current choice):** Saves the entire address book.
+  - Pros: Easy to implement.
+  - Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
+* **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
+  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  - Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -288,7 +287,7 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​ | I want to …​                                                                   | So that I can…​                                                         |
-|----------|---------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| -------- | ------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
 | `* * *`  | TA      | add new students to a class                                                    | maintain an up-to-date list of enrolled students.                       |
 | `* * *`  | TA      | add partial info of students                                                   | still add students even if I don’t have all their information.          |
 | `* * *`  | TA      | delete a student from my class if they drop the module/class                   | keep my class list accurate and up-to-date.                             |
@@ -310,7 +309,7 @@ _{More to be added}_
 1. User specifies the student to be added.
 2. System adds the student to the list of students.
 3. System indicates successful addition of new student.
-Use case ends.
+   Use case ends.
 
 **Extensions:**
 
@@ -334,9 +333,9 @@ Use case ends.
 
 **MSS:**
 
-1. User enters the command `/delete_student` and specifies the student to be deleted by the specified parameter.
+1. User specifies the student to be deleted.
 2. System deletes the student from the list of students and tutorial group (if any).
-Use case ends.
+   Use case ends.
 
 **Extensions:**
 
@@ -348,16 +347,17 @@ Use case ends.
   - 1b1. Email does not exist in the system.
     - 1b1.1. Returns an error indicating that the student with the provided email does not exist.
     - Use case ends.
-- 1c. Invalid input command. - 1c1: Returns an error indicating command not recognised and provides the correct command format.
+- 1c. Invalid input command.
+  - 1c1: Returns an error indicating command not recognised and provides the correct command format.
   <br>
 
 #### Use case 3: Search for students
 
 **MSS:**
 
-1. User enters the command `/search_student` and specifies the student to be searched by the specified parameter.
+1. User specifies the student to be searched.
 2. System generates a list of matching entries according to specified parameters.
-Use case ends.
+   Use case ends.
 
 **Extensions:**
 
@@ -367,16 +367,17 @@ Use case ends.
 - 1b. Invalid input command.
   - 1b1. Return an error indicating command not recognised and provides the correct command format.
   - Use case ends.
-- 2a. Partial match for specified parameter. - 2a1. System will display all matching results for the specified value.
+- 2a. Partial match for specified parameter.
+  - 2a1. System will display all matching results for the specified value.
   <br>
 
 #### Use case 4: View all students
 
 **MSS:**
 
-1. User enters the command `/list_student`
+1. User wants to view all students' details.
 2. System displays all students information (name, email, student id and tutorial class).
-Use case ends.
+   Use case ends.
 
 **Extensions:**
 
@@ -384,18 +385,18 @@ Use case ends.
   - 1a1. Return an error indicating command not recognised and provides the correct command format.
   - Use case ends.
 - 1b. Additional arguments are specified after the command.
-  - 1b1. System will ignore those arguments and execute /list_students as usual.
+  - 1b1. System will ignore those arguments and execute the command as usual.
 - 2a. No existing students in the list.
   - 2a1. System will return a message indicating that there are no students in the list.  
-  <br>
+    <br>
 
 #### Use case 5: Add new tutorial class
 
 **MSS:**
 
-1. User enters the command `/add_class` and specifies the tutorial class details to be added.
+1. User specifies the tutorial class to be added.
 2. System adds the tutorial class.
-Use case ends.
+   Use case ends.
 
 **Extensions:**
 
@@ -405,46 +406,47 @@ Use case ends.
 - 1b. Invalid tutorial class attributes are specified.
   - 2a1. Returns an error indicating that user has to specify tutorial class in the correct format.
   - Use case ends.
-- 1c. The specified tutorial class already exists. - 1c1: Returns an error indicating that the tutorial class already exists. - Use case ends.
+- 1c. The specified tutorial class already exists.
+  - 1c1: Returns an error indicating that the tutorial class already exists.
+  - Use case ends.
   <br>
 
 #### Use case 6: Delete tutorial class
 
 **MSS:**
 
-1. User enters the command `/delete_class` and specifies the tutorial class to be deleted.
+1. User specifies the tutorial class to be deleted.
 2. System deletes the tutorial class.
-Use case ends.
+   Use case ends.
 
 **Extensions:**
+
 - 1a. Invalid input command.
   - 1a1. Return an error indicating command not recognised and provides the correct command format.
   - Use case ends.
 - 1b. The tutorial class specified does not exist.
   - 1b1. Returns an error indicating invalid tutorial class and shows the list of tutorial classes available.
   - Use case ends.
-<br>
+    <br>
 
 #### Use case 7: View all classes
 
 **MSS**
-1. User enters the command `/list_class`.
+
+1. User wants to view all classes.
 2. System shows a list of all available classes.
-Use case ends.
+   Use case ends.
 
 **Extensions**
+
 - 1a. Invalid input command.
   - 1a1. Return an error indicating command not recognised and provides the correct command format.
   - Use case ends.
 - 1b. Additional arguments are specified after the command.
-  - 1b1. System will ignore those arguments and execute /list_students as usual.
+  - 1b1. System will ignore those arguments and execute the command as usual.
 - 2a. There are no existing classes.
   - 2a1. System will return a message indicating that there are no existing classes in the list.
-
-
-
-
-_{More to be added}_
+<br>
 
 ### Non-Functional Requirements
 
@@ -457,18 +459,18 @@ _{More to be added}_
 7.  Should be usable by a person who is TA-ing for the first time.
 8.  Should provide comprehensive error messages and guidelines to recover from errors due to user input.
 9.  Should provide a comprehensive and well-designed user documentation to guide users on how to use TAHelper.
-10.  Should provide a comprehensive and well-designed developer documentation to guide developer on how to improve and develop TAHelper further.
+10. Should provide a comprehensive and well-designed developer documentation to guide developer on how to improve and develop TAHelper further.
 
 _{More to be added}_
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **TA (Teaching Assistant)**: An individual who is responsible for teaching a tutorial class of University students.
-* **TAHelper**: A contact management application to help TAs keep track of students in classes they teach
-* **GUI**: Graphical User Interface
-* **MSS**: Main Success Scenario
+- **Mainstream OS**: Windows, Linux, Unix, MacOS
+- **Private contact detail**: A contact detail that is not meant to be shared with others
+- **TA (Teaching Assistant)**: An individual who is responsible for teaching a tutorial class of University students.
+- **TAHelper**: A contact management application to help TAs keep track of students in classes they teach
+- **GUI**: Graphical User Interface
+- **MSS**: Main Success Scenario
 
 ---
 
@@ -487,16 +489,16 @@ testers are expected to do more _exploratory_ testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   1. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
@@ -504,16 +506,16 @@ testers are expected to do more _exploratory_ testing.
 
 1. Deleting a person while all persons are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `delete 0`<br>
+      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -521,6 +523,6 @@ testers are expected to do more _exploratory_ testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
