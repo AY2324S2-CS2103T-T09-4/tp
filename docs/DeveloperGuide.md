@@ -334,7 +334,7 @@ Use case ends.
 
 **MSS:**
 
-1. User enters the command `/delete_student` and specifies the student to be deleted by the specified parameter.
+1. User specifies the student to be deleted.
 2. System deletes the student from the list of students and tutorial group (if any).
 Use case ends.
 
@@ -348,14 +348,15 @@ Use case ends.
   - 1b1. Email does not exist in the system.
     - 1b1.1. Returns an error indicating that the student with the provided email does not exist.
     - Use case ends.
-- 1c. Invalid input command. - 1c1: Returns an error indicating command not recognised and provides the correct command format.
-  <br>
+- 1c. Invalid input command.
+  - 1c1: Returns an error indicating command not recognised and provides the correct command format.
+<br>
 
 #### Use case 3: Search for students
 
 **MSS:**
 
-1. User enters the command `/search_student` and specifies the student to be searched by the specified parameter.
+1. User specifies the student to be searched for.
 2. System generates a list of matching entries according to specified parameters.
 Use case ends.
 
@@ -367,14 +368,15 @@ Use case ends.
 - 1b. Invalid input command.
   - 1b1. Return an error indicating command not recognised and provides the correct command format.
   - Use case ends.
-- 2a. Partial match for specified parameter. - 2a1. System will display all matching results for the specified value.
-  <br>
+- 2a. Partial match for specified parameter.
+  - 2a1. System will display all matching results for the specified value.
+<br>
 
 #### Use case 4: View all students
 
 **MSS:**
 
-1. User enters the command `/list_student`
+1. User wants to view all students' information.
 2. System displays all students information (name, email, student id and tutorial class).
 Use case ends.
 
@@ -384,7 +386,7 @@ Use case ends.
   - 1a1. Return an error indicating command not recognised and provides the correct command format.
   - Use case ends.
 - 1b. Additional arguments are specified after the command.
-  - 1b1. System will ignore those arguments and execute /list_students as usual.
+  - 1b1. System will ignore those arguments and execute the command as usual.
 - 2a. No existing students in the list.
   - 2a1. System will return a message indicating that there are no students in the list.  
   <br>
@@ -393,7 +395,7 @@ Use case ends.
 
 **MSS:**
 
-1. User enters the command `/add_class` and specifies the tutorial class details to be added.
+1. User specifies the class to be added.
 2. System adds the tutorial class.
 Use case ends.
 
@@ -405,14 +407,16 @@ Use case ends.
 - 1b. Invalid tutorial class attributes are specified.
   - 2a1. Returns an error indicating that user has to specify tutorial class in the correct format.
   - Use case ends.
-- 1c. The specified tutorial class already exists. - 1c1: Returns an error indicating that the tutorial class already exists. - Use case ends.
-  <br>
+- 1c. The specified tutorial class already exists.
+  - 1c1: Returns an error indicating that the tutorial class already exists
+  - Use case ends.
+<br>
 
 #### Use case 6: Delete tutorial class
 
 **MSS:**
 
-1. User enters the command `/delete_class` and specifies the tutorial class to be deleted.
+1. User specifies the class to be deleted.
 2. System deletes the tutorial class.
 Use case ends.
 
@@ -428,7 +432,7 @@ Use case ends.
 #### Use case 7: View all classes
 
 **MSS**
-1. User enters the command `/list_class`.
+1. User wants to view all classes.
 2. System shows a list of all available classes.
 Use case ends.
 
@@ -437,14 +441,11 @@ Use case ends.
   - 1a1. Return an error indicating command not recognised and provides the correct command format.
   - Use case ends.
 - 1b. Additional arguments are specified after the command.
-  - 1b1. System will ignore those arguments and execute /list_students as usual.
+  - 1b1. System will ignore those arguments and execute the comamnd as usual.
 - 2a. There are no existing classes.
   - 2a1. System will return a message indicating that there are no existing classes in the list.
+<br>
 
-
-
-
-_{More to be added}_
 
 ### Non-Functional Requirements
 
@@ -459,7 +460,6 @@ _{More to be added}_
 9.  Should provide a comprehensive and well-designed user documentation to guide users on how to use TAHelper.
 10.  Should provide a comprehensive and well-designed developer documentation to guide developer on how to improve and develop TAHelper further.
 
-_{More to be added}_
 
 ### Glossary
 
