@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -23,7 +23,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -97,10 +100,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         StudentId updatedStudentId = editPersonDescriptor.getStudentId().orElse(personToEdit.getStudentId());
         ModuleCode updatedModule = editPersonDescriptor.getModuleCode().orElse(personToEdit.getModule());
-        TutorialClass updatedTutorialClass = editPersonDescriptor.getTutorialClass().orElse(personToEdit.getTutorialClass());
+        TutorialClass updatedTutorialClass = editPersonDescriptor.getTutorialClass()
+                .orElse(personToEdit.getTutorialClass());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedEmail, updatedStudentId, updatedModule, updatedTutorialClass, updatedTags);
+        return new Person(updatedName, updatedEmail, updatedStudentId,
+                updatedModule, updatedTutorialClass, updatedTags);
     }
 
     @Override

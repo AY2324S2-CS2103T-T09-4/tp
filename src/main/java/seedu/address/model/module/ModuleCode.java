@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class ModuleCode {
 
-    public static final String MESSAGE_CONSTRAINTS = "Please enter a valid NUS module code eg. ACC1701X, CS1101S, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Please enter a valid NUS module code eg. ACC1701X, CS1101S, and it should not be blank";
 
     /**
      * This regex validates the module code that user enters.

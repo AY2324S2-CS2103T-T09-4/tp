@@ -9,12 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class StudentId {
 
-    public static final String MESSAGE_CONSTRAINTS = "Student ID can take values in your NUS Student ID format, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Student ID can take values in your NUS Student ID format, and it should not be blank";
 
     /**
      * This regex validates the NUS student id of a student in the form "A12345678Z"
      */
-    public static final String VALIDATION_REGEX = "^[A]\\d{8}[A-Z]$";
+    public static final String VALIDATION_REGEX = "^A\\d{8}[A-Z]$";
 
     public final String value;
 

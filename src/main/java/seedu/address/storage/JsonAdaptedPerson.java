@@ -12,7 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -89,7 +92,8 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (studentId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName()));
         }
         if (!StudentId.isValidStudentId(studentId)) {
             throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
@@ -97,7 +101,8 @@ class JsonAdaptedPerson {
         final StudentId modelStudentId = new StudentId(studentId);
 
         if (moduleCode == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleCode.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleCode.class.getSimpleName()));
         }
         if (!ModuleCode.isValidModuleCode(moduleCode)) {
             throw new IllegalValueException(ModuleCode.MESSAGE_CONSTRAINTS);
@@ -105,7 +110,8 @@ class JsonAdaptedPerson {
         final ModuleCode modelModuleCode = new ModuleCode(moduleCode);
 
         if (tutorial == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialClass.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialClass.class.getSimpleName()));
         }
         if (!TutorialClass.isValidTutorialClass(tutorial)) {
             throw new IllegalValueException(TutorialClass.MESSAGE_CONSTRAINTS);
