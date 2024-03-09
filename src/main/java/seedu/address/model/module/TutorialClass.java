@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TutorialClass {
 
-    public static final String MESSAGE_CONSTRAINTS = "Please enter a valid NUS tutorial class code eg. T01, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Please enter a valid NUS tutorial class code eg. T01, and it should not be blank";
 
     /**
      * This regex validates the tutorial class code that user enters.
