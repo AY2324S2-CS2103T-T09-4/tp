@@ -33,8 +33,8 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_STUDENT_ID_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_MODULE_BOB).withTags(VALID_TAG_HUSBAND).build();
+        Person editedAlice = new PersonBuilder(ALICE).withStudentId(VALID_STUDENT_ID_BOB).withEmail(VALID_EMAIL_BOB)
+                .withModuleCode(VALID_MODULE_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -74,7 +74,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_STUDENT_ID_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withStudentId(VALID_STUDENT_ID_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false
@@ -82,7 +82,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_MODULE_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withModuleCode(VALID_MODULE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
@@ -92,8 +92,9 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
+        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName()
+                + ", email=" + ALICE.getEmail() + ", student_id=" + ALICE.getStudentId()
+                + ", module=" + ALICE.getModule() + ", tutorial=" + ALICE.getTutorialClass()+ ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
