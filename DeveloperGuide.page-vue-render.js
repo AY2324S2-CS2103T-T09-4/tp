@@ -290,7 +290,7 @@ with(this){return _c('ol',[_c('li',[_v("User wants to view all students' informa
 with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
 },function anonymous(
 ) {
-with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. Additional arguments are specified after the command.\n"),_c('ul',[_c('li',[_v("1b1. System will ignore those arguments and execute the command as usual.")])])]),_v(" "),_c('li',[_v("2a. No existing students in the list.\n"),_c('ul',[_c('li',[_v("2a1. System will return a message indicating that there are no students in the list."),_c('br'),_v(" "),_c('br')])])])])}
+with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. Additional arguments are specified after the command.\n"),_c('ul',[_c('li',[_v("1b1. System will ignore those arguments and execute the command as usual.")])])]),_v(" "),_c('li',[_v("2a. No existing students in the list.\n"),_c('ul',[_c('li',[_v("2a1. System will return a message indicating that there are no students in the list.\n"),_c('br')])])])])}
 },function anonymous(
 ) {
 with(this){return _c('h4',{attrs:{"id":"use-case-5-add-new-tutorial-class"}},[_v("Use case 5: Add new tutorial class"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-5-add-new-tutorial-class","onclick":"event.stopPropagation()"}})])}
@@ -371,6 +371,6 @@ with(this){return _c('h3',{attrs:{"id":"saving-data"}},[_v("Saving data"),_c('a'
 with(this){return _c('ol',[_c('li',[_c('p',[_v("Dealing with missing/corrupted data files")]),_v(" "),_c('ol',[_c('li',[_c('em',[_v("{explain how to simulate a missing/corrupted file, and the expected behavior}")])])])]),_v(" "),_c('li',[_c('p',[_c('em',[_v("{ more test cases …​ }")])])])])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.3.0")]),_v(", generated on Thu, 7 Mar 2024, 10:29:30 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.3.0")]),_v(", generated on Mon, 11 Mar 2024, 16:38:15 GMT+8]")])])])}
 }];
   
