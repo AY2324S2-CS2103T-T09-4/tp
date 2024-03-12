@@ -11,6 +11,8 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentByIndexCommand;
+import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -27,7 +29,7 @@ public class DeleteStudentCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteStudentCommand deleteCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
+        DeleteStudentCommand deleteCommand = new DeleteStudentByIndexCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
@@ -43,7 +45,7 @@ public class DeleteStudentCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteStudentCommand deleteCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
+        DeleteStudentCommand deleteCommand = new DeleteStudentByIndexCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
@@ -57,8 +59,8 @@ public class DeleteStudentCommandTest {
 
     @Test
     public void equals() {
-        DeleteStudentCommand deleteFirstCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
-        DeleteStudentCommand deleteSecondCommand = new DeleteStudentCommand(INDEX_SECOND_PERSON);
+        DeleteStudentCommand deleteFirstCommand = new DeleteStudentByIndexCommand(INDEX_FIRST_PERSON);
+        DeleteStudentCommand deleteSecondCommand = new DeleteStudentByIndexCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));

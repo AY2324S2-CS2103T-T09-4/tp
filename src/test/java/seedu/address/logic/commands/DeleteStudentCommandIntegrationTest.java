@@ -8,6 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentByEmailCommand;
+import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentByIdCommand;
+import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -37,7 +40,7 @@ public class DeleteStudentCommandIntegrationTest {
         expectedModel.addPerson(validPerson);
 
         // Attempt to delete the student
-        assertCommandSuccess(new DeleteStudentCommand(validPerson.getStudentId()), expectedModel,
+        assertCommandSuccess(new DeleteStudentByIdCommand(validPerson.getStudentId()), expectedModel,
                 String.format(DeleteStudentCommand.MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(validPerson)),
                 expectedModel);
     }
@@ -51,7 +54,7 @@ public class DeleteStudentCommandIntegrationTest {
         expectedModel.addPerson(validPerson);
 
         // Attempt to delete the student
-        assertCommandSuccess(new DeleteStudentCommand(validPerson.getEmail()), expectedModel,
+        assertCommandSuccess(new DeleteStudentByEmailCommand(validPerson.getEmail()), expectedModel,
                 String.format(DeleteStudentCommand.MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(validPerson)),
                 expectedModel);
     }
@@ -67,7 +70,7 @@ public class DeleteStudentCommandIntegrationTest {
         StudentId invalidId = new StudentId("A0123456X");
 
         // Attempt to delete the student
-        assertCommandFailure(new DeleteStudentCommand(invalidId), expectedModel,
+        assertCommandFailure(new DeleteStudentByIdCommand(invalidId), expectedModel,
                 String.format(DeleteStudentCommand.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, "A0123456X"));
     }
 
