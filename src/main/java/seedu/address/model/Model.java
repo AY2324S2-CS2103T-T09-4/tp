@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 
 /**
@@ -58,6 +59,18 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     */
+    boolean hasModule(ModuleCode module);
+
+    /**
+     * Finds the module object from the list if it exists. Else, returns null.
+     *
+     * @param module to be searched
+     * @return the module if it exists, else return null.
+     */
+    ModuleCode findModuleFromList(ModuleCode module);
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -68,6 +81,13 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    /**
+     * Adds the given module.
+     * {@code ModuleCode} must not already exist in the address book.
+     */
+    void addModule(ModuleCode module);
+
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

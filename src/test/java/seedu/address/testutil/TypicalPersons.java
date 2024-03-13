@@ -10,6 +10,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +19,8 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
+
+
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -51,10 +55,10 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withStudentId(VALID_STUDENT_ID_AMY)
-            .withTutorialClass("T01").withEmail(VALID_EMAIL_AMY).withModuleCode(VALID_MODULE_AMY)
+            .withTutorialClass(VALID_TUTORIAL_AMY).withEmail(VALID_EMAIL_AMY).withModuleCode(VALID_MODULE_AMY)
             .withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withStudentId(VALID_STUDENT_ID_BOB)
-            .withTutorialClass("T01").withEmail(VALID_EMAIL_BOB).withModuleCode(VALID_MODULE_BOB)
+            .withTutorialClass(VALID_TUTORIAL_BOB).withEmail(VALID_EMAIL_BOB).withModuleCode(VALID_MODULE_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

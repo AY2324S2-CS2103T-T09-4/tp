@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -94,6 +96,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasModule(ModuleCode module) {
+        requireNonNull(module);
+        return addressBook.hasModule(module);
+    }
+
+    @Override
+    public ModuleCode findModuleFromList(ModuleCode module) {
+        requireNonNull(module);
+        return addressBook.findModuleFromList(module);
+    }
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -102,6 +115,11 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addModule(ModuleCode module) {
+        addressBook.addModule(module);
     }
 
     @Override

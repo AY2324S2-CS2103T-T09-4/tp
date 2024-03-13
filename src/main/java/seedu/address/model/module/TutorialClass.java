@@ -1,7 +1,11 @@
 package seedu.address.model.module;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.ArrayList;
+
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Module's tutorial class code.
@@ -19,16 +23,31 @@ public class TutorialClass {
     public static final String VALIDATION_REGEX = "^[A-Z]\\d{2}$";
 
     public final String value;
+    private final ArrayList<Person> students;
 
     /**
-     * Constructs an {@code TutorialClass}.
+     * A constructor for TutorialClass. Creates an empty tutorial class with no students.
      *
-     * @param tutorialClass A valid tutorialClass.
+     * @param name of tutorial to be added
      */
-    public TutorialClass(String tutorialClass) {
-        requireNonNull(tutorialClass);
-        checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
-        value = tutorialClass;
+    public TutorialClass(String name) {
+        requireAllNonNull(name);
+        checkArgument(isValidTutorialClass(name), MESSAGE_CONSTRAINTS);
+        this.value = name;
+        this.students = new ArrayList<>();
+    }
+
+    /**
+     * A constructor for TutorialClass. Creates a tutorial with the list of students specified.
+     *
+     * @param name of tutorial to be added
+     * @param students to be in the added tutorial
+     */
+    public TutorialClass(String name, ArrayList<Person> students) {
+        requireAllNonNull(name);
+        checkArgument(isValidTutorialClass(name), MESSAGE_CONSTRAINTS);
+        this.value = name;
+        this.students = students;
     }
 
     /**
@@ -62,5 +81,4 @@ public class TutorialClass {
     public int hashCode() {
         return value.hashCode();
     }
-
 }

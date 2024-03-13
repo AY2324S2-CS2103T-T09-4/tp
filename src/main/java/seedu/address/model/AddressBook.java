@@ -2,10 +2,12 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -16,6 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final ArrayList<ModuleCode> modules;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        modules = new ArrayList<>();
     }
 
     public AddressBook() {}
@@ -73,6 +77,37 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+    }
+
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     */
+    public boolean hasModule(ModuleCode module) {
+        requireNonNull(module);
+        return modules.contains(module);
+    }
+
+    /**
+     * Returns the module object from the module list if it exists.
+     * Else, returns null
+     *
+     * @param module to be searched
+     * @return the module object from the list, if it exists, else returns null
+     */
+    public ModuleCode findModuleFromList(ModuleCode module) {
+        for (ModuleCode moduleInList : modules) {
+            if (module.equals(moduleInList)) {
+                return moduleInList;
+            }
+        }
+        return null;
+    }
+    /**
+     * Adds a module to the address book.
+     * The module must not already exist in the address book. (TODO)
+     */
+    public void addModule(ModuleCode m) {
+        modules.add(m);
     }
 
     /**

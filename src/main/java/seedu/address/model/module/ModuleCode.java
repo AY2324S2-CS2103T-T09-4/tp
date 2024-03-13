@@ -1,7 +1,9 @@
 package seedu.address.model.module;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.ArrayList;
 
 /**
  * Represents a Module's module code.
@@ -19,16 +21,47 @@ public class ModuleCode {
     public static final String VALIDATION_REGEX = "^[A-Z]{2,3}\\d{4}[A-Z]?$";
 
     public final String value;
+    private final ArrayList<TutorialClass> tutorialClasses;
 
     /**
-     * Constructs an {@code ModuleCode}.
+     * A constructor for Module. Used to initialise a new module with no tutorial classes
      *
-     * @param modCode A valid modCode.
+     * @param name of the module to be created
      */
-    public ModuleCode(String modCode) {
-        requireNonNull(modCode);
-        checkArgument(isValidModuleCode(modCode), MESSAGE_CONSTRAINTS);
-        value = modCode;
+    public ModuleCode(String name) {
+        requireAllNonNull(name);
+        checkArgument(isValidModuleCode(name), MESSAGE_CONSTRAINTS);
+        this.value = name;
+        this.tutorialClasses = new ArrayList<TutorialClass>();
+    }
+
+    /**
+     * A constructor for Module. Used to initialise a new module with the tutorial class specified.
+     * This is the constructor used when /add_class is used.
+     *
+     * @param name of the module to be created
+     * @param tutorialClass to be added within the module
+     */
+    public ModuleCode(String name, String tutorialClass) {
+        requireAllNonNull(name);
+        checkArgument(isValidModuleCode(name), MESSAGE_CONSTRAINTS);
+        this.value = name;
+        this.tutorialClasses = new ArrayList<TutorialClass>();
+        tutorialClasses.add(new TutorialClass(tutorialClass));
+    }
+
+    /**
+     * A constructor for Module. Used to initialise a new module with the list of tutorial classes specified.
+     * Used to get the representation of the module from the list of classes and the name specified.
+     *
+     * @param name of the module to be created
+     * @param tutorialClasses of the module to be created
+     */
+    public ModuleCode(String name, ArrayList<TutorialClass> tutorialClasses) {
+        requireAllNonNull(name);
+        checkArgument(isValidModuleCode(name), MESSAGE_CONSTRAINTS);
+        this.value = name;
+        this.tutorialClasses = tutorialClasses;
     }
 
     /**
@@ -36,6 +69,23 @@ public class ModuleCode {
      */
     public static boolean isValidModuleCode(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns the ArrayList of tutorial classes under this module.
+     *
+     * @return the ArrayList of tutorial classes.
+     */
+    public ArrayList<TutorialClass> getTutorialClasses() {
+        return tutorialClasses;
+    }
+
+    public String getTutorialClassesNames() {
+        StringBuilder output = new StringBuilder();
+        for (int i = 0; i < tutorialClasses.size(); i++) {
+            output.append(tutorialClasses.get(i).toString()).append(", ");
+        }
+        return output.toString();
     }
 
     @Override
@@ -63,4 +113,28 @@ public class ModuleCode {
         return value.hashCode();
     }
 
+    /**
+     * Checks if the given tutorial class is already in the list.
+     *
+     * @param tutorialString name of the tutorial class to be checked
+     * @return true if the class name is in the list. False otherwise.
+     */
+    public boolean hasTutorialClass(String tutorialString) {
+        for (TutorialClass tutorialClass : tutorialClasses) {
+            String tutorialInList = tutorialClass.toString();
+            if (tutorialString.equals(tutorialInList)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Adds an empty tutorial with the given name into the module.
+     *
+     * @param tutorialString name of tutorial class to be added.
+     */
+    public void addTutorialClass(String tutorialString) {
+        tutorialClasses.add(new TutorialClass((tutorialString)));
+    }
 }
