@@ -6,8 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Deletes a student identified using either the index, student ID or email from
- * the address book.
+ * Abstract class for DeleteStudentCommand 
  */
 public abstract class DeleteStudentCommand extends Command {
 

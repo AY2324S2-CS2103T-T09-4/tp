@@ -6,14 +6,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a student identified using either the index, student ID or email from
- * the address book.
+ * Deletes a student identified using index from the address book.
  */
 public class DeleteStudentByIndexCommand extends DeleteStudentCommand {
 
@@ -45,7 +43,7 @@ public class DeleteStudentByIndexCommand extends DeleteStudentCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteStudentByIndexCommand)) {
             return false;
         }
 

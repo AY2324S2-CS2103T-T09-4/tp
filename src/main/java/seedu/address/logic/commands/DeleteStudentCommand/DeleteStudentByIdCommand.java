@@ -15,8 +15,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
 
 /**
- * Deletes a student identified using either the index, student ID or email from
- * the address book.
+ * Deletes a student identified using student ID from the address book.
  */
 public class DeleteStudentByIdCommand extends DeleteStudentCommand {
 
@@ -52,10 +51,9 @@ public class DeleteStudentByIdCommand extends DeleteStudentCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteStudentByIdCommand)) {
             return false;
         }
-
         DeleteStudentByIdCommand otherDeleteCommand = (DeleteStudentByIdCommand) other;
         return studentId.equals(otherDeleteCommand.studentId);
     }

@@ -5,15 +5,13 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a student identified using either the index, student ID or email from
- * the address book.
+ * Deletes a student identified using email from the address book.
  */
 public class DeleteStudentByEmailCommand extends DeleteStudentCommand {
 
@@ -48,7 +46,7 @@ public class DeleteStudentByEmailCommand extends DeleteStudentCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteStudentByEmailCommand)) {
             return false;
         }
 

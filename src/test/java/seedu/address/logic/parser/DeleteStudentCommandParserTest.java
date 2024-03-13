@@ -1,19 +1,20 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INDEX_ONE;
+import static seedu.address.logic.commands.CommandTestUtil.STUDENT_ID_DESC_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPersons.BOB;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentByEmailCommand;
+import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentByIdCommand;
 import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentByIndexCommand;
 import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentCommand;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.StudentId;
-import seedu.address.testutil.PersonBuilder;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -28,9 +29,19 @@ public class DeleteStudentCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        
-        assertParseSuccess(parser, "index/1", new DeleteStudentByIndexCommand(INDEX_FIRST_PERSON));
-        // assertParseSuccess(parser, "delete_student id/A01234567X", new DeleteStudentCommand(new StudentId("A01234567X")));
+
+        // Delete by email
+        DeleteStudentByEmailCommand expectedDeleteByEmailCommand = new DeleteStudentByEmailCommand(BOB.getEmail());
+        assertParseSuccess(parser, EMAIL_DESC_BOB, expectedDeleteByEmailCommand);
+
+
+        // Delete by student Id
+        DeleteStudentByIdCommand expectedDeleteByIdCommand = new DeleteStudentByIdCommand(BOB.getStudentId());
+        assertParseSuccess(parser, STUDENT_ID_DESC_BOB, expectedDeleteByIdCommand);
+
+        // Delete by index
+        DeleteStudentByIndexCommand expectedDeleteByIndexCommand = new DeleteStudentByIndexCommand(INDEX_FIRST_PERSON);
+        assertParseSuccess(parser, INDEX_ONE, expectedDeleteByIndexCommand);
     }
     
 
