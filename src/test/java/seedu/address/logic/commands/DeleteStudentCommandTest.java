@@ -2,6 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -11,12 +15,16 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByEmailCommand;
+import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByIdCommand;
 import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByIndexCommand;
 import seedu.address.logic.commands.deletestudentcommand.DeleteStudentCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.StudentId;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -59,20 +67,50 @@ public class DeleteStudentCommandTest {
 
     @Test
     public void equals() {
-        DeleteStudentCommand deleteFirstCommand = new DeleteStudentByIndexCommand(INDEX_FIRST_PERSON);
-        DeleteStudentCommand deleteSecondCommand = new DeleteStudentByIndexCommand(INDEX_SECOND_PERSON);
-
+        // Test index based delete command
+        DeleteStudentByIndexCommand deleteByIndexFirstCommand = new DeleteStudentByIndexCommand(INDEX_FIRST_PERSON);
+        DeleteStudentByIndexCommand deleteByIndexSecondCommand = new DeleteStudentByIndexCommand(INDEX_SECOND_PERSON);
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
-
+        assertTrue(deleteByIndexFirstCommand.equals(deleteByIndexFirstCommand));
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(deleteByIndexFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(deleteByIndexFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(deleteByIndexFirstCommand.equals(deleteByIndexSecondCommand));
+
+        // Test email based delete command
+        DeleteStudentByEmailCommand deleteByEmailFirstCommand = new DeleteStudentByEmailCommand(
+                new Email(VALID_EMAIL_AMY));
+        DeleteStudentByEmailCommand deleteByEmailSecondCommand = new DeleteStudentByEmailCommand(
+                new Email(VALID_EMAIL_BOB));
+        // same object -> returns true
+        assertTrue(deleteByEmailFirstCommand.equals(deleteByEmailFirstCommand));
+        // different types -> returns false
+        assertFalse(deleteByEmailFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(deleteByEmailFirstCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(deleteByEmailFirstCommand.equals(deleteByEmailSecondCommand));
+
+        // Test student id based delete command
+        DeleteStudentByIdCommand deleteByIdFirstCommand = new DeleteStudentByIdCommand(
+                new StudentId(VALID_STUDENT_ID_AMY));
+        DeleteStudentByIdCommand deleteByIdSecondCommand = new DeleteStudentByIdCommand(
+                new StudentId(VALID_STUDENT_ID_BOB));
+        // same object -> returns true
+        assertTrue(deleteByIdFirstCommand.equals(deleteByIdFirstCommand));
+        // different types -> returns false
+        assertFalse(deleteByIdFirstCommand.equals(1));
+        // null -> returns false
+        assertFalse(deleteByIdFirstCommand.equals(null));
+        // different person -> returns false
+        assertFalse(deleteByIdFirstCommand.equals(deleteByIdSecondCommand));
+
     }
 
     /**
