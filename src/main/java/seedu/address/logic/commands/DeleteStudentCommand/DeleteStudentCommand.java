@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.DeleteStudentCommand;
+package seedu.address.logic.commands.deletestudentcommand;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -6,7 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Abstract class for DeleteStudentCommand 
+ * Abstract class for DeleteStudentCommand
  */
 public abstract class DeleteStudentCommand extends Command {
 

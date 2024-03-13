@@ -7,10 +7,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentByEmailCommand;
-import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentByIdCommand;
-import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentByIndexCommand;
-import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentCommand;
+import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByEmailCommand;
+import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByIdCommand;
+import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByIndexCommand;
+import seedu.address.logic.commands.deletestudentcommand.DeleteStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.StudentId;
@@ -40,16 +40,13 @@ public class DeleteStudentCommandParser implements Parser<DeleteStudentCommand> 
         if (isIndexPresent) {
             Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
             return new DeleteStudentByIndexCommand(index);
-        } 
-        else if (isEmailPresent) {
+        } else if (isEmailPresent) {
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
             return new DeleteStudentByEmailCommand(email);
-        } 
-        else if (isStudentIdPresent) {
+        } else if (isStudentIdPresent) {
             StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get());
             return new DeleteStudentByIdCommand(studentId);
-        } 
-        else {
+        } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }

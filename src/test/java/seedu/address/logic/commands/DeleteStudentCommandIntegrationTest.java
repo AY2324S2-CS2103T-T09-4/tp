@@ -8,9 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentByEmailCommand;
-import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentByIdCommand;
-import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentCommand;
+import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByEmailCommand;
+import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByIdCommand;
+import seedu.address.logic.commands.deletestudentcommand.DeleteStudentCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;

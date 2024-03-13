@@ -11,10 +11,10 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentByEmailCommand;
-import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentByIdCommand;
-import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentByIndexCommand;
-import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentCommand;
+import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByEmailCommand;
+import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByIdCommand;
+import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByIndexCommand;
+import seedu.address.logic.commands.deletestudentcommand.DeleteStudentCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -43,10 +43,10 @@ public class DeleteStudentCommandParserTest {
         DeleteStudentByIndexCommand expectedDeleteByIndexCommand = new DeleteStudentByIndexCommand(INDEX_FIRST_PERSON);
         assertParseSuccess(parser, INDEX_ONE, expectedDeleteByIndexCommand);
     }
-    
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentCommand.MESSAGE_USAGE));
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "a", expectedMessage);
     }
 }

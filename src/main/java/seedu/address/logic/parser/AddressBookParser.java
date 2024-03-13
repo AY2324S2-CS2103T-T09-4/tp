@@ -18,7 +18,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.DeleteStudentCommand.DeleteStudentCommand;
+import seedu.address.logic.commands.deletestudentcommand.DeleteStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
