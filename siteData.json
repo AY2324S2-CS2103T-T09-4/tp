@@ -40,7 +40,7 @@
       "src": "DeveloperGuide.md",
       "title": "Developer Guide",
       "headings": {
-        "ab-3-developer-guide": "AB-3 Developer Guide",
+        "ta-helper-developer-guide": "TA Helper Developer Guide",
         "acknowledgements": "Acknowledgements",
         "setting-up-getting-started": "Setting up, getting started",
         "design": "Design",
@@ -117,7 +117,6 @@
         "adding-new-tutorial-class-add-class": "Adding new tutorial class : add_class",
         "deleting-tutorial-class-delete-class": "Deleting tutorial class : delete_class",
         "listing-all-classes-list-class": "Listing all classes: list_class",
-        "format-list-class": "Format: list_class",
         "faq": "FAQ",
         "known-issues": "Known issues",
         "command-summary": "Command summary"
@@ -128,7 +127,7 @@
       "src": "index.md",
       "title": "",
       "headings": {
-        "addressbook-level-3": "AddressBook Level-3"
+        "ta-helper": "TA Helper"
       },
       "headingKeywords": {}
     },
