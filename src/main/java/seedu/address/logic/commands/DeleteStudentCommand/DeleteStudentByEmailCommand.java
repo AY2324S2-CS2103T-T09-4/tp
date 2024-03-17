@@ -15,6 +15,9 @@ import seedu.address.model.person.Person;
  */
 public class DeleteStudentByEmailCommand extends DeleteStudentCommand {
 
+    public static final String MESSAGE_PERSON_EMAIL_NOT_FOUND = "The student with email %s "
+            + "does not exist in the address book";
+
     private final Email email;
 
     /**

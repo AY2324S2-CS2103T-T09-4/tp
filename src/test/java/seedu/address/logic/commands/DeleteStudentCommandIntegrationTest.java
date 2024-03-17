@@ -71,7 +71,7 @@ public class DeleteStudentCommandIntegrationTest {
 
         // Attempt to delete the student
         assertCommandFailure(new DeleteStudentByIdCommand(invalidId), expectedModel,
-                String.format(DeleteStudentCommand.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, "A0123456X"));
+                String.format(DeleteStudentByIdCommand.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, "A0123456X"));
     }
 
 }

@@ -15,6 +15,9 @@ import seedu.address.model.person.StudentId;
  */
 public class DeleteStudentByIdCommand extends DeleteStudentCommand {
 
+    public static final String MESSAGE_PERSON_STUDENT_ID_NOT_FOUND = "The student with student ID %s "
+            + "does not exist in the address book";
+
     private final StudentId studentId;
 
     /**
@@ -24,7 +27,6 @@ public class DeleteStudentByIdCommand extends DeleteStudentCommand {
     public DeleteStudentByIdCommand(StudentId studentId) {
         this.studentId = studentId;
     }
-
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

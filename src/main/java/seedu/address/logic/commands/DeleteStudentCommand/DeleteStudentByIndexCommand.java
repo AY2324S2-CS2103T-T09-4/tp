@@ -15,6 +15,9 @@ import seedu.address.model.person.Person;
  */
 public class DeleteStudentByIndexCommand extends DeleteStudentCommand {
 
+    public static final String MESSAGE_PERSON_INDEX_NOT_FOUND = "The student at index %s "
+            + "does not exist in the address book";
+
     private final Index targetIndex;
 
     /**
@@ -25,12 +28,15 @@ public class DeleteStudentByIndexCommand extends DeleteStudentCommand {
         this.targetIndex = targetIndex;
     }
 
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Person personToDelete;
-        personToDelete = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        try {
+            personToDelete = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(String.format(MESSAGE_PERSON_INDEX_NOT_FOUND, targetIndex.getOneBased()));
+        }
         model.deletePerson(personToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));

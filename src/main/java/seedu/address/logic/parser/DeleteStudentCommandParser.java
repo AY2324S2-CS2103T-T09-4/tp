@@ -40,12 +40,12 @@ public class DeleteStudentCommandParser implements Parser<DeleteStudentCommand> 
         if (isIndexPresent) {
             Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
             return new DeleteStudentByIndexCommand(index);
-        } else if (isEmailPresent) {
-            Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-            return new DeleteStudentByEmailCommand(email);
         } else if (isStudentIdPresent) {
             StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get());
             return new DeleteStudentByIdCommand(studentId);
+        } else if (isEmailPresent) {
+            Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+            return new DeleteStudentByEmailCommand(email);
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));

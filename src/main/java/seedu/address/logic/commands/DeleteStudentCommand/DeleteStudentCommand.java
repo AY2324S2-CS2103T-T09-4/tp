@@ -10,7 +10,7 @@ import seedu.address.model.Model;
  */
 public abstract class DeleteStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete_student";
+    public static final String COMMAND_WORD = "/delete_student";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the student identified by the student ID or email used in the displayed students list.\n"
@@ -21,12 +21,6 @@ public abstract class DeleteStudentCommand extends Command {
 
     public static final String MESSAGE_MISSING_IDENTIFIER = "Missing identifier. "
             + "Please provide either a student ID or an email address.";
-
-    public static final String MESSAGE_PERSON_STUDENT_ID_NOT_FOUND = "The student with student ID %s "
-            + "does not exist in the address book";
-    public static final String MESSAGE_PERSON_EMAIL_NOT_FOUND = "The student with email %s "
-            + "does not exist in the address book";
-
 
     public DeleteStudentCommand() {
 
