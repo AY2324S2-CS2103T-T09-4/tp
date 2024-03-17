@@ -134,13 +134,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("persons", persons)
-                .toString();
+            .add("persons", persons)
+            .toString();
     }
 
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    public List<ModuleCode> getModuleList() {
+        return modules;
     }
 
     @Override

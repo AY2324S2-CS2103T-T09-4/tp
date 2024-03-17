@@ -33,8 +33,8 @@ public class AddClassCommandTest {
     public void execute_success() {
 
         assertCommandSuccess(new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
-                        VALID_TUTORIAL_AMY), model,
-                String.format(MESSAGE_ADD_REMARK_SUCCESS, VALID_MODULE_AMY, VALID_TUTORIAL_AMY), model);
+                new TutorialClass(VALID_TUTORIAL_AMY)), model,
+            String.format(MESSAGE_ADD_REMARK_SUCCESS, VALID_MODULE_AMY, VALID_TUTORIAL_AMY), model);
     }
 
     @Test
@@ -43,8 +43,8 @@ public class AddClassCommandTest {
         model.addModule(module);
 
         assertCommandFailure(new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
-                        VALID_TUTORIAL_AMY), model,
-                String.format(MESSAGE_DUPLICATE_CLASS, VALID_MODULE_AMY, VALID_TUTORIAL_AMY));
+                new TutorialClass(VALID_TUTORIAL_AMY)), model,
+            String.format(MESSAGE_DUPLICATE_CLASS, VALID_MODULE_AMY, VALID_TUTORIAL_AMY));
     }
 
     @Test
@@ -63,8 +63,8 @@ public class AddClassCommandTest {
         expectedModel.addModule(modifiedModule);
 
         assertCommandSuccess(new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
-                        VALID_TUTORIAL_BOB), actualModel,
-                String.format(MESSAGE_ADD_REMARK_SUCCESS, VALID_MODULE_AMY, VALID_TUTORIAL_BOB), expectedModel);
+                new TutorialClass(VALID_TUTORIAL_BOB)), actualModel,
+            String.format(MESSAGE_ADD_REMARK_SUCCESS, VALID_MODULE_AMY, VALID_TUTORIAL_BOB), expectedModel);
 
         ModuleCode moduleFromList = actualModel.findModuleFromList(module);
         assertEquals(moduleFromList.getTutorialClasses().get(1).toString(), VALID_TUTORIAL_BOB);
@@ -73,11 +73,11 @@ public class AddClassCommandTest {
     @Test
     public void equals() {
         final AddClassCommand standardCommand = new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
-                VALID_TUTORIAL_AMY);
+            new TutorialClass(VALID_TUTORIAL_AMY));
 
         // same values -> returns true
         AddClassCommand commandWithSameValues = new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
-                VALID_TUTORIAL_AMY);
+            new TutorialClass(VALID_TUTORIAL_AMY));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -91,11 +91,10 @@ public class AddClassCommandTest {
 
         // different module code -> returns false
         assertFalse(standardCommand.equals(new AddClassCommand(new ModuleCode(VALID_MODULE_BOB),
-                VALID_TUTORIAL_AMY)));
+            new TutorialClass(VALID_TUTORIAL_AMY))));
 
         // different tutorial class -> returns true
         assertTrue(standardCommand.equals(new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
-                VALID_TUTORIAL_BOB)));
+            new TutorialClass(VALID_TUTORIAL_BOB))));
     }
 }
-

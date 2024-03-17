@@ -4,7 +4,7 @@ title: "Developer Guide"
 pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# TA Helper Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -287,15 +287,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                                                                   | So that I can…​                                                         |
-|----------|---------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| `* * *`  | TA      | add new students to a class                                                    | maintain an up-to-date list of enrolled students.                       |
-| `* * *`  | TA      | add partial info of students                                                   | still add students even if I don’t have all their information.          |
-| `* * *`  | TA      | delete a student from my class if they drop the module/class                   | keep my class list accurate and up-to-date.                             |
+| Priority | As a …​ | I want to …​                                                                  | So that I can…​                                                        |
+|----------|---------|-------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | TA      | add new students to a class                                                   | maintain an up-to-date list of enrolled students.                      |
+| `* * *`  | TA      | add partial info of students                                                  | still add students even if I don’t have all their information.         |
+| `* * *`  | TA      | delete a student from my class if they drop the module/class                  | keep my class list accurate and up-to-date.                            |
 | `* * `   | TA      | search for my students based on their NUS ID, emails, names or tutorial groups | locate details of students without having to go through the entire list |
-| `* * *`  | TA      | view all students and their particulars                                        | have a comprehensive overview of the enrolled students in my class.     |
-| `* *`    | TA      | add/remove different modules I am teaching                                     | manage my teaching assignments efficiently.                             |
-| `* * *`  | TA      | view all the tutorial classes and their information                            | visibility into the schedule and details of all tutorial classes.       |
+| `* * *`  | TA      | view all students and their particulars                                       | have a comprehensive overview of the enrolled students in my class.    |
+| `* *`    | TA      | add/remove different modules I am teaching                                    | manage my teaching assignments efficiently.                            |
+| `* * *`  | TA      | view all the tutorial classes and their information                           | visibility into the schedule and details of all tutorial classes.      |
 
 _{More to be added}_
 

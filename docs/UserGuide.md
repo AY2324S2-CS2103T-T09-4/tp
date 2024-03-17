@@ -166,9 +166,12 @@ Examples:
 
 ### Listing all classes: `list_class`
 
-Shows a list of all persons in the address book.
+Shows a list of all classes in the address book.
 
 Format: `list_class`
+
+Expected output: The command will display the list of all classes. If there are no existing classes, the command will return a message indicating that there are no classes currently.
+
 ---
 
 ## FAQ

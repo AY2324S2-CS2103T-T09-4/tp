@@ -28,7 +28,7 @@ public class AddClassCommandParserTest {
 
         String userInput = MODULE_DESC_AMY + TUTORIAL_DESC_AMY;
         AddClassCommand expectedCommand = new AddClassCommand(new ModuleCode(moduleCode),
-                VALID_TUTORIAL_AMY);
+                new TutorialClass(VALID_TUTORIAL_AMY));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no tutorial class

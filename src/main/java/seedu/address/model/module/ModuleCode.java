@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class ModuleCode {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Please enter a valid NUS module code eg. ACC1701X, CS1101S, and it should not be blank";
+        "Please enter a valid NUS module code eg. ACC1701X, CS1101S, and it should not be blank";
 
     /**
      * This regex validates the module code that user enters.
@@ -80,14 +80,6 @@ public class ModuleCode {
         return tutorialClasses;
     }
 
-    public String getTutorialClassesNames() {
-        StringBuilder output = new StringBuilder();
-        for (int i = 0; i < tutorialClasses.size(); i++) {
-            output.append(tutorialClasses.get(i).toString()).append(", ");
-        }
-        return output.toString();
-    }
-
     @Override
     public String toString() {
         return value;
@@ -119,10 +111,9 @@ public class ModuleCode {
      * @param tutorialString name of the tutorial class to be checked
      * @return true if the class name is in the list. False otherwise.
      */
-    public boolean hasTutorialClass(String tutorialString) {
+    public boolean hasTutorialClass(TutorialClass tutorialString) {
         for (TutorialClass tutorialClass : tutorialClasses) {
-            String tutorialInList = tutorialClass.toString();
-            if (tutorialString.equals(tutorialInList)) {
+            if (tutorialString.equals(tutorialClass)) {
                 return true;
             }
         }
@@ -134,7 +125,7 @@ public class ModuleCode {
      *
      * @param tutorialString name of tutorial class to be added.
      */
-    public void addTutorialClass(String tutorialString) {
-        tutorialClasses.add(new TutorialClass((tutorialString)));
+    public void addTutorialClass(TutorialClass tutorialString) {
+        tutorialClasses.add(tutorialString);
     }
 }

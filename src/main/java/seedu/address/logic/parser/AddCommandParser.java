@@ -33,17 +33,17 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EMAIL, PREFIX_STUDENTID,
-                        PREFIX_MODULECODE, PREFIX_TUTORIALCLASS, PREFIX_TAG);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EMAIL, PREFIX_STUDENTID,
+                PREFIX_MODULECODE, PREFIX_TUTORIALCLASS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL, PREFIX_STUDENTID,
-                PREFIX_MODULECODE, PREFIX_TUTORIALCLASS)
-                || !argMultimap.getPreamble().isEmpty()) {
+            PREFIX_MODULECODE, PREFIX_TUTORIALCLASS)
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_STUDENTID, PREFIX_EMAIL,
-                PREFIX_MODULECODE, PREFIX_TUTORIALCLASS);
+            PREFIX_MODULECODE, PREFIX_TUTORIALCLASS);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get());

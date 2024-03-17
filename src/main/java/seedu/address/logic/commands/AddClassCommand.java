@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.TutorialClass;
 
 /**
  * A class that handles the /add_class command execution.
@@ -18,18 +19,18 @@ public class AddClassCommand extends Command {
     public static final String COMMAND_WORD = "/add_class";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class with the module code specified\n"
-            + "Parameters:" + PREFIX_MODULECODE + "MODULE_CODE (must be a String) "
-            + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS (must be a String)"
-            + "Example: " + COMMAND_WORD + PREFIX_MODULECODE + " CS2103T "
-            + PREFIX_TUTORIALCLASS + "T09";
+        + "Parameters:" + PREFIX_MODULECODE + "MODULE_CODE (must be a String) "
+        + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS (must be a String)"
+        + "Example: " + COMMAND_WORD + PREFIX_MODULECODE + " CS2103T "
+        + PREFIX_TUTORIALCLASS + "T09";
 
     private final ModuleCode module;
-    private final String tutorialString;
+    private final TutorialClass tutorialString;
 
     /**
      * @param module of the tutorial class to be added
      */
-    public AddClassCommand(ModuleCode module, String tutorialClass) {
+    public AddClassCommand(ModuleCode module, TutorialClass tutorialClass) {
         requireAllNonNull(module);
         this.module = module;
         this.tutorialString = tutorialClass;
@@ -58,8 +59,8 @@ public class AddClassCommand extends Command {
      * Generates a command execution success message based on whether the remark is added to or removed from
      * {@code personToEdit}.
      */
-    private String generateSuccessMessage(ModuleCode module, String tutorialString) {
-        return String.format(MESSAGE_ADD_REMARK_SUCCESS, module.toString(), tutorialString);
+    private String generateSuccessMessage(ModuleCode module, TutorialClass tutorialString) {
+        return String.format(MESSAGE_ADD_REMARK_SUCCESS, module.toString(), tutorialString.toString());
     }
 
     @Override
