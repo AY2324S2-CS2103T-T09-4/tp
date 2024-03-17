@@ -7,10 +7,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByEmailCommand;
-import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByIdCommand;
-import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByIndexCommand;
-import seedu.address.logic.commands.deletestudentcommand.DeleteStudentCommand;
+import seedu.address.logic.commands.deletestudentcommands.DeleteStudentByEmailCommand;
+import seedu.address.logic.commands.deletestudentcommands.DeleteStudentByIdCommand;
+import seedu.address.logic.commands.deletestudentcommands.DeleteStudentByIndexCommand;
+import seedu.address.logic.commands.deletestudentcommands.DeleteStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.StudentId;

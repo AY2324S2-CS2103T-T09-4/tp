@@ -11,10 +11,10 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByEmailCommand;
-import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByIdCommand;
-import seedu.address.logic.commands.deletestudentcommand.DeleteStudentByIndexCommand;
-import seedu.address.logic.commands.deletestudentcommand.DeleteStudentCommand;
+import seedu.address.logic.commands.deletestudentcommands.DeleteStudentByEmailCommand;
+import seedu.address.logic.commands.deletestudentcommands.DeleteStudentByIdCommand;
+import seedu.address.logic.commands.deletestudentcommands.DeleteStudentByIndexCommand;
+import seedu.address.logic.commands.deletestudentcommands.DeleteStudentCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
