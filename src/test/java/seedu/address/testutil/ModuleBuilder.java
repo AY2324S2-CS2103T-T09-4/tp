@@ -46,7 +46,6 @@ public class ModuleBuilder {
      */
     public ModuleBuilder withTutorialClasses(String tutorialClass) {
         TutorialClass tutorialClassToAdd = new TutorialClass(tutorialClass);
-        this.tutorialClasses = new ArrayList<>();
         this.tutorialClasses.add(tutorialClassToAdd);
         return this;
     }
