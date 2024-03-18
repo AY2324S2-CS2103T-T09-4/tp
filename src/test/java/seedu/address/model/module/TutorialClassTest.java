@@ -4,10 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.module.TutorialClass.isValidTutorialClass;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.Person;
 import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class TutorialClassTest {
 
@@ -72,6 +77,15 @@ public class TutorialClassTest {
         tutorialClass = module.getTutorialClasses().get(1);
         String tutorialClassToCompare = tutorialClass.value;
         assertFalse(tutorialClassString.equals(tutorialClassToCompare));
+    }
+
+    @Test
+    void createTutorialClassWithExistingListOfStudentsSuccess() {
+        ArrayList<Person> listOfStudents = new ArrayList<>();
+        Person alice = new PersonBuilder(ALICE).build();
+        listOfStudents.add(alice);
+        TutorialClass tutorialClass = new TutorialClass(VALID_TUTORIAL, listOfStudents);
+        assertTrue(tutorialClass.getStudents().equals(listOfStudents));
     }
 
     @Test
