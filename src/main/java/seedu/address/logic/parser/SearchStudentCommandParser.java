@@ -3,18 +3,14 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.SearchStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.ModuleContainsKeywordPredicate;
-import seedu.address.model.module.TutorialContainsKeywordPredicate;
 import seedu.address.model.person.EmailContainsKeywordPredicate;
 import seedu.address.model.person.NameContainsKeywordPredicate;
 import seedu.address.model.person.Person;
@@ -34,26 +30,16 @@ public class SearchStudentCommandParser implements Parser<SearchStudentCommand> 
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
-                        args, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_EMAIL, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS);
+                        args, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_EMAIL);
 
-        if (!hasOnlyOnePrefix(argMultimap, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_EMAIL,
-                PREFIX_MODULECODE, PREFIX_TUTORIALCLASS)) {
+        if (!hasOnlyOnePrefix(argMultimap, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_EMAIL)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchStudentCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_EMAIL, PREFIX_STUDENTID,
-                PREFIX_MODULECODE, PREFIX_TUTORIALCLASS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_EMAIL, PREFIX_STUDENTID);
 
         Predicate<Person> predicate = null;
 
-        if (argMultimap.getValue(PREFIX_TUTORIALCLASS).isPresent()) {
-            String keyword = argMultimap.getValue(PREFIX_TUTORIALCLASS).get();
-            predicate = new TutorialContainsKeywordPredicate(keyword);
-        }
-        if (argMultimap.getValue(PREFIX_MODULECODE).isPresent()) {
-            String keyword = argMultimap.getValue(PREFIX_MODULECODE).get();
-            predicate = new ModuleContainsKeywordPredicate(keyword);
-        }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             String keyword = argMultimap.getValue(PREFIX_EMAIL).get();
             predicate = new EmailContainsKeywordPredicate(keyword);
@@ -69,7 +55,6 @@ public class SearchStudentCommandParser implements Parser<SearchStudentCommand> 
         if (predicate == null) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchStudentCommand.MESSAGE_USAGE));
         }
-
 
         return new SearchStudentCommand(predicate);
     }

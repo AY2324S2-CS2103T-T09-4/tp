@@ -1,11 +1,9 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
 import java.util.Set;
 
@@ -34,8 +32,6 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_STUDENTID + person.getStudentId().value + " ");
-        sb.append(PREFIX_MODULECODE + person.getModule().value + " ");
-        sb.append(PREFIX_TUTORIALCLASS + person.getTutorialClass().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -51,10 +47,6 @@ public class PersonUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getStudentId().ifPresent(studentId ->
                 sb.append(PREFIX_STUDENTID).append(studentId.value).append(" "));
-        descriptor.getModuleCode().ifPresent(moduleCode ->
-                sb.append(PREFIX_MODULECODE).append(moduleCode.value).append(" "));
-        descriptor.getTutorialClass().ifPresent(tutorialClass ->
-                sb.append(PREFIX_TUTORIALCLASS).append(tutorialClass.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

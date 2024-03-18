@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ModuleBuilder;
 
 public class TutorialContainsKeywordPredicateTest {
 
@@ -38,41 +38,50 @@ public class TutorialContainsKeywordPredicateTest {
 
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
+        String tutorialClass = "T01";
+
         // One keyword
-        TutorialContainsKeywordPredicate predicate = new TutorialContainsKeywordPredicate("T01");
-        assertTrue(predicate.test(new PersonBuilder().withTutorialClass("T01").build()));
+        TutorialContainsKeywordPredicate predicate = new TutorialContainsKeywordPredicate(tutorialClass);
+        ModuleCode moduleUnderTest = new ModuleBuilder().withTutorialClasses(tutorialClass).build();
+        TutorialClass tutorialClassUnderTest = moduleUnderTest.getTutorialClasses().get(0);
+        assertTrue(predicate.test(tutorialClassUnderTest));
 
         // Partial keyword
         predicate = new TutorialContainsKeywordPredicate("1");
-        assertTrue(predicate.test(new PersonBuilder().withTutorialClass("T01").build()));
+        ModuleCode moduleUnderTestPartial = new ModuleBuilder().withTutorialClasses(tutorialClass).build();
+        TutorialClass tutorialClassUnderTestPartial = moduleUnderTestPartial.getTutorialClasses().get(0);
+        assertTrue(predicate.test(tutorialClassUnderTestPartial));
 
         // Mixed-case keywords
         predicate = new TutorialContainsKeywordPredicate("t01");
-        assertTrue(predicate.test(new PersonBuilder().withTutorialClass("T01").build()));
+        ModuleCode moduleUnderTestMixed = new ModuleBuilder().withTutorialClasses(tutorialClass).build();
+        TutorialClass tutorialClassUnderTestMixed = moduleUnderTestMixed.getTutorialClasses().get(0);
+        assertTrue(predicate.test(tutorialClassUnderTestMixed));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
+        String defaultTutorialClass = "T01";
+
         // Non-matching keyword
         TutorialContainsKeywordPredicate predicate = new TutorialContainsKeywordPredicate("T15");
-        assertFalse(predicate.test(new PersonBuilder().withTutorialClass("T01").build()));
-
-        // Keyword matches name but does not match tutorial class
-        predicate = new TutorialContainsKeywordPredicate("Alice");
-        assertFalse(predicate.test(new PersonBuilder().withTutorialClass("T01").withName("Alice").build()));
-
-        // Keyword matches email but does not match tutorial class
-        predicate = new TutorialContainsKeywordPredicate("alice@gmail.com");
-        assertFalse(predicate.test(new PersonBuilder().withTutorialClass("T01")
-                .withEmail("alice@gmail.com").build()));
-
-        // Keyword matches student id but does not match tutorial class
-        predicate = new TutorialContainsKeywordPredicate("A1234567Z");
-        assertFalse(predicate.test(new PersonBuilder().withTutorialClass("T01").withStudentId("A1234567Z").build()));
+        ModuleCode moduleUnderTest = new ModuleBuilder().withTutorialClasses(defaultTutorialClass).build();
+        TutorialClass tutorialClassUnderTest = moduleUnderTest.getTutorialClasses().get(0);
+        assertFalse(predicate.test(tutorialClassUnderTest));
 
         // Keyword matches module code but does not match tutorial class
-        predicate = new TutorialContainsKeywordPredicate("CS2101");
-        assertFalse(predicate.test(new PersonBuilder().withTutorialClass("T01").withModuleCode("CS2101").build()));
+        predicate = new TutorialContainsKeywordPredicate("CS2100");
+        ModuleCode moduleUnderTestModuleMatch = new ModuleBuilder().withModuleCode("CS2100")
+                .withTutorialClasses(defaultTutorialClass).build();
+        TutorialClass tutorialClassUnderTestModuleMatch = moduleUnderTestModuleMatch.getTutorialClasses().get(0);
+        assertFalse(predicate.test(tutorialClassUnderTestModuleMatch));
+
+        // Keyword matches tutorial class but does not match module code
+        predicate = new TutorialContainsKeywordPredicate("T03");
+        ModuleCode moduleUnderTestClassMatch = new ModuleBuilder().withModuleCode("CS2100")
+                .withTutorialClasses(defaultTutorialClass).build();
+        TutorialClass tutorialClassUnderTestClassMatch = moduleUnderTestClassMatch.getTutorialClasses().get(0);
+        assertFalse(predicate.test(tutorialClassUnderTestClassMatch));
     }
 
     @Test

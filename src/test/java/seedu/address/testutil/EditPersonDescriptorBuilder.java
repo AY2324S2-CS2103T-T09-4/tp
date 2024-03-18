@@ -5,8 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.TutorialClass;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -36,8 +34,6 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setEmail(person.getEmail());
         descriptor.setStudentId(person.getStudentId());
-        descriptor.setModuleCode(person.getModule());
-        descriptor.setTutorialClass(person.getTutorialClass());
         descriptor.setTags(person.getTags());
     }
 
@@ -63,23 +59,6 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withStudentId(String studentId) {
         descriptor.setStudentId(new StudentId(studentId));
-        return this;
-    }
-
-    /**
-     * Sets the {@code ModuleCode} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withModuleCode(String moduleCode) {
-        descriptor.setModuleCode(new ModuleCode(moduleCode));
-        return this;
-    }
-
-
-    /**
-     * Sets the {@code TutorialClass} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withTutorialClass(String tutorial) {
-        descriptor.setTutorialClass(new TutorialClass(tutorial));
         return this;
     }
 

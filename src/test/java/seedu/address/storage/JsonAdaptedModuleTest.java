@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.util.ArrayList;
 
@@ -15,7 +14,7 @@ import seedu.address.model.module.TutorialClass;
 class JsonAdaptedModuleTest {
 
     private static final String INVALID_MODULE = " ";
-    private static final String VALID_MODULE = BENSON.getModule().toString();
+    private static final String VALID_MODULE = "CS2100";
     @Test
     void toModelType_success() throws Exception {
         ModuleCode module = new ModuleCode(VALID_MODULE);

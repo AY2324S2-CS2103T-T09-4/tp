@@ -10,8 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.TutorialClass;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -28,8 +26,6 @@ class JsonAdaptedPerson {
     private final String name;
     private final String email;
     private final String studentId;
-    private final String moduleCode;
-    private final String tutorial;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -37,14 +33,11 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("email") String email,
-                             @JsonProperty("studentId") String studentId, @JsonProperty("moduleCode") String moduleCode,
-                             @JsonProperty("tutorial") String tutorial,
+                             @JsonProperty("studentId") String studentId,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.email = email;
         this.studentId = studentId;
-        this.moduleCode = moduleCode;
-        this.tutorial = tutorial;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -57,8 +50,6 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         email = source.getEmail().value;
         studentId = source.getStudentId().value;
-        moduleCode = source.getModule().value;
-        tutorial = source.getTutorialClass().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -101,26 +92,8 @@ class JsonAdaptedPerson {
         }
         final StudentId modelStudentId = new StudentId(studentId);
 
-        if (moduleCode == null) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleCode.class.getSimpleName()));
-        }
-        if (!ModuleCode.isValidModuleCode(moduleCode)) {
-            throw new IllegalValueException(ModuleCode.MESSAGE_CONSTRAINTS);
-        }
-        final ModuleCode modelModuleCode = new ModuleCode(moduleCode);
-
-        if (tutorial == null) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialClass.class.getSimpleName()));
-        }
-        if (!TutorialClass.isValidTutorialClass(tutorial)) {
-            throw new IllegalValueException(TutorialClass.MESSAGE_CONSTRAINTS);
-        }
-        final TutorialClass modelTutorialClass = new TutorialClass(tutorial);
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelEmail, modelStudentId, modelModuleCode, modelTutorialClass, modelTags);
+        return new Person(modelName, modelEmail, modelStudentId, modelTags);
     }
 
 }

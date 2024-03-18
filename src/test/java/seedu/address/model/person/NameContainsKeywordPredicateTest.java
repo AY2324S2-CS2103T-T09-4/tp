@@ -68,13 +68,13 @@ public class NameContainsKeywordPredicateTest {
         predicate = new NameContainsKeywordPredicate("alice@gmail.com");
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withEmail("alice@gmail.com").build()));
 
-        // Keyword matches module code but does not match name
-        predicate = new NameContainsKeywordPredicate("CS2101");
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withModuleCode("CS2101").build()));
+        // Keyword matches student id but does not match name
+        predicate = new NameContainsKeywordPredicate("A7654321Z");
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withStudentId("A7654321Z").build()));
 
-        // Keyword matches tutorial class but does not match name
-        predicate = new NameContainsKeywordPredicate("T01");
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withTutorialClass("T01").build()));
+        // Keyword matches email but does not match name
+        predicate = new NameContainsKeywordPredicate("bob@gmail.com");
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withEmail("bob@gmail.com").build()));
     }
 
     @Test
