@@ -13,6 +13,11 @@ public class TypicalModules {
     public static final TutorialClass CS2103T_TUT1 = new TutorialClass("T01");
     public static final TutorialClass CS2103T_TUT2 = new TutorialClass("T02");
 
+    /**
+     * Returns a list of typical modules with their associated tutorial classes.
+     *
+     * @return The list of typical modules.
+     */
     public static List<ModuleCode> getTypicalModules() {
         List<ModuleCode> modules = new ArrayList<>();
         ModuleCode cs2103t = new ModuleCode(CS2103T_CODE, "T09");

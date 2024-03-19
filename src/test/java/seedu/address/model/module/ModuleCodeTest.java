@@ -7,6 +7,9 @@ import static seedu.address.model.module.ModuleCode.isValidModuleCode;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains unit tests for the ModuleCode class.
+ */
 public class ModuleCodeTest {
 
     public static final String VALID_MODULE_CODE = "CS2103T";

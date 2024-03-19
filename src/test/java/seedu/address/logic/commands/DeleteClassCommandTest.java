@@ -23,7 +23,8 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for AddClassCommand.
+ * Contains integration tests (interaction with the Model) for
+ * {@code DeleteClassCommand}.
  */
 public class DeleteClassCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

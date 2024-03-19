@@ -28,7 +28,9 @@ public class AddClassCommand extends Command {
     private final TutorialClass tutorialString;
 
     /**
-     * @param module of the tutorial class to be added
+     * Constructs an AddClassCommand to add the specified {@code TutorialClass} to the specified {@code ModuleCode}.
+     * @param module The module code of the tutorial class to be added.
+     * @param tutorialClass The tutorial class to be added.
      */
     public AddClassCommand(ModuleCode module, TutorialClass tutorialClass) {
         requireAllNonNull(module);
@@ -56,8 +58,10 @@ public class AddClassCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message based on whether the tutorial class is added successfully.
+     * @param module The module code of the tutorial class.
+     * @param tutorialString The tutorial class.
+     * @return The success message.
      */
     private String generateSuccessMessage(ModuleCode module, TutorialClass tutorialString) {
         return String.format(MESSAGE_ADD_CLASS_SUCCESS, module.toString(), tutorialString.toString());

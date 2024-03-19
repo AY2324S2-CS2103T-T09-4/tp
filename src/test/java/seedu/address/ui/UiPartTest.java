@@ -13,6 +13,9 @@ import org.junit.jupiter.api.io.TempDir;
 import javafx.fxml.FXML;
 import seedu.address.MainApp;
 
+/**
+ * Test class for UiPart. Used for testing UiPart functionality.
+ */
 public class UiPartTest {
 
     private static final String MISSING_FILE_PATH = "UiPartTest/missingFile.fxml";

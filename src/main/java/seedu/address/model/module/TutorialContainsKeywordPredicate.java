@@ -11,7 +11,10 @@ import seedu.address.commons.util.ToStringBuilder;
 public class TutorialContainsKeywordPredicate implements Predicate<TutorialClass> {
 
     private final String keyword;
-
+    /**
+     * Constructs a {@code TutorialContainsKeywordPredicate} with the specified keyword.
+     * @param keyword The keyword to be used for testing.
+     */
     public TutorialContainsKeywordPredicate(String keyword) {
         this.keyword = keyword;
     }

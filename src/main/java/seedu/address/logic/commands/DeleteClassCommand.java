@@ -30,7 +30,10 @@ public class DeleteClassCommand extends Command {
     private final TutorialClass tutorialString;
 
     /**
-     * @param module of the tutorial class to be added
+     * Constructs a DeleteClassCommand to delete the specified {@code TutorialClass}
+     * from the specified {@code ModuleCode}.
+     * @param module The module code of the tutorial class to be deleted.
+     * @param tutorialClass The tutorial class to be deleted.
      */
     public DeleteClassCommand(ModuleCode module, TutorialClass tutorialClass) {
         requireAllNonNull(module);
@@ -60,8 +63,10 @@ public class DeleteClassCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message based on whether the tutorial class is successfully deleted.
+     * @param module The module code of the tutorial class.
+     * @param tutorialString The tutorial class.
+     * @return The success message.
      */
     private String generateSuccessMessage(ModuleCode module, TutorialClass tutorialString) {
         return String.format(MESSAGE_DELETE_CLASS_SUCCESS, module.toString(), tutorialString.toString());

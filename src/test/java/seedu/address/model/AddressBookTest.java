@@ -23,6 +23,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
+/**
+ * Contains unit tests for the AddressBook class.
+ */
 public class AddressBookTest {
 
     private final AddressBook addressBook = new AddressBook();

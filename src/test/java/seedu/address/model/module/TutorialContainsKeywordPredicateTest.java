@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.ModuleBuilder;
 
+/**
+ * Contains unit tests for the TutorialContainsKeywordPredicate class.
+ */
 public class TutorialContainsKeywordPredicateTest {
 
     @Test

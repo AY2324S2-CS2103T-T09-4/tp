@@ -16,6 +16,9 @@ import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
 
+/**
+ * Contains unit tests for AddClassCommandParser.
+ */
 public class AddClassCommandParserTest {
     private final AddClassCommandParser parser = new AddClassCommandParser();
 

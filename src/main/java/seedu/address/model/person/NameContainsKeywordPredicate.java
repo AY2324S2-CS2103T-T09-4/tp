@@ -12,6 +12,10 @@ public class NameContainsKeywordPredicate implements Predicate<Person> {
 
     private final String keyword;
 
+    /**
+     * Constructs a {@code NameContainsKeywordPredicate} with the specified keyword.
+     * @param keyword The keyword to be used for testing.
+     */
     public NameContainsKeywordPredicate(String keyword) {
         this.keyword = keyword;
     }

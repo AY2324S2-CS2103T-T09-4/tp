@@ -16,6 +16,10 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
 import seedu.address.testutil.TypicalModules;
 
+/**
+ * Contains integration tests (interaction with the Model) for
+ * {@code ListClassCommand}.
+ */
 public class ListClassesCommandTest {
 
     private Model model;

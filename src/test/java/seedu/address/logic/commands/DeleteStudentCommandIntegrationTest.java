@@ -20,7 +20,7 @@ import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for
- * {@code AddCommand}.
+ * {@code DeleteStudentCommand}.
  */
 public class DeleteStudentCommandIntegrationTest {
 

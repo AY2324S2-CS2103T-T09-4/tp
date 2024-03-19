@@ -16,6 +16,11 @@ public class StudentIdContainsKeywordPredicate implements Predicate<Person> {
         this.keyword = keyword;
     }
 
+    /**
+     * Tests if the given {@code Person}'s student ID matches the keyword.
+     * @param person The person to be tested.
+     * @return True if the person's student ID matches the keyword, false otherwise.
+     */
     @Override
     public boolean test(Person person) {
         return StringUtil.containsPartialWordIgnoreCase(person.getStudentId().value, keyword);

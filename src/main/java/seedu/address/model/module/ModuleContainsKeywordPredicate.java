@@ -11,7 +11,10 @@ import seedu.address.commons.util.ToStringBuilder;
 public class ModuleContainsKeywordPredicate implements Predicate<ModuleCode> {
 
     private final String keyword;
-
+    /**
+     * Constructs a ModuleContainsKeywordPredicate with the specified keyword.
+     * @param keyword The keyword to search for in module codes.
+     */
     public ModuleContainsKeywordPredicate(String keyword) {
         this.keyword = keyword;
     }

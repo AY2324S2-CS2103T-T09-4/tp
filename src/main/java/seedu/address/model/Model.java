@@ -98,9 +98,18 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
+     * @param predicate The predicate used to filter the person list.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+    /**
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
+     *
+     * @param predicate The predicate used to filter the module list.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+
     void updateFilteredModuleList(Predicate<ModuleCode> predicate);
     /**
      * Search for person by a given {@code predicate}.

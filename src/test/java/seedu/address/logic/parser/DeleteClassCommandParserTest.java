@@ -16,6 +16,13 @@ import seedu.address.logic.commands.DeleteClassCommand;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
 
+/**
+ * As we are only doing white-box testing, our test cases do not cover path variations
+ * outside of the DeleteClassCommand code. For example, inputs "1" and "1 abc" take the
+ * same path through the DeleteClassCommand, and therefore we test only one of them.
+ * The path variation for those two cases occur inside the ParserUtil, and
+ * therefore should be covered by the ParserUtilTest.
+ */
 public class DeleteClassCommandParserTest {
     private final DeleteClassCommandParser parser = new DeleteClassCommandParser();
 

@@ -24,7 +24,8 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for AddClassCommand.
+ * Contains integration tests (interaction with the Model) for
+ * {@code AddClassCommand}.
  */
 public class AddClassCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

@@ -64,9 +64,19 @@ public class TutorialClass {
     public static boolean isValidTutorialClass(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+    /**
+     * Retrieves the tutorial class.
+     *
+     * @return The tutorial class.
+     */
     public TutorialClass getTutorialClass() {
         return this;
     }
+    /**
+     * Retrieves the list of students in the tutorial class.
+     *
+     * @return The list of students in the tutorial class.
+     */
     public ArrayList<Person> getStudents() {
         return this.students;
     }

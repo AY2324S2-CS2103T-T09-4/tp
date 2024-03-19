@@ -14,6 +14,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.application.Application;
 
+/**
+ * Test class for AppParameters. It tests the parsing and equality functionality of the AppParameters class.
+ */
 public class AppParametersTest {
 
     private final ParametersStub parametersStub = new ParametersStub();
@@ -68,6 +71,10 @@ public class AppParametersTest {
         assertFalse(appParameters.equals(otherAppParameters));
     }
 
+    /**
+     * A stub class extending Application.Parameters for testing purposes.
+     * It provides a way to set named parameters for testing the parsing functionality of AppParameters.
+     */
     private static class ParametersStub extends Application.Parameters {
         private Map<String, String> namedParameters = new HashMap<>();
 

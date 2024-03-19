@@ -7,6 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains integration tests (interaction with the Model) for
+ * {@code CommandResult}.
+ */
 public class CommandResultTest {
     @Test
     public void equals() {

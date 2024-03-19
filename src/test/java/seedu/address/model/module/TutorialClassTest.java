@@ -22,6 +22,9 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.PersonBuilder;
 
+/**
+ * Contains unit tests for the TutorialClass class.
+ */
 public class TutorialClassTest {
 
     public static final String VALID_TUTORIAL = "T09";

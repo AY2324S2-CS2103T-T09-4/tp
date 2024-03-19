@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
+/**
+ * JUnit test class for {@code ExitCommand}.
+ * This class tests the behavior of the {@code ExitCommand} class.
+ */
 public class ExitCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();

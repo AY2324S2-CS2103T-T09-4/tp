@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
+/**
+ * Contains unit tests for the EmailContainsKeywordPredicate class.
+ */
 public class EmailContainsKeywordPredicateTest {
     @Test
     public void equals() {

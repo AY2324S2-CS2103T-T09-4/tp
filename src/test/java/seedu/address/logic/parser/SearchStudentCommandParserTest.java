@@ -18,6 +18,9 @@ import seedu.address.model.person.EmailContainsKeywordPredicate;
 import seedu.address.model.person.NameContainsKeywordPredicate;
 import seedu.address.model.person.StudentIdContainsKeywordPredicate;
 
+/**
+ * Contains unit tests for SearchStudentCommandParser.
+ */
 public class SearchStudentCommandParserTest {
 
     private SearchStudentCommandParser parser = new SearchStudentCommandParser();

@@ -20,6 +20,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Contains helper methods for testing parsers.
+ */
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_STUDENT_ID = "+3213321";
