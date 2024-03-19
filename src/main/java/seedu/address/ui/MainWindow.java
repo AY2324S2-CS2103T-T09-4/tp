@@ -15,7 +15,9 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteClassCommand;
 import seedu.address.logic.commands.ListClassesCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -203,6 +205,18 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Returns true if the command requires module view and
+     * false if the command does not.
+     *
+     * @return true if command requires module view
+     */
+    public static boolean useModuleView(String commandText) {
+        String commandWord = commandText.split(" ")[0];
+        return commandWord.equals(ListClassesCommand.COMMAND_WORD)
+                || commandWord.equals(AddClassCommand.COMMAND_WORD)
+                || commandWord.equals(DeleteClassCommand.COMMAND_WORD);
+    }
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -228,12 +242,11 @@ public class MainWindow extends UiPart<Stage> {
 
             clearPanels();
 
-            if (commandText.equals(ListClassesCommand.COMMAND_WORD)) {
+            if (useModuleView(commandText)) {
                 switchToModuleListPanel();
             } else {
                 switchToPersonListPanel();
             }
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
