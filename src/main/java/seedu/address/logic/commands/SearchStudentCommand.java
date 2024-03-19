@@ -22,7 +22,7 @@ public class SearchStudentCommand extends Command {
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Only one attribute can be matched per search query.\n"
             + "Partial matches are also displayed.\n"
-            + "Parameters: [name/NAME] [id/STUDENT_ID] [email/EMAIL] [module/MODULE_CODE] [tutorial/TUTORIAL_CLASS]\n"
+            + "Parameters: [name/NAME] [id/STUDENT_ID] [email/EMAIL]\n"
             + "Example: " + COMMAND_WORD + " id/A012345A";
 
     private final Predicate<Person> predicate;
