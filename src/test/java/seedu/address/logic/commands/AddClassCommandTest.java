@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.AddClassCommand.MESSAGE_ADD_REMARK_SUCCESS;
+import static seedu.address.logic.commands.AddClassCommand.MESSAGE_ADD_CLASS_SUCCESS;
 import static seedu.address.logic.commands.AddClassCommand.MESSAGE_DUPLICATE_CLASS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
@@ -34,7 +34,7 @@ public class AddClassCommandTest {
 
         assertCommandSuccess(new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
                 new TutorialClass(VALID_TUTORIAL_AMY)), model,
-            String.format(MESSAGE_ADD_REMARK_SUCCESS, VALID_MODULE_AMY, VALID_TUTORIAL_AMY), model);
+            String.format(MESSAGE_ADD_CLASS_SUCCESS, VALID_MODULE_AMY, VALID_TUTORIAL_AMY), model);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class AddClassCommandTest {
 
         assertCommandSuccess(new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
                 new TutorialClass(VALID_TUTORIAL_BOB)), actualModel,
-            String.format(MESSAGE_ADD_REMARK_SUCCESS, VALID_MODULE_AMY, VALID_TUTORIAL_BOB), expectedModel);
+            String.format(MESSAGE_ADD_CLASS_SUCCESS, VALID_MODULE_AMY, VALID_TUTORIAL_BOB), expectedModel);
 
         ModuleCode moduleFromList = actualModel.findModuleFromList(module);
         assertEquals(moduleFromList.getTutorialClasses().get(1).toString(), VALID_TUTORIAL_BOB);

@@ -18,7 +18,7 @@ public class ModuleContainsKeywordPredicate implements Predicate<ModuleCode> {
 
     @Override
     public boolean test(ModuleCode moduleCode) {
-        return StringUtil.containsPartialWordIgnoreCase(moduleCode.getModule().value, keyword);
+        return StringUtil.containsPartialWordIgnoreCase(moduleCode.getModule().moduleCode, keyword);
     }
 
     @Override

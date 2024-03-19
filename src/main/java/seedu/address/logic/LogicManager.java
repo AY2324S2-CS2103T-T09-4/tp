@@ -85,4 +85,10 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public boolean isInitialModuleListPanelDisplayed() {
+        // Check if there are any modules in the address book
+        return !model.getAddressBook().getModuleList().isEmpty();
+    }
 }

@@ -51,6 +51,6 @@ public class ModuleBuilder {
     }
 
     public ModuleCode build() {
-        return new ModuleCode(moduleCode.value, tutorialClasses);
+        return new ModuleCode(moduleCode.toString(), tutorialClasses);
     }
 }

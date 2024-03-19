@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteClassCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -100,6 +101,18 @@ public class AddressBookParserTest {
         assertEquals(new AddClassCommand(new ModuleCode(moduleCode),
                 new TutorialClass(tutorialClass)), command);
     }
+
+    @Test
+    public void parseCommand_deleteClass() throws Exception {
+        final String moduleCode = "CS2103T";
+        final String tutorialClass = "T09";
+        DeleteClassCommand command = (DeleteClassCommand)
+                parser.parseCommand(DeleteClassCommand.COMMAND_WORD + " "
+                + PREFIX_MODULECODE + moduleCode + " " + PREFIX_TUTORIALCLASS + tutorialClass);
+        assertEquals(new DeleteClassCommand(new ModuleCode(moduleCode),
+                new TutorialClass(tutorialClass)), command);
+    }
+
     @Test
     public void parseCommand_listClasses() throws Exception {
         assertTrue(parser.parseCommand(ListClassesCommand.COMMAND_WORD) instanceof ListClassesCommand);

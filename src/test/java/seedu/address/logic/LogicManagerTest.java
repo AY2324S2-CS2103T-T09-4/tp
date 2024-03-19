@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -169,5 +171,36 @@ public class LogicManagerTest {
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+    @Test
+    public void getAddressBook_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getAddressBook().getPersonList().remove(0));
+    }
+
+    @Test
+    public void getAddressBookFilePath() {
+        assertEquals(model.getAddressBookFilePath(), logic.getAddressBookFilePath());
+    }
+
+    @Test
+    public void getGuiSettings() {
+        assertEquals(model.getGuiSettings(), logic.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings() {
+        GuiSettings newGuiSettings = new GuiSettings(1000, 600, 0, 0);
+        logic.setGuiSettings(newGuiSettings);
+        assertEquals(newGuiSettings, logic.getGuiSettings());
+    }
+
+    @Test
+    public void isInitialModuleListPanelDisplayed_emptyAddressBook_returnsFalse() {
+        assertFalse(logic.isInitialModuleListPanelDisplayed());
+    }
+    @Test
+    public void isInitialModuleListPanelDisplayed_nonEmptyAddressBook_returnsTrue() {
+        model.addPerson(new PersonBuilder().build());
+        assertFalse(logic.isInitialModuleListPanelDisplayed());
     }
 }

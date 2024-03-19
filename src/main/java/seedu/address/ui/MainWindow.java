@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -14,8 +16,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListClassesCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModuleCode;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private ModuleListPanel moduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +48,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+    @FXML
+    private StackPane moduleListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,8 +117,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        if (initiallyDisplayModuleListPanel()) {
+            switchToModuleListPanel();
+        } else {
+            switchToPersonListPanel();
+        }
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -121,6 +131,22 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    private boolean initiallyDisplayModuleListPanel() {
+        return logic.isInitialModuleListPanelDisplayed();
+    }
+
+    private void switchToPersonListPanel() {
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    }
+
+    private void switchToModuleListPanel() {
+        ObservableList<ModuleCode> moduleObservableList = FXCollections
+            .observableList(logic.getAddressBook().getModuleList());
+        moduleListPanel = new ModuleListPanel(moduleObservableList);
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
     }
 
     /**
@@ -186,11 +212,24 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            clearPanels();
+
+            if (commandText.equals(ListClassesCommand.COMMAND_WORD)) {
+                switchToModuleListPanel();
+            } else {
+                switchToPersonListPanel();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private void clearPanels() {
+        personListPanelPlaceholder.getChildren().clear();
+        moduleListPanelPlaceholder.getChildren().clear();
     }
 }

@@ -14,7 +14,7 @@ import seedu.address.model.module.TutorialClass;
  * A class that handles the /add_class command execution.
  */
 public class AddClassCommand extends Command {
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added %1$s %2$s";
+    public static final String MESSAGE_ADD_CLASS_SUCCESS = "Added %1$s %2$s";
     public static final String MESSAGE_DUPLICATE_CLASS = "%1$s %2$s already added!";
     public static final String COMMAND_WORD = "/add_class";
 
@@ -60,7 +60,7 @@ public class AddClassCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(ModuleCode module, TutorialClass tutorialString) {
-        return String.format(MESSAGE_ADD_REMARK_SUCCESS, module.toString(), tutorialString.toString());
+        return String.format(MESSAGE_ADD_CLASS_SUCCESS, module.toString(), tutorialString.toString());
     }
 
     @Override

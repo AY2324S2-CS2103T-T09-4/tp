@@ -18,7 +18,7 @@ public class TutorialContainsKeywordPredicate implements Predicate<TutorialClass
 
     @Override
     public boolean test(TutorialClass tutorialClass) {
-        return StringUtil.containsPartialWordIgnoreCase(tutorialClass.getTutorialClass().value, keyword);
+        return StringUtil.containsPartialWordIgnoreCase(tutorialClass.getTutorialClass().tutorialName, keyword);
     }
 
     @Override

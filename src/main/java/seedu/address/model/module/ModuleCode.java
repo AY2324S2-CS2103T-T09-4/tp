@@ -20,7 +20,7 @@ public class ModuleCode {
      */
     public static final String VALIDATION_REGEX = "^[A-Z]{2,3}\\d{4}[A-Z]?$";
 
-    public final String value;
+    public final String moduleCode;
     private final ArrayList<TutorialClass> tutorialClasses;
 
     /**
@@ -31,7 +31,7 @@ public class ModuleCode {
     public ModuleCode(String moduleCode) {
         requireAllNonNull(moduleCode);
         checkArgument(isValidModuleCode(moduleCode), MESSAGE_CONSTRAINTS);
-        this.value = moduleCode;
+        this.moduleCode = moduleCode;
         this.tutorialClasses = new ArrayList<TutorialClass>();
     }
 
@@ -45,7 +45,7 @@ public class ModuleCode {
     public ModuleCode(String moduleCode, String tutorialClass) {
         requireAllNonNull(moduleCode);
         checkArgument(isValidModuleCode(moduleCode), MESSAGE_CONSTRAINTS);
-        this.value = moduleCode;
+        this.moduleCode = moduleCode;
         this.tutorialClasses = new ArrayList<TutorialClass>();
         tutorialClasses.add(new TutorialClass(tutorialClass));
     }
@@ -60,7 +60,7 @@ public class ModuleCode {
     public ModuleCode(String moduleCode, ArrayList<TutorialClass> tutorialClasses) {
         requireAllNonNull(moduleCode);
         checkArgument(isValidModuleCode(moduleCode), MESSAGE_CONSTRAINTS);
-        this.value = moduleCode;
+        this.moduleCode = moduleCode;
         this.tutorialClasses = tutorialClasses;
     }
 
@@ -90,7 +90,7 @@ public class ModuleCode {
 
     @Override
     public String toString() {
-        return value;
+        return moduleCode;
     }
 
     @Override
@@ -105,35 +105,64 @@ public class ModuleCode {
         }
 
         ModuleCode otherModuleCode = (ModuleCode) other;
-        return value.equals(otherModuleCode.value);
+        return moduleCode.equals(otherModuleCode.moduleCode);
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return moduleCode.hashCode();
     }
 
     /**
      * Checks if the given tutorial class is already in the list.
      *
-     * @param tutorialString name of the tutorial class to be checked
+     * @param tutorialClass name of the tutorial class to be checked
      * @return true if the class name is in the list. False otherwise.
      */
-    public boolean hasTutorialClass(TutorialClass tutorialString) {
-        for (TutorialClass tutorialClass : tutorialClasses) {
-            if (tutorialString.equals(tutorialClass)) {
+    public boolean hasTutorialClass(TutorialClass tutorialClass) {
+        for (TutorialClass tutorialClassInModule : tutorialClasses) {
+            if (tutorialClass.equals(tutorialClassInModule)) {
                 return true;
             }
         }
         return false;
     }
 
+
+    /**
+     * List all the tutorial classes under this module.
+     *
+     * @return String of tutorial classes under this module.
+     */
+    public String listTutorialClasses() {
+        if (tutorialClasses.size() == 0) {
+            return String.format("Tutorials in %s: None!", moduleCode);
+        } else {
+            StringBuilder tutorialsString = new StringBuilder(String.format("Tutorials in %s:", moduleCode));
+            for (TutorialClass tutorialClass : tutorialClasses) {
+                tutorialsString.append(" ");
+                tutorialsString.append(tutorialClass.toString());
+            }
+            return tutorialsString.toString().trim();
+        }
+    }
+
     /**
      * Adds an empty tutorial with the given name into the module.
      *
-     * @param tutorialString name of tutorial class to be added.
+     * @param tutorialClass name of tutorial class to be added.
      */
-    public void addTutorialClass(TutorialClass tutorialString) {
-        tutorialClasses.add(tutorialString);
+    public void addTutorialClass(TutorialClass tutorialClass) {
+        tutorialClasses.add(tutorialClass);
+    }
+
+    /**
+     * Deletes a tutorial with the given name from the module.
+     * The tutorial has to exist to be used in this function.
+     *
+     * @param tutorialClass name of tutorial class to be deleted.
+     */
+    public void deleteTutorialClass(TutorialClass tutorialClass) {
+        tutorialClasses.remove(tutorialClass);
     }
 }

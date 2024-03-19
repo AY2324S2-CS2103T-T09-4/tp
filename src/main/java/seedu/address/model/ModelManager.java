@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<ModuleCode> filteredModules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredModules = new FilteredList<>(this.addressBook.getModuleList());
     }
 
     public ModelManager() {
@@ -94,13 +96,6 @@ public class ModelManager implements Model {
         requireNonNull(person);
         return addressBook.hasPerson(person);
     }
-
-    @Override
-    public boolean hasModule(ModuleCode module) {
-        requireNonNull(module);
-        return addressBook.hasModule(module);
-    }
-
     @Override
     public ModuleCode findModuleFromList(ModuleCode module) {
         requireNonNull(module);
@@ -141,12 +136,28 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<ModuleCode> getFilteredModuleList() {
+        return filteredModules;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
 
     @Override
+    public void updateFilteredModuleList(Predicate<ModuleCode> predicate) {
+        requireNonNull(predicate);
+        filteredModules.setPredicate(predicate);
+    }
+    /**
+     * Searches for a person in the list of filtered persons based on the given predicate.
+     *
+     * @param predicate The predicate used to filter persons.
+     * @return The first person that matches the predicate, or {@code null} if no person matches.
+     * @throws NullPointerException if the predicate is {@code null}.
+     */
     public Person searchPersonByPredicate(Predicate<Person> predicate) {
         requireNonNull(predicate);
         return filteredPersons.stream().filter(predicate).findFirst().orElse(null);
@@ -168,5 +179,4 @@ public class ModelManager implements Model {
             && userPrefs.equals(otherModelManager.userPrefs)
             && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
 }

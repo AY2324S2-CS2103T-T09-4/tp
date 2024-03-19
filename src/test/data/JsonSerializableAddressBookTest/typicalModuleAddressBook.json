@@ -1,0 +1,17 @@
+{
+  "_comment": "AddressBook save file which contains the same Module values as in TypicalModules#getTypicalAddressBook()",
+  "modules": [
+    {
+      "moduleCode": "CS2103T",
+      "tutorialClass": "T01"
+    },
+    {
+      "moduleCode": "CS2101",
+      "tutorialClass": "T02"
+    },
+    {
+      "moduleCode": "MA1521",
+      "tutorialClass": "T04"
+    }
+  ]
+}
