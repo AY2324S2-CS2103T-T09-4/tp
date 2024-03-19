@@ -4,12 +4,11 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code ModuleCode} matches the keyword given.
  */
-public class ModuleContainsKeywordPredicate implements Predicate<Person> {
+public class ModuleContainsKeywordPredicate implements Predicate<ModuleCode> {
 
     private final String keyword;
 
@@ -18,8 +17,8 @@ public class ModuleContainsKeywordPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        return StringUtil.containsPartialWordIgnoreCase(person.getModule().value, keyword);
+    public boolean test(ModuleCode moduleCode) {
+        return StringUtil.containsPartialWordIgnoreCase(moduleCode.getModule().value, keyword);
     }
 
     @Override

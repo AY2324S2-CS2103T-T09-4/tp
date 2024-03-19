@@ -64,14 +64,6 @@ public class StudentIdContainsKeywordPredicateTest {
         predicate = new StudentIdContainsKeywordPredicate("alice@gmail.com");
         assertFalse(predicate.test(new PersonBuilder().withStudentId("A1234567Z")
                 .withEmail("alice@gmail.com").build()));
-
-        // Keyword matches module code but does not match student id
-        predicate = new StudentIdContainsKeywordPredicate("CS2101");
-        assertFalse(predicate.test(new PersonBuilder().withStudentId("A1234567Z").withModuleCode("CS2101").build()));
-
-        // Keyword matches tutorial class but does not match student id
-        predicate = new StudentIdContainsKeywordPredicate("T01");
-        assertFalse(predicate.test(new PersonBuilder().withStudentId("A1234567Z").withTutorialClass("T01").build()));
     }
 
     @Test

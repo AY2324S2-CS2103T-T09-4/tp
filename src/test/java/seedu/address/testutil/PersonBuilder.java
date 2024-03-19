@@ -3,8 +3,6 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.TutorialClass;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -20,14 +18,10 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_STUDENT_ID = "A1111111Z";
-    public static final String DEFAULT_MODULE = "CS1010S";
-    public static final String DEFAULT_TUTORIAL = "T01";
 
     private Name name;
     private Email email;
     private StudentId studentId;
-    private ModuleCode moduleCode;
-    private TutorialClass tutorialClass;
     private Set<Tag> tags;
 
     /**
@@ -37,8 +31,6 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         email = new Email(DEFAULT_EMAIL);
         studentId = new StudentId(DEFAULT_STUDENT_ID);
-        moduleCode = new ModuleCode(DEFAULT_MODULE);
-        tutorialClass = new TutorialClass(DEFAULT_TUTORIAL);
         tags = new HashSet<>();
     }
 
@@ -49,8 +41,6 @@ public class PersonBuilder {
         name = personToCopy.getName();
         email = personToCopy.getEmail();
         studentId = personToCopy.getStudentId();
-        moduleCode = personToCopy.getModule();
-        tutorialClass = personToCopy.getTutorialClass();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -86,24 +76,8 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code ModuleCode} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withModuleCode(String moduleCode) {
-        this.moduleCode = new ModuleCode(moduleCode);
-        return this;
-    }
-
-    /**
-     * Sets the {@code TutorialClass} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withTutorialClass(String tutorialClass) {
-        this.tutorialClass = new TutorialClass(tutorialClass);
-        return this;
-    }
-
     public Person build() {
-        return new Person(name, email, studentId, moduleCode, tutorialClass, tags);
+        return new Person(name, email, studentId, tags);
     }
 
 }

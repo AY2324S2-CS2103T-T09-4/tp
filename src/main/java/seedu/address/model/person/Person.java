@@ -8,8 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.TutorialClass;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,22 +20,16 @@ public class Person {
     private final Name name;
     private final Email email;
     private final StudentId stuId;
-
-    // Data fields
-    private final ModuleCode module;
-    private final TutorialClass tutorial;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Email email, StudentId stuId, ModuleCode module, TutorialClass tutorial, Set<Tag> tags) {
-        requireAllNonNull(name, email, stuId, module, tutorial, tags);
+    public Person(Name name, Email email, StudentId stuId, Set<Tag> tags) {
+        requireAllNonNull(name, email, stuId, tags);
         this.name = name;
         this.email = email;
         this.stuId = stuId;
-        this.module = module;
-        this.tutorial = tutorial;
         this.tags.addAll(tags);
     }
 
@@ -49,12 +41,6 @@ public class Person {
     }
     public StudentId getStudentId() {
         return stuId;
-    }
-    public ModuleCode getModule() {
-        return module;
-    }
-    public TutorialClass getTutorialClass() {
-        return tutorial;
     }
 
     /**
@@ -97,15 +83,13 @@ public class Person {
         return name.equals(otherPerson.name)
                 && email.equals(otherPerson.email)
                 && stuId.equals(otherPerson.stuId)
-                && module.equals(otherPerson.module)
-                && tutorial.equals(otherPerson.tutorial)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, email, stuId, module, tutorial, tags);
+        return Objects.hash(name, email, stuId, tags);
     }
 
     @Override
@@ -114,8 +98,6 @@ public class Person {
                 .add("name", name)
                 .add("email", email)
                 .add("stuId", stuId)
-                .add("module", module)
-                .add("tutorial", tutorial)
                 .add("tags", tags)
                 .toString();
     }

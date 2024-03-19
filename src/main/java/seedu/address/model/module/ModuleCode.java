@@ -26,12 +26,12 @@ public class ModuleCode {
     /**
      * A constructor for Module. Used to initialise a new module with no tutorial classes
      *
-     * @param name of the module to be created
+     * @param moduleCode of the module to be created
      */
-    public ModuleCode(String name) {
-        requireAllNonNull(name);
-        checkArgument(isValidModuleCode(name), MESSAGE_CONSTRAINTS);
-        this.value = name;
+    public ModuleCode(String moduleCode) {
+        requireAllNonNull(moduleCode);
+        checkArgument(isValidModuleCode(moduleCode), MESSAGE_CONSTRAINTS);
+        this.value = moduleCode;
         this.tutorialClasses = new ArrayList<TutorialClass>();
     }
 
@@ -39,28 +39,28 @@ public class ModuleCode {
      * A constructor for Module. Used to initialise a new module with the tutorial class specified.
      * This is the constructor used when /add_class is used.
      *
-     * @param name of the module to be created
+     * @param moduleCode of the module to be created
      * @param tutorialClass to be added within the module
      */
-    public ModuleCode(String name, String tutorialClass) {
-        requireAllNonNull(name);
-        checkArgument(isValidModuleCode(name), MESSAGE_CONSTRAINTS);
-        this.value = name;
+    public ModuleCode(String moduleCode, String tutorialClass) {
+        requireAllNonNull(moduleCode);
+        checkArgument(isValidModuleCode(moduleCode), MESSAGE_CONSTRAINTS);
+        this.value = moduleCode;
         this.tutorialClasses = new ArrayList<TutorialClass>();
         tutorialClasses.add(new TutorialClass(tutorialClass));
     }
 
     /**
      * A constructor for Module. Used to initialise a new module with the list of tutorial classes specified.
-     * Used to get the representation of the module from the list of classes and the name specified.
+     * Used to get the representation of the module from the list of classes and the moduleCode specified.
      *
-     * @param name of the module to be created
+     * @param moduleCode of the module to be created
      * @param tutorialClasses of the module to be created
      */
-    public ModuleCode(String name, ArrayList<TutorialClass> tutorialClasses) {
-        requireAllNonNull(name);
-        checkArgument(isValidModuleCode(name), MESSAGE_CONSTRAINTS);
-        this.value = name;
+    public ModuleCode(String moduleCode, ArrayList<TutorialClass> tutorialClasses) {
+        requireAllNonNull(moduleCode);
+        checkArgument(isValidModuleCode(moduleCode), MESSAGE_CONSTRAINTS);
+        this.value = moduleCode;
         this.tutorialClasses = tutorialClasses;
     }
 
@@ -78,6 +78,14 @@ public class ModuleCode {
      */
     public ArrayList<TutorialClass> getTutorialClasses() {
         return tutorialClasses;
+    }
+
+    /**
+     * Get the instance's object.
+     * @return A ModuleCode instance object.
+     */
+    public ModuleCode getModule() {
+        return this;
     }
 
     @Override

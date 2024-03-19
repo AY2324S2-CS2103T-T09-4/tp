@@ -28,25 +28,25 @@ public class TutorialClass {
     /**
      * A constructor for TutorialClass. Creates an empty tutorial class with no students.
      *
-     * @param name of tutorial to be added
+     * @param tutorialClass of tutorial to be added
      */
-    public TutorialClass(String name) {
-        requireAllNonNull(name);
-        checkArgument(isValidTutorialClass(name), MESSAGE_CONSTRAINTS);
-        this.value = name;
+    public TutorialClass(String tutorialClass) {
+        requireAllNonNull(tutorialClass);
+        checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
+        this.value = tutorialClass;
         this.students = new ArrayList<>();
     }
 
     /**
      * A constructor for TutorialClass. Creates a tutorial with the list of students specified.
      *
-     * @param name of tutorial to be added
+     * @param tutorialClass of tutorial to be added
      * @param students to be in the added tutorial
      */
-    public TutorialClass(String name, ArrayList<Person> students) {
-        requireAllNonNull(name);
-        checkArgument(isValidTutorialClass(name), MESSAGE_CONSTRAINTS);
-        this.value = name;
+    public TutorialClass(String tutorialClass, ArrayList<Person> students) {
+        requireAllNonNull(tutorialClass);
+        checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
+        this.value = tutorialClass;
         this.students = students;
     }
 
@@ -55,6 +55,12 @@ public class TutorialClass {
      */
     public static boolean isValidTutorialClass(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+    public TutorialClass getTutorialClass() {
+        return this;
+    }
+    public ArrayList<Person> getStudents() {
+        return this.students;
     }
 
     @Override

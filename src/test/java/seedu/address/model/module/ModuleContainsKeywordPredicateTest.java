@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ModuleBuilder;
 
 public class ModuleContainsKeywordPredicateTest {
 
@@ -40,39 +40,35 @@ public class ModuleContainsKeywordPredicateTest {
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         ModuleContainsKeywordPredicate predicate = new ModuleContainsKeywordPredicate("CS2101");
-        assertTrue(predicate.test(new PersonBuilder().withModuleCode("CS2101").build()));
+        assertTrue(predicate.test(new ModuleBuilder().withModuleCode("CS2101").build()));
 
         // Partial keyword
         predicate = new ModuleContainsKeywordPredicate("CS");
-        assertTrue(predicate.test(new PersonBuilder().withModuleCode("CS2101").build()));
+        assertTrue(predicate.test(new ModuleBuilder().withModuleCode("CS2101").build()));
 
         // Mixed-case keywords
         predicate = new ModuleContainsKeywordPredicate("cs2101");
-        assertTrue(predicate.test(new PersonBuilder().withModuleCode("CS2101").build()));
+        assertTrue(predicate.test(new ModuleBuilder().withModuleCode("CS2101").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
         ModuleContainsKeywordPredicate predicate = new ModuleContainsKeywordPredicate("CS2103T");
-        assertFalse(predicate.test(new PersonBuilder().withModuleCode("CS2101").build()));
+        assertFalse(predicate.test(new ModuleBuilder().withModuleCode("CS2101").build()));
 
-        // Keyword matches name but does not match module code
-        predicate = new ModuleContainsKeywordPredicate("Alice");
-        assertFalse(predicate.test(new PersonBuilder().withModuleCode("CS2101").withName("Alice").build()));
+        // Keyword matches tutorial class but does not match module code
+        predicate = new ModuleContainsKeywordPredicate("T03");
+        assertFalse(predicate.test(new ModuleBuilder().withModuleCode("CS2101").withTutorialClasses("T03").build()));
 
-        // Keyword matches email but does not match module code
-        predicate = new ModuleContainsKeywordPredicate("alice@gmail.com");
-        assertFalse(predicate.test(new PersonBuilder().withModuleCode("CS2101")
-                .withEmail("alice@gmail.com").build()));
-
-        // Keyword matches student id but does not match module code
-        predicate = new ModuleContainsKeywordPredicate("A1234567Z");
-        assertFalse(predicate.test(new PersonBuilder().withModuleCode("CS2101").withStudentId("A1234567Z").build()));
+        // Keyword matches tutorialClass but does not match module code
+        predicate = new ModuleContainsKeywordPredicate("T02");
+        assertFalse(predicate.test(new ModuleBuilder().withModuleCode("CS2101")
+                .withTutorialClasses("T02").build()));
 
         // Keyword matches tutorial class but does not match module code
         predicate = new ModuleContainsKeywordPredicate("T01");
-        assertFalse(predicate.test(new PersonBuilder().withModuleCode("CS2101").withTutorialClass("T01").build()));
+        assertFalse(predicate.test(new ModuleBuilder().withModuleCode("CS2101").withTutorialClasses("T01").build()));
     }
 
     @Test

@@ -53,7 +53,6 @@ public class CommandTestUtil {
     public static final String STUDENT_ID_DESC_AMY = " " + PREFIX_STUDENTID + VALID_STUDENT_ID_AMY;
     public static final String STUDENT_ID_DESC_BOB = " " + PREFIX_STUDENTID + VALID_STUDENT_ID_BOB;
     public static final String MODULE_DESC_AMY = " " + PREFIX_MODULECODE + VALID_MODULE_AMY;
-    public static final String MODULE_DESC_BOB = " " + PREFIX_MODULECODE + VALID_MODULE_BOB;
     public static final String TUTORIAL_DESC_AMY = " " + PREFIX_TUTORIALCLASS + VALID_TUTORIAL_AMY;
     public static final String TUTORIAL_DESC_BOB = " " + PREFIX_TUTORIALCLASS + VALID_TUTORIAL_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -68,9 +67,6 @@ public class CommandTestUtil {
     // missing '@' symbol
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo";
 
-    // empty string not allowed for module code
-    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULECODE;
-
     // invalid format for tutorial, alphabet not allowed in between 2 numbers.
     public static final String INVALID_TUTORIAL_DESC = " " + PREFIX_TUTORIALCLASS + "T1X312";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -83,10 +79,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withStudentId(VALID_STUDENT_ID_AMY).withEmail(VALID_EMAIL_AMY).withModuleCode(VALID_MODULE_AMY)
+                .withStudentId(VALID_STUDENT_ID_AMY).withEmail(VALID_EMAIL_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withStudentId(VALID_STUDENT_ID_BOB).withEmail(VALID_EMAIL_BOB).withModuleCode(VALID_MODULE_BOB)
+                .withStudentId(VALID_STUDENT_ID_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

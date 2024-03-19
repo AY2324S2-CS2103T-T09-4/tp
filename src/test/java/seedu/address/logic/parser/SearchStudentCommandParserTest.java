@@ -2,11 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.STUDENT_ID_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_DESC_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -16,8 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.SearchStudentCommand;
-import seedu.address.model.module.ModuleContainsKeywordPredicate;
-import seedu.address.model.module.TutorialContainsKeywordPredicate;
 import seedu.address.model.person.EmailContainsKeywordPredicate;
 import seedu.address.model.person.NameContainsKeywordPredicate;
 import seedu.address.model.person.StudentIdContainsKeywordPredicate;
@@ -49,15 +45,6 @@ public class SearchStudentCommandParserTest {
                 new SearchStudentCommand(new EmailContainsKeywordPredicate(BOB.getEmail().value));
         assertParseSuccess(parser, EMAIL_DESC_BOB, expectedSearchStudentCommand);
 
-        // valid module code
-        expectedSearchStudentCommand =
-                new SearchStudentCommand(new ModuleContainsKeywordPredicate(BOB.getModule().value));
-        assertParseSuccess(parser, MODULE_DESC_BOB, expectedSearchStudentCommand);
-
-        // valid tutorial class
-        expectedSearchStudentCommand =
-                new SearchStudentCommand(new TutorialContainsKeywordPredicate(BOB.getTutorialClass().value));
-        assertParseSuccess(parser, TUTORIAL_DESC_BOB, expectedSearchStudentCommand);
 
         // extended preamble
         expectedSearchStudentCommand =

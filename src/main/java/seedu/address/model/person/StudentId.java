@@ -16,7 +16,7 @@ public class StudentId {
     /**
      * This regex validates the NUS student id of a student in the form "A12345678Z"
      */
-    public static final String VALIDATION_REGEX = "^[A]\\d{7}[A-Z]$";
+    public static final String VALIDATION_REGEX = "^A\\d{7}[A-Z]$";
 
     public final String value;
 

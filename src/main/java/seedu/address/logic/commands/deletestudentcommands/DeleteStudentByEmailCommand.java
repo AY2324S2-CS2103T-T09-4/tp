@@ -35,7 +35,6 @@ public class DeleteStudentByEmailCommand extends DeleteStudentCommand {
         personToDelete = model.searchPersonByPredicate(person -> person.getEmail().equals(email));
         if (personToDelete == null) {
             throw new CommandException(String.format(MESSAGE_PERSON_EMAIL_NOT_FOUND, email));
-
         }
         model.deletePerson(personToDelete);
 

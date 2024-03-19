@@ -53,8 +53,6 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         email.setText(person.getEmail().value);
         stuId.setText(person.getStudentId().value);
-        module.setText(person.getModule().value);
-        tutorial.setText(person.getTutorialClass().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
