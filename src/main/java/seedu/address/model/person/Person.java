@@ -52,7 +52,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same StudentId.
+     * Returns true if both persons have the same StudentId or email.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -60,8 +60,14 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getStudentId().equals(getStudentId());
+        if (otherPerson == null) {
+            return false;
+        }
+
+        boolean checkSameStudentId = otherPerson.getStudentId().equals(getStudentId());
+        boolean checkSameEmail = otherPerson.getEmail().equals(getEmail());
+
+        return otherPerson != null && (checkSameStudentId || checkSameEmail);
     }
 
     /**
