@@ -40,18 +40,22 @@ public class SearchStudentCommandParser implements Parser<SearchStudentCommand> 
 
         Predicate<Person> predicate = null;
 
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent() && !argMultimap.getValue(PREFIX_EMAIL).get().isEmpty()) {
             String keyword = argMultimap.getValue(PREFIX_EMAIL).get();
             predicate = new EmailContainsKeywordPredicate(keyword);
         }
-        if (argMultimap.getValue(PREFIX_STUDENTID).isPresent()) {
+
+        if (argMultimap.getValue(PREFIX_STUDENTID).isPresent()
+                && !argMultimap.getValue(PREFIX_STUDENTID).get().isEmpty()) {
             String keyword = argMultimap.getValue(PREFIX_STUDENTID).get();
             predicate = new StudentIdContainsKeywordPredicate(keyword);
         }
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+
+        if (argMultimap.getValue(PREFIX_NAME).isPresent() && !argMultimap.getValue(PREFIX_NAME).get().isEmpty()) {
             String keyword = argMultimap.getValue(PREFIX_NAME).get();
             predicate = new NameContainsKeywordPredicate(keyword);
         }
+
         if (predicate == null) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchStudentCommand.MESSAGE_USAGE));
         }

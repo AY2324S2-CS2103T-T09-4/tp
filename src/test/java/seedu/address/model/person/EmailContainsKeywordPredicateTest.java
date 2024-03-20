@@ -54,8 +54,16 @@ public class EmailContainsKeywordPredicateTest {
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
+        // null keyword
+        EmailContainsKeywordPredicate predicate = new EmailContainsKeywordPredicate(null);
+        assertFalse(predicate.test(new PersonBuilder().withEmail("alice@gmail.com").build()));
+
+        // empty string keyword
+        predicate = new EmailContainsKeywordPredicate(" ");
+        assertFalse(predicate.test(new PersonBuilder().withEmail("alice@gmail.com").build()));
+
         // Non-matching keyword
-        EmailContainsKeywordPredicate predicate = new EmailContainsKeywordPredicate("alice@yahoo.com");
+        predicate = new EmailContainsKeywordPredicate("alice@yahoo.com");
         assertFalse(predicate.test(new PersonBuilder().withEmail("alice@gmail.com").build()));
 
         // Keyword matches student id but does not match email

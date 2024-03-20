@@ -55,8 +55,16 @@ public class StudentIdContainsKeywordPredicateTest {
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
+        // null keyword
+        StudentIdContainsKeywordPredicate predicate = new StudentIdContainsKeywordPredicate(null);
+        assertFalse(predicate.test(new PersonBuilder().withStudentId("A1234567Z").build()));
+
+        // empty string keyword
+        predicate = new StudentIdContainsKeywordPredicate("");
+        assertFalse(predicate.test(new PersonBuilder().withStudentId("A1234567Z").build()));
+
         // Non-matching keyword
-        StudentIdContainsKeywordPredicate predicate = new StudentIdContainsKeywordPredicate("A1111111Z");
+        predicate = new StudentIdContainsKeywordPredicate("A1111111Z");
         assertFalse(predicate.test(new PersonBuilder().withStudentId("A1234567Z").build()));
 
         // Keyword matches name but does not match student id

@@ -23,6 +23,9 @@ public class StudentIdContainsKeywordPredicate implements Predicate<Person> {
      */
     @Override
     public boolean test(Person person) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return false;
+        }
         return StringUtil.containsPartialWordIgnoreCase(person.getStudentId().value, keyword);
     }
 
