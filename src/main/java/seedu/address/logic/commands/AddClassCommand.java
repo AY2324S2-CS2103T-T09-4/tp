@@ -18,7 +18,8 @@ public class AddClassCommand extends Command {
     public static final String MESSAGE_DUPLICATE_CLASS = "%1$s %2$s already added!";
     public static final String COMMAND_WORD = "/add_class";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class with the module code and tutorial class specified\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class with the module code and"
+        + " tutorial class specified\n"
         + "Parameters: " + PREFIX_MODULECODE + "MODULE_CODE "
         + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS \n"
         + "Example: " + COMMAND_WORD + " " + PREFIX_MODULECODE + "CS2103T "
