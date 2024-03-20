@@ -20,8 +20,8 @@ public abstract class DeleteStudentCommand extends Command {
     public static final String COMMAND_WORD = "/delete_student";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the student identified by the student ID or email used in the displayed students list.\n"
-            + "Parameters: IDENTIFIER (must be a index, valid student ID or a valid email address)\n"
+            + ": Deletes the student identified by parameter in the displayed students list.\n"
+            + "Parameters: index/INDEX or email/EMAIL or id/STUDENT ID\n"
             + "Example: " + COMMAND_WORD + " email/johndoe@gmail.com";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Student: %1$s";

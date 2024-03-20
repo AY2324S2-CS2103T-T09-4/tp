@@ -15,11 +15,11 @@ import seedu.address.model.person.Person;
 /**
  * Adds a person to TAHelper.
  */
-public class AddCommand extends Command {
+public class AddStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "/add_student";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to TAHelper. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to TAHelper.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_EMAIL + "EMAIL "
@@ -27,7 +27,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Zack "
-            + PREFIX_STUDENTID + "A12345678Z "
+            + PREFIX_STUDENTID + "A1234567Z "
             + PREFIX_EMAIL + "Zack@example.com "
             + PREFIX_TAG + "Student ";
 
@@ -39,7 +39,7 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
+    public AddStudentCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
     }
@@ -63,11 +63,11 @@ public class AddCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddStudentCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
+        AddStudentCommand otherAddCommand = (AddStudentCommand) other;
         return toAdd.equals(otherAddCommand.toAdd);
     }
 
