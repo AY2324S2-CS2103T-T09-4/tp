@@ -25,7 +25,7 @@ import seedu.address.model.module.TutorialClass;
 import seedu.address.model.module.TutorialTeam;
 
 /**
- * Contains integration tests (interaction with the Model) for
+ * Contains integration tests (interaction with the Model) and unit tests for
  * {@code AddTeamCommand}.
  */
 public class AddTeamCommandTest {
