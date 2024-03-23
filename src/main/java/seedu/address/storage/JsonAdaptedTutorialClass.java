@@ -89,6 +89,7 @@ public class JsonAdaptedTutorialClass {
         }
 
         JsonAdaptedTutorialClass otherTutorialClass = (JsonAdaptedTutorialClass) other;
-        return tutorialName.equals(otherTutorialClass.tutorialName) && students.equals(otherTutorialClass.students) && teams.equals(otherTutorialClass.teams);
+        return tutorialName.equals(otherTutorialClass.tutorialName) && students.equals(otherTutorialClass.students)
+                && teams.equals(otherTutorialClass.teams);
     }
 }

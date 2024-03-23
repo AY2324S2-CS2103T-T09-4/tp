@@ -1,5 +1,6 @@
 package seedu.address.model.module;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
@@ -7,29 +8,28 @@ import java.util.ArrayList;
 import seedu.address.model.person.Person;
 
 /**
- * Represents a Module's tutorial class code.
+ * Represents a Module's tutorial team.
  * Guarantees: immutable; is valid as declared in
- * {@link #isValidTutorialClass(String)}
+ * {@link #isValidTeamName(String)}
  */
 public class TutorialTeam {
 
-    public static final String MESSAGE_CONSTRAINTS = "Please enter a valid NUS tutorial class code "
-            + "eg. T01, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Please enter a valid tutorial team name "
+            + "eg. Team 1, and it should not be blank";
+    public static final String MESSAGE_NAME_CONSTRAINTS = "Team names should only contain alphanumeric "
+            + "characters and spaces, and it should not be blank";
+    public static final String MESSAGE_SIZE_CONSTRAINTS = "Team size should be a positive integer";
 
-    /**
-     * This regex validates the tutorial class code that user enters.
-     * Supports format like "L07", "T01" and "T015".
-     */
-    public static final String VALIDATION_REGEX = "^[A-Z]\\d{2}$";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String teamName;
     public final int teamSize;
     private final ArrayList<Person> students;
 
     /**
-     * Constructs a {@code TutorialClass} with default values.
-     * Initializes the {@code value} field to an empty string and creates an empty
-     * list for {@code students}.
+     * Constructs a {@code TutorialTeam} with default values.
+     * Initializes the {@code value} field to an empty string, creates an empty
+     * list for {@code students} and sets the {@code teamSize} to the maximum.
      */
     public TutorialTeam() {
         this.teamName = "";
@@ -38,12 +38,15 @@ public class TutorialTeam {
     }
 
     /**
-     * A constructor for TutorialClass. Creates a tutorial class of a certain size with no students.
+     * A constructor for TutorialTeam. Creates a tutorial team of a certain size
+     * with no students.
      * @param tutorialTeam
      * @param teamSize
      */
     public TutorialTeam(String tutorialTeam, int teamSize) {
         requireAllNonNull(tutorialTeam, teamSize);
+        checkArgument(isValidTeamName(tutorialTeam), MESSAGE_NAME_CONSTRAINTS);
+        checkArgument(isValidSize(teamSize), MESSAGE_SIZE_CONSTRAINTS);
         this.teamName = tutorialTeam;
         this.students = new ArrayList<>();
         this.teamSize = teamSize;
@@ -51,34 +54,51 @@ public class TutorialTeam {
 
     /**
      * A constructor for TutorialTeam. Creates a tutorial team with students.
-     * 
      * @param tutorialClass to be added
      * @param students      in the tutorial class
      */
     public TutorialTeam(String tutorialTeam, ArrayList<Person> students) {
         requireAllNonNull(tutorialTeam);
+        checkArgument(isValidTeamName(tutorialTeam), MESSAGE_NAME_CONSTRAINTS);
         this.teamName = tutorialTeam;
         this.students = students;
         this.teamSize = Integer.MAX_VALUE;
     }
 
     /**
-     * A constructor for TutorialTeam. Creates a tutorial team with students and team size.
-     * 
+     * A constructor for TutorialTeam. Creates a tutorial team with students and
+     * team size.
      * @param tutorialClass to be added
      * @param students      in the tutorial class
      * @param teamSize      of the tutorial team
      */
     public TutorialTeam(String tutorialTeam, ArrayList<Person> students, int teamSize) {
         requireAllNonNull(tutorialTeam);
+        checkArgument(isValidTeamName(tutorialTeam), MESSAGE_NAME_CONSTRAINTS);
+        checkArgument(isValidSize(teamSize), MESSAGE_SIZE_CONSTRAINTS);
         this.teamName = tutorialTeam;
         this.students = students;
         this.teamSize = teamSize;
     }
 
     /**
+     * Returns true if a given string is a valid tutorial team name.
+     * @param test
+     */
+    public static boolean isValidTeamName(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given integer is a valid team size.
+     * @param test
+     */
+    public static boolean isValidSize(int test) {
+        return test > 0;
+    }
+
+    /**
      * Set students to the tutorial team.
-     * 
      * @param students
      */
     public void setStudents(ArrayList<Person> students) {
@@ -87,7 +107,6 @@ public class TutorialTeam {
 
     /**
      * Retrieves the tutorial team.
-     * 
      * @return The tutorial team.
      */
     public TutorialTeam getTutorialTeam() {
@@ -96,7 +115,6 @@ public class TutorialTeam {
 
     /**
      * Retrieves the list of students in the tutorial team.
-     * 
      * @return The list of students in the tutorial team.
      */
     public ArrayList<Person> getStudents() {
@@ -105,6 +123,7 @@ public class TutorialTeam {
 
     /**
      * Adds a student to the tutorial team.
+     * @param student
      */
     public void addStudent(Person student) {
         students.add(student);
@@ -112,7 +131,7 @@ public class TutorialTeam {
 
     /**
      * Removes a student from the tutorial class if it exists.
-     *
+     * @param student
      * @return true if the student was removed
      */
     public boolean deleteStudent(Person student) {
@@ -121,7 +140,6 @@ public class TutorialTeam {
 
     /**
      * Checks if the student is in the tutorial team.
-     * 
      * @param student
      * @return true if the student is in the tutorial class
      */

@@ -16,12 +16,12 @@ import seedu.address.model.module.TutorialClass;
 import seedu.address.model.module.TutorialTeam;
 
 /**
- * A class that handles the /add_class command execution.
+ * A class that handles the /add_team command execution.
  */
 public class AddTeamCommand extends Command {
-    public static final String MESSAGE_ADD_TEAM_SUCCESS_WITHOUT_SIZE = "Added Team %1$s to %2$s %3$s";
-    public static final String MESSAGE_ADD_TEAM_SUCCESS_WITH_SIZE = "Added Team %1$s of size %4$s to %2$s %3$s";
-    public static final String MESSAGE_DUPLICATE_TEAM = "Team %1$s already added to %2$s %3$s!";
+    public static final String MESSAGE_ADD_TEAM_SUCCESS_WITHOUT_SIZE = "Added %1$s to %2$s %3$s";
+    public static final String MESSAGE_ADD_TEAM_SUCCESS_WITH_SIZE = "Added %1$s of size %2$s to %3$s %4$s";
+    public static final String MESSAGE_DUPLICATE_TEAM = "%1$s already added to %2$s %3$s!";
     public static final String COMMAND_WORD = "/add_team";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -29,7 +29,7 @@ public class AddTeamCommand extends Command {
             + "Parameters: " + PREFIX_MODULECODE + "MODULE_CODE "
             + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS " + PREFIX_NAME + "TEAM_NAME " + PREFIX_TEAM_SIZE + "TEAM_SIZE\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_MODULECODE + "CS2103T "
-            + PREFIX_TUTORIALCLASS + "T09" + PREFIX_NAME + "Team 1 " + PREFIX_TEAM_SIZE + "5";
+            + PREFIX_TUTORIALCLASS + "T09 " + PREFIX_NAME + "Team 1 " + PREFIX_TEAM_SIZE + "5";
 
     private final ModuleCode module;
     private final TutorialClass tutorialClass;
@@ -39,7 +39,6 @@ public class AddTeamCommand extends Command {
     /**
      * Constructs an AddTeamCommand to add the specified {@code TutorialTeam} to the
      * specified {@code TutorialClass}, without the specified team size.
-     * 
      * @param module        The module code of the tutorial class to be added.
      * @param tutorialClass The tutorial class to be added.
      * @param teamName      The name of the team to be added.
@@ -55,7 +54,6 @@ public class AddTeamCommand extends Command {
     /**
      * Constructs an AddTeamCommand to add the specified {@code TutorialTeam} to the
      * specified {@code TutorialClass}, with the specified team size.
-     * 
      * @param module        The module code of the tutorial class to be added.
      * @param tutorialClass The tutorial class to be added.
      * @param teamName      The name of the team to be added.
@@ -118,21 +116,19 @@ public class AddTeamCommand extends Command {
     /**
      * Generates a command execution success message based on whether the tutorial
      * team is added successfully and if the team size is not specified.
-     * 
      * @param module         The module code of the tutorial class.
      * @param tutorialString The tutorial class.
      * @param teamName       The name of the team.
      * @return The success message.
      */
     private String generateSuccessMessage(ModuleCode module, TutorialClass tutorialString, String teamName) {
-        return String.format(MESSAGE_ADD_TEAM_SUCCESS_WITHOUT_SIZE, teamName, module.toString(),
-                tutorialString.toString());
+        return String.format(MESSAGE_ADD_TEAM_SUCCESS_WITHOUT_SIZE, teamName, module,
+                tutorialString);
     }
 
     /**
      * Generates a command execution success message based on whether the tutorial
      * team is added successfully and if the team size is specified.
-     * 
      * @param module         The module code of the tutorial class.
      * @param tutorialString The tutorial class.
      * @param teamName       The name of the team.
@@ -141,8 +137,7 @@ public class AddTeamCommand extends Command {
      */
     private String generateSuccessMessage(ModuleCode module, TutorialClass tutorialString, String teamName,
             int teamSize) {
-        return String.format(MESSAGE_ADD_TEAM_SUCCESS_WITH_SIZE, teamName, module.toString(), tutorialString.toString(),
-                teamSize);
+        return String.format(MESSAGE_ADD_TEAM_SUCCESS_WITH_SIZE, teamName, teamSize, module, tutorialString);
     }
 
     @Override
@@ -157,6 +152,7 @@ public class AddTeamCommand extends Command {
         }
 
         AddTeamCommand e = (AddTeamCommand) other;
-        return module.equals(e.module) && tutorialClass.equals(e.tutorialClass) && teamName.equals(e.teamName);
+        return module.equals(e.module) && tutorialClass.equals(e.tutorialClass) && teamName.equals(e.teamName)
+                && teamSize == e.teamSize;
     }
 }
