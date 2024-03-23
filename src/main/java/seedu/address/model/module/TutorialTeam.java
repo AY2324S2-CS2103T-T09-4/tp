@@ -114,6 +114,22 @@ public class TutorialTeam {
     }
 
     /**
+     * Retrieves the team name.
+     * @return The team name.
+     */
+    public String getTeamName() {
+        return teamName;
+    }
+
+    /**
+     * Retrieves the team size.
+     * @return The team size.
+     */
+    public int getTeamSize() {
+        return teamSize;
+    }
+
+    /**
      * Retrieves the list of students in the tutorial team.
      * @return The list of students in the tutorial team.
      */
