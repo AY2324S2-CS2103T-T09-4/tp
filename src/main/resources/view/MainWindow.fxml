@@ -13,6 +13,7 @@
 
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.effect.DropShadow?>
+
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="500" minHeight="500" onCloseRequest="#handleExit">
     <icons>
@@ -25,7 +26,7 @@
                 <URL value="@Extensions.css" />
             </stylesheets>
             <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171"
+                        xmlns="http://javafx.com/javafx/8.0.171"
                         xmlns:fx="http://javafx.com/fxml/1">
                         <top>
                             <MenuBar fx:id="menuBar" VBox.vgrow="ALWAYS">
@@ -41,28 +42,28 @@
                             <SplitPane dividerPositions="0.33, 0.67">
                                 <items>
                                     <!-- Add a new VBox for the module list panel -->
-                                    <VBox fx:id="moduleList" minWidth="300" prefWidth="300" minHeight="460" spacing="5"
+                                    <VBox fx:id="moduleList" spacing="5"
                                           xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
                                         <padding>
                                             <Insets top="10" right="10" bottom="10" left="10" />
                                         </padding>
                                         <!-- Placeholder for the ModuleListPanel -->
-                                        <StackPane fx:id="moduleListPanelPlaceholder" maxHeight="600"/>
+                                        <StackPane fx:id="moduleListPanelPlaceholder" maxHeight="Infinity"/>
                                     </VBox>
-                                    <VBox fx:id="tutoriallist" minWidth="300" prefWidth="300" minHeight="460" spacing="5"
+                                    <VBox fx:id="tutoriallist" spacing="5"
                                           xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
                                         <padding>
                                             <Insets top="10" right="10" bottom="10" left="10" />
                                         </padding>
                                         <!-- Placeholder for the TutorialListPanel -->
-                                        <StackPane fx:id="tutorialListPanelPlaceholder" maxHeight="600"/>
+                                        <StackPane fx:id="tutorialListPanelPlaceholder" maxHeight="Infinity"/>
                                     </VBox>
-                                    <VBox fx:id="personList" minWidth="300" prefWidth="300" minHeight="460" spacing="5"
+                                    <VBox fx:id="personList" spacing="5"
                                           xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
                                         <padding>
                                             <Insets top="10" right="10" bottom="10" left="10" />
                                         </padding>
-                                        <StackPane fx:id="personListPanelPlaceholder" maxHeight="600"/>
+                                        <StackPane fx:id="personListPanelPlaceholder" maxHeight="Infinity"/>
                                     </VBox>
                                 </items>
                             </SplitPane>
