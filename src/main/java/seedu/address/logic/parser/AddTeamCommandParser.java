@@ -23,6 +23,7 @@ public class AddTeamCommandParser implements Parser<AddTeamCommand> {
      * Parses the given {@code String} of arguments in the context of the
      * {@code AddClassCommandParser}
      * and returns a {@code AddClassCommandParser} object for execution.
+     * 
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTeamCommand parse(String args) throws ParseException {
@@ -36,27 +37,27 @@ public class AddTeamCommandParser implements Parser<AddTeamCommand> {
         }
 
         boolean isTeamSizePresent = argMultimap.getValue(PREFIX_TEAM_SIZE).isPresent();
-        String moduleCode = argMultimap.getValue(PREFIX_MODULECODE).orElse("");
-        String tutorialClass = argMultimap.getValue(PREFIX_TUTORIALCLASS).orElse("");
+        ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULECODE).get());
+        TutorialClass tutorialClass = ParserUtil.parseTutorialClass(argMultimap.getValue(PREFIX_TUTORIALCLASS).get());
         String teamName = argMultimap.getValue(PREFIX_NAME).orElse("");
-        if (!(ModuleCode.isValidModuleCode(moduleCode))) {
-            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
-        }
-        if (!(TutorialClass.isValidTutorialClass(tutorialClass))) {
-            throw new ParseException(TutorialClass.MESSAGE_CONSTRAINTS);
-        }
 
         if (!TutorialTeam.isValidTeamName(teamName)) {
             throw new ParseException(TutorialTeam.MESSAGE_NAME_CONSTRAINTS);
         }
+
         if (isTeamSizePresent) {
-            int teamSize = Integer.parseInt(argMultimap.getValue(PREFIX_TEAM_SIZE).get());
+            int teamSize;
+            try {
+                teamSize = Integer.parseInt(argMultimap.getValue(PREFIX_TEAM_SIZE).get());
+            } catch (NumberFormatException e) {
+                throw new ParseException(TutorialTeam.MESSAGE_SIZE_CONSTRAINTS);
+            }
             if (teamSize <= 0) {
                 throw new ParseException(TutorialTeam.MESSAGE_SIZE_CONSTRAINTS);
             }
-            return new AddTeamCommand(new ModuleCode(moduleCode), new TutorialClass(tutorialClass), teamName, teamSize);
+            return new AddTeamCommand(moduleCode, tutorialClass, teamName, teamSize);
         } else {
-            return new AddTeamCommand(new ModuleCode(moduleCode), new TutorialClass(tutorialClass), teamName);
+            return new AddTeamCommand(moduleCode, tutorialClass, teamName);
         }
     }
 

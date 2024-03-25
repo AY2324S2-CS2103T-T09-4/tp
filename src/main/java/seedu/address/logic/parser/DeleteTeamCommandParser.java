@@ -3,11 +3,12 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.DeleteClassCommand;
+import seedu.address.logic.commands.DeleteTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
@@ -16,7 +17,7 @@ import seedu.address.model.module.TutorialClass;
  * Parses input arguments and creates a new {@code DeleteClassCommandParser}
  * object
  */
-public class DeleteClassCommandParser implements Parser<DeleteClassCommand> {
+public class DeleteTeamCommandParser implements Parser<DeleteTeamCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the
      * {@code DeleteClassCommandParser}
@@ -24,18 +25,19 @@ public class DeleteClassCommandParser implements Parser<DeleteClassCommand> {
      * 
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DeleteClassCommand parse(String args) throws ParseException {
+    public DeleteTeamCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS,
+                PREFIX_NAME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteClassCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTeamCommand.MESSAGE_USAGE));
         }
-
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULECODE).get());
         TutorialClass tutorialClass = ParserUtil.parseTutorialClass(argMultimap.getValue(PREFIX_TUTORIALCLASS).get());
-        return new DeleteClassCommand(moduleCode, tutorialClass);
+        String teamName = argMultimap.getValue(PREFIX_NAME).get();
+        return new DeleteTeamCommand(moduleCode, tutorialClass, teamName);
     }
 
     /**

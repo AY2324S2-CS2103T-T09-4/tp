@@ -38,8 +38,23 @@ public class TutorialTeam {
     }
 
     /**
+     * A constructor for TutorialTeam. Creates a tutorial team of unspecified size
+     * with no students.
+     * 
+     * @param tutorialTeam
+     */
+    public TutorialTeam(String tutorialTeam) {
+        requireAllNonNull(tutorialTeam);
+        checkArgument(isValidTeamName(tutorialTeam), MESSAGE_NAME_CONSTRAINTS);
+        this.teamName = tutorialTeam;
+        this.students = new ArrayList<>();
+        this.teamSize = Integer.MAX_VALUE;
+    }
+
+    /**
      * A constructor for TutorialTeam. Creates a tutorial team of a certain size
      * with no students.
+     * 
      * @param tutorialTeam
      * @param teamSize
      */
@@ -54,6 +69,7 @@ public class TutorialTeam {
 
     /**
      * A constructor for TutorialTeam. Creates a tutorial team with students.
+     * 
      * @param tutorialClass to be added
      * @param students      in the tutorial class
      */
@@ -68,6 +84,7 @@ public class TutorialTeam {
     /**
      * A constructor for TutorialTeam. Creates a tutorial team with students and
      * team size.
+     * 
      * @param tutorialClass to be added
      * @param students      in the tutorial class
      * @param teamSize      of the tutorial team
@@ -83,6 +100,7 @@ public class TutorialTeam {
 
     /**
      * Returns true if a given string is a valid tutorial team name.
+     * 
      * @param test
      */
     public static boolean isValidTeamName(String test) {
@@ -91,6 +109,7 @@ public class TutorialTeam {
 
     /**
      * Returns true if a given integer is a valid team size.
+     * 
      * @param test
      */
     public static boolean isValidSize(int test) {
@@ -99,6 +118,7 @@ public class TutorialTeam {
 
     /**
      * Set students to the tutorial team.
+     * 
      * @param students
      */
     public void setStudents(ArrayList<Person> students) {
@@ -107,6 +127,7 @@ public class TutorialTeam {
 
     /**
      * Retrieves the tutorial team.
+     * 
      * @return The tutorial team.
      */
     public TutorialTeam getTutorialTeam() {
@@ -115,6 +136,7 @@ public class TutorialTeam {
 
     /**
      * Retrieves the team name.
+     * 
      * @return The team name.
      */
     public String getTeamName() {
@@ -123,6 +145,7 @@ public class TutorialTeam {
 
     /**
      * Retrieves the team size.
+     * 
      * @return The team size.
      */
     public int getTeamSize() {
@@ -131,6 +154,7 @@ public class TutorialTeam {
 
     /**
      * Retrieves the list of students in the tutorial team.
+     * 
      * @return The list of students in the tutorial team.
      */
     public ArrayList<Person> getStudents() {
@@ -139,6 +163,7 @@ public class TutorialTeam {
 
     /**
      * Adds a student to the tutorial team.
+     * 
      * @param student
      */
     public void addStudent(Person student) {
@@ -147,6 +172,7 @@ public class TutorialTeam {
 
     /**
      * Removes a student from the tutorial class if it exists.
+     * 
      * @param student
      * @return true if the student was removed
      */
@@ -156,6 +182,7 @@ public class TutorialTeam {
 
     /**
      * Checks if the student is in the tutorial team.
+     * 
      * @param student
      * @return true if the student is in the tutorial class
      */
