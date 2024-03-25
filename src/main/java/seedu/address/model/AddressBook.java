@@ -12,7 +12,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.ModuleMessages;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -88,6 +90,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
+     */
+    public boolean hasPersonWithStudentId(StudentId id) {
+        requireNonNull(id);
+        return persons.asUnmodifiableObservableList().stream().anyMatch(s -> s.getStudentId().equals(id));
+    }
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
+     */
+    public boolean hasPersonWithEmail(Email email) {
+        requireNonNull(email);
+        return persons.asUnmodifiableObservableList().stream().anyMatch(s -> s.getEmail().equals(email));
     }
 
     /**

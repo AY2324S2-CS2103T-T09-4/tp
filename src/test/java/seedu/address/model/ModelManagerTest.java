@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
@@ -89,6 +90,21 @@ public class ModelManagerTest {
     public void hasPerson_personInAddressBook_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasPersonWithEmail_nullEmail_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasPersonWithEmail(null));
+    }
+    @Test
+    public void hasPersonWithEmail_personInAddressBook_returnsTrue() {
+        modelManager.addPerson(AMY);
+        assertTrue(modelManager.hasPersonWithEmail(AMY.getEmail()));
+    }
+
+    @Test
+    public void hasPersonWithEmail_personNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasPersonWithEmail(AMY.getEmail()));
     }
 
     @Test

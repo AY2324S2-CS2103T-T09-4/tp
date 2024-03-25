@@ -7,7 +7,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.StudentId;
 
 /**
  * The API of the Model component.
@@ -60,6 +62,17 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Returns true if a person with the same email as {@code person} exists in the address book.
+     */
+    boolean hasPersonWithEmail(Email email);
+
+    /**
+     * Returns true if a person with the same student id as {@code person} exists in the address book.
+     */
+    boolean hasPersonWithStudentId(StudentId id);
+
     /**
      * Finds the module object from the list if it exists. Else, returns null.
      *
