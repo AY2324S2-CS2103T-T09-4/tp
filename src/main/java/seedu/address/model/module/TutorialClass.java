@@ -41,7 +41,6 @@ public class TutorialClass {
     /**
      * A constructor for TutorialClass. Creates an empty tutorial class with no
      * students.
-     * 
      * @param tutorialClass to be added
      */
     public TutorialClass(String tutorialClass) {
@@ -54,7 +53,6 @@ public class TutorialClass {
 
     /**
      * A constructor for TutorialClass. Creates a tutorial class with students.
-     * 
      * @param tutorialClass to be added
      * @param students      in the tutorial class
      */
@@ -69,7 +67,6 @@ public class TutorialClass {
     /**
      * A constructor for TutorialClass. Creates a tutorial class with students and
      * teams.
-     * 
      * @param tutorialClass to be added
      * @param students      in the tutorial class
      * @param teams         in the tutorial class
@@ -84,7 +81,6 @@ public class TutorialClass {
 
     /**
      * Set students to the tutorial class.
-     * 
      * @param students
      */
     public void setStudents(ArrayList<Person> students) {
@@ -100,7 +96,6 @@ public class TutorialClass {
 
     /**
      * Retrieves the tutorial class.
-     * 
      * @return The tutorial class.
      */
     public TutorialClass getTutorialClass() {
@@ -109,7 +104,6 @@ public class TutorialClass {
 
     /**
      * Retrieves the list of students in the tutorial class.
-     * 
      * @return The list of students in the tutorial class.
      */
     public ArrayList<Person> getStudents() {
@@ -118,7 +112,6 @@ public class TutorialClass {
 
     /**
      * Adds a student to the tutorial class.
-     * 
      * @param student
      */
     public void addStudent(Person student) {
@@ -127,7 +120,6 @@ public class TutorialClass {
 
     /**
      * Removes a student from the tutorial class if it exists.
-     * 
      * @param student
      * @return true if the student was removed
      */
@@ -137,7 +129,6 @@ public class TutorialClass {
 
     /**
      * Checks if the student is in the tutorial class.
-     * 
      * @param student
      * @return true if the student is in the tutorial class
      */
@@ -147,7 +138,6 @@ public class TutorialClass {
 
     /**
      * Retrieves the list of teams in the tutorial class.
-     * 
      * @return The list of teams in the tutorial class.
      */
     public ArrayList<TutorialTeam> getTeams() {
@@ -156,7 +146,6 @@ public class TutorialClass {
 
     /**
      * Adds a team to the tutorial class.
-     * 
      * @param team
      */
     public void addTeam(TutorialTeam team) {
@@ -165,7 +154,6 @@ public class TutorialClass {
 
     /**
      * Checks if the team is in the tutorial class.
-     * 
      * @param team
      */
     public boolean hasTeam(TutorialTeam team) {
@@ -174,7 +162,7 @@ public class TutorialClass {
 
     /**
      * Deletes a team from the tutorial class.
-     * 
+     * @param team
      */
     public void deleteTeam(TutorialTeam team) {
         teams.remove(team);

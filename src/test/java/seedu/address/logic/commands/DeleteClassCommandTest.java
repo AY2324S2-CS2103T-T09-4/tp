@@ -9,13 +9,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.DeleteClassCommand.MESSAGE_CLASS_NOT_FOUND;
 import static seedu.address.logic.commands.DeleteClassCommand.MESSAGE_DELETE_CLASS_SUCCESS;
-import static seedu.address.logic.commands.DeleteClassCommand.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.messages.ModuleMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -52,7 +51,7 @@ public class DeleteClassCommandTest {
 
         assertCommandFailure(new DeleteClassCommand(new ModuleCode(VALID_MODULE_BOB),
                         new TutorialClass(VALID_TUTORIAL_AMY)), model,
-                String.format(MESSAGE_MODULE_NOT_FOUND, VALID_MODULE_BOB));
+                String.format(ModuleMessages.MESSAGE_MODULE_NOT_FOUND, VALID_MODULE_BOB));
     }
 
     @Test
@@ -60,7 +59,8 @@ public class DeleteClassCommandTest {
         ModuleCode module = new ModuleCode(VALID_MODULE_AMY, VALID_TUTORIAL_AMY);
         model.addModule(module);
 
-        String errorMessage = String.format(MESSAGE_CLASS_NOT_FOUND, VALID_MODULE_AMY, VALID_TUTORIAL_BOB);
+        String errorMessage = String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE,
+                VALID_TUTORIAL_BOB, VALID_MODULE_AMY);
         String listOfTutorials = module.listTutorialClasses();
         String expectedMessage = errorMessage + "\n" + listOfTutorials;
         assertCommandFailure(new DeleteClassCommand(new ModuleCode(VALID_MODULE_AMY),

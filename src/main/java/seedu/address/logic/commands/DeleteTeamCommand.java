@@ -36,7 +36,6 @@ public class DeleteTeamCommand extends Command {
     /**
      * Constructs a DeleteTeamCommand to delete the specified {@code TutorialTeam}
      * from the specified {@code ModuleCode} and {@code TutorialClass}.
-     * 
      * @param module        The module code of the tutorial class to be deleted.
      * @param tutorialClass The tutorial class to be deleted.
      * @param teamName      The name of the team to be deleted.
@@ -90,10 +89,10 @@ public class DeleteTeamCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether the tutorial
-     * class is successfully deleted.
-     * 
+     * team is successfully deleted.
      * @param module         The module code of the tutorial class.
      * @param tutorialString The tutorial class.
+     * @param team           The team to be deleted.
      * @return The success message.
      */
     private String generateSuccessMessage(ModuleCode module, TutorialClass tutorialString, TutorialTeam team) {

@@ -14,15 +14,14 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
 
 /**
- * Parses input arguments and creates a new {@code DeleteClassCommandParser}
+ * Parses input arguments and creates a new {@code DeleteTeamCommandParser}
  * object
  */
 public class DeleteTeamCommandParser implements Parser<DeleteTeamCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * {@code DeleteClassCommandParser}
-     * and returns a {@code DeleteClassCommandParser} object for execution.
-     * 
+     * {@code DeleteTeamCommandParser}
+     * and returns a {@code DeleteTeamCommandParser} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteTeamCommand parse(String args) throws ParseException {
