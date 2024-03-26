@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,8 @@ class JsonAdaptedModuleTest {
     @Test
     void toModelType_invalidModuleCode_throwsIllegalValueException() {
         JsonAdaptedModule jsonModule = new JsonAdaptedModule(INVALID_MODULE, new ArrayList<TutorialClass>().stream()
-                .map(JsonAdaptedTutorialClass::new).collect(Collectors.toCollection(ArrayList::new)));
+            .map(JsonAdaptedTutorialClass::new).collect(Collectors.toCollection(ArrayList::new)),
+            String.valueOf(Optional.ofNullable(null)));
         String expectedMessage = JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT;
         assertThrows(IllegalValueException.class, expectedMessage, jsonModule::toModelType);
     }

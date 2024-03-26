@@ -66,7 +66,8 @@ public class StorageManager implements Storage {
         addressBookOptional.ifPresent(addressBook -> {
             addressBook.getModuleList().forEach(moduleCode -> {
                 if (!addressBook.hasModule(moduleCode)) {
-                    addressBook.addModule(moduleCode);
+                    addressBook.addModule(moduleCode,
+                        moduleCode.getDescription());
                 }
             });
         });

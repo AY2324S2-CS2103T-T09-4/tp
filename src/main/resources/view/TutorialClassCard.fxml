@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Circle?>
 
 <?import java.net.URL?>
-<HBox id="moduleCardPane" fx:id="moduleCardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox  id="tutorialCardPane" fx:id="tutorialCardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane styleClass="roundedCard" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -24,21 +24,12 @@
                 <children>
                     <Circle fx:id="circle" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
                 </children>
-                <!-- Use a VBox to contain both labels -->
-                <VBox alignment="CENTER_LEFT" spacing="5">
-                    <Label fx:id="moduleCodeLabel" styleClass="cell_big_label">
-                        <minWidth>
-                            <!-- Ensures that the label text is never truncated -->
-                            <Region fx:constant="USE_PREF_SIZE" />
-                        </minWidth>
-                    </Label>
-                    <Label fx:id="descriptionLabel" styleClass="cell_small_label">
-                        <minWidth>
-                            <!-- Ensures that the label text is never truncated -->
-                            <Region fx:constant="USE_PREF_SIZE"/>
-                        </minWidth>
-                    </Label>
-                </VBox>
+                <Label fx:id="tutorialClassLabel" styleClass="cell_big_label">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minWidth>
+                </Label>
             </HBox>
         </VBox>
     </GridPane>

@@ -15,6 +15,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -113,7 +115,8 @@ public class AddressBookParserTest {
         AddClassCommand command = (AddClassCommand) parser.parseCommand(AddClassCommand.COMMAND_WORD + " "
                 + PREFIX_MODULECODE + moduleCode + " " + PREFIX_TUTORIALCLASS + tutorialClass);
         assertEquals(new AddClassCommand(new ModuleCode(moduleCode),
-                new TutorialClass(tutorialClass)), command);
+                new TutorialClass(tutorialClass),
+                Optional.ofNullable(new ModuleCode(moduleCode).getDescription())), command);
     }
 
     @Test

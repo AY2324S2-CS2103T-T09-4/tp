@@ -22,6 +22,7 @@ import seedu.address.logic.commands.ListClassesCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.TutorialClass;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -39,8 +40,10 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ModuleListPanel moduleListPanel;
+    private TutorialListPanel tutorialListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private SelectedArea focusedView;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -52,6 +55,8 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
     @FXML
     private StackPane moduleListPanelPlaceholder;
+    @FXML
+    private StackPane tutorialListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -133,6 +138,18 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        moduleListPanel = new ModuleListPanel(logic.getAddressBook().getModuleList(), this::handleModuleCardClicked);
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+
+        tutorialListPanel = new TutorialListPanel(logic.getAddressBook().getTutorialList(),
+            this::handleTutorialCardClicked);
+        tutorialListPanelPlaceholder.getChildren().add(tutorialListPanel.getRoot());
+
+        focusedView = moduleListPanel;
     }
 
     /**
@@ -147,19 +164,22 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Switches to the person list panel.
      */
-    private void switchToPersonListPanel() {
+    void switchToPersonListPanel() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        focusedView = personListPanel;
     }
 
     /**
      * Switches to the module list panel.
      */
-    private void switchToModuleListPanel() {
+    void switchToModuleListPanel() {
         ObservableList<ModuleCode> moduleObservableList = FXCollections
             .observableList(logic.getAddressBook().getModuleList());
-        moduleListPanel = new ModuleListPanel(moduleObservableList);
+        moduleListPanel = new ModuleListPanel(moduleObservableList, this::handleModuleCardClicked);
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        focusedView = moduleListPanel;
+
     }
 
     /**
@@ -214,8 +234,8 @@ public class MainWindow extends UiPart<Stage> {
     public static boolean useModuleView(String commandText) {
         String commandWord = commandText.split(" ")[0];
         return commandWord.equals(ListClassesCommand.COMMAND_WORD)
-                || commandWord.equals(AddClassCommand.COMMAND_WORD)
-                || commandWord.equals(DeleteClassCommand.COMMAND_WORD);
+            || commandWord.equals(AddClassCommand.COMMAND_WORD)
+            || commandWord.equals(DeleteClassCommand.COMMAND_WORD);
     }
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
@@ -258,5 +278,13 @@ public class MainWindow extends UiPart<Stage> {
     private void clearPanels() {
         personListPanelPlaceholder.getChildren().clear();
         moduleListPanelPlaceholder.getChildren().clear();
+        tutorialListPanelPlaceholder.getChildren().clear();
+    }
+
+    private void handleModuleCardClicked(ModuleCode moduleCode) {
+        tutorialListPanel.displayTutorialClassesForModule(moduleCode);
+    }
+    private void handleTutorialCardClicked(TutorialClass tutorialClass) {
+        personListPanel.displayPersonsForModule(tutorialClass);
     }
 }

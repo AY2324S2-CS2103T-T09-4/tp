@@ -9,7 +9,16 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.shape.Circle?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="85.0">
+    <padding>
+      <Insets bottom="5" left="15" right="5" top="5" />
+    </padding>
+    <children>
+      <Circle fx:id="circle" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+    </children>
+  </VBox>
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />

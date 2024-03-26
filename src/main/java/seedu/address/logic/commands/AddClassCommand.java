@@ -2,8 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
+
+import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -21,22 +24,26 @@ public class AddClassCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class with the module code and"
         + " tutorial class specified\n"
         + "Parameters: " + PREFIX_MODULECODE + "MODULE_CODE "
-        + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS \n"
+        + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS "
+        + PREFIX_DESCRIPTION + "[description/DESCRIPTION] (optional)\n"
         + "Example: " + COMMAND_WORD + " " + PREFIX_MODULECODE + "CS2103T "
-        + PREFIX_TUTORIALCLASS + "T09";
+        + PREFIX_TUTORIALCLASS + "T09 "
+        + PREFIX_DESCRIPTION + "Software Engineering ";
 
     private final ModuleCode module;
     private final TutorialClass tutorialString;
+    private final Optional<String> description;
 
     /**
      * Constructs an AddClassCommand to add the specified {@code TutorialClass} to the specified {@code ModuleCode}.
      * @param module The module code of the tutorial class to be added.
      * @param tutorialClass The tutorial class to be added.
      */
-    public AddClassCommand(ModuleCode module, TutorialClass tutorialClass) {
+    public AddClassCommand(ModuleCode module, TutorialClass tutorialClass, Optional<String> description) {
         requireAllNonNull(module);
         this.module = module;
         this.tutorialString = tutorialClass;
+        this.description = description;
     }
 
     @Override
@@ -52,6 +59,7 @@ public class AddClassCommand extends Command {
                 existingModule.addTutorialClass(tutorialString);
             }
         } else {
+            description.ifPresent(module::setDescription);
             module.addTutorialClass(tutorialString);
             model.addModule(module);
         }
@@ -80,6 +88,6 @@ public class AddClassCommand extends Command {
         }
 
         AddClassCommand e = (AddClassCommand) other;
-        return module.equals(e.module);
+        return module.equals(e.module) && tutorialString.equals(e.tutorialString);
     }
 }
