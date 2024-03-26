@@ -34,7 +34,7 @@ public class SearchStudentCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsSearchStudentCommand() {
         // valid name
         SearchStudentCommand expectedSearchStudentCommand =
                 new SearchStudentCommand(new NameContainsKeywordPredicate(BOB.getName().fullName));
@@ -49,7 +49,6 @@ public class SearchStudentCommandParserTest {
         expectedSearchStudentCommand =
                 new SearchStudentCommand(new EmailContainsKeywordPredicate(BOB.getEmail().value));
         assertParseSuccess(parser, EMAIL_DESC_BOB, expectedSearchStudentCommand);
-
 
         // extended preamble
         expectedSearchStudentCommand =

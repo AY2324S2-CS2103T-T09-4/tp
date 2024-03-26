@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -157,6 +158,12 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<ModuleCode> getFilteredModuleList() {
         return filteredModules;
+    }
+
+    @Override
+    public ObservableList<Person> getSortedPersonList(Comparator<Person> comparator) {
+        addressBook.setSortedPersonList(comparator);
+        return addressBook.getSortedPersonList();
     }
 
     @Override

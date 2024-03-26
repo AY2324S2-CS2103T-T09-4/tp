@@ -1,5 +1,7 @@
 package seedu.address.model;
 
+import java.util.Comparator;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
@@ -20,6 +22,9 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate modules.
      */
     ObservableList<ModuleCode> getModuleList();
+
+    void setSortedPersonList(Comparator<Person> comparator);
+    ObservableList<Person> getSortedPersonList();
 
     /**
      * Checks if the address book contains the specified module code.
