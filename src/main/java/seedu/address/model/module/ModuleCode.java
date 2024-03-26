@@ -4,6 +4,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a Module's module code.
@@ -22,6 +23,7 @@ public class ModuleCode {
 
     public final String moduleCode;
     private final ArrayList<TutorialClass> tutorialClasses;
+    private String description;
 
     /**
      * A constructor for Module. Used to initialise a new module with no tutorial classes
@@ -49,6 +51,22 @@ public class ModuleCode {
         this.tutorialClasses = new ArrayList<TutorialClass>();
         tutorialClasses.add(new TutorialClass(tutorialClass));
     }
+    /**
+     * Constructs a ModuleCode object with the specified module code, list of tutorial classes, and description.
+     *
+     * @param moduleCode The module code associated with this ModuleCode object.
+     * @param tutorialClass A list of tutorial classes associated with this ModuleCode object.
+     * @param description The description of the module.
+     * @throws NullPointerException if {@code moduleCode} is null.
+     * @throws IllegalArgumentException if {@code moduleCode} does not match the valid module code format.
+     */
+    public ModuleCode(String moduleCode, List<TutorialClass> tutorialClass, String description) {
+        requireAllNonNull(moduleCode);
+        checkArgument(isValidModuleCode(moduleCode), MESSAGE_CONSTRAINTS);
+        this.moduleCode = moduleCode;
+        this.description = description != null ? description : "";
+        this.tutorialClasses = new ArrayList<>(tutorialClass);
+    }
 
     /**
      * A constructor for Module. Used to initialise a new module with the list of tutorial classes specified.
@@ -63,7 +81,6 @@ public class ModuleCode {
         this.moduleCode = moduleCode;
         this.tutorialClasses = tutorialClasses;
     }
-
     /**
      * Returns true if a given string is a valid module code.
      */
@@ -162,4 +179,13 @@ public class ModuleCode {
     public boolean deleteTutorialClass(TutorialClass tutorialClass) {
         return tutorialClasses.remove(tutorialClass);
     }
+
+    public String getDescription() {
+        return description != null ? description : "";
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }

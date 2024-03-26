@@ -24,8 +24,9 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final ArrayList<ModuleCode> modules;
     private ObservableList<Person> sortedPersons;
+    private final ArrayList<ModuleCode> modules;
+    private final ArrayList<TutorialClass> tutorialClasses;
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -40,6 +41,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         modules = new ArrayList<>();
+        tutorialClasses = new ArrayList<>();
     }
 
     public AddressBook() {
@@ -72,6 +74,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.modules.addAll(modules);
     }
 
+    public void setClass(List<TutorialClass> tutorialClasses) {
+        requireNonNull(tutorialClasses);
+        this.tutorialClasses.clear();
+        this.tutorialClasses.addAll(tutorialClasses);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -79,6 +87,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
         setModules(newData.getModuleList());
+        setClass(newData.getTutorialList());
 
     }
 
@@ -154,7 +163,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The module must not already exist in the address book. (TODO)
      */
     @Override
-    public void addModule(ModuleCode m) {
+    public void addModule(ModuleCode m, String description) {
+        m.setDescription(description);
         modules.add(m);
     }
 
@@ -217,7 +227,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<ModuleCode> getModuleList() {
         return FXCollections.observableList(modules);
     }
-
+    @Override
+    public ObservableList<TutorialClass> getTutorialList() {
+        return FXCollections.observableList(tutorialClasses);
+    }
     @Override
     public void setSortedPersonList(Comparator<Person> comparator) {
         sortedPersons = new FilteredList<>(persons.asUnmodifiableObservableList().sorted(comparator));

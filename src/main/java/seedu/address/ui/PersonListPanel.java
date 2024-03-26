@@ -1,19 +1,22 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.TutorialClass;
 import seedu.address.model.person.Person;
 
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
+public class PersonListPanel extends UiPart<Region> implements SelectedArea {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
@@ -27,8 +30,24 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.focusedProperty().addListener((arg, oldVal, focused) -> {
+            if (focused) {
+                personListView.setStyle("-fx-border-color: #264780; -fx-border-width: 1;");
+            } else {
+                personListView.setStyle("");
+            }
+        });
     }
 
+    @Override
+    public void selectedArea() {
+        personListView.requestFocus();
+    }
+
+    @Override
+    public boolean isSelected() {
+        return personListView.isFocused();
+    }
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
@@ -44,6 +63,16 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
             }
         }
+    }
+    /**
+     * Displays the list of persons associated with a specific tutorial class.
+     *
+     * @param tutorialClass The tutorial class for which persons are to be displayed.
+     */
+    public void displayPersonsForModule(TutorialClass tutorialClass) {
+        ArrayList<Person> personList = tutorialClass.getStudents();
+        ObservableList<Person> person = FXCollections.observableArrayList(personList);
+        personListView.setItems(person);
     }
 
 }

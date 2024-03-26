@@ -14,6 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +35,8 @@ public class AddClassCommandTest {
     public void execute_success() {
 
         assertCommandSuccess(new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
-                new TutorialClass(VALID_TUTORIAL_AMY)), model,
+                new TutorialClass(VALID_TUTORIAL_AMY),
+                Optional.ofNullable(new ModuleCode(VALID_MODULE_AMY).getDescription())), model,
             String.format(MESSAGE_ADD_CLASS_SUCCESS, VALID_MODULE_AMY, VALID_TUTORIAL_AMY), model);
     }
 
@@ -44,7 +46,8 @@ public class AddClassCommandTest {
         model.addModule(module);
 
         assertCommandFailure(new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
-                new TutorialClass(VALID_TUTORIAL_AMY)), model,
+                new TutorialClass(VALID_TUTORIAL_AMY),
+                Optional.ofNullable(new ModuleCode(VALID_MODULE_AMY).getDescription())), model,
             String.format(MESSAGE_DUPLICATE_CLASS, VALID_MODULE_AMY, VALID_TUTORIAL_AMY));
     }
 
@@ -64,7 +67,8 @@ public class AddClassCommandTest {
         expectedModel.addModule(modifiedModule);
 
         assertCommandSuccess(new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
-                new TutorialClass(VALID_TUTORIAL_BOB)), actualModel,
+                new TutorialClass(VALID_TUTORIAL_BOB),
+                Optional.ofNullable(new ModuleCode(VALID_MODULE_AMY).getDescription())), actualModel,
             String.format(MESSAGE_ADD_CLASS_SUCCESS, VALID_MODULE_AMY, VALID_TUTORIAL_BOB), expectedModel);
 
         ModuleCode moduleFromList = actualModel.findModuleFromList(module);
@@ -74,11 +78,13 @@ public class AddClassCommandTest {
     @Test
     public void equals() {
         final AddClassCommand standardCommand = new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
-            new TutorialClass(VALID_TUTORIAL_AMY));
+            new TutorialClass(VALID_TUTORIAL_AMY),
+            Optional.ofNullable(new ModuleCode(VALID_MODULE_AMY).getDescription()));
 
         // same values -> returns true
         AddClassCommand commandWithSameValues = new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
-            new TutorialClass(VALID_TUTORIAL_AMY));
+            new TutorialClass(VALID_TUTORIAL_AMY),
+            Optional.ofNullable(new ModuleCode(VALID_MODULE_AMY).getDescription()));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -92,10 +98,7 @@ public class AddClassCommandTest {
 
         // different module code -> returns false
         assertFalse(standardCommand.equals(new AddClassCommand(new ModuleCode(VALID_MODULE_BOB),
-            new TutorialClass(VALID_TUTORIAL_AMY))));
-
-        // different tutorial class -> returns true
-        assertTrue(standardCommand.equals(new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
-            new TutorialClass(VALID_TUTORIAL_BOB))));
+            new TutorialClass(VALID_TUTORIAL_AMY),
+            Optional.ofNullable(new ModuleCode(VALID_MODULE_BOB).getDescription()))));
     }
 }

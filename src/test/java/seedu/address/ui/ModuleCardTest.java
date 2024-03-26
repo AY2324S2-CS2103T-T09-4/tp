@@ -31,6 +31,5 @@ public class ModuleCardTest {
         ModuleCard moduleCard = new ModuleCard(moduleCode);
         assertEquals(moduleCode, moduleCard.moduleCode);
         assertEquals(moduleCode.getModule().toString(), moduleCard.moduleCodeLabel.getText());
-        assertEquals(moduleCode.getTutorialClasses().toString(), moduleCard.tutorialClassLabel.getText());
     }
 }

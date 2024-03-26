@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
@@ -31,7 +33,8 @@ public class AddClassCommandParserTest {
 
         String userInput = MODULE_DESC_AMY + TUTORIAL_DESC_AMY;
         AddClassCommand expectedCommand = new AddClassCommand(new ModuleCode(moduleCode),
-                new TutorialClass(VALID_TUTORIAL_AMY));
+                new TutorialClass(VALID_TUTORIAL_AMY),
+                Optional.ofNullable(new ModuleCode(moduleCode).getDescription()));
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // no tutorial class

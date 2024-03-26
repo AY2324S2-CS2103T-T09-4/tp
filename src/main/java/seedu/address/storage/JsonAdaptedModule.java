@@ -19,15 +19,18 @@ class JsonAdaptedModule {
 
     private final String name;
     private final ArrayList<JsonAdaptedTutorialClass> tutorialClasses;
+    private final String description;
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given module details.
      */
     @JsonCreator
-    public JsonAdaptedModule(@JsonProperty("name") String name, @JsonProperty("tutorialClasses")
-        ArrayList<JsonAdaptedTutorialClass> tutorialClasses) {
+    public JsonAdaptedModule(@JsonProperty("name") String name,
+                             @JsonProperty("tutorialClasses") ArrayList<JsonAdaptedTutorialClass> tutorialClasses,
+                             @JsonProperty("description") String description) {
         this.name = name;
         this.tutorialClasses = tutorialClasses;
+        this.description = description;
     }
 
     /**
@@ -37,6 +40,7 @@ class JsonAdaptedModule {
         name = source.toString();
         this.tutorialClasses = source.getTutorialClasses().stream().map(JsonAdaptedTutorialClass::new)
             .collect(Collectors.toCollection(ArrayList::new));
+        this.description = source.getDescription();
     }
 
     /**
@@ -66,6 +70,14 @@ class JsonAdaptedModule {
         for (JsonAdaptedTutorialClass tutorialClass : this.tutorialClasses) {
             tutorialClasses.add(tutorialClass.toModelType());
         }
-        return new ModuleCode(name, tutorialClasses);
+        ModuleCode moduleCode;
+        if (description != null && !description.isEmpty()) {
+            moduleCode = new ModuleCode(name, tutorialClasses,
+                description);
+        } else {
+            moduleCode = new ModuleCode(name, tutorialClasses);
+        }
+
+        return moduleCode;
     }
 }

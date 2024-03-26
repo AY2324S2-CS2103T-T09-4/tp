@@ -2,9 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddClassCommand;
@@ -25,7 +27,8 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
      */
     public AddClassCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+            PREFIX_MODULECODE, PREFIX_TUTORIALCLASS, PREFIX_DESCRIPTION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS)
             || !argMultimap.getPreamble().isEmpty()) {
@@ -34,13 +37,15 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
 
         String moduleCode = argMultimap.getValue(PREFIX_MODULECODE).orElse("");
         String tutorialClass = argMultimap.getValue(PREFIX_TUTORIALCLASS).orElse("");
+        Optional<String> description = argMultimap.getValue(PREFIX_DESCRIPTION);
+
         if (!(ModuleCode.isValidModuleCode(moduleCode))) {
             throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
         if (!(TutorialClass.isValidTutorialClass(tutorialClass))) {
             throw new ParseException(TutorialClass.MESSAGE_CONSTRAINTS);
         }
-        return new AddClassCommand(new ModuleCode(moduleCode), new TutorialClass(tutorialClass));
+        return new AddClassCommand(new ModuleCode(moduleCode), new TutorialClass(tutorialClass), description);
     }
     /**
      * Returns true if all the prefixes are present in the given {@code ArgumentMultimap}.

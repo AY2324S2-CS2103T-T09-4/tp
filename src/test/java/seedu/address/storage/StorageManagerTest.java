@@ -90,8 +90,8 @@ public class StorageManagerTest {
     public void readAddressBook_addsModulesToListIfNotPresent() throws Exception {
         AddressBook addressBook = new AddressBook();
         // Add some modules to the address book
-        addressBook.addModule(new ModuleCode("CS1010"));
-        addressBook.addModule(new ModuleCode("MA1505"));
+        addressBook.addModule(new ModuleCode("CS1010"), null);
+        addressBook.addModule(new ModuleCode("MA1505"), null);
 
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         StorageManager storageManager = new StorageManager(addressBookStorage,

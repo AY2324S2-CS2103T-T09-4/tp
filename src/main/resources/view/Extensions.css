@@ -18,3 +18,7 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+.module-card {
+    -fx-background-radius: 5;
+}

@@ -87,4 +87,3 @@ public class DeleteClassCommand extends Command {
         return module.equals(e.module);
     }
 }
-

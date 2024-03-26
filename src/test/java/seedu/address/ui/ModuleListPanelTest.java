@@ -3,6 +3,8 @@ package seedu.address.ui;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.function.Consumer;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +19,7 @@ public class ModuleListPanelTest {
 
     private ModuleListPanel moduleListPanel;
     private ObservableList<ModuleCode> moduleCodes;
+    private Consumer<ModuleCode> moduleCodeConsumer;
 
     @BeforeAll
     public static void initializeJavaFX() {
@@ -33,7 +36,7 @@ public class ModuleListPanelTest {
             return;
         }
         moduleCodes = FXCollections.observableArrayList();
-        moduleListPanel = new ModuleListPanel(moduleCodes);
+        moduleListPanel = new ModuleListPanel(moduleCodes, moduleCodeConsumer);
     }
 
     @Test

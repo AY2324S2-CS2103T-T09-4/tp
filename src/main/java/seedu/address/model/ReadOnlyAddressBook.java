@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.TutorialClass;
 import seedu.address.model.person.Person;
 
 /**
@@ -33,5 +34,7 @@ public interface ReadOnlyAddressBook {
      * @return {@code true} if the address book contains the specified module code, {@code false} otherwise.
      */
     boolean hasModule(ModuleCode moduleCode);
-    void addModule(ModuleCode moduleCode);
+    void addModule(ModuleCode moduleCode, String description);
+
+    ObservableList<TutorialClass> getTutorialList();
 }
