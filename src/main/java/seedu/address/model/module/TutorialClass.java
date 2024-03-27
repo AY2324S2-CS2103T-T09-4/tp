@@ -160,6 +160,14 @@ public class TutorialClass {
         return teams.contains(team);
     }
 
+    /**
+     * Deletes a team from the tutorial class.
+     * @param team
+     */
+    public void deleteTeam(TutorialTeam team) {
+        teams.remove(team);
+    }
+
     @Override
     public String toString() {
         return tutorialName;

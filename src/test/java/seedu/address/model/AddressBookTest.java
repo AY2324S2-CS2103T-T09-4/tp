@@ -4,9 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -82,6 +84,52 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_AMY)
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));
+    }
+
+    @Test
+    public void hasPersonWithEmail_nullEmail_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasPersonWithEmail(null));
+    }
+    @Test
+    public void hasPersonWithEmail_personInAddressBook_returnsTrue() {
+        addressBook.addPerson(AMY);
+        assertTrue(addressBook.hasPersonWithEmail(AMY.getEmail()));
+    }
+
+    @Test
+    public void hasPersonWithEmail_personNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasPersonWithEmail(AMY.getEmail()));
+    }
+
+    @Test
+    public void hasPersonWithEmail_differentPersonWithSameEmail_returnsTrue() {
+        addressBook.addPerson(AMY);
+        Person alice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_AMY)
+                .build();
+        assertTrue(addressBook.hasPersonWithEmail(alice.getEmail()));
+    }
+
+    @Test
+    public void hasPersonWithStudentId_nullStudentId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasPersonWithStudentId(null));
+    }
+    @Test
+    public void hasPersonWithStudentId_personInAddressBook_returnsTrue() {
+        addressBook.addPerson(AMY);
+        assertTrue(addressBook.hasPersonWithStudentId(AMY.getStudentId()));
+    }
+
+    @Test
+    public void hasPersonWithStudentId_personNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasPersonWithStudentId(AMY.getStudentId()));
+    }
+
+    @Test
+    public void hasPersonWithStudentId_differentPersonWithSameStudentId_returnsTrue() {
+        addressBook.addPerson(AMY);
+        Person alice = new PersonBuilder(ALICE).withStudentId(VALID_STUDENT_ID_AMY)
+                .build();
+        assertTrue(addressBook.hasPersonWithStudentId(alice.getStudentId()));
     }
 
     @Test

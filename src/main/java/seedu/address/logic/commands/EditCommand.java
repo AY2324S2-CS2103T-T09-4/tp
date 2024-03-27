@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -31,23 +32,26 @@ import seedu.address.model.tag.Tag;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "/edit_student";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: "
+            + PREFIX_INDEX + "INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_STUDENTID + "PHONE] "
+            + "[" + PREFIX_STUDENTID + "STUDENT ID] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_STUDENTID + "91234567 "
+            + PREFIX_STUDENTID + "A1234567Z "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_STUDENTID = "This student id already exists in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -78,6 +82,16 @@ public class EditCommand extends Command {
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        Optional<Email> emailToBeEdited = editPersonDescriptor.getEmail();
+        if (emailToBeEdited.isPresent() && model.hasPersonWithEmail(emailToBeEdited.get())) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+        }
+
+        Optional<StudentId> studentIdToBeEdited = editPersonDescriptor.getStudentId();
+        if (studentIdToBeEdited.isPresent() && model.hasPersonWithStudentId(studentIdToBeEdited.get())) {
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENTID);
         }
 
         model.setPerson(personToEdit, editedPerson);

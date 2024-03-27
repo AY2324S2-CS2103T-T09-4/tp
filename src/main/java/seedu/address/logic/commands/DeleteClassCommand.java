@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.ModuleMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
@@ -32,7 +33,7 @@ public class DeleteClassCommand extends Command {
     /**
      * Constructs a DeleteClassCommand to delete the specified {@code TutorialClass}
      * from the specified {@code ModuleCode}.
-     * @param module The module code of the tutorial class to be deleted.
+     * @param module        The module code of the tutorial class to be deleted.
      * @param tutorialClass The tutorial class to be deleted.
      */
     public DeleteClassCommand(ModuleCode module, TutorialClass tutorialClass) {
@@ -47,12 +48,13 @@ public class DeleteClassCommand extends Command {
 
         ModuleCode existingModule = model.findModuleFromList(module);
         if (existingModule == null) {
-            String moduleNotFoundMessage = String.format(MESSAGE_MODULE_NOT_FOUND, module);
+            String moduleNotFoundMessage = String.format(ModuleMessages.MESSAGE_MODULE_NOT_FOUND, module);
             throw new CommandException(moduleNotFoundMessage);
         }
 
         if (!(existingModule.hasTutorialClass(tutorialString))) {
-            String classNotFoundMessage = String.format(MESSAGE_CLASS_NOT_FOUND, module, tutorialString);
+            String classNotFoundMessage = String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE,
+                    tutorialString, module);
             String tutorialList = existingModule.listTutorialClasses();
             throw new CommandException(classNotFoundMessage + "\n" + tutorialList);
         } else {
@@ -63,8 +65,9 @@ public class DeleteClassCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the tutorial class is successfully deleted.
-     * @param module The module code of the tutorial class.
+     * Generates a command execution success message based on whether the tutorial
+     * class is successfully deleted.
+     * @param module         The module code of the tutorial class.
      * @param tutorialString The tutorial class.
      * @return The success message.
      */

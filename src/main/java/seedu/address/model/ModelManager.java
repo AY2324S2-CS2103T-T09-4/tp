@@ -14,7 +14,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.StudentId;
 
 
 /**
@@ -99,6 +101,19 @@ public class ModelManager implements Model {
         requireNonNull(person);
         return addressBook.hasPerson(person);
     }
+
+    @Override
+    public boolean hasPersonWithStudentId(StudentId id) {
+        requireAllNonNull(id);
+        return addressBook.hasPersonWithStudentId(id);
+    }
+
+    @Override
+    public boolean hasPersonWithEmail(Email email) {
+        requireAllNonNull(email);
+        return addressBook.hasPersonWithEmail(email);
+    }
+
     @Override
     public ModuleCode findModuleFromList(ModuleCode module) {
         requireNonNull(module);
@@ -120,6 +135,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteModule(ModuleCode target) {
+        addressBook.removeModule(target);
+    }
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -134,6 +154,11 @@ public class ModelManager implements Model {
     @Override
     public void addPersonToTutorialClass(Person person, ModuleCode module, TutorialClass tutorialClass) {
         addressBook.addPersonToTutorialClass(person, module, tutorialClass);
+    }
+
+    @Override
+    public void deletePersonFromTutorialClass(Person person, ModuleCode module, TutorialClass tutorialClass) {
+        addressBook.deletePersonFromTutorialClass(person, module, tutorialClass);
     }
 
     @Override

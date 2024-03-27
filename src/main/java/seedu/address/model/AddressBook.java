@@ -14,7 +14,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.ModuleMessages;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -100,6 +102,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
+     */
+    public boolean hasPersonWithStudentId(StudentId id) {
+        requireNonNull(id);
+        return persons.asUnmodifiableObservableList().stream().anyMatch(s -> s.getStudentId().equals(id));
+    }
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
+     */
+    public boolean hasPersonWithEmail(Email email) {
+        requireNonNull(email);
+        return persons.asUnmodifiableObservableList().stream().anyMatch(s -> s.getEmail().equals(email));
     }
 
     /**
@@ -189,6 +209,26 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Deletes a person from the students list of a specific tutorial class within a
+     * module.
+     */
+    public void deletePersonFromTutorialClass(Person person, ModuleCode module, TutorialClass tutorialClass) {
+        requireNonNull(person);
+        requireNonNull(module);
+        requireNonNull(tutorialClass);
+
+        ModuleCode moduleInList = findModuleFromList(module);
+        if (moduleInList == null) {
+            throw new IllegalArgumentException("Module does not exist in the address book.");
+        }
+        TutorialClass tutorialClassInList = moduleInList.getTutorialClasses().stream()
+                .filter(tutorial -> tutorial.equals(tutorialClass))
+                .findFirst()
+                .orElse(null);
+        tutorialClassInList.deleteStudent(person);
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with
      * {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -202,13 +242,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes Person {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
         persons.remove(key);
     }
 
+    /**
+     * Removes ModuleCode {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeModule(ModuleCode key) {
+        modules.remove(key);
+    }
     //// util methods
 
     @Override

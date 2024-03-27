@@ -12,14 +12,21 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
+Class ModuleCode
+Class ModuleContainsKeywordPredicate
+Class ModuleTutorialPair
+Class TutorialClass
+Class TutorialContainsKeywordPredicate
 Class Tag
 
+Class UniquePersonList
+Class Person
+Class Name
+Class Email
+Class StudentId
+Class NameContainsKeywordPredicate
+Class EmailContainsKeywordPredicate
+Class StudentIdContainsKeywordPredicate
 Class I #FFFFFF
 }
 
@@ -35,20 +42,27 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+ModelManager *-left> "~* filtered" ModuleCode
+AddressBook -left> "~* all" ModuleCode
+ModuleCode -up> TutorialClass
+ModuleTutorialPair -> ModuleCode
+ModuleTutorialPair -down> TutorialClass
+ModuleContainsKeywordPredicate -..down> ModuleCode
+TutorialContainsKeywordPredicate -..up> TutorialClass
+TutorialClass -> Person
+
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
-
+Person *--> "1" Name
+Person *--> "1" Email
+Person *--> "1" StudentId
+Person *--> Tag
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+NameContainsKeywordPredicate -..> Name
+StudentIdContainsKeywordPredicate -left..> StudentId
+EmailContainsKeywordPredicate -right..> Email
 
 ModelManager --> "~* filtered" Person
 @enduml

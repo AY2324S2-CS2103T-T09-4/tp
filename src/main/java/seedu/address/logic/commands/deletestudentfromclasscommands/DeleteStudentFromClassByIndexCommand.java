@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.addstudenttoclasscommands;
+package seedu.address.logic.commands.deletestudentfromclasscommands;
 
 import static java.util.Objects.requireNonNull;
 
@@ -7,26 +7,28 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.PersonMessages;
+import seedu.address.logic.messages.TutorialClassMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTutorialPair;
 import seedu.address.model.module.TutorialClass;
 import seedu.address.model.person.Person;
 
-/**
- * Adds a student to a class by index.
- */
-public class AddStudentToClassByIndexCommand extends AddStudentToClassCommand {
 
+/**
+ * Deletes a student from a specified tutorial class, by identifying
+ * the student via their index.
+ */
+public class DeleteStudentFromClassByIndexCommand extends DeleteStudentFromClassCommand {
     private final Index targetIndex;
 
     /**
-     * Adds a student to a class by index.
+     * Deletes a student from a class by index.
      * @param targetIndex
      * @param module
      * @param tutorialClass
      */
-    public AddStudentToClassByIndexCommand(Index targetIndex, ModuleCode module, TutorialClass tutorialClass) {
+    public DeleteStudentFromClassByIndexCommand(Index targetIndex, ModuleCode module, TutorialClass tutorialClass) {
         super(module, tutorialClass);
         this.targetIndex = targetIndex;
     }
@@ -37,27 +39,27 @@ public class AddStudentToClassByIndexCommand extends AddStudentToClassCommand {
         ModuleTutorialPair moduleAndTutorialClass = getModuleAndTutorialClass(model);
         TutorialClass tutorialClass = moduleAndTutorialClass.getTutorialClass();
         ModuleCode module = moduleAndTutorialClass.getModule();
-        Person personToAdd;
+        Person personToDelete;
         try {
-            personToAdd = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+            personToDelete = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(
                     String.format(PersonMessages.MESSAGE_PERSON_INDEX_NOT_FOUND, targetIndex.getOneBased()));
         }
 
-        if (tutorialClass.hasStudent(personToAdd)) {
-            throw new CommandException(String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS,
-                    Messages.format(personToAdd), tutorialClass));
+        if (!(tutorialClass.hasStudent(personToDelete))) {
+            throw new CommandException(String.format(TutorialClassMessages.MESSAGE_STUDENT_NOT_FOUND_IN_CLASS,
+                    Messages.format(personToDelete), tutorialClass));
         } else {
-            model.addPersonToTutorialClass(personToAdd, module, tutorialClass);
+            model.deletePersonFromTutorialClass(personToDelete, module, tutorialClass);
             return new CommandResult(
-                    String.format(PersonMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS,
-                     Messages.format(personToAdd), module, tutorialClass));
+                    String.format(PersonMessages.MESSAGE_DELETE_STUDENT_FROM_CLASS_SUCCESS,
+                            Messages.format(personToDelete), module, tutorialClass));
         }
     }
 
     /**
-     * Returns true if both AddStudentToClassByIndexCommand have the same index.
+     * Returns true if both DeleteStudentFromClassByIndexCommand have the same index.
      */
     @Override
     public boolean equals(Object other) {
@@ -65,11 +67,11 @@ public class AddStudentToClassByIndexCommand extends AddStudentToClassCommand {
             return true;
         }
 
-        if (!(other instanceof AddStudentToClassByIndexCommand)) {
+        if (!(other instanceof DeleteStudentFromClassByIndexCommand)) {
             return false;
         }
 
-        AddStudentToClassByIndexCommand otherAddCommand = (AddStudentToClassByIndexCommand) other;
-        return targetIndex.equals(otherAddCommand.targetIndex);
+        DeleteStudentFromClassByIndexCommand otherDeleteCommand = (DeleteStudentFromClassByIndexCommand) other;
+        return targetIndex.equals(otherDeleteCommand.targetIndex);
     }
 }
