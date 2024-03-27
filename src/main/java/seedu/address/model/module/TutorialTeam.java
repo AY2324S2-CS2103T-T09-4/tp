@@ -38,6 +38,19 @@ public class TutorialTeam {
     }
 
     /**
+     * A constructor for TutorialTeam. Creates a tutorial team of unspecified size
+     * with no students.
+     * @param tutorialTeam
+     */
+    public TutorialTeam(String tutorialTeam) {
+        requireAllNonNull(tutorialTeam);
+        checkArgument(isValidTeamName(tutorialTeam), MESSAGE_NAME_CONSTRAINTS);
+        this.teamName = tutorialTeam;
+        this.students = new ArrayList<>();
+        this.teamSize = Integer.MAX_VALUE;
+    }
+
+    /**
      * A constructor for TutorialTeam. Creates a tutorial team of a certain size
      * with no students.
      * @param tutorialTeam

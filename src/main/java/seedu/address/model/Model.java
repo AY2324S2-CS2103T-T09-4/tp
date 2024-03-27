@@ -142,4 +142,8 @@ public interface Model {
      */
     Person searchPersonByPredicate(Predicate<Person> predicate);
 
+    /**
+     * Deletes the given person from the given tutorial class in the given module.
+     */
+    void deletePersonFromTutorialClass(Person personToAdd, ModuleCode module, TutorialClass tutorialClass);
 }

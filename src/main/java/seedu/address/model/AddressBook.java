@@ -206,6 +206,26 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Deletes a person from the students list of a specific tutorial class within a
+     * module.
+     */
+    public void deletePersonFromTutorialClass(Person person, ModuleCode module, TutorialClass tutorialClass) {
+        requireNonNull(person);
+        requireNonNull(module);
+        requireNonNull(tutorialClass);
+
+        ModuleCode moduleInList = findModuleFromList(module);
+        if (moduleInList == null) {
+            throw new IllegalArgumentException("Module does not exist in the address book.");
+        }
+        TutorialClass tutorialClassInList = moduleInList.getTutorialClasses().stream()
+                .filter(tutorial -> tutorial.equals(tutorialClass))
+                .findFirst()
+                .orElse(null);
+        tutorialClassInList.deleteStudent(person);
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with
      * {@code editedPerson}.
      * {@code target} must exist in the address book.
