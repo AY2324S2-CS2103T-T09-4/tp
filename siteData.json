@@ -110,6 +110,8 @@
       "title": "User Guide",
       "headings": {
         "tahelper-user-guide": "TAHelper User Guide",
+        "target-audience": "Target Audience",
+        "purpose-of-user-guide": "Purpose of User Guide",
         "quick-start": "Quick start",
         "features": "Features",
         "adding-new-students-add-student": "Adding new students : add_student",
