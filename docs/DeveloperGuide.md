@@ -257,6 +257,57 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Implemented\] Searching for students
+
+The implemented search mechanism is facilitated by `SearchStudentCommand` and `SearchStudentCommandParser`.
+`SearchStudentCommandParser` implements the `Parser` interface and it's operations. `SearchStudentCommand` extends the
+`Command` class with the ability to update `Model`'s filtered person list using `Predicate`. It supports the following
+`Predicate`:
+
+- `NameContainsKeywordPredicate` — Search students based on name.
+- `EmailContainsKeywordPredicate` — Search students based on email.
+- `StudentIdContainsKeywordPredicate` — Search students based on student id.
+
+Given below is an example usage scenario and how the search mechanism behaves at each step.
+
+Example: `/search_student name/Bob`
+
+<puml src="diagrams/SearchStudentSequence.puml" alt="SearchStudentSequence" />
+
+Step 1. The user executes `/search_student name/Bob` command to find students with the keyword `Bob` in their name.
+The `execute` command calls `AddressBookParser#parseCommand()`, which extracts the command word of the command and the
+arguments of the command.
+
+Step 2. The `AddressBookParser` then creates a new `SearchStudentCommandParser` and calling 
+`SearchStudentCommandParser#parse()`, with `name/Bob` as the argument.
+
+Step 3. The `SearchStudentCommandParser` parses the arguments to determine which prefix the user is searching in.
+
+<box type="info" seamless>
+
+**Note:** Only one prefix can be used per command. If there are multiple prefixes, the method will throw an exception.
+
+</box>
+
+Step 4. `SearchStudentCommandParser` creates `NameContainsKeywordPredicate` and `SearchStudentCommand`, passing the predicate
+as an argument into the command.
+
+Step 5. `LogicManager` calls `SearchStudentCommand#execute()`, passing `Model` as an argument. This method calls
+`Model#updateFilteredPersonList()` with the given predicate, updating the filtered list in `Model` with students whose
+name contains `Bob`.
+
+Step 6. Finally, a `CommandResult` is created and the new filtered is displayed to the user.
+
+### Design considerations:
+
+- **Alternative 1 (current choice):** Only one prefix allowed per command.
+  - Pros: Easy to implement. 
+  - Cons: Does not allow users to fine tune searches based on multiple fields.
+  
+- **Alternative 2:** Allow for multiple prefixes.
+  - Pros: Users can filter searches to a higher degree
+  - Cons: Handling combinations of different fields could be complex
+  
 ---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
