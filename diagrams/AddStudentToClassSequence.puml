@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddStudentToClassCommandParser" as AddStudentToClassCommandParser LOGIC_COLOR
+participant "s:AddStudentToClassByIdCommand" as AddStudentToClassByIdCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(addStudent)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(addStudent)
+activate AddressBookParser
+
+create AddStudentToClassCommandParser
+AddressBookParser -> AddStudentToClassCommandParser
+activate AddStudentToClassCommandParser
+
+AddStudentToClassCommandParser --> AddressBookParser
+deactivate AddStudentToClassCommandParser
+
+AddressBookParser -> AddStudentToClassCommandParser : parse(studentId, module, tutorial)
+activate AddStudentToClassCommandParser
+
+create AddStudentToClassByIdCommand
+AddStudentToClassCommandParser -> AddStudentToClassByIdCommand
+activate AddStudentToClassByIdCommand
+
+AddStudentToClassByIdCommand --> AddStudentToClassCommandParser :
+deactivate AddStudentToClassByIdCommand
+
+AddStudentToClassCommandParser --> AddressBookParser : s
+deactivate AddStudentToClassCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddStudentToClassCommandParser -[hidden]-> AddressBookParser
+destroy AddStudentToClassCommandParser
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> AddStudentToClassByIdCommand : execute(m)
+activate AddStudentToClassByIdCommand
+
+AddStudentToClassByIdCommand -> Model : searchPersonByPredicate()
+activate Model
+
+Model --> AddStudentToClassByIdCommand : p
+deactivate Model
+
+AddStudentToClassByIdCommand -> Model : addPersonToTutorialClass(p)
+activate Model
+
+Model --> AddStudentToClassByIdCommand
+deactivate Model
+
+create CommandResult
+AddStudentToClassByIdCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddStudentToClassByIdCommand
+deactivate CommandResult
+
+AddStudentToClassByIdCommand --> LogicManager : r
+deactivate AddStudentToClassByIdCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
