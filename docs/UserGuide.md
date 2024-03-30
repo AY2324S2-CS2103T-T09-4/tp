@@ -36,19 +36,19 @@ details in a centralised storage. Our target audience is specifically only TAs o
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`list_student`** and pressing Enter will display a list of students.<br>
    Some example commands you can try:
 
-    - `/add_student name/Dohn Joe email/johndoe@gmail.com id/A0123456A module/CS2103T class/T09` : Adds a new student contact with all the details that have been specified to the relevant module and tutorial class.
+   - `/add_student name/Dohn Joe email/johndoe@gmail.com id/A0123456A module/CS2103T class/T09` : Adds a new student contact with all the details that have been specified to the relevant module and tutorial class.
 
-    - `/delete_student id/A0259209B | /delete_student email/johndoe@gmail.com` : Deletes a student contact with email `johndoe@gmail.com` or id `A0259209B`.
+   - `/delete_student id/A0259209B | /delete_student email/johndoe@gmail.com` : Deletes a student contact with email `johndoe@gmail.com` or id `A0259209B`.
 
-    - `/search_student id/A0123456A` : Searches for a student with id `A0123456A`.
+   - `/search_student id/A0123456A` : Searches for a student with id `A0123456A`.
 
-    - `/list_student` : View the list of all students available.
+   - `/list_student` : View the list of all students available.
 
-    - `/add_class module/CS2103T class/T09` : Adds a new tutorial class `T09` under the module `2103T`.
+   - `/add_class module/CS2103T class/T09` : Adds a new tutorial class `T09` under the module `2103T`.
 
-    - `/delete_class module/CS2103T class/T09` : Deletes a tutorial class `T09` under the module `2103T`.
+   - `/delete_class module/CS2103T class/T09` : Deletes a tutorial class `T09` under the module `2103T`.
 
-    - `/list_class` : List of all tutorial classes available.
+   - `/list_class` : List of all tutorial classes available.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -82,11 +82,12 @@ Adds a new student contact with all the details that have been specified by the 
 Format: `/add_student name/NAME email/EMAIL id/STUDENT_ID module/MODULE_CODE tutorial/TUTORIAL_CLASS`
 
 - The following parameters to add a student contact are supported:
-    1. Name
-    2. Email
-    3. Student ID
-    4. Module Code
-    5. Tutorial class
+
+  1. Name
+  2. Email
+  3. Student ID
+  4. Module Code
+  5. Tutorial class
 
 - Leading/trailing spaces are removed
 - The parameter is case-insensitive
@@ -97,20 +98,21 @@ Expected output:
 Upon a successful add, the command will return a confirmation messaging stating that the specified student contact has been added.
 
 Examples:
+
 - `/add_student name/Dohn Joe email/johndoe@gmail.com id/A0123456A module/CS2103T tutorial/T09`
 
 ### Deleting students : `delete_student`
 
 Delete a student contact based on the parameter specified by the user.
 
-Format: `/delete_student id/STUDENT_ID email/EMAIL`
+Format: `/delete_student [id/STUDENT_ID] [email/EMAIL] [index/INDEX]`
 
-- The following parameters to delete a student contact are supported:
-  1. Student ID
-  2. Email
-- Leading/trailing spaces are removed
-- The parameter is case-insensitive
-- If none of the parameters or an invalid parameter is specified, the command will return an error message indicating that a valid parameter must be provided.
+- At least one of the optional parameters (id/email/index) must be provided.
+- Leading/trailing spaces are removed.
+- A complete match must be provided in order for successful operation.
+- If the specified student belongs to any tutorial class/teams, the student will be deleted from that particular class/team as well.
+- If the specified student is not found, it returns an error.
+- If no parameters are specified, it returns an error.
 
 Expected output:
 Upon successful deletion, the command will return a confirmation messaging stating that the specified student contact has been removed.
@@ -119,6 +121,7 @@ Examples:
 
 - Delete by student ID: `/delete_student id/A01234567X`
 - Delete by email: `/delete_student email/e0123456@u.nus.edu`
+- Delete by index: `/delete_student index/1`
 
 ### Searching for students : `search`
 
@@ -132,6 +135,7 @@ Format: `/search_student [id/STUDENT_ID] [email/EMAIL] [class/TUTORIAL_CLASS] [n
 - Partial matches will also be displayed e.g. `@gmail` will return **ALL** emails containing `@gmail`
 
 Examples:
+
 - `/search_student id/A012345A` Returns student with corresponding id
 - `/search_student email/@GMAIL` Returns all students who have `@gmail` in their email
 
@@ -180,6 +184,48 @@ Format: `list_class`
 
 Expected output: The command will display the list of all classes. If there are no existing classes, the command will return a message indicating that there are no classes currently.
 
+### Adding student to tutorial class : `add_student_to_class`
+
+Adds a specified student based on the provided parameter to a specified tutorial class.
+
+Format: `/add_student_to_class [id/STUDENTID] [index/INDEX] [email/EMAIL] module/MODULE_CODE class/TUTORIAL_CLASS`
+
+- At least one of the optional parameters (id/email/index) must be provided.
+- If the module code does not exist, it returns an error.
+- If the tutorial class within that module code does not exist, it returns an error.
+- If the student does not exist, it returns an error.
+- If no parameters are specified, it returns an error.
+
+Expected output:
+Upon successful allocation of student to the tutorial class, the command will return a confirmation messaging stating that the specified student has been added to the class.
+
+Examples:
+
+- Add student by Student ID:`/add_student_to_class id/A01234567X module/CS2103T class/T10`
+- Add student by email: `/add_student_to_class email/test@gmail.com module/CS2103T class/T10`
+- Add student by index: `/add_student_to_class index/1 module/CS2103T class/T10`
+
+### Adding new tutorial team : `add_team`
+
+Adds a new team with the specified team name to the specified tutorial class.
+
+Format: `/add_team module/MODULE_CODE class/TUTORIAL_CLASS name/TEAM_NAME [size/TEAM_SIZE]`
+
+- An optional team size can be specified to apply a size restriction on the team.
+- Team size must be a positive integer. Any invalid inputs (non-numeric, negative integers) returns an error.
+- Two teams are equal if they have the same name and belong to the same tutorial (i.e no tutorial should have more than 1 team with the same name).
+- If the module code does not exist, it returns an error.
+- If the tutorial class within that module code does not exist, it returns an error.
+- If no parameters are specified, it returns an error.
+
+Expected output:
+Upon successful addition, the command will return a confirmation messaging stating that the new team has been created and allocated to the specified tutorial class.
+
+Examples:
+
+- Without team size:`/add_team module/CS2103T class/T10 name/Team 1`
+- With team size: `/add_team module/CS2103T class/T10 name/Team 1 size/3`
+
 ---
 
 ## FAQ
@@ -198,7 +244,7 @@ Expected output: The command will display the list of all classes. If there are 
 ## Command summary
 
 | Action                     | Format, Examples                                                                                                                                                                                                       |
-|----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add New Students**       | `add_student name/ <student_name> email/ <student_email> id/ <student_id> module/ <module> tutorial/ <class>` <br> e.g., `/add_student name/Dohn Joe email/johndoe@gmail.com id/A0123456A module/CS2103T tutorial/T09` |
 | **Delete students**        | `delete_student <id/, email/> <id or email>`<br> e.g., `delete_student id/A0259209B` or `/delete_student email/johndoe@gmail.com`                                                                                      |
 | **Search for students**    | `search_student <id/, email/, tc/, name/> <id or email or tutorial or name>`<br> e.g.,`search_student id/A0123456A`                                                                                                    |
