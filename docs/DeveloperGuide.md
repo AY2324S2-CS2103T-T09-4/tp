@@ -160,103 +160,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
-
-<box type="info" seamless>
-
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</box>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</box>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-<puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<box type="info" seamless>
-
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</box>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-- **Alternative 1 (current choice):** Saves the entire address book.
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-----
 ### \[Implemented\] Add student to TAHelper with unique ID or Email
 
 The implemented add mechanism is facilitated by the abstract `AddStudentCommand` along with its specific commands `AddStudentCommand`, as well as the parser `AddStudentCommandParser`.
@@ -495,8 +398,8 @@ Step 6. Finally, a `CommandResult` is created and the student is added to the TA
 **Aspect: Modularity and extensibility:**
 
 - **Alternative 1 (current choice):** Lists all students with their tutorial classes and modules in the result display panel.
-    - Pros: Ensures that all students are displayed correctly.
-    - Cons: Users may want to view all the student of a certain module but are unable to do so.
+  - Pros: Ensures that all students are displayed correctly.
+  - Cons: Users may want to view all the student of a certain module but are unable to do so.
 
 ### \[Implemented\] Search for students
 
@@ -595,11 +498,11 @@ Step 6. Finally, a `CommandResult` is created and the sorted list of students is
 **Aspect: Modularity and extensibility:**
 
 - **Alternative 1 (current choice):** Only one prefix allowed per command.
-    - Pros: Easy to implement.
-    - Cons: Does not allow users to fine tune searches based on multiple fields.
+  - Pros: Easy to implement.
+  - Cons: Does not allow users to fine tune searches based on multiple fields.
 - **Alternative 2:** Allow for multiple prefixes.
-    - Pros: Users can filter searches to a higher degree
-    - Cons: Handling combinations of different fields could be complex
+  - Pros: Users can filter searches to a higher degree
+  - Cons: Handling combinations of different fields could be complex
 
 ### \[Implemented\] Add class
 
@@ -642,12 +545,12 @@ Step 6. Finally, a `CommandResult` is created and the class is added to the TAHe
 **Aspect: Modularity and extensibility:**
 
 - **Alternative 1 (current choice):** A unique module code and tutorial class is required when adding classes into the TAHelper system, as well as user have to specify all fields, module code and tutorial class in order to add a new class successfully.
-    - Pros: Ensures that all classes are unique and not repeated. This helps facilitate other commands such as add student to classes to find a match in class easily without duplicates.
-    - Cons: Users may inadvertently provide incorrect or non-existent module codes or tutorial class identifiers, leading to errors in the system. This could result in frustration and a poor user experience.
-  
+  - Pros: Ensures that all classes are unique and not repeated. This helps facilitate other commands such as add student to classes to find a match in class easily without duplicates.
+  - Cons: Users may inadvertently provide incorrect or non-existent module codes or tutorial class identifiers, leading to errors in the system. This could result in frustration and a poor user experience.
+
 * **Alternative 2:** Allow user to specify only the module code when adding classes
-    - Pros: Users can add classes without needing to specify the tutorial class immediately, allowing for greater flexibility in the workflow. They can add the class first and then specify the tutorial class later, as needed. The input process is also streamlined, reducing the burden on users. This simplicity can lead to faster data entry and a more intuitive user experience.
-    - Cons: Users may inadvertently create duplicate classes if they do not specify the tutorial class identifier accurately or if they forget to add it later. This could result in redundancy and inconsistencies within the system.
+  - Pros: Users can add classes without needing to specify the tutorial class immediately, allowing for greater flexibility in the workflow. They can add the class first and then specify the tutorial class later, as needed. The input process is also streamlined, reducing the burden on users. This simplicity can lead to faster data entry and a more intuitive user experience.
+  - Cons: Users may inadvertently create duplicate classes if they do not specify the tutorial class identifier accurately or if they forget to add it later. This could result in redundancy and inconsistencies within the system.
 
 ### \[Implemented\] Delete class
 
@@ -690,12 +593,12 @@ Step 6. Finally, a `CommandResult` is created and the class is deleted from the 
 **Aspect: Modularity and extensibility:**
 
 - **Alternative 1 (current choice):** A unique module code and tutorial class is required when deleting classes from the TAHelper system, as well as user have to specify all fields, module code and tutorial class in order to delete a new class successfully.
-    - Pros: Ensures that the class is only deleted if there is a match in the system. Also ensure that the other tutorial classes of the module is not deleted if no tutorial class is specified. 
-    - Cons: Users may inadvertently provide incorrect or non-existent module codes or tutorial class identifiers, leading to errors in the system. This could result in frustration and a poor user experience.
+  - Pros: Ensures that the class is only deleted if there is a match in the system. Also ensure that the other tutorial classes of the module is not deleted if no tutorial class is specified.
+  - Cons: Users may inadvertently provide incorrect or non-existent module codes or tutorial class identifiers, leading to errors in the system. This could result in frustration and a poor user experience.
 
 * **Alternative 2:** Allow user the option to delete the entire module without specifying the tutorial class.
-    - Pros: Users can delete modules without needing to specify the tutorial class, allowing for greater ease in the workflow. This allows users who are no longer teaching the module to remove all the information with one command.
-    - Cons: Users may accidentally delete the entire module if they forgot to specify the tutorial class identifier and this may lead to great data damage. A separate command to delete module would be better. 
+  - Pros: Users can delete modules without needing to specify the tutorial class, allowing for greater ease in the workflow. This allows users who are no longer teaching the module to remove all the information with one command.
+  - Cons: Users may accidentally delete the entire module if they forgot to specify the tutorial class identifier and this may lead to great data damage. A separate command to delete module would be better.
 
 ### \[Implemented\] Delete module
 
@@ -737,13 +640,13 @@ Step 6. Finally, a `CommandResult` is created and the module is deleted from the
 **Aspect: Modularity and extensibility:**
 
 - **Alternative 1 (current choice):** A unique module code is required when deleting modules from the TAHelper system.
-    - Pros: Ensures that the class is only deleted if there is a match in the system.
-    - Cons: Users may accidentally use this command instead of `/delete_class`. This will result in huge data loss. 
+  - Pros: Ensures that the class is only deleted if there is a match in the system.
+  - Cons: Users may accidentally use this command instead of `/delete_class`. This will result in huge data loss.
 
 ### \[Implemented\] List class
 
 The implementation of adding a class is facilitated by the `ListClassCommand` and `ListClassCommandParser`. `ListClassCommandParser` implements the `Parser` interface and it's operations. `ListClassCommand` extends the
-`Command` class. 
+`Command` class.
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
@@ -764,9 +667,9 @@ Step 3. The result string is then trimmed and `CommandResult`.
 
 **Aspect: Modularity and extensibility:**
 
-- **Alternative 1 (current choice):** Lists all modules and their tutorial classes in the result display panel. 
-    - Pros: Ensures that all classes are displayed correctly.
-    - Cons: Users may want to view tutorial classes of certain modules only but are unable to do so.
+- **Alternative 1 (current choice):** Lists all modules and their tutorial classes in the result display panel.
+  - Pros: Ensures that all classes are displayed correctly.
+  - Cons: Users may want to view tutorial classes of certain modules only but are unable to do so.
 
 ### \[Implemented\] Add team
 
@@ -808,12 +711,12 @@ Step 6. Finally, a `CommandResult` is created and the team is added to the TAHel
 **Aspect: Modularity and extensibility:**
 
 - **Alternative 1 (current choice):** A unique team name, module code and tutorial class is required when adding classes into the TAHelper system, as well as user have to specify all fields, team name, module code and tutorial class in order to add a new team successfully.
-    - Pros: Ensures that all teams are unique and not repeated. This helps facilitate other commands such as allocate student to teams to find a match in team easily without duplicates.
-    - Cons: Users may inadvertently provide incorrect or non-existent module codes or tutorial class identifiers, leading to errors in the system. This could result in frustration and a poor user experience.
+  - Pros: Ensures that all teams are unique and not repeated. This helps facilitate other commands such as allocate student to teams to find a match in team easily without duplicates.
+  - Cons: Users may inadvertently provide incorrect or non-existent module codes or tutorial class identifiers, leading to errors in the system. This could result in frustration and a poor user experience.
 
 * **Alternative 2:** Allow user to not specify team size when adding teams
-    - Pros: Users can add teams without needing to specify the team size immediately, allowing for greater flexibility in the workflow. They can add the team first and then specify the team size later, as needed. The input process is also streamlined, reducing the burden on users. This simplicity can lead to faster data entry and a more intuitive user experience.
-    - Cons: Users may inadvertently add too many students to the team if they do not specify the team size identifier accurately or if they forget to add it later. This could result in errors within the system.
+  - Pros: Users can add teams without needing to specify the team size immediately, allowing for greater flexibility in the workflow. They can add the team first and then specify the team size later, as needed. The input process is also streamlined, reducing the burden on users. This simplicity can lead to faster data entry and a more intuitive user experience.
+  - Cons: Users may inadvertently add too many students to the team if they do not specify the team size identifier accurately or if they forget to add it later. This could result in errors within the system.
 
 ### \[Implemented\] Delete team
 
@@ -855,8 +758,8 @@ Step 6. Finally, a `CommandResult` is created and the team is deleted from the T
 **Aspect: Modularity and extensibility:**
 
 - **Alternative 1 (current choice):** A unique team name, module code and tutorial class is required when deleting teams from the TAHelper system, as well as user have to specify all fields, team name, module code and tutorial class in order to delete a team successfully.
-    - Pros: Ensures that the team is only deleted if there is a match in the system. Also ensure that the other teams of the tutorial class is not deleted if no team is specified.
-    - Cons: Users may inadvertently provide incorrect or non-existent team or module codes or tutorial class identifiers, leading to errors in the system. This could result in frustration and a poor user experience.
+  - Pros: Ensures that the team is only deleted if there is a match in the system. Also ensure that the other teams of the tutorial class is not deleted if no team is specified.
+  - Cons: Users may inadvertently provide incorrect or non-existent team or module codes or tutorial class identifiers, leading to errors in the system. This could result in frustration and a poor user experience.
 
 ### \[Implemented\] Allocate student to team
 
@@ -937,15 +840,21 @@ Step 6. Finally, a `CommandResult` is created and the student is added to the tu
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                                                                   | So that I can…​                                                         |
-| -------- | ------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
-| `* * *`  | TA      | add new students to a class                                                    | maintain an up-to-date list of enrolled students.                       |
-| `* * *`  | TA      | add partial info of students                                                   | still add students even if I don’t have all their information.          |
-| `* * *`  | TA      | delete a student from my class if they drop the module/class                   | keep my class list accurate and up-to-date.                             |
-| `* * `   | TA      | search for my students based on their NUS ID, emails, names or tutorial groups | locate details of students without having to go through the entire list |
-| `* * *`  | TA      | view all students and their particulars                                        | have a comprehensive overview of the enrolled students in my class.     |
-| `* *`    | TA      | add/remove different modules I am teaching                                     | manage my teaching assignments efficiently.                             |
-| `* * *`  | TA      | view all the tutorial classes and their information                            | visibility into the schedule and details of all tutorial classes.       |
+| Priority | Iteration | As a …​ | I want to …​                                                                   | So that I can…​                                                                     |
+| -------- | --------- | ------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| `* * *`  | v1.2      | TA      | add new students to a class                                                    | maintain an up-to-date list of enrolled students.                                   |
+| `* * *`  | v1.2      | TA      | add partial info of students                                                   | still add students even if I don’t have all their information.                      |
+| `* * *`  | v1.2      | TA      | delete a student from my class if they drop the module/class                   | keep my class list accurate and up-to-date.                                         |
+| `*  `    | v1.2      | TA      | search for my students based on their NUS ID, emails, names or tutorial groups | locate details of students without having to go through the entire list             |
+| `* * *`  | v1.2      | TA      | view all students and their particulars                                        | have a comprehensive overview of the enrolled students in my class.                 |
+| `* * `   | v1.2      | TA      | view all the tutorial classes and their student composition                    | have an overview of the classes that I am teaching.                                 |
+| `* *`    | v1.2      | TA      | add a tutorial class that I am teaching.                                       | track a tutorial class and the students in it.                                      |
+| `* *`    | v1.2      | TA      | remove a tutorial class that I am teaching.                                    | remove any unrelated classes that I do not want to no longer want to keep track of. |
+| `* `     | v1.2      | TA      | add students to a tutorial class                                               | assign students to a tutorial class and teams within the class.                     |
+| `* * `   | v1.3      | TA      | edit a student's information                                                   | amend a student's detail in case there are any errors or changes.                   |
+| `*`      | v1.3      | TA      | sort students based on their name, student ID or email.                        | easily organise and manage student records.                                         |
+| `* * *`  | v1.3      | TA      | create a new team for a tutorial class                                         | segregate students to teams within a tutorial class.                                |
+| `* * *`  | v1.3      | TA      | delete a team from a tutorial class                                            | remove unnecessary teams and organise my classes.                                   |
 
 _{More to be added}_
 
