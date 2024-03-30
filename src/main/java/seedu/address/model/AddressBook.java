@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -193,6 +195,60 @@ public class AddressBook implements ReadOnlyAddressBook {
                     tutorialClass, moduleCode));
         }
         return tutorialClassInList;
+    }
+
+    /**
+     * Randomly allocates the students in {@code tutorial class} into {@code numOfTeams} of different teams.
+     *
+     * @param moduleCode of the tutorial class.
+     * @param tutorialClass to allocate the different students into the teams to.
+     * @param numOfTeams of teams to split into.
+     */
+    public void randomTeamAllocation(ModuleCode moduleCode, TutorialClass tutorialClass, int numOfTeams) {
+        requireAllNonNull(moduleCode, tutorialClass, numOfTeams);
+        ArrayList<TutorialTeam> teams = tutorialClass.getTeams();
+        ArrayList<Person> classList = tutorialClass.getStudents();
+        int classSize = tutorialClass.getStudents().size();
+        int teamSize = (int) Math.ceil((double) classSize / numOfTeams);
+        teams.clear();
+
+        // creating the teams to add into
+        for (int i = 1; i <= numOfTeams; i++) {
+            String teamName = "Team" + i;
+            TutorialTeam team = new TutorialTeam(teamName, teamSize);
+            addTeam(tutorialClass, team);
+        }
+
+        Random random = new Random();
+        int k = 0;
+        while (k < classList.size()) {
+            int randInt = random.nextInt(numOfTeams);
+            TutorialTeam currTeam = tutorialClass.getTeams().get(randInt);
+            if (hasTeamSizeExceeded(currTeam)) {
+                continue;
+            }
+
+            Person student = classList.get(k);
+            if (!isSamePersonInTeam(student, currTeam)) {
+                currTeam.addStudent(student);
+                k++;
+            }
+        }
+    }
+
+    /**
+     * Checks if the same person is in the team already.
+     * @param student to check if exist in team.
+     * @param tutorialTeam to check.
+     * @return a boolean true if the student exists in the team, else false.
+     */
+    public boolean isSamePersonInTeam(Person student, TutorialTeam tutorialTeam) {
+        for (Person person : tutorialTeam.getStudents()) {
+            if (person.isSamePerson(student)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

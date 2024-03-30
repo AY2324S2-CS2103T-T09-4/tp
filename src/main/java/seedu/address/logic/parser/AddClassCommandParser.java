@@ -47,6 +47,7 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
         }
         return new AddClassCommand(new ModuleCode(moduleCode), new TutorialClass(tutorialClass), description);
     }
+
     /**
      * Returns true if all the prefixes are present in the given {@code ArgumentMultimap}.
      */

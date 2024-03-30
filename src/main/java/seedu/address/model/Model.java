@@ -68,6 +68,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a module with the same moduleCode as {@code moduleCode} exists in the address book.
+     */
+    boolean hasModule(ModuleCode moduleCode);
+
+    /**
      * Returns true if a person with the same email as {@code person} exists in the address book.
      */
     boolean hasPersonWithEmail(Email email);
@@ -132,9 +137,18 @@ public interface Model {
     void allocateStudentToTeam(Person student, TutorialTeam tutorialTeam);
 
     /**
+     * Randomly allocates the students in {@code tutorial class} into {@code numOfTeams} of different teams.
+     *
+     * @param moduleCode
+     * @param tutorialClass
+     * @param numOfTeams
+     */
+    void randomTeamAllocation(ModuleCode moduleCode, TutorialClass tutorialClass, int numOfTeams);
+
+    /**
      * Returns true if a team with the same identity as {@code tutorialTeam} exists in the {@code tutorialClass}
      * @param tutorialClass of the tutorialTeam.
-     * @param tutorialTeam to check if it exist.
+     * @param tutorialTeam to check if it exists.
      */
     boolean hasTeamInTutorial(TutorialClass tutorialClass, TutorialTeam tutorialTeam);
 

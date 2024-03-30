@@ -105,6 +105,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasModule(ModuleCode moduleCode) {
+        requireNonNull(moduleCode);
+        return addressBook.hasModule(moduleCode);
+    }
+
+    @Override
     public boolean hasPersonWithStudentId(StudentId id) {
         requireAllNonNull(id);
         return addressBook.hasPersonWithStudentId(id);
@@ -151,6 +157,12 @@ public class ModelManager implements Model {
     public void allocateStudentToTeam(Person student, TutorialTeam tutorialTeam) {
         requireAllNonNull(student, tutorialTeam);
         addressBook.allocateStudentToTeam(student, tutorialTeam);
+    }
+
+    @Override
+    public void randomTeamAllocation(ModuleCode moduleCode, TutorialClass tutorialClass, int numOfTeams) {
+        requireAllNonNull(moduleCode, tutorialClass, numOfTeams);
+        addressBook.randomTeamAllocation(moduleCode, tutorialClass, numOfTeams);
     }
 
     @Override

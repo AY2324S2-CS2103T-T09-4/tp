@@ -20,6 +20,8 @@ public class TutorialTeam {
             + "characters and spaces, and it should not be blank";
     public static final String MESSAGE_SIZE_CONSTRAINTS = "Team size should be a positive integer";
 
+    public static final String MESSAGE_NUMBER_CONSTRAINTS = "Please enter a valid integer for team size";
+
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String teamName;

@@ -17,5 +17,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("tag/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("description/");
     public static final Prefix PREFIX_TEAM_SIZE = new Prefix("size/");
+    public static final Prefix PREFIX_NUM_OF_TEAMS = new Prefix("teams/");
     public static final Prefix PREFIX_SORT_BY = new Prefix("by/");
 }

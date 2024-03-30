@@ -111,6 +111,23 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String teams} into an {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code int} is invalid.
+     */
+    public static int parseNumberOfTeams(String teams) throws ParseException {
+        requireNonNull(teams);
+        String trimmedTeams = teams.trim();
+        try {
+            int numOfTeams = Integer.parseInt(trimmedTeams);
+            return numOfTeams;
+        } catch (NumberFormatException err) {
+            throw new ParseException(TutorialTeam.MESSAGE_NUMBER_CONSTRAINTS);
+        }
+    }
+
+
+    /**
      * Parses a {@code String team} into an {@code TutorialTeam}.
      * Leading and trailing whitespaces will be trimmed.
      * @throws ParseException if the given {@code team} is invalid.
