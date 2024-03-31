@@ -19,6 +19,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.PersonMessages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -50,7 +51,7 @@ public class AddStudentCommandTest {
 
         CommandResult commandResult = new AddStudentCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddStudentCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        assertEquals(String.format(AddStudentCommand.MESSAGE_ADD_STUDENT_SUCCESS, Messages.format(validPerson)),
             commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
@@ -61,7 +62,7 @@ public class AddStudentCommandTest {
         AddStudentCommand addCommand = new AddStudentCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddStudentCommand.MESSAGE_DUPLICATE_PERSON, (
+        assertThrows(CommandException.class, String.format(PersonMessages.MESSAGE_DUPLICATE_PERSON, Messages.format(validPerson)), (
                 ) -> addCommand.execute(modelStub));
     }
 

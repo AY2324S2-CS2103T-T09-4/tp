@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.ModuleMessages;
+import seedu.address.logic.messages.TutorialTeamMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTutorialPair;
@@ -21,7 +22,6 @@ import seedu.address.model.module.TutorialTeam;
 public class AddTeamCommand extends Command {
     public static final String MESSAGE_ADD_TEAM_SUCCESS_WITHOUT_SIZE = "Added %1$s to %2$s %3$s";
     public static final String MESSAGE_ADD_TEAM_SUCCESS_WITH_SIZE = "Added %1$s of size %2$s to %3$s %4$s";
-    public static final String MESSAGE_DUPLICATE_TEAM = "%1$s already added to %2$s %3$s!";
     public static final String COMMAND_WORD = "/add_team";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -77,7 +77,7 @@ public class AddTeamCommand extends Command {
         TutorialTeam newTeam = new TutorialTeam(teamName, teamSize);
 
         if (tutorialClass.hasTeam(newTeam)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_TEAM, teamName, module, tutorialClass));
+            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_DUPLICATE_TEAM, teamName, module, tutorialClass));
         } else {
             model.addTeam(tutorialClass, newTeam);
         }

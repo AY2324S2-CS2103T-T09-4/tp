@@ -20,6 +20,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.PersonMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -49,9 +50,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-    public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in the address book.";
-    public static final String MESSAGE_DUPLICATE_STUDENTID = "This student id already exists in the address book.";
+
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -81,17 +80,17 @@ public class EditCommand extends Command {
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(String.format(PersonMessages.MESSAGE_DUPLICATE_PERSON, Messages.format(editedPerson)));
         }
 
         Optional<Email> emailToBeEdited = editPersonDescriptor.getEmail();
         if (emailToBeEdited.isPresent() && model.hasPersonWithEmail(emailToBeEdited.get())) {
-            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+            throw new CommandException(String.format(PersonMessages.MESSAGE_DUPLICATE_EMAIL, emailToBeEdited.get()));
         }
 
         Optional<StudentId> studentIdToBeEdited = editPersonDescriptor.getStudentId();
         if (studentIdToBeEdited.isPresent() && model.hasPersonWithStudentId(studentIdToBeEdited.get())) {
-            throw new CommandException(MESSAGE_DUPLICATE_STUDENTID);
+            throw new CommandException(String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENTID, studentIdToBeEdited.get()));
         }
 
         model.setPerson(personToEdit, editedPerson);

@@ -10,6 +10,9 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.ModuleMessages;
+import seedu.address.logic.messages.PersonMessages;
+import seedu.address.logic.messages.TutorialTeamMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
@@ -58,7 +61,7 @@ public class AllocateStudentToTeamByStuIdCommand extends AllocateStudentToTeamCo
         requireNonNull(model);
 
         if (model.findTutorialClassFromList(tutorialClass, moduleCode) == null) {
-            throw new CommandException(MESSAGE_CLASS_DOES_NOT_EXIST);
+            throw new CommandException(String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE, tutorialClass, moduleCode));
         }
 
         ModuleCode module = model.findModuleFromList(moduleCode);
@@ -68,15 +71,15 @@ public class AllocateStudentToTeamByStuIdCommand extends AllocateStudentToTeamCo
         TutorialTeam tutTeam = model.getTutorialTeam(tutClass, tutorialTeam);
 
         if (student == null) {
-            throw new CommandException(MESSAGE_STUDENT_DOES_NOT_EXIST);
+            throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, studentId));
         }
 
         if (tutTeam == null) {
-            throw new CommandException(String.format(MESSAGE_TEAM_DOES_NOT_EXIST, tutorialTeam, tutClass));
+            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_NOT_FOUND, tutorialTeam, moduleCode, tutClass));
         }
 
         // throws commandException if any condition fails
-        checkAllocateCondition(model, student, tutClass, tutTeam);
+        checkAllocateCondition(model, student, tutClass, tutTeam, moduleCode);
         model.allocateStudentToTeam(student, tutTeam);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutTeam));

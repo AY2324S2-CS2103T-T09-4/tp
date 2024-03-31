@@ -6,10 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.TutorialTeamMessages;
 import seedu.address.model.Model;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
 import seedu.address.model.module.TutorialTeam;
 import seedu.address.model.person.Person;
@@ -35,12 +38,9 @@ public abstract class AllocateStudentToTeamCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Allocate student to team: %s";
     public static final String MESSAGE_STUDENT_NOT_IN_TUTORIAL = "Student needs to be in that tutorial group first.";
-    public static final String MESSAGE_STUDENT_DOES_NOT_EXIST = "Student does not exist in system";
-    public static final String MESSAGE_TEAM_DOES_NOT_EXIST = "Team %s does not exist in tutorial class %s";
-    public static final String MESSAGE_CLASS_DOES_NOT_EXIST = "Tutorial class %s does not exist in module %s";
 
-    public static final String MESSAGE_DUPLICATE_PERSON_IN_TEAM = "This person already exists in a team"
-            + " in the tutorial class %s!";
+
+
     public static final String MESSAGE_TEAM_SIZE_EXCEEDED = "Max team size of %d reached";
 
     public AllocateStudentToTeamCommand() {}
@@ -58,18 +58,18 @@ public abstract class AllocateStudentToTeamCommand extends Command {
      * @param tutorialTeam
      * @throws CommandException
      */
-    public void checkAllocateCondition(Model model, Person student, TutorialClass tutClass, TutorialTeam tutorialTeam)
+    public void checkAllocateCondition(Model model, Person student, TutorialClass tutClass, TutorialTeam tutorialTeam, ModuleCode moduleCode)
             throws CommandException {
         if (!model.isStudentInTutorialClass(student, tutClass)) {
             throw new CommandException(MESSAGE_STUDENT_NOT_IN_TUTORIAL);
         }
 
         if (!model.hasTeamInTutorial(tutClass, tutorialTeam)) {
-            throw new CommandException(String.format(MESSAGE_TEAM_DOES_NOT_EXIST, tutorialTeam, tutClass));
+            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_NOT_FOUND, tutorialTeam, moduleCode, tutClass));
         }
 
         if (model.isStudentInAnyTeam(student, tutClass)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON_IN_TEAM, tutClass));
+            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_DUPLICATE_PERSON_IN_TEAM, Messages.format(student), tutClass));
         }
 
         if (model.hasTeamSizeExceeded(tutorialTeam)) {

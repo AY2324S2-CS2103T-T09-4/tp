@@ -11,6 +11,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.ModuleMessages;
+import seedu.address.logic.messages.PersonMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
@@ -60,7 +62,7 @@ public class AllocateStudentToTeamByIndexCommand extends AllocateStudentToTeamCo
         requireNonNull(model);
 
         if (model.findTutorialClassFromList(tutorialClass, moduleCode) == null) {
-            throw new CommandException(String.format(MESSAGE_CLASS_DOES_NOT_EXIST, tutorialClass, moduleCode));
+            throw new CommandException(String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE, tutorialClass, moduleCode));
         }
 
         ModuleCode module = model.findModuleFromList(moduleCode);
@@ -77,11 +79,11 @@ public class AllocateStudentToTeamByIndexCommand extends AllocateStudentToTeamCo
         TutorialTeam tutTeam = model.getTutorialTeam(tutClass, tutorialTeam);
 
         if (tutTeam == null) {
-            throw new CommandException(MESSAGE_STUDENT_DOES_NOT_EXIST);
+            throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_INDEX_NOT_FOUND, index.getOneBased()));
         }
 
         // throws commandException if any condition fails
-        checkAllocateCondition(model, studentToAllocate, tutClass, tutTeam);
+        checkAllocateCondition(model, studentToAllocate, tutClass, tutTeam, moduleCode);
         model.allocateStudentToTeam(studentToAllocate, tutTeam);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutTeam));

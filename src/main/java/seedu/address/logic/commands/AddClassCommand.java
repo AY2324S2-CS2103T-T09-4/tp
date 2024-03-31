@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.TutorialClassMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
@@ -18,7 +19,6 @@ import seedu.address.model.module.TutorialClass;
  */
 public class AddClassCommand extends Command {
     public static final String MESSAGE_ADD_CLASS_SUCCESS = "Added %1$s %2$s";
-    public static final String MESSAGE_DUPLICATE_CLASS = "%1$s %2$s already added!";
     public static final String COMMAND_WORD = "/add_class";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a class with the module code and"
@@ -53,7 +53,7 @@ public class AddClassCommand extends Command {
         ModuleCode existingModule = model.findModuleFromList(module);
         if (existingModule != null) {
             if (existingModule.hasTutorialClass(tutorialString)) {
-                String duplicateMessage = String.format(MESSAGE_DUPLICATE_CLASS, module, tutorialString);
+                String duplicateMessage = String.format(TutorialClassMessages.MESSAGE_DUPLICATE_CLASS, module, tutorialString);
                 throw new CommandException(duplicateMessage);
             } else {
                 existingModule.addTutorialClass(tutorialString);

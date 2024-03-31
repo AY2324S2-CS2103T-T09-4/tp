@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.AddTeamCommand.MESSAGE_ADD_TEAM_SUCCESS_WITHOUT_SIZE;
 import static seedu.address.logic.commands.AddTeamCommand.MESSAGE_ADD_TEAM_SUCCESS_WITH_SIZE;
-import static seedu.address.logic.commands.AddTeamCommand.MESSAGE_DUPLICATE_TEAM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TEAM_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TEAM_NAME_BOB;
@@ -17,6 +16,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.messages.TutorialTeamMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -68,7 +68,7 @@ public class AddTeamCommandTest {
 
         assertCommandFailure(new AddTeamCommand(new ModuleCode(VALID_MODULE_AMY),
                 new TutorialClass(VALID_TUTORIAL_AMY), VALID_TEAM_NAME_AMY), model,
-                String.format(MESSAGE_DUPLICATE_TEAM, VALID_TEAM_NAME_AMY, VALID_MODULE_AMY, VALID_TUTORIAL_AMY));
+                String.format(TutorialTeamMessages.MESSAGE_DUPLICATE_TEAM, VALID_TEAM_NAME_AMY, VALID_MODULE_AMY, VALID_TUTORIAL_AMY));
     }
 
     @Test
