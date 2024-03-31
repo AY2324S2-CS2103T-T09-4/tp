@@ -6,8 +6,6 @@ package seedu.address.logic.messages;
 public class ModuleMessages {
     public static final String MESSAGE_MODULE_NOT_FOUND = "The module with module code %s "
             + "does not exist in the address book";
-    public static final String MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE = "The tutorial class with tutorial code %s "
-            + "does not belong to the module with module code %s";
-
-    
+    public static final String MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE = "The tutorial class with"
+            + "tutorial code %s does not belong to the module with module code %s";
 }

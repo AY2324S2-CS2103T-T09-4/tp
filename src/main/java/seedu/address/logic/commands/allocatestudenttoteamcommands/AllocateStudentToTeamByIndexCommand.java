@@ -13,6 +13,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.ModuleMessages;
 import seedu.address.logic.messages.PersonMessages;
+import seedu.address.logic.messages.TutorialClassMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
@@ -38,8 +39,6 @@ public class AllocateStudentToTeamByIndexCommand extends AllocateStudentToTeamCo
             + PREFIX_TUTORIALCLASS + "T01 "
             + PREFIX_TEAMNAME + "Team 1 ";
 
-    public static final String MESSAGE_PERSON_INDEX_NOT_FOUND =
-            "Student at index %d not found inside tutorial class %s";
     private final Index index;
     private final ModuleCode moduleCode;
     private final TutorialClass tutorialClass;
@@ -49,7 +48,7 @@ public class AllocateStudentToTeamByIndexCommand extends AllocateStudentToTeamCo
      * Creates an AllocateStudentToTeam object.
      */
     public AllocateStudentToTeamByIndexCommand(Index index, ModuleCode moduleCode,
-                                        TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
+            TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
         CollectionUtil.requireAllNonNull(index, moduleCode, tutorialClass, tutorialTeam);
         this.index = index;
         this.moduleCode = moduleCode;
@@ -62,7 +61,8 @@ public class AllocateStudentToTeamByIndexCommand extends AllocateStudentToTeamCo
         requireNonNull(model);
 
         if (model.findTutorialClassFromList(tutorialClass, moduleCode) == null) {
-            throw new CommandException(String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE, tutorialClass, moduleCode));
+            throw new CommandException(String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE,
+                    tutorialClass, moduleCode));
         }
 
         ModuleCode module = model.findModuleFromList(moduleCode);
@@ -73,13 +73,15 @@ public class AllocateStudentToTeamByIndexCommand extends AllocateStudentToTeamCo
             studentToAllocate = model.getStudentsInTutorialClass(tutClass).get(index.getZeroBased());
         } catch (IndexOutOfBoundsException err) {
             throw new CommandException(
-                    String.format(MESSAGE_PERSON_INDEX_NOT_FOUND, index.getOneBased(), tutClass));
+                    String.format(TutorialClassMessages.MESSAGE_PERSON_INDEX_NOT_FOUND_IN_CLASS,
+                            index.getOneBased(), tutClass));
         }
 
         TutorialTeam tutTeam = model.getTutorialTeam(tutClass, tutorialTeam);
 
         if (tutTeam == null) {
-            throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_INDEX_NOT_FOUND, index.getOneBased()));
+            throw new CommandException(
+                    String.format(PersonMessages.MESSAGE_PERSON_INDEX_NOT_FOUND, index.getOneBased()));
         }
 
         // throws commandException if any condition fails

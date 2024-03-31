@@ -48,7 +48,7 @@ public class AllocateStudentToTeamByStuIdCommand extends AllocateStudentToTeamCo
      * Creates an AllocateStudentToTeam object.
      */
     public AllocateStudentToTeamByStuIdCommand(StudentId studentId, ModuleCode moduleCode,
-                                        TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
+            TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
         CollectionUtil.requireAllNonNull(studentId, moduleCode, tutorialClass, tutorialTeam);
         this.studentId = studentId;
         this.moduleCode = moduleCode;
@@ -61,7 +61,8 @@ public class AllocateStudentToTeamByStuIdCommand extends AllocateStudentToTeamCo
         requireNonNull(model);
 
         if (model.findTutorialClassFromList(tutorialClass, moduleCode) == null) {
-            throw new CommandException(String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE, tutorialClass, moduleCode));
+            throw new CommandException(String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE,
+                    tutorialClass, moduleCode));
         }
 
         ModuleCode module = model.findModuleFromList(moduleCode);
@@ -75,7 +76,8 @@ public class AllocateStudentToTeamByStuIdCommand extends AllocateStudentToTeamCo
         }
 
         if (tutTeam == null) {
-            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_NOT_FOUND, tutorialTeam, moduleCode, tutClass));
+            throw new CommandException(
+                    String.format(TutorialTeamMessages.MESSAGE_TEAM_NOT_FOUND, tutorialTeam, moduleCode, tutClass));
         }
 
         // throws commandException if any condition fails

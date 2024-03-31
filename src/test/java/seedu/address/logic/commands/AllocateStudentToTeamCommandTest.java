@@ -28,6 +28,7 @@ import seedu.address.logic.commands.allocatestudenttoteamcommands.AllocateStuden
 import seedu.address.logic.commands.allocatestudenttoteamcommands.AllocateStudentToTeamByStuIdCommand;
 import seedu.address.logic.commands.allocatestudenttoteamcommands.AllocateStudentToTeamCommand;
 import seedu.address.logic.messages.PersonMessages;
+import seedu.address.logic.messages.TutorialClassMessages;
 import seedu.address.logic.messages.TutorialTeamMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -74,7 +75,7 @@ public class AllocateStudentToTeamCommandTest {
                 index,
                 newModule, tutorialClass, newTeam);
         assertCommandFailure(allocateStudentToTeamByIndexCommand, model,
-                String.format(AllocateStudentToTeamByIndexCommand.MESSAGE_PERSON_INDEX_NOT_FOUND,
+                String.format(TutorialClassMessages.MESSAGE_PERSON_INDEX_NOT_FOUND_IN_CLASS,
                         index.getOneBased(), tutorialClass));
     }
 

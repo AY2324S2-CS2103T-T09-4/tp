@@ -47,7 +47,7 @@ public class AllocateStudentToTeamByEmailCommand extends AllocateStudentToTeamCo
      * Creates an AllocateStudentToTeam object.
      */
     public AllocateStudentToTeamByEmailCommand(Email email, ModuleCode moduleCode,
-                                        TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
+            TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
         this.email = email;
         this.moduleCode = moduleCode;
         this.tutorialClass = tutorialClass;
@@ -59,7 +59,8 @@ public class AllocateStudentToTeamByEmailCommand extends AllocateStudentToTeamCo
         requireNonNull(model);
 
         if (model.findTutorialClassFromList(tutorialClass, moduleCode) == null) {
-            throw new CommandException(String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE, tutorialClass, moduleCode));
+            throw new CommandException(String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE,
+                    tutorialClass, moduleCode));
         }
 
         ModuleCode module = model.findModuleFromList(moduleCode);
@@ -73,7 +74,8 @@ public class AllocateStudentToTeamByEmailCommand extends AllocateStudentToTeamCo
         }
 
         if (tutTeam == null) {
-            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_NOT_FOUND, tutorialTeam, moduleCode, tutClass));
+            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_NOT_FOUND,
+                    tutorialTeam, moduleCode, tutClass));
         }
 
         // throws commandException if any condition fails

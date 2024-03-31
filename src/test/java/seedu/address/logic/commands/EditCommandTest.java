@@ -107,24 +107,21 @@ public class EditCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model,
-                String.format(PersonMessages.MESSAGE_DUPLICATE_PERSON, Messages.format(firstPerson)));
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
 
         // duplicate email
         descriptor = new EditPersonDescriptorBuilder().withName("Test").withEmail(firstPerson.getEmail().toString())
                 .withStudentId("A1111111A").build();
         editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model,
-                String.format(PersonMessages.MESSAGE_DUPLICATE_PERSON, Messages.format(firstPerson)));
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
 
         // duplicate student id
         descriptor = new EditPersonDescriptorBuilder().withName("Test").withEmail("test@example.com")
                 .withStudentId(firstPerson.getStudentId().toString()).build();
         editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model,
-                String.format(PersonMessages.MESSAGE_DUPLICATE_PERSON, Messages.format(firstPerson)));
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test
@@ -136,27 +133,21 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(personInList).build());
 
-        assertCommandFailure(editCommand, model,
-                String.format(PersonMessages.MESSAGE_DUPLICATE_PERSON, Messages.format(personInList)));
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
 
         // edit person with only duplicate email
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName("Test")
                 .withEmail(personInList.getEmail().toString()).withStudentId("A1111111A").build();
-        // Get person with the same email
-        Person personWithSameEmail = model.getAddressBook().getPersonList().stream()
-                .filter(person -> person.getEmail().equals(personInList.getEmail())).findFirst().get();
         editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
-        System.out.println(personInList);
-        assertCommandFailure(editCommand, model,
-                PersonMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
 
         // edit person with only duplicate id
         descriptor = new EditPersonDescriptorBuilder().withName("Test").withEmail("test@example.com")
                 .withStudentId(personInList.getStudentId().toString()).build();
         editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model,
-                String.format(PersonMessages.MESSAGE_DUPLICATE_PERSON, Messages.format(personInList)));
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test

@@ -39,14 +39,14 @@ public abstract class AllocateStudentToTeamCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Allocate student to team: %s";
     public static final String MESSAGE_STUDENT_NOT_IN_TUTORIAL = "Student needs to be in that tutorial group first.";
 
-
-
     public static final String MESSAGE_TEAM_SIZE_EXCEEDED = "Max team size of %d reached";
 
-    public AllocateStudentToTeamCommand() {}
+    public AllocateStudentToTeamCommand() {
+    }
 
     @Override
     public abstract CommandResult execute(Model model) throws CommandException;
+
     @Override
     public abstract boolean equals(Object other);
 
@@ -58,18 +58,21 @@ public abstract class AllocateStudentToTeamCommand extends Command {
      * @param tutorialTeam
      * @throws CommandException
      */
-    public void checkAllocateCondition(Model model, Person student, TutorialClass tutClass, TutorialTeam tutorialTeam, ModuleCode moduleCode)
+    public void checkAllocateCondition(Model model, Person student, TutorialClass tutClass,
+            TutorialTeam tutorialTeam, ModuleCode moduleCode)
             throws CommandException {
         if (!model.isStudentInTutorialClass(student, tutClass)) {
             throw new CommandException(MESSAGE_STUDENT_NOT_IN_TUTORIAL);
         }
 
         if (!model.hasTeamInTutorial(tutClass, tutorialTeam)) {
-            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_NOT_FOUND, tutorialTeam, moduleCode, tutClass));
+            throw new CommandException(
+                    String.format(TutorialTeamMessages.MESSAGE_TEAM_NOT_FOUND, tutorialTeam, moduleCode, tutClass));
         }
 
         if (model.isStudentInAnyTeam(student, tutClass)) {
-            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_DUPLICATE_PERSON_IN_TEAM, Messages.format(student), tutClass));
+            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_DUPLICATE_PERSON_IN_TEAM,
+                    Messages.format(student), tutClass));
         }
 
         if (model.hasTeamSizeExceeded(tutorialTeam)) {
