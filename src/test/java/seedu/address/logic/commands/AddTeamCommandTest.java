@@ -68,7 +68,8 @@ public class AddTeamCommandTest {
 
         assertCommandFailure(new AddTeamCommand(new ModuleCode(VALID_MODULE_AMY),
                 new TutorialClass(VALID_TUTORIAL_AMY), VALID_TEAM_NAME_AMY), model,
-                String.format(TutorialTeamMessages.MESSAGE_DUPLICATE_TEAM, VALID_TEAM_NAME_AMY, VALID_MODULE_AMY, VALID_TUTORIAL_AMY));
+                String.format(TutorialTeamMessages.MESSAGE_DUPLICATE_TEAM, VALID_TEAM_NAME_AMY,
+                        VALID_MODULE_AMY, VALID_TUTORIAL_AMY));
     }
 
     @Test

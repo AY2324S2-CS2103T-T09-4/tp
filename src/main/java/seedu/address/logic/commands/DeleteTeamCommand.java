@@ -57,7 +57,8 @@ public class DeleteTeamCommand extends Command {
         if (tutorialClass.hasTeam(team)) {
             tutorialClass.deleteTeam(team);
         } else {
-            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_NOT_FOUND, team, module, tutorialClass));
+            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_NOT_FOUND, team,
+                    module, tutorialClass));
         }
 
         return new CommandResult(generateSuccessMessage(module, tutorialClass, team));
