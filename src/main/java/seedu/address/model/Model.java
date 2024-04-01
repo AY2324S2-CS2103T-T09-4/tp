@@ -116,8 +116,6 @@ public interface Model {
      */
     void deleteModule(ModuleCode target);
 
-    public TutorialTeam getTutorialTeam(TutorialClass tutorialClass, TutorialTeam tutorialTeam);
-
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
@@ -144,35 +142,6 @@ public interface Model {
      * @param numOfTeams
      */
     void randomTeamAllocation(ModuleCode moduleCode, TutorialClass tutorialClass, int numOfTeams);
-
-    /**
-     * Returns true if a team with the same identity as {@code tutorialTeam} exists in the {@code tutorialClass}
-     * @param tutorialClass of the tutorialTeam.
-     * @param tutorialTeam to check if it exists.
-     */
-    boolean hasTeamInTutorial(TutorialClass tutorialClass, TutorialTeam tutorialTeam);
-
-    /**
-     * Returns true if the {@code student} is already in a team of {@code tutorialClass}.
-     * @param tutorialClass of the teams.
-     * @param student to search for.
-     */
-    public boolean isStudentInAnyTeam(Person student, TutorialClass tutorialClass);
-
-    /**
-     * Returns true if the {@code tutorialTeam} size has exceeded its limit.
-     * @param tutorialTeam size to check.
-     * @return a boolean that indicates whether the team size will be exceeded by adding another person.
-     */
-    boolean hasTeamSizeExceeded(TutorialTeam tutorialTeam);
-
-    /**
-     * Checks if a student is in the {@code tutorialClass} of that {@code moduleCode}
-     * @param student to check if student exist in tutorialClass.
-     * @param tutorialClass to check if the student is in
-     * @return a boolean indicating if the student is in that {@code tutorialClass}
-     */
-    boolean isStudentInTutorialClass(Person student, TutorialClass tutorialClass);
 
     /**
      * Adds the given person to the given tutorial class in the given module.

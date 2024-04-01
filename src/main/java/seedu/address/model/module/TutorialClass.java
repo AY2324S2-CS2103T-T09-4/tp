@@ -1,10 +1,14 @@
 package seedu.address.model.module;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 
 /**
@@ -153,6 +157,17 @@ public class TutorialClass {
     }
 
     /**
+     * Checks if a student is in the {@code tutorialClass} of that {@code moduleCode}
+     * @param student to check if student exist in tutorialClass.
+     * @param tutorialClass to check if the student is in
+     * @return a boolean indicating if the student is in that {@code tutorialClass}
+     */
+    public boolean isStudentInTutorialClass(Person student, TutorialClass tutorialClass) {
+        List<Person> students = tutorialClass.getStudents();
+        return students.stream().anyMatch(student::isSamePerson);
+    }
+
+    /**
      * Checks if the team is in the tutorial class.
      * @param team
      */
@@ -164,6 +179,45 @@ public class TutorialClass {
         };
         return false;
     }
+
+    /**
+     * Returns true if a team with the same identity as {@code tutorialTeam} exists in the {@code tutorialClass}
+     * @param tutorialClass of the tutorialTeam.
+     * @param tutorialTeam to check if it exist.
+     */
+    public boolean hasTeamInTutorial(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
+        requireNonNull(tutorialClass);
+        requireNonNull(tutorialTeam);
+        ArrayList<TutorialTeam> listOfTeams = tutorialClass.getTeams();
+        ObservableList<TutorialTeam> teams = FXCollections.observableList(listOfTeams);
+        return teams.stream().anyMatch(tutorialClass::hasTeam);
+    }
+
+    public TutorialTeam getTutorialTeam(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
+        requireNonNull(tutorialClass);
+        requireNonNull(tutorialTeam);
+        TutorialTeam tutTeam = tutorialClass.getTeams().stream()
+                .filter(team -> team.getTeamName().equals(tutorialTeam.getTeamName()))
+                .findFirst()
+                .orElse(null);
+        return tutTeam;
+    }
+
+    /**
+     * Returns true if the {@code student} is already in a team of {@code tutorialClass}.
+     * @param tutorialClass of the teams.
+     * @param student to search for.
+     */
+    public boolean isStudentInAnyTeam(Person student, TutorialClass tutorialClass) {
+        boolean isStudentExist = false;
+        for (TutorialTeam tutorialTeam : tutorialClass.getTeams()) {
+            isStudentExist = tutorialTeam.hasStudentVerified(student, tutorialTeam);
+            if (isStudentExist) {
+                break;
+            }
+        }
+        return isStudentExist;
+    };
 
     /**
      * Deletes a team from the tutorial class.

@@ -208,7 +208,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireAllNonNull(moduleCode, tutorialClass, numOfTeams);
         ArrayList<TutorialTeam> teams = tutorialClass.getTeams();
         ArrayList<Person> classList = tutorialClass.getStudents();
-        int classSize = tutorialClass.getStudents().size();
+        int classSize = classList.size();
         int teamSize = (int) Math.ceil((double) classSize / numOfTeams);
         teams.clear();
 
@@ -220,35 +220,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         Random random = new Random();
-        int k = 0;
-        while (k < classList.size()) {
+        int listIndex = 0;
+        while (listIndex < classSize) {
             int randInt = random.nextInt(numOfTeams);
             TutorialTeam currTeam = tutorialClass.getTeams().get(randInt);
-            if (hasTeamSizeExceeded(currTeam)) {
+            if (currTeam.hasTeamSizeExceeded(currTeam)) {
                 continue;
             }
 
-            Person student = classList.get(k);
-            if (!isSamePersonInTeam(student, currTeam)) {
+            Person student = classList.get(listIndex);
+            if (!currTeam.isSamePersonInTeam(student, currTeam)) {
                 currTeam.addStudent(student);
-                k++;
+                listIndex++;
             }
         }
-    }
-
-    /**
-     * Checks if the same person is in the team already.
-     * @param student to check if exist in team.
-     * @param tutorialTeam to check.
-     * @return a boolean true if the student exists in the team, else false.
-     */
-    public boolean isSamePersonInTeam(Person student, TutorialTeam tutorialTeam) {
-        for (Person person : tutorialTeam.getStudents()) {
-            if (person.isSamePerson(student)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**
@@ -302,17 +287,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Checks if a student is in the {@code tutorialClass} of that {@code moduleCode}
-     * @param student to check if student exist in tutorialClass.
-     * @param tutorialClass to check if the student is in
-     * @return a boolean indicating if the student is in that {@code tutorialClass}
-     */
-    public boolean isStudentInTutorialClass(Person student, TutorialClass tutorialClass) {
-        List<Person> students = tutorialClass.getStudents();
-        return students.stream().anyMatch(student::isSamePerson);
-    }
-
-    /**
      * Allocates the {@code studentId} to the {@code tutorialTeam}
      * @param tutorialTeam to allocate the student into.
      */
@@ -320,57 +294,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(student);
         requireNonNull(tutorialTeam);
         tutorialTeam.addStudent(student);
-    }
-
-    /**
-     * Returns true if the {@code tutorialTeam} size has exceeded its limit.
-     * @param tutorialTeam size to check.
-     * @return a boolean that indicates whether the team size will be exceeded by adding another person.
-     */
-    public boolean hasTeamSizeExceeded(TutorialTeam tutorialTeam) {
-        requireNonNull(tutorialTeam);
-        int maxTeamSize = tutorialTeam.getTeamSize();
-        int currTeamSize = tutorialTeam.getStudents().size();
-        return (maxTeamSize <= currTeamSize);
-    };
-
-    /**
-     * Returns true if the {@code student} is already in a team of {@code tutorialClass}.
-     * @param tutorialClass of the teams.
-     * @param student to search for.
-     */
-    public boolean isStudentInAnyTeam(Person student, TutorialClass tutorialClass) {
-        boolean isStudentExist = false;
-        for (TutorialTeam tutorialTeam : tutorialClass.getTeams()) {
-            isStudentExist = tutorialTeam.hasStudentVerified(student, tutorialTeam);
-            if (isStudentExist) {
-                break;
-            }
-        }
-        return isStudentExist;
-    };
-
-    /**
-     * Returns true if a team with the same identity as {@code tutorialTeam} exists in the {@code tutorialClass}
-     * @param tutorialClass of the tutorialTeam.
-     * @param tutorialTeam to check if it exist.
-     */
-    public boolean hasTeamInTutorial(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
-        requireNonNull(tutorialClass);
-        requireNonNull(tutorialTeam);
-        ArrayList<TutorialTeam> listOfTeams = tutorialClass.getTeams();
-        ObservableList<TutorialTeam> teams = FXCollections.observableList(listOfTeams);
-        return teams.stream().anyMatch(tutorialClass::hasTeam);
-    }
-
-    public TutorialTeam getTutorialTeam(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
-        requireNonNull(tutorialClasses);
-        requireNonNull(tutorialTeam);
-        TutorialTeam tutTeam = tutorialClass.getTeams().stream()
-                .filter(team -> team.getTeamName().equals(tutorialTeam.getTeamName()))
-                .findFirst()
-                .orElse(null);
-        return tutTeam;
     }
 
     /**

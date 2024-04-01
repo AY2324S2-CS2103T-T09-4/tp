@@ -7,9 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TEAM_NAME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TEAM_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TEAM_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -108,25 +105,6 @@ public class AddressBookTest {
     }
 
     @Test
-    public void isStudentInTutorialClass_personNotInClass_failure() {
-        Person person = new PersonBuilder(ALICE).build();
-        TutorialClass tutorialClass = new TutorialClass(VALID_TUTORIAL_AMY);
-        assertFalse(addressBook.isStudentInTutorialClass(person, tutorialClass));
-    }
-
-    @Test
-    public void isStudentInTutorialClass_classIsNull_failure() {
-        Person person = new PersonBuilder(ALICE).build();
-        assertThrows(NullPointerException.class, () -> addressBook.isStudentInTutorialClass(person, null));
-    }
-
-    @Test
-    public void isStudentInTutorialClass_personIsNull_failure() {
-        TutorialClass tutorialClass = new TutorialClass(VALID_TUTORIAL_AMY);
-        assertThrows(NullPointerException.class, () -> addressBook.isStudentInTutorialClass(null, tutorialClass));
-    }
-
-    @Test
     public void allocateStudentToTeam_personIsNull_failure() {
         TutorialTeam tutorialTeam = new TutorialTeam(VALID_TEAM_NAME);
         assertThrows(NullPointerException.class, () -> addressBook.allocateStudentToTeam(null, tutorialTeam));
@@ -136,77 +114,6 @@ public class AddressBookTest {
     public void allocateStudentToTeam_tutorialTeamIsNull_failure() {
         Person person = new PersonBuilder(ALICE).build();
         assertThrows(NullPointerException.class, () -> addressBook.allocateStudentToTeam(person, null));
-    }
-
-    @Test
-    public void hasTeamSizeExceeded_teamSizeNotExceeded_failure() {
-        TutorialTeam tutorialTeam = new TutorialTeam(VALID_TEAM_NAME, 3);
-        assertFalse(addressBook.hasTeamSizeExceeded(tutorialTeam));
-    }
-
-    @Test
-    public void hasTeamSizeExceeded_teamSizeExceeded_success() {
-        TutorialTeam tutorialTeam = new TutorialTeam(VALID_TEAM_NAME, 1);
-        Person student = new PersonBuilder(ALICE).build();
-        tutorialTeam.addStudent(student);
-        assertTrue(addressBook.hasTeamSizeExceeded(tutorialTeam));
-    }
-
-    @Test
-    public void isStudentInAnyTeam_studentNotInAny_failure() {
-        TutorialClass tutorialClass = new TutorialClass();
-        TutorialTeam firstTutorialTeam = new TutorialTeam(VALID_TEAM_NAME, 1);
-        TutorialTeam secondtutorialTeam = new TutorialTeam(VALID_TEAM_NAME_BOB, 2);
-        tutorialClass.addTeam(firstTutorialTeam);
-        tutorialClass.addTeam(secondtutorialTeam);
-        Person person = new PersonBuilder(ALICE).build();
-        assertFalse(addressBook.isStudentInAnyTeam(person, tutorialClass));
-    }
-
-    @Test
-    public void isStudentInAnyTeam_studentIsNull_failure() {
-        TutorialClass tutorialClass = new TutorialClass(VALID_TUTORIAL_AMY);
-        TutorialTeam firstTutorialTeam = new TutorialTeam(VALID_TEAM_NAME_AMY, 1);
-        TutorialTeam secondtutorialTeam = new TutorialTeam(VALID_TEAM_NAME_BOB, 2);
-        tutorialClass.addTeam(firstTutorialTeam);
-        tutorialClass.addTeam(secondtutorialTeam);
-        assertFalse(addressBook.isStudentInAnyTeam(null, tutorialClass));
-    }
-
-    @Test
-    public void hasTeamInTutorial_success() {
-        TutorialClass tutorialClass = new TutorialClass(VALID_TUTORIAL_AMY);
-        TutorialTeam firstTutorialTeam = new TutorialTeam(VALID_TEAM_NAME, 1);
-        TutorialTeam secondtutorialTeam = new TutorialTeam(VALID_TEAM_NAME_BOB, 2);
-        tutorialClass.addTeam(firstTutorialTeam);
-        tutorialClass.addTeam(secondtutorialTeam);
-        assertTrue(addressBook.hasTeamInTutorial(tutorialClass, firstTutorialTeam));
-    }
-
-    @Test
-    public void hasTeamInTutorial_tutorialTeamIsNull_failure() {
-        TutorialClass tutorialClass = new TutorialClass(VALID_TUTORIAL_AMY);
-        TutorialTeam firstTutorialTeam = new TutorialTeam(VALID_TEAM_NAME, 1);
-        TutorialTeam secondtutorialTeam = new TutorialTeam(VALID_TEAM_NAME_BOB, 2);
-        tutorialClass.addTeam(firstTutorialTeam);
-        tutorialClass.addTeam(secondtutorialTeam);
-        assertThrows(NullPointerException.class, () -> addressBook.hasTeamInTutorial(tutorialClass, null));
-    }
-
-    @Test
-    public void getTutorialTeam_tutorialTeamIsNull_failure() {
-        TutorialClass tutorialClass = new TutorialClass(VALID_TUTORIAL_AMY);
-        assertThrows(NullPointerException.class, () -> addressBook.getTutorialTeam(tutorialClass, null));
-    }
-
-    @Test
-    public void getTutorialTeam_tutorialTeamMatch_success() {
-        TutorialClass tutorialClass = new TutorialClass(VALID_TUTORIAL_AMY);
-        TutorialTeam firstTutorialTeam = new TutorialTeam(VALID_TEAM_NAME, 1);
-        TutorialTeam secondtutorialTeam = new TutorialTeam(VALID_TEAM_NAME_BOB, 2);
-        tutorialClass.addTeam(firstTutorialTeam);
-        tutorialClass.addTeam(secondtutorialTeam);
-        assertEquals(addressBook.getTutorialTeam(tutorialClass, firstTutorialTeam), firstTutorialTeam);
     }
 
     @Test

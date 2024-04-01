@@ -74,14 +74,14 @@ public class AllocateStudentToTeamByIndexCommand extends AllocateStudentToTeamCo
                     String.format(MESSAGE_PERSON_INDEX_NOT_FOUND, index.getOneBased(), tutClass));
         }
 
-        TutorialTeam tutTeam = model.getTutorialTeam(tutClass, tutorialTeam);
+        TutorialTeam tutTeam = tutClass.getTutorialTeam(tutClass, tutorialTeam);
 
         if (tutTeam == null) {
             throw new CommandException(MESSAGE_STUDENT_DOES_NOT_EXIST);
         }
 
         // throws commandException if any condition fails
-        checkAllocateCondition(model, studentToAllocate, tutClass, tutTeam);
+        checkAllocateCondition(studentToAllocate, tutClass, tutTeam);
         model.allocateStudentToTeam(studentToAllocate, tutTeam);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutTeam));

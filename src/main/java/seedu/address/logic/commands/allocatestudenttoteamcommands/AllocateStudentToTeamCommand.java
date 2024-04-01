@@ -26,7 +26,7 @@ public abstract class AllocateStudentToTeamCommand extends Command {
             + PREFIX_STUDENTID + "STUDENT ID "
             + PREFIX_MODULECODE + "MODULE CODE "
             + PREFIX_TUTORIALCLASS + "TUTORIAL CLASS "
-            + PREFIX_TEAMNAME + "TEAM NAME"
+            + PREFIX_TEAMNAME + "TEAM NAME \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENTID + "A1234567L "
             + PREFIX_MODULECODE + "CS2101 "
@@ -52,27 +52,26 @@ public abstract class AllocateStudentToTeamCommand extends Command {
 
     /**
      * Check the condition needed to allocate the student to a tutorial team.
-     * @param model
      * @param student
      * @param tutClass
      * @param tutorialTeam
      * @throws CommandException
      */
-    public void checkAllocateCondition(Model model, Person student, TutorialClass tutClass, TutorialTeam tutorialTeam)
+    public void checkAllocateCondition(Person student, TutorialClass tutClass, TutorialTeam tutorialTeam)
             throws CommandException {
-        if (!model.isStudentInTutorialClass(student, tutClass)) {
+        if (!tutClass.isStudentInTutorialClass(student, tutClass)) {
             throw new CommandException(MESSAGE_STUDENT_NOT_IN_TUTORIAL);
         }
 
-        if (!model.hasTeamInTutorial(tutClass, tutorialTeam)) {
+        if (!tutClass.hasTeamInTutorial(tutClass, tutorialTeam)) {
             throw new CommandException(String.format(MESSAGE_TEAM_DOES_NOT_EXIST, tutorialTeam, tutClass));
         }
 
-        if (model.isStudentInAnyTeam(student, tutClass)) {
+        if (tutClass.isStudentInAnyTeam(student, tutClass)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON_IN_TEAM, tutClass));
         }
 
-        if (model.hasTeamSizeExceeded(tutorialTeam)) {
+        if (tutorialTeam.hasTeamSizeExceeded(tutorialTeam)) {
             throw new CommandException(String.format(MESSAGE_TEAM_SIZE_EXCEEDED, tutorialTeam.getTeamSize()));
         }
     }

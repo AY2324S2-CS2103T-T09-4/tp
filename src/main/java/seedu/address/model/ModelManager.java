@@ -165,18 +165,6 @@ public class ModelManager implements Model {
         addressBook.randomTeamAllocation(moduleCode, tutorialClass, numOfTeams);
     }
 
-    @Override
-    public boolean hasTeamInTutorial(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
-        requireAllNonNull(tutorialClass, tutorialTeam);
-        return addressBook.hasTeamInTutorial(tutorialClass, tutorialTeam);
-    }
-
-    @Override
-    public TutorialTeam getTutorialTeam(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
-        requireAllNonNull(tutorialClass, tutorialTeam);
-        return addressBook.getTutorialTeam(tutorialClass, tutorialTeam);
-    }
-
     /**
      * Add a team to the tutorial class
      * @param tutorialTeam to be added to the tutorial class
@@ -185,24 +173,6 @@ public class ModelManager implements Model {
     public void addTeam(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
         requireNonNull(tutorialTeam);
         addressBook.addTeam(tutorialClass, tutorialTeam);
-    }
-
-    @Override
-    public boolean hasTeamSizeExceeded(TutorialTeam tutorialTeam) {
-        requireNonNull(tutorialTeam);
-        return addressBook.hasTeamSizeExceeded(tutorialTeam);
-    };
-
-    @Override
-    public boolean isStudentInAnyTeam(Person student, TutorialClass tutorialClass) {
-        requireAllNonNull(student, tutorialClass);
-        return addressBook.isStudentInAnyTeam(student, tutorialClass);
-    }
-
-    @Override
-    public boolean isStudentInTutorialClass(Person student, TutorialClass tutorialClass) {
-        requireAllNonNull(student, tutorialClass);
-        return addressBook.isStudentInTutorialClass(student, tutorialClass);
     }
 
     @Override

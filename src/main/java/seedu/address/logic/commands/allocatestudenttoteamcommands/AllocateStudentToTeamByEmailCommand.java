@@ -63,7 +63,7 @@ public class AllocateStudentToTeamByEmailCommand extends AllocateStudentToTeamCo
         TutorialClass tutClass = model.findTutorialClassFromList(tutorialClass, module);
 
         Person student = model.getUniquePersonList().getPersonByEmail(email);
-        TutorialTeam tutTeam = model.getTutorialTeam(tutClass, tutorialTeam);
+        TutorialTeam tutTeam = tutClass.getTutorialTeam(tutClass, tutorialTeam);
 
         if (student == null) {
             throw new CommandException(MESSAGE_STUDENT_DOES_NOT_EXIST);
@@ -74,7 +74,7 @@ public class AllocateStudentToTeamByEmailCommand extends AllocateStudentToTeamCo
         }
 
         // throws commandException if any condition fails
-        checkAllocateCondition(model, student, tutClass, tutTeam);
+        checkAllocateCondition(student, tutClass, tutTeam);
         model.allocateStudentToTeam(student, tutTeam);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutTeam));
