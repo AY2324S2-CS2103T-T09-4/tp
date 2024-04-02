@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NUM_OF_TEAMS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_SIZE;
@@ -47,7 +48,7 @@ public class CommandTestUtil {
 
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_NUM_OF_TEAMS = "1";
+    public static final int VALID_NUM_OF_TEAMS = 1;
     public static final String INVALID_NUM_OF_TEAMS = "aaaaa";
 
     public static final String INDEX_ONE = " " + PREFIX_INDEX + VALID_INDEX_ONE;
@@ -59,8 +60,10 @@ public class CommandTestUtil {
     public static final String STUDENT_ID_DESC_AMY = " " + PREFIX_STUDENTID + VALID_STUDENT_ID_AMY;
     public static final String STUDENT_ID_DESC_BOB = " " + PREFIX_STUDENTID + VALID_STUDENT_ID_BOB;
     public static final String MODULE_DESC_AMY = " " + PREFIX_MODULECODE + VALID_MODULE_AMY;
+    public static final String MODULE_DESC_BOB = " " + PREFIX_MODULECODE + VALID_MODULE_BOB;
     public static final String TUTORIAL_DESC_AMY = " " + PREFIX_TUTORIALCLASS + VALID_TUTORIAL_AMY;
     public static final String TUTORIAL_DESC_BOB = " " + PREFIX_TUTORIALCLASS + VALID_TUTORIAL_BOB;
+    public static final String  NUM_OF_TEAMS_DESC = " " + PREFIX_NUM_OF_TEAMS + VALID_NUM_OF_TEAMS;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -87,6 +90,10 @@ public class CommandTestUtil {
 
     // missing '@' symbol
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo";
+
+    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULECODE + INVALID_MODULECODE;
+    public static final String INVALID_NUM_OF_TEAMS_DESC = " " + PREFIX_NUM_OF_TEAMS + INVALID_NUM_OF_TEAMS;
+    public static final String VALID_NUM_OF_TEAMS_DESC = " " + PREFIX_NUM_OF_TEAMS + VALID_NUM_OF_TEAMS;
 
     // invalid format for tutorial, alphabet not allowed in between 2 numbers.
     public static final String INVALID_TUTORIAL_DESC = " " + PREFIX_TUTORIALCLASS + "T1X312";
