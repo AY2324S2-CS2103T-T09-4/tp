@@ -63,7 +63,7 @@ public class CommandTestUtil {
     public static final String MODULE_DESC_BOB = " " + PREFIX_MODULECODE + VALID_MODULE_BOB;
     public static final String TUTORIAL_DESC_AMY = " " + PREFIX_TUTORIALCLASS + VALID_TUTORIAL_AMY;
     public static final String TUTORIAL_DESC_BOB = " " + PREFIX_TUTORIALCLASS + VALID_TUTORIAL_BOB;
-    public static final String  NUM_OF_TEAMS_DESC = " " + PREFIX_NUM_OF_TEAMS + VALID_NUM_OF_TEAMS;
+    public static final String NUM_OF_TEAMS_DESC = " " + PREFIX_NUM_OF_TEAMS + VALID_NUM_OF_TEAMS;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
