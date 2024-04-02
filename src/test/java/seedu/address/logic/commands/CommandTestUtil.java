@@ -47,6 +47,8 @@ public class CommandTestUtil {
 
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_NUM_OF_TEAMS = "1";
+    public static final String INVALID_NUM_OF_TEAMS = "aaaaa";
 
     public static final String INDEX_ONE = " " + PREFIX_INDEX + VALID_INDEX_ONE;
     public static final String INDEX_TWO = " " + PREFIX_INDEX + VALID_INDEX_TWO;

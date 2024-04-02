@@ -65,12 +65,17 @@ public class RandomTeamAllocationCommand extends Command {
      * @return a boolean if it is possible.
      */
     public boolean checkTeamAllocationCondition(TutorialClass tutorialClass, int numOfTeams) {
+        if (numOfTeams <= 0) {
+            return false;
+        }
         ArrayList<Person> studentList = tutorialClass.getStudents();
         int numOfStudents = studentList.size();
-        if (Math.ceil((double) numOfStudents / numOfTeams) >= 1.0) {
-            return true;
+
+        if (numOfTeams > numOfStudents) {
+            return false;
         }
-        return false;
+
+        return true;
     }
 
     @Override
