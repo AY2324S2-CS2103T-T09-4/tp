@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.sortstudentcommands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_BY;
 
@@ -6,6 +6,8 @@ import java.util.Comparator;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -17,20 +19,17 @@ public class SortStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "/sort_student";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts students based on specified parameter.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts students based on name, id or email.\n"
             + "Parameters: "
-            + PREFIX_SORT_BY + "name " + "or "
-            + PREFIX_SORT_BY + "id " + "or "
-            + PREFIX_SORT_BY + "email\n"
+            + PREFIX_SORT_BY + "PARAMETER\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SORT_BY + "name";
 
     public static final String MESSAGE_SORT_STUDENT_SUCCESS = "Students have been successfully sorted";
     public static final String MESSAGE_INVALID_PARAMETER = "Not a valid parameter for sorting.";
-    public static final String MESSAGE_EMPTY_PARAMETER = "Please provide a parameter.";
 
-    private final String sortBy;
-    public SortStudentCommand(String sortBy) {
+    private final SortStudentParameter sortBy;
+    public SortStudentCommand(SortStudentParameter sortBy) {
         this.sortBy = sortBy;
     }
 
@@ -38,16 +37,16 @@ public class SortStudentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         Comparator<Person> personComparator;
         switch (sortBy) {
-        case "name":
+        case NAME:
             personComparator = Comparator.comparing(p -> p.getName().toString());
             break;
-        case "id":
+        case STUDENTID:
             personComparator = Comparator.comparing(p -> p.getStudentId().toString());
             break;
-        case "email":
+        case EMAIL:
             personComparator = Comparator.comparing(p -> p.getEmail().toString());
             break;
-        case "":
+        case EMPTY:
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         default:
             throw new CommandException(MESSAGE_INVALID_PARAMETER);
