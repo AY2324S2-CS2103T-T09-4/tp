@@ -39,7 +39,7 @@ public class RandomTeamAllocationCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Successfully randomly allocate students for tutorial class %s";
 
-    public static final String MESSAGE_SIZE_NEGATIVE = "Number of teams must be more than 0!";
+    public static final String MESSAGE_NUM_OF_TEAMS_NEGATIVE = "Number of teams must be more than 0!";
     private final ModuleCode moduleCode;
     private final TutorialClass tutorialClass;
     private final int numOfTeams;
