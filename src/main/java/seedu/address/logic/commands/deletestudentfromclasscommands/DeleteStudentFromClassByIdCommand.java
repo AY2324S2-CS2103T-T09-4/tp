@@ -41,7 +41,8 @@ public class DeleteStudentFromClassByIdCommand extends DeleteStudentFromClassCom
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ModuleTutorialPair moduleAndTutorialClass = getModuleAndTutorialClass(model);
+        ModuleTutorialPair moduleAndTutorialClass = ModuleTutorialPair.getModuleAndTutorialClass(model,
+                getModule(), getTutorialClass());
         ModuleCode module = moduleAndTutorialClass.getModule();
         TutorialClass tutorialClass = moduleAndTutorialClass.getTutorialClass();
         Person personToDelete;

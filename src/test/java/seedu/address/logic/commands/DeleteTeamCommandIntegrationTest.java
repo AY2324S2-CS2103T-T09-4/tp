@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.ModuleMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -44,14 +45,13 @@ public class DeleteTeamCommandIntegrationTest {
     }
 
     @Test
-    public void execute_deleteTeam_success() {
+    public void execute_deleteTeam_success() throws CommandException {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-
         assertCommandSuccess(new DeleteTeamCommand(testModule, testTutorial, VALID_TEAM_NAME_AMY),
-                model,
-                String.format(DeleteTeamCommand.MESSAGE_DELETE_TEAM_SUCCESS, VALID_TEAM_NAME_AMY,
-                        testModule, testTutorial),
-                expectedModel);
+            model,
+            String.format(DeleteTeamCommand.MESSAGE_DELETE_TEAM_SUCCESS, VALID_TEAM_NAME_AMY,
+                testModule, testTutorial),
+            expectedModel);
     }
 
     @Test

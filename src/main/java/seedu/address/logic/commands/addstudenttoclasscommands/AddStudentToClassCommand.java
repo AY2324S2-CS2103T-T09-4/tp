@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.addstudenttoclasscommands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
@@ -9,10 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.messages.ModuleMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.ModuleTutorialPair;
 import seedu.address.model.module.TutorialClass;
 
 /**
@@ -37,22 +34,6 @@ public abstract class AddStudentToClassCommand extends Command {
         requireAllNonNull(module, tutorialClass);
         this.module = module;
         this.tutorialClass = tutorialClass;
-    }
-
-    protected ModuleTutorialPair getModuleAndTutorialClass(Model model) throws CommandException {
-        requireNonNull(model);
-        ModuleCode module = getModule();
-        TutorialClass tutorialClass = getTutorialClass();
-        ModuleCode existingModule = model.findModuleFromList(module);
-        TutorialClass existingTutorialClass = model.findTutorialClassFromList(tutorialClass, existingModule);
-        if (existingModule == null) {
-            throw new CommandException(String.format(ModuleMessages.MESSAGE_MODULE_NOT_FOUND, module));
-        }
-        if (existingTutorialClass == null) {
-            throw new CommandException(
-                    String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE, tutorialClass, module));
-        }
-        return new ModuleTutorialPair(existingModule, existingTutorialClass);
     }
 
     protected ModuleCode getModule() {

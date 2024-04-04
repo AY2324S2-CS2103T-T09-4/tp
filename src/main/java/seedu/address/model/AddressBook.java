@@ -33,7 +33,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final ArrayList<ModuleCode> modules;
     private final ArrayList<TutorialClass> tutorialClasses;
     private final ArrayList<TutorialTeam> tutorialTeams;
+
     private final UniquePersonList studentsInTeam;
+
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -51,6 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         tutorialClasses = new ArrayList<>();
         tutorialTeams = new ArrayList<>();
         studentsInTeam = new UniquePersonList();
+
     }
 
     public AddressBook() {
@@ -297,10 +300,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * adds a team into the tutorial class
-     * @param tutorialClass to add the tutorialTeam to.
-     * @param tutorialTeam to be added into the tutorialClass.
+     * Deletes the {@code studentId} from the {@code tutorialTeam}
+     * @param student to be deleted.
+     * @param tutorialTeam to delete the student from.
      */
+    public void deleteStudentFromTeam(Person student, TutorialTeam tutorialTeam) {
+        requireNonNull(student);
+        requireNonNull(tutorialTeam);
+        tutorialTeam.deleteStudent(student);
+    }
+
+    /**
+    * Adds a team into the tutorial class
+    *
+    * @param tutorialClass to add the tutorialTeam to.
+    * @param tutorialTeam to be added into the tutorialClass.
+    */
     public void addTeam(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
         requireNonNull(tutorialClass);
         requireNonNull(tutorialTeam);
@@ -376,6 +391,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<TutorialClass> getTutorialList() {
         return FXCollections.observableList(tutorialClasses);
+    }
+    @Override
+    public ObservableList<TutorialTeam> getTeamList() {
+        return FXCollections.observableList(tutorialTeams);
     }
     @Override
     public void setSortedPersonList(Comparator<Person> comparator) {

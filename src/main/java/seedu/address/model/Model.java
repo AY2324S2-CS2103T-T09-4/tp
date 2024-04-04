@@ -130,17 +130,25 @@ public interface Model {
 
     /**
      * Allocates the {@code student} to the {@code tutorialTeam}
+     * @param student to be allocated
      * @param tutorialTeam to allocate the student into.
      */
     void allocateStudentToTeam(Person student, TutorialTeam tutorialTeam);
 
     /**
-     * Randomly allocates the students in {@code tutorial class} into {@code numOfTeams} of different teams.
-     *
-     * @param moduleCode
-     * @param tutorialClass
-     * @param numOfTeams
+     * Deletes the {@code student} from the {@code tutorialTeam}
+     * @param student to be deleted
+     * @param tutorialTeam to delete the student from.
      */
+    void deleteStudentFromTeam(Person student, TutorialTeam tutorialTeam);
+
+    /**
+    * Randomly allocates the students in {@code tutorial class} into {@code numOfTeams} of different teams.
+    *
+    * @param moduleCode
+    * @param tutorialClass
+    * @param numOfTeams
+    */
     void randomTeamAllocation(ModuleCode moduleCode, TutorialClass tutorialClass, int numOfTeams);
 
     /**
@@ -178,6 +186,7 @@ public interface Model {
      */
 
     void updateFilteredModuleList(Predicate<ModuleCode> predicate);
+
     /**
      * Search for person by a given {@code predicate}.
      */
@@ -187,4 +196,7 @@ public interface Model {
      * Deletes the given person from the given tutorial class in the given module.
      */
     void deletePersonFromTutorialClass(Person personToAdd, ModuleCode module, TutorialClass tutorialClass);
+
+    TutorialTeam searchTeamByPredicate(Predicate<TutorialTeam> predicate, TutorialClass tutorialClass,
+                                       ModuleCode moduleCode);
 }

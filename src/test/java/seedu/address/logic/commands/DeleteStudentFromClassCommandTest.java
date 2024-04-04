@@ -57,6 +57,8 @@ public class DeleteStudentFromClassCommandTest {
 
     @Test
     public void execute_invalidStudent_fail() {
+        Index testIndex = Index.fromOneBased(1000);
+
         DeleteStudentFromClassByEmailCommand deleteStudentFromClassByEmailCommand =
                 new DeleteStudentFromClassByEmailCommand(new Email(INVALID_PERSON_EMAIL),
                 new ModuleCode(VALID_MODULE_AMY), new TutorialClass(VALID_TUTORIAL_AMY));
@@ -66,7 +68,7 @@ public class DeleteStudentFromClassCommandTest {
                 new ModuleCode(VALID_MODULE_AMY), new TutorialClass(VALID_TUTORIAL_AMY));
 
         DeleteStudentFromClassByIndexCommand deleteStudentFromClassByIndexCommand =
-                new DeleteStudentFromClassByIndexCommand(Index.fromOneBased(1000),
+                new DeleteStudentFromClassByIndexCommand(testIndex,
                 new ModuleCode(VALID_MODULE_AMY), new TutorialClass(VALID_TUTORIAL_AMY));
 
         assertCommandFailure(deleteStudentFromClassByEmailCommand, model,
@@ -76,7 +78,8 @@ public class DeleteStudentFromClassCommandTest {
                 String.format(PersonMessages.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, INVALID_PERSON_STUDENT_ID));
 
         assertCommandFailure(deleteStudentFromClassByIndexCommand, model,
-                String.format(PersonMessages.MESSAGE_PERSON_INDEX_NOT_FOUND, 1000));
+                String.format(TutorialClassMessages.MESSAGE_PERSON_INDEX_NOT_FOUND, testIndex.getOneBased(),
+                        tutorialClass));
     }
 
     @Test
@@ -86,19 +89,19 @@ public class DeleteStudentFromClassCommandTest {
         model.addPerson(person);
         tutorialClass.addStudent(otherPerson);
 
-        DeleteStudentFromClassByEmailCommand addStudentToClassByEmailCommand =
+        DeleteStudentFromClassByEmailCommand deleteStudentFromClassByEmailCommand =
                 new DeleteStudentFromClassByEmailCommand(person.getEmail(),
                 new ModuleCode(VALID_MODULE_AMY), new TutorialClass(VALID_TUTORIAL_AMY));
 
-        DeleteStudentFromClassByIdCommand addStudentToClassByIdCommand =
+        DeleteStudentFromClassByIdCommand deleteStudentFromClassByIdCommand =
                 new DeleteStudentFromClassByIdCommand(person.getStudentId(),
                 new ModuleCode(VALID_MODULE_AMY), new TutorialClass(VALID_TUTORIAL_AMY));
 
-        assertCommandFailure(addStudentToClassByIdCommand, model,
+        assertCommandFailure(deleteStudentFromClassByIdCommand, model,
                 String.format(TutorialClassMessages.MESSAGE_STUDENT_NOT_FOUND_IN_CLASS, Messages.format(person),
                         tutorialClass));
 
-        assertCommandFailure(addStudentToClassByEmailCommand, model,
+        assertCommandFailure(deleteStudentFromClassByEmailCommand, model,
                 String.format(TutorialClassMessages.MESSAGE_STUDENT_NOT_FOUND_IN_CLASS, Messages.format(person),
                         tutorialClass));
     }
@@ -164,4 +167,6 @@ public class DeleteStudentFromClassCommandTest {
         // different person -> returns false
         assertFalse(deleteStudentFromClassByIdFirstCommand.equals(deleteStudentFromClassByIdSecondCommand));
     }
+
+
 }

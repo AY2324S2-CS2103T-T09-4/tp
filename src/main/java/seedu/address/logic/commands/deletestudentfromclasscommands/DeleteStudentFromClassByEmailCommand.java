@@ -40,7 +40,8 @@ public class DeleteStudentFromClassByEmailCommand extends DeleteStudentFromClass
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ModuleTutorialPair moduleAndTutorialClass = getModuleAndTutorialClass(model);
+        ModuleTutorialPair moduleAndTutorialClass = ModuleTutorialPair.getModuleAndTutorialClass(model,
+                getModule(), getTutorialClass());
         TutorialClass tutorialClass = moduleAndTutorialClass.getTutorialClass();
         ModuleCode module = moduleAndTutorialClass.getModule();
         Person personToDelete;

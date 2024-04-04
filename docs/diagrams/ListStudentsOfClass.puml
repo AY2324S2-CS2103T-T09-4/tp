@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ListStudentsOfClassCommandParser" as ListStudentsOfClassCommandParser LOGIC_COLOR
+participant ":ListStudentsOfClassCommand" as ListStudentsOfClassCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(listStudentsofClass)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(listStudentsofClass)
+activate AddressBookParser
+
+create ListStudentsOfClassCommandParser
+AddressBookParser -> ListStudentsOfClassCommandParser
+activate ListStudentsOfClassCommandParser
+
+ListStudentsOfClassCommandParser --> AddressBookParser
+deactivate ListStudentsOfClassCommandParser
+
+AddressBookParser -> ListStudentsOfClassCommandParser : parse(module, tutorial)
+activate ListStudentsOfClassCommandParser
+
+create ListStudentsOfClassCommand
+ListStudentsOfClassCommandParser -> ListStudentsOfClassCommand
+activate ListStudentsOfClassCommand
+
+ListStudentsOfClassCommand --> ListStudentsOfClassCommandParser :
+deactivate ListStudentsOfClassCommand
+
+ListStudentsOfClassCommandParser --> AddressBookParser : s
+deactivate ListStudentsOfClassCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListStudentsOfClassCommandParser -[hidden]-> AddressBookParser
+destroy ListStudentsOfClassCommandParser
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> ListStudentsOfClassCommand : execute(m)
+activate ListStudentsOfClassCommand
+
+ListStudentsOfClassCommand -> Model : findModuleFromList("CS2103T")
+activate Model
+
+Model --> ListStudentsOfClassCommand : p
+deactivate Model
+ListStudentsOfClassCommand -> Model : findTutorialClassFromList("T09", "CS2103T")
+activate Model
+
+Model --> ListStudentsOfClassCommand
+deactivate Model
+
+ListStudentsOfClassCommand --> ListStudentsOfClassCommand : getStudents()
+
+create CommandResult
+ListStudentsOfClassCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListStudentsOfClassCommand
+deactivate CommandResult
+
+ListStudentsOfClassCommand --> LogicManager : r
+deactivate ListStudentsOfClassCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

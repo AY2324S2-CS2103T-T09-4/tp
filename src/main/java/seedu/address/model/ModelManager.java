@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -31,6 +32,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<ModuleCode> filteredModules;
+    private final FilteredList<TutorialTeam> filteredTeams;
 
 
     /**
@@ -45,6 +47,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredModules = new FilteredList<>(this.addressBook.getModuleList());
+        filteredTeams = new FilteredList<>(this.addressBook.getTeamList());
     }
 
     public ModelManager() {
@@ -160,6 +163,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteStudentFromTeam(Person student, TutorialTeam tutorialTeam) {
+        requireAllNonNull(student, tutorialTeam);
+        addressBook.deleteStudentFromTeam(student, tutorialTeam);
+    }
+
+    /**
+     * Generates a given number of teams for the tutorial class
+     * @param moduleCode of the module to add teams to
+     * @param tutorialClass of the module to add teams to
+     * @param numOfTeams to be added
+     */
     public void randomTeamAllocation(ModuleCode moduleCode, TutorialClass tutorialClass, int numOfTeams) {
         requireAllNonNull(moduleCode, tutorialClass, numOfTeams);
         addressBook.randomTeamAllocation(moduleCode, tutorialClass, numOfTeams);
@@ -282,5 +296,21 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
             && userPrefs.equals(otherModelManager.userPrefs)
             && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+
+    /**
+     * Searches for a tutorial team within the specified tutorial class and module using the given predicate.
+     *
+     * @param predicate     The predicate used to filter teams.
+     * @param tutorialClass The tutorial class to search within.
+     * @param moduleCode    The code of the module containing the tutorial class.
+     * @return The tutorial team that matches the predicate, or {@code null} if no team matches the predicate.
+     * @throws NullPointerException if the predicate is null.
+     */
+    public TutorialTeam searchTeamByPredicate(Predicate<TutorialTeam> predicate, TutorialClass tutorialClass,
+                                              ModuleCode moduleCode) {
+        requireNonNull(predicate);
+        List<TutorialTeam> teams = findTutorialClassFromList(tutorialClass, moduleCode).getTeams();
+        return teams.stream().filter(predicate).findFirst().orElse(null);
     }
 }

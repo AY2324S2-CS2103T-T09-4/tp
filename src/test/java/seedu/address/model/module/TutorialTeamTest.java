@@ -41,6 +41,11 @@ public class TutorialTeamTest {
         // null -> returns false
         assertFalse(team.equals(null));
 
+        // different team name -> returns false
+        TutorialTeam differentTeamSameSize = new TutorialTeam(VALID_TEAM_NAME_2, VALID_TEAM_SIZE);
+        assertFalse(team.equals(differentTeamSameSize));
+
+
         // different remark -> returns false
         TutorialTeam differentTeam = new TutorialTeam(VALID_TEAM_NAME_2, VALID_TEAM_SIZE);
         assertFalse(team.equals(differentTeam));

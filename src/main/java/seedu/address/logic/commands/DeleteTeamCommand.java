@@ -51,7 +51,8 @@ public class DeleteTeamCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ModuleTutorialPair moduleAndTutorialClass = getModuleAndTutorialClass(model);
+        ModuleTutorialPair moduleAndTutorialClass = ModuleTutorialPair.getModuleAndTutorialClass(model,
+                getModule(), getTutorialClass());
         ModuleCode module = moduleAndTutorialClass.getModule();
         TutorialClass tutorialClass = moduleAndTutorialClass.getTutorialClass();
         if (tutorialClass.hasTeam(team)) {
@@ -64,21 +65,6 @@ public class DeleteTeamCommand extends Command {
         return new CommandResult(generateSuccessMessage(module, tutorialClass, team));
     }
 
-    protected ModuleTutorialPair getModuleAndTutorialClass(Model model) throws CommandException {
-        requireNonNull(model);
-        ModuleCode module = getModule();
-        TutorialClass tutorialClass = getTutorialClass();
-        ModuleCode existingModule = model.findModuleFromList(module);
-        TutorialClass existingTutorialClass = model.findTutorialClassFromList(tutorialClass, existingModule);
-        if (existingModule == null) {
-            throw new CommandException(String.format(ModuleMessages.MESSAGE_MODULE_NOT_FOUND, module));
-        }
-        if (existingTutorialClass == null) {
-            throw new CommandException(
-                    String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE, tutorialClass, module));
-        }
-        return new ModuleTutorialPair(existingModule, existingTutorialClass);
-    }
 
     protected ModuleCode getModule() {
         return module;
@@ -112,6 +98,7 @@ public class DeleteTeamCommand extends Command {
         }
 
         DeleteTeamCommand e = (DeleteTeamCommand) other;
-        return module.equals(e.module) && tutorialClass.equals(e.tutorialClass) && team.equals(e.team);
+        return module.equals(e.module) && tutorialClass.equals(e.tutorialClass)
+            && team.equals(e.team);
     }
 }

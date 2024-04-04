@@ -26,7 +26,7 @@ public class DeleteTeamCommandParserTest {
     public void parse_deleteTeam_success() {
         String userInput = MODULE_DESC_AMY + TUTORIAL_DESC_AMY + TEAM_NAME_DESC_AMY;
         DeleteTeamCommand expectedCommand = new DeleteTeamCommand(new ModuleCode(VALID_MODULE_AMY),
-                new TutorialClass(VALID_TUTORIAL_AMY), VALID_TEAM_NAME_AMY);
+            new TutorialClass(VALID_TUTORIAL_AMY), VALID_TEAM_NAME_AMY);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

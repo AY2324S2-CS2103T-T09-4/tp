@@ -2,8 +2,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -19,6 +17,7 @@ import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteClassCommand;
 import seedu.address.logic.commands.ListClassesCommand;
+import seedu.address.logic.commands.ListStudentsCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.sortstudentcommands.SortStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -125,11 +124,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        if (initiallyDisplayModuleListPanel()) {
-            switchToModuleListPanel();
-        } else {
-            switchToPersonListPanel();
-        }
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -147,44 +141,19 @@ public class MainWindow extends UiPart<Stage> {
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         tutorialListPanel = new TutorialListPanel(logic.getAddressBook().getTutorialList(),
-            this::handleTutorialCardClicked);
+            this::handleTutorialCardClicked, personListPanel);
         tutorialListPanelPlaceholder.getChildren().add(tutorialListPanel.getRoot());
 
         focusedView = moduleListPanel;
     }
 
-    /**
-     * Determines whether to initially display the module list panel.
-     *
-     * @return True if the module list panel should be initially displayed, false otherwise.
-     */
-    private boolean initiallyDisplayModuleListPanel() {
-        return logic.isInitialModuleListPanelDisplayed();
-    }
-
-    /**
-     * Switches to the person list panel.
-     */
-    void switchToPersonListPanel() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        focusedView = personListPanel;
-    }
-
-    /**
-     * Switches to the module list panel.
-     */
-    void switchToModuleListPanel() {
-        ObservableList<ModuleCode> moduleObservableList = FXCollections
-            .observableList(logic.getAddressBook().getModuleList());
-        moduleListPanel = new ModuleListPanel(moduleObservableList, this::handleModuleCardClicked);
-        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
-        focusedView = moduleListPanel;
-
-    }
-
     private void switchToSortedPersonListPanel() {
         personListPanel = new PersonListPanel(logic.getAddressBook().getSortedPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    }
+
+    private void displayAllPersonListPanel() {
+        personListPanel = new PersonListPanel(logic.getAddressBook().getPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
@@ -251,6 +220,13 @@ public class MainWindow extends UiPart<Stage> {
         String commandWord = commandText.split(" ")[0];
         return commandWord.equals(SortStudentCommand.COMMAND_WORD);
     }
+    /**
+     * Returns true if the command requires list view.
+     */
+    public static boolean allStudentView(String commandText) {
+        String commandWord = commandText.split(" ")[0];
+        return commandWord.equals(ListStudentsCommand.COMMAND_WORD);
+    }
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
@@ -274,15 +250,11 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
-            clearPanels();
-
-            if (useModuleView(commandText)) {
-                switchToModuleListPanel();
-            } else if (useSortedView(commandText)) {
+            if (useSortedView(commandText)) {
                 switchToSortedPersonListPanel();
-            } else {
-                switchToPersonListPanel();
+            }
+            if (allStudentView(commandText)) {
+                displayAllPersonListPanel();
             }
             return commandResult;
         } catch (CommandException | ParseException e) {
@@ -290,12 +262,6 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
-    }
-
-    private void clearPanels() {
-        personListPanelPlaceholder.getChildren().clear();
-        moduleListPanelPlaceholder.getChildren().clear();
-        tutorialListPanelPlaceholder.getChildren().clear();
     }
 
     private void handleModuleCardClicked(ModuleCode moduleCode) {
