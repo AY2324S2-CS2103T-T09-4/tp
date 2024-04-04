@@ -165,7 +165,7 @@ Parameters:
 | TUTORIAL    | tutorial/    | Follows the format of NUS tutorial class naming, which starts with 1 alphabetical letter and 2 numeric integers from 0-9.                                                   |
 | TEAMNAME    | team/        | Alphanumeric characters                                                                                                                                                     |
 | TAG         | tag/         | tag associated with the student.  Alphanumeric characters                                                                                                                   |
-| SIZE        | size/        | The size of the team. A single numeric integer value that is more than 0.                                                                                                   |
+| SIZE        | size/        | The size of the team or class. A single numeric integer value that is more than 0.                                                                                                   |
 | DESCRIPTION | description/ | The description of the module.                                                                                                                                              |
 | BY          | by/          | The parameter you want to search by, Alphanumeric characters                                                                                                                |
 | INDEX       | index/       | The index of the associated student                                                                                                                                         |
@@ -350,9 +350,11 @@ Explanation: This allocates a student with index position `1` in the tutorial cl
 
 Adds a tutorial class with the specified module code and name.
 
-Format: `/add_class module/MODULE_CODE class/TUTORIAL_CLASS`
+Format: `/add_class module/MODULE_CODE class/TUTORIAL_CLASS [description/DESC] [size/SIZE]`
 
 Note:
+- An optional class size can be specified to apply a size restriction on the class.
+- Class size must be a positive integer. Any invalid inputs (non-numeric, negative integers) returns an error.
 - If none of the parameters is specified, or if only one is specified, returns an error.
 
 Examples:
@@ -360,9 +362,9 @@ Examples:
 - `/add_class module/CS2103T class/T10` <br>
 Explanation: If module `CS2103T` already exists in the system, adds a tutorial class `T10` to the existing module.
 Else, creates a new module `CS2103T` with 1 tutorial class under it: `T10`
-- `/add_class module/CS2109S class/T01` <br>
+- `/add_class module/CS2109S class/T01 description/Introduction to AI size/10` <br>
 Explanation: If module `CS2109S` already exists in the system, adds a tutorial class `T01` to the existing module.
-  Else, creates a new module `CS2109S` with 1 tutorial class under it: `T01`
+  Else, creates a new module `CS2109S` with 1 tutorial class with description `Introduction to AI` and class size of `10` under it: `T01`
 
 ---
 ### Deleting tutorial class : `delete_class`
@@ -596,14 +598,14 @@ must be in the team before command execution.Explanation: This deletes the stude
 | **Edit student contact**                | `/edit_student index/<index> <id/, email/, name/, tag/>`<br> e.g.,`/edit_student index/1 name/John`                                                                                                                                      |
 | **Sort students**                       | `/sort_students by/<name or email or id> `<br> e.g.,`search_student by/id` or `/search_student by/name`                                                                                                                                  |
 | **View all students**                   | `/list_students`                                                                                                                                                                                                                         |
-| **Add new tutorial class**              | `/add_class module/<module_code> tutorial/<tutorial_class>` <br> e.g., `/add_class module/CS2103T tutorial/T09`                                                                                                                          |
+| **Add new tutorial class**              | `/add_class module/<module_code> tutorial/<tutorial_class> [description/<description>] [size/<class_size>]` <br> e.g., `/add_class module/CS2103T tutorial/T09 description/Software Engineering size/10`                                                                                                                          |
 | **Delete tutorial class**               | `/delete_class module/<module_code> tutorial/<tutorial_class>` <br> e.g., `/delete_class module/CS2103T tutorial/T09`                                                                                                                    |
 | **View all classes**                    | `/list_classes`                                                                                                                                                                                                                          |
 | **Add New Student to tutorial class**   | `/add_student_to_class <index/, email/ , id/> <index or email or id> module/ <module> tutorial/ <class>` <br> e.g., `/add_student_to_class index/1 module/CS2103T tutorial/T09`                                                          |
 | **Delete students from tutorial class** | `/delete_student_from_class email/<email> module/ <module> tutorial/ <class>` or `delete_student_from_class id/<id> module/ <module> tutorial/ <class>` <br> e.g., `/delete_student_from_class id/A1234561Z module/CS2103T tutorial/T09` |
 | **List students of a tutorial class**   | `/class_list_student module/ <module> tutorial/ <class>` <br> e.g., `class_list_students module/CS2103T tutorial/T09`                                                                                                                    |
 | **Delete module**                       | `/delete_module module/<module_code>` <br> e.g., `delete_class module/CS2103T`                                                                                                                                                           |
-| **Add new team**                        | `/add_team module/<moduleCode> tutorial/<tutorialClass> name/<team_name> size/<team_size>` <br> e.g., `/add_team module/CS2103T tutorial/T09 name/Team 1 size/5`                                                                         |
+| **Add new team**                        | `/add_team module/<moduleCode> tutorial/<tutorialClass> name/<team_name> [size/<team_size>]` <br> e.g., `/add_team module/CS2103T tutorial/T09 name/Team 1 size/5`                                                                         |
 | **Delete team**                         | `/delete_team module/<moduleCode> tutorial/<tutorialClass> name/<team_name>` <br> e.g., `/delete_team module/CS2103 tutorial/T09 name/Team 4`                                                                                            |
 | **View team**                           | `/view_teams <index/, name/> <index or name> module/<moduleCode> tutorial/<tutorialClass>` <br> e.g., `/view_teams name/Team 1 module/CS2103T tutorial/T09`                                                                              |
 | **Randomly allocate team**              | `/random_teams module/<module> tutorial/<tutorialClass> teams/<number_of_teams>` <br> e.g., `/random_teams module/CS2103 tutorial/T09 teams/4`                                                                                           |
