@@ -166,4 +166,42 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String size} into an {@code int} for tutorial class.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code int} is invalid.
+     */
+    public static int parseClassSize(String size) throws ParseException {
+        requireNonNull(size);
+        String trimmedSize = size.trim();
+        try {
+            int classSize = Integer.parseInt(trimmedSize);
+            if (classSize <= 0) {
+                throw new ParseException(TutorialClass.MESSAGE_SIZE_CONSTRAINTS);
+            }
+            return classSize;
+        } catch (NumberFormatException err) {
+            throw new ParseException(TutorialClass.MESSAGE_SIZE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String size} into an {@code int} for tutorial team.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code int} is invalid.
+     */
+    public static int parseTeamSize(String size) throws ParseException {
+        requireNonNull(size);
+        String trimmedSize = size.trim();
+        try {
+            int teamSize = Integer.parseInt(trimmedSize);
+            if (teamSize <= 0) {
+                throw new ParseException(TutorialTeam.MESSAGE_SIZE_CONSTRAINTS);
+            }
+            return teamSize;
+        } catch (NumberFormatException err) {
+            throw new ParseException(TutorialTeam.MESSAGE_SIZE_CONSTRAINTS);
+        }
+    }
 }

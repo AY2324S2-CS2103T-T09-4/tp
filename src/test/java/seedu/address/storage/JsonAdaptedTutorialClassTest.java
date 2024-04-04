@@ -18,6 +18,7 @@ class JsonAdaptedTutorialClassTest {
 
     private static final String VALID_TUTORIAL_NAME = "T01";
     private static final String INVALID_TUTORIAL_NAME = "";
+    private static final int VALID_CLASS_SIZE = 10;
     private static final List<JsonAdaptedPerson> VALID_STUDENTS_LIST = new ArrayList<>(
             Arrays.asList(new PersonBuilder().build(), new PersonBuilder().build())).stream()
             .map(JsonAdaptedPerson::new)
@@ -42,7 +43,7 @@ class JsonAdaptedTutorialClassTest {
     @Test
     void toModelType_invalidTutorialName_throwsIllegalValueException() {
         JsonAdaptedTutorialClass jsonTutorialClass = new JsonAdaptedTutorialClass(INVALID_TUTORIAL_NAME,
-                VALID_TEAMS_LIST, VALID_STUDENTS_LIST);
+                VALID_TEAMS_LIST, VALID_STUDENTS_LIST, VALID_CLASS_SIZE);
         String expectedMessage = TutorialClass.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, jsonTutorialClass::toModelType);
     }

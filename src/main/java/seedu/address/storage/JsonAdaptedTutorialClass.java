@@ -21,6 +21,7 @@ public class JsonAdaptedTutorialClass {
     private final String tutorialName;
     private final List<JsonAdaptedPerson> students = new ArrayList<>();
     private final List<JsonAdaptedTutorialTeam> teams = new ArrayList<>();
+    private final int classSize;
 
     /**
      * Constructs a {@code JsonAdaptedTutorialClass} with the given
@@ -29,7 +30,7 @@ public class JsonAdaptedTutorialClass {
     @JsonCreator
     public JsonAdaptedTutorialClass(@JsonProperty("tutorialName") String tutorialName,
             @JsonProperty("teams") List<JsonAdaptedTutorialTeam> teams,
-            @JsonProperty("students") List<JsonAdaptedPerson> students) {
+            @JsonProperty("students") List<JsonAdaptedPerson> students, @JsonProperty("classSize") int classSize) {
         this.tutorialName = tutorialName;
         if (teams != null) {
             this.teams.addAll(teams);
@@ -37,6 +38,7 @@ public class JsonAdaptedTutorialClass {
         if (students != null) {
             this.students.addAll(students);
         }
+        this.classSize = classSize;
     }
 
     /**
@@ -46,6 +48,7 @@ public class JsonAdaptedTutorialClass {
         this.tutorialName = source.getTutorialClass().tutorialName;
         teams.addAll(source.getTeams().stream().map(JsonAdaptedTutorialTeam::new).collect(Collectors.toList()));
         students.addAll(source.getStudents().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        this.classSize = source.getClassSize();
     }
 
     public String getTutorialName() {
@@ -84,7 +87,7 @@ public class JsonAdaptedTutorialClass {
         for (JsonAdaptedTutorialTeam team : teams) {
             listOfTeams.add(team.toModelType());
         }
-        return new TutorialClass(tutorialName, listOfStudents, listOfTeams);
+        return new TutorialClass(tutorialName, classSize, listOfStudents, listOfTeams);
     }
 
     @Override

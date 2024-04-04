@@ -13,4 +13,5 @@ public class TutorialClassMessages {
     public static final String MESSAGE_DUPLICATE_CLASS = "%1$s %2$s already added!";
     public static final String MESSAGE_PERSON_INDEX_NOT_FOUND_IN_CLASS = "Student at index %d not "
             + "found inside tutorial class %s";
+    public static final String MESSAGE_CLASS_FULL = "Class %s is full!";
 }

@@ -21,6 +21,8 @@ public class TutorialClass {
     public static final String MESSAGE_CONSTRAINTS = "Please enter a valid NUS tutorial class code "
             + "eg. T01, and it should not be blank";
 
+    public static final String MESSAGE_SIZE_CONSTRAINTS = "Class size should be a positive integer";
+
     /**
      * This regex validates the tutorial class code that user enters.
      * Supports format like "L07", "T01" and "T015".
@@ -28,6 +30,7 @@ public class TutorialClass {
     public static final String VALIDATION_REGEX = "^[A-Z]\\d{2}$";
 
     public final String tutorialName;
+    private int classSize;
     private final ArrayList<Person> students;
     private final ArrayList<TutorialTeam> teams;
 
@@ -40,6 +43,21 @@ public class TutorialClass {
         this.tutorialName = "";
         this.students = new ArrayList<>();
         this.teams = new ArrayList<>();
+        this.classSize = Integer.MAX_VALUE;
+    }
+
+    /**
+     * A constructor for TutorialClass. Creates a tutorial class with no students and a class size.
+     * @param tutorialClass
+     * @param classSize
+     */
+    public TutorialClass(String tutorialClass, int classSize) {
+        requireAllNonNull(tutorialClass, classSize);
+        checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
+        this.tutorialName = tutorialClass;
+        this.students = new ArrayList<>();
+        this.teams = new ArrayList<>();
+        this.classSize = classSize;
     }
 
     /**
@@ -53,6 +71,7 @@ public class TutorialClass {
         this.tutorialName = tutorialClass;
         this.students = new ArrayList<>();
         this.teams = new ArrayList<>();
+        this.classSize = Integer.MAX_VALUE;
     }
 
     /**
@@ -66,6 +85,7 @@ public class TutorialClass {
         this.tutorialName = tutorialClass;
         this.students = students;
         this.teams = new ArrayList<>();
+        this.classSize = Integer.MAX_VALUE;
     }
 
     /**
@@ -75,12 +95,14 @@ public class TutorialClass {
      * @param students      in the tutorial class
      * @param teams         in the tutorial class
      */
-    public TutorialClass(String tutorialClass, ArrayList<Person> students, ArrayList<TutorialTeam> teams) {
+    public TutorialClass(String tutorialClass, int classSize, ArrayList<Person> students,
+            ArrayList<TutorialTeam> teams) {
         requireAllNonNull(tutorialClass);
         checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
         this.tutorialName = tutorialClass;
         this.students = students;
         this.teams = teams;
+        this.classSize = classSize;
     }
 
     /**
@@ -89,6 +111,14 @@ public class TutorialClass {
      */
     public void setStudents(ArrayList<Person> students) {
         this.students.addAll(students);
+    }
+
+    /**
+     * Check if the tutorial class is full.
+     * @return true if the tutorial class is full
+     */
+    public boolean isFull() {
+        return students.size() >= classSize;
     }
 
     /**
@@ -218,6 +248,14 @@ public class TutorialClass {
         }
         return isStudentExist;
     };
+
+    /**
+     * Retrieves the size of the tutorial class.
+     * @return The size of the tutorial class.
+     */
+    public int getClassSize() {
+        return this.classSize;
+    }
 
     /**
      * Deletes a team from the tutorial class.

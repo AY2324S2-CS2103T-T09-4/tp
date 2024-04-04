@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.AddClassCommand.MESSAGE_ADD_CLASS_SUCCESS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_SIZE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_AMY;
@@ -35,7 +36,7 @@ public class AddClassCommandTest {
     public void execute_success() {
 
         assertCommandSuccess(new AddClassCommand(new ModuleCode(VALID_MODULE_AMY),
-                new TutorialClass(VALID_TUTORIAL_AMY),
+                new TutorialClass(VALID_TUTORIAL_AMY, VALID_CLASS_SIZE),
                 Optional.ofNullable(new ModuleCode(VALID_MODULE_AMY).getDescription())), model,
             String.format(MESSAGE_ADD_CLASS_SUCCESS, VALID_MODULE_AMY, VALID_TUTORIAL_AMY), model);
     }
