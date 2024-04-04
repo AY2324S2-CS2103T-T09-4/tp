@@ -12,7 +12,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.ModuleMessages;
 import seedu.address.logic.messages.PersonMessages;
 import seedu.address.logic.messages.TutorialTeamMessages;
-import seedu.address.logic.messages.TeamMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
@@ -75,7 +74,8 @@ public class AllocateStudentToTeamByEmailCommand extends AllocateStudentToTeamCo
         }
 
         if (tutTeam == null) {
-            throw new CommandException(String.format(TeamMessages.MESSAGE_TEAM_DOES_NOT_EXIST, tutorialTeam, tutClass));
+            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_DOES_NOT_EXIST,
+                    tutorialTeam, tutClass));
         }
 
         // throws commandException if any condition fails

@@ -25,7 +25,7 @@ import seedu.address.logic.commands.deletestudentfromteamcommands.DeleteStudentF
 import seedu.address.logic.commands.deletestudentfromteamcommands.DeleteStudentFromTeamByIdCommand;
 import seedu.address.logic.commands.deletestudentfromteamcommands.DeleteStudentFromTeamByIndexCommand;
 import seedu.address.logic.commands.deletestudentfromteamcommands.DeleteStudentFromTeamCommand;
-import seedu.address.logic.messages.TeamMessages;
+import seedu.address.logic.messages.TutorialTeamMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -69,7 +69,7 @@ public class DeleteStudentFromTeamCommandTest {
                 DeleteStudentFromTeamByIndexCommand(index,
                 newModule, tutorialClass, newTeam);
         assertCommandFailure(deleteStudentFromTeamByIndexCommand, model,
-                String.format(TeamMessages.MESSAGE_PERSON_INDEX_NOT_FOUND,
+                String.format(TutorialTeamMessages.MESSAGE_PERSON_INDEX_NOT_FOUND,
                         index.getOneBased(), newTeam));
     }
 
@@ -85,11 +85,11 @@ public class DeleteStudentFromTeamCommandTest {
 
 
         assertCommandFailure(deleteStudentFromTeamByIdCommand, model,
-                String.format(TeamMessages.MESSAGE_STUDENT_NOT_FOUND_IN_TEAM, Messages.format(validPerson),
+                String.format(TutorialTeamMessages.MESSAGE_STUDENT_NOT_FOUND_IN_TEAM, Messages.format(validPerson),
                         tutorialClass));
 
         assertCommandFailure(deleteStudentFromTeamByEmailCommand, model,
-                String.format(TeamMessages.MESSAGE_STUDENT_NOT_FOUND_IN_TEAM, Messages.format(validPerson),
+                String.format(TutorialTeamMessages.MESSAGE_STUDENT_NOT_FOUND_IN_TEAM, Messages.format(validPerson),
                         tutorialClass));
     }
     @Test
@@ -103,9 +103,9 @@ public class DeleteStudentFromTeamCommandTest {
                 DeleteStudentFromTeamByEmailCommand(validPerson.getEmail(), newModule, tutorialClass,
                 team);
         assertCommandFailure(deleteStudentFromTeamByIdCommand, model,
-                String.format(TeamMessages.MESSAGE_TEAM_DOES_NOT_EXIST, team, tutorialClass));
+                String.format(TutorialTeamMessages.MESSAGE_TEAM_DOES_NOT_EXIST, team, tutorialClass));
         assertCommandFailure(deleteStudentFromTeamByEmailCommand, model,
-                String.format(TeamMessages.MESSAGE_TEAM_DOES_NOT_EXIST, team, tutorialClass));
+                String.format(TutorialTeamMessages.MESSAGE_TEAM_DOES_NOT_EXIST, team, tutorialClass));
     }
 
     @Test

@@ -13,7 +13,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.ModuleMessages;
 import seedu.address.logic.messages.PersonMessages;
 import seedu.address.logic.messages.TutorialTeamMessages;
-import seedu.address.logic.messages.TeamMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
@@ -25,8 +24,6 @@ import seedu.address.model.person.StudentId;
  * Allocates a student to a team in a tutorial Class in TAHelper.
  */
 public class AllocateStudentToTeamByStuIdCommand extends AllocateStudentToTeamCommand {
-
-    public static final String COMMAND_WORD = "/allocate_team";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Allocates a student a team in the tutorial class.\n"
             + "Parameters: "
@@ -77,7 +74,8 @@ public class AllocateStudentToTeamByStuIdCommand extends AllocateStudentToTeamCo
         }
 
         if (tutTeam == null) {
-            throw new CommandException(String.format(TeamMessages.MESSAGE_TEAM_DOES_NOT_EXIST, tutorialTeam, tutClass));
+            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_DOES_NOT_EXIST,
+                    tutorialTeam, tutClass));
         }
 
         // throws commandException if any condition fails

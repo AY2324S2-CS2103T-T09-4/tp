@@ -45,8 +45,8 @@ public class DeleteStudentFromClassByIndexCommand extends DeleteStudentFromClass
             personToDelete = model.getStudentsInTutorialClass(tutorialClass).get(targetIndex.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(
-                    String.format(TutorialClassMessages.MESSAGE_PERSON_INDEX_NOT_FOUND, targetIndex.getOneBased(),
-                            tutorialClass));
+                    String.format(TutorialClassMessages.MESSAGE_PERSON_INDEX_NOT_FOUND_IN_CLASS,
+                            targetIndex.getOneBased(), tutorialClass));
         }
 
         if (!(tutorialClass.hasStudent(personToDelete))) {

@@ -11,7 +11,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.TutorialTeamMessages;
-import seedu.address.logic.messages.TeamMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
@@ -39,10 +38,7 @@ public abstract class AllocateStudentToTeamCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Allocate student to team: %s";
     public static final String MESSAGE_STUDENT_NOT_IN_TUTORIAL = "Student needs to be in that tutorial group first.";
-    public static final String MESSAGE_TEAM_SIZE_EXCEEDED = "Max team size of %d reached";
 
-    public static final String MESSAGE_STUDENT_DOES_NOT_EXIST = "Student does not exist in system";
-    public static final String MESSAGE_CLASS_DOES_NOT_EXIST = "Tutorial class %s does not exist in module %s";
 
     public AllocateStudentToTeamCommand() {}
 
@@ -67,15 +63,17 @@ public abstract class AllocateStudentToTeamCommand extends Command {
         }
 
         if (!tutClass.hasTeamInTutorial(tutClass, tutorialTeam)) {
-            throw new CommandException(String.format(TeamMessages.MESSAGE_TEAM_DOES_NOT_EXIST, tutorialTeam, tutClass));
+            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_DOES_NOT_EXIST,
+                    tutorialTeam, tutClass));
         }
 
         if (tutClass.isStudentInAnyTeam(student, tutClass)) {
-            throw new CommandException(String.format(TeamMessages.MESSAGE_DUPLICATE_PERSON_IN_TEAM, tutClass));
+            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_DUPLICATE_PERSON_IN_TEAM,
+                    Messages.format(student), tutClass));
         }
 
         if (tutorialTeam.hasTeamSizeExceeded(tutorialTeam)) {
-            throw new CommandException(String.format(TeamMessages.MESSAGE_TEAM_SIZE_EXCEEDED,
+            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_SIZE_EXCEEDED,
                     tutorialTeam.getTeamSize()));
         }
     }
