@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TEAM_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TEAM_NAME_BOB;
 import static seedu.address.model.module.TutorialClass.isValidTutorialClass;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
@@ -186,5 +188,45 @@ public class TutorialClassTest {
         TutorialClass tutorialClass = new TutorialClass(VALID_TUTORIAL, students);
         assertTrue(tutorialClass.deleteStudent(student1));
         assertEquals(0, tutorialClass.getStudents().size());
+    }
+
+    @Test
+    void deleteStudentFromTeams_success() {
+        ArrayList<Person> students = new ArrayList<>();
+
+        // Creating Person object
+        Person student1 = new PersonBuilder().build();
+
+        students.add(student1);
+
+        TutorialClass tutorialClass = new TutorialClass(VALID_TUTORIAL, students);
+
+        // Create teams, add student to teams, and add teams to tutorial class\
+        TutorialTeam team1 = new TutorialTeam(VALID_TEAM_NAME_AMY);
+        TutorialTeam team2 = new TutorialTeam(VALID_TEAM_NAME_BOB);
+        team1.addStudent(student1);
+        team2.addStudent(student1);
+        tutorialClass.addTeam(team1);
+        tutorialClass.addTeam(team2);
+
+
+        //both teams should have 1 person
+        int expectedNumOfStudentsInTeamBeforeDelete = 1;
+        assertEquals(expectedNumOfStudentsInTeamBeforeDelete,
+                tutorialClass.getTutorialTeam(tutorialClass, team1).getStudents().size());
+
+        assertEquals(expectedNumOfStudentsInTeamBeforeDelete,
+                tutorialClass.getTutorialTeam(tutorialClass, team2).getStudents().size());
+
+        //delete the student from all teams
+        tutorialClass.deleteStudentFromTeams(student1);
+
+        //both teams should now be empty (i.e. 0 people)
+        int expectedNumOfStudentsInTeamAfterDelete = 0;
+        assertEquals(expectedNumOfStudentsInTeamAfterDelete,
+                tutorialClass.getTutorialTeam(tutorialClass, team1).getStudents().size());
+
+        assertEquals(expectedNumOfStudentsInTeamAfterDelete,
+                tutorialClass.getTutorialTeam(tutorialClass, team2).getStudents().size());
     }
 }
