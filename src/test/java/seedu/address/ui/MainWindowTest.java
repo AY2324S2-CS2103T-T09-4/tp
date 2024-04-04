@@ -17,8 +17,8 @@ class MainWindowTest {
 
     @Test
     void useSortedView() {
-        assertTrue(MainWindow.useSortedView("/sort_student"));
-        assertTrue(MainWindow.useSortedView("/sort_student by/name"));
-        assertTrue(MainWindow.useSortedView("/sort_student by/EMaiL"));
+        assertTrue(MainWindow.useSortedView("/sort_students"));
+        assertTrue(MainWindow.useSortedView("/sort_students by/name"));
+        assertTrue(MainWindow.useSortedView("/sort_students by/EMaiL"));
     }
 }
