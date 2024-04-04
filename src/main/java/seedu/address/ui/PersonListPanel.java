@@ -11,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.TutorialClass;
+import seedu.address.model.module.TutorialTeam;
 import seedu.address.model.person.Person;
 
 /**
@@ -63,6 +64,16 @@ public class PersonListPanel extends UiPart<Region> implements SelectedArea {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
             }
         }
+    }
+    /**
+     * Displays the list of persons associated with a specific tutorial team.
+     *
+     * @param team The tutorial team for which persons are to be displayed.
+     */
+    public void displayPersonsForTeam(TutorialTeam team) {
+        ArrayList<Person> personList = team.getStudents();
+        ObservableList<Person> persons = FXCollections.observableArrayList(personList);
+        personListView.setItems(persons);
     }
     /**
      * Displays the list of persons associated with a specific tutorial class.

@@ -33,7 +33,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final ArrayList<ModuleCode> modules;
     private final ArrayList<TutorialClass> tutorialClasses;
     private final ArrayList<TutorialTeam> tutorialTeams;
+
     private final UniquePersonList studentsInTeam;
+
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -51,6 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         tutorialClasses = new ArrayList<>();
         tutorialTeams = new ArrayList<>();
         studentsInTeam = new UniquePersonList();
+
     }
 
     public AddressBook() {
@@ -388,6 +391,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<TutorialClass> getTutorialList() {
         return FXCollections.observableList(tutorialClasses);
+    }
+    @Override
+    public ObservableList<TutorialTeam> getTeamList() {
+        return FXCollections.observableList(tutorialTeams);
     }
     @Override
     public void setSortedPersonList(Comparator<Person> comparator) {

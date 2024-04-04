@@ -54,51 +54,51 @@
                                     </image>
                                 </ImageView>
                             </HBox>
-                        </children>
-                    </VBox>
-                </top>
+                                </children>
+                            </VBox>
+                        </top>
                 <center>
-                    <SplitPane dividerPositions="0.33, 0.67">
-                        <items>
-                            <!-- Add a new VBox for the module list panel -->
-                            <VBox fx:id="moduleList" spacing="5"
-                                  xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+                            <SplitPane dividerPositions="0.33, 0.67">
+                                <items>
+                                    <!-- Add a new VBox for the module list panel -->
+                                    <VBox fx:id="moduleList" spacing="5"
+                                          xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+                                        <padding>
+                                            <Insets top="10" right="10" bottom="10" left="10" />
+                                        </padding>
+                                        <!-- Placeholder for the ModuleListPanel -->
+                                        <StackPane fx:id="moduleListPanelPlaceholder" maxHeight="Infinity"/>
+                                    </VBox>
+                                    <VBox fx:id="tutoriallist" spacing="5"
+                                          xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+                                        <padding>
+                                            <Insets top="10" right="10" bottom="10" left="10" />
+                                        </padding>
+                                        <!-- Placeholder for the TutorialListPanel -->
+                                        <StackPane fx:id="tutorialListPanelPlaceholder" maxHeight="Infinity"/>
+                                    </VBox>
+                                    <VBox fx:id="personList" spacing="5"
+                                          xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+                                        <padding>
+                                            <Insets top="10" right="10" bottom="10" left="10" />
+                                        </padding>
+                                        <StackPane fx:id="personListPanelPlaceholder" maxHeight="Infinity"/>
+                                    </VBox>
+                                </items>
+                            </SplitPane>
+                        </center>
+                        <bottom>
+                            <VBox prefHeight="111.0" prefWidth="604.0" BorderPane.alignment="CENTER"
+                                  style="-fx-background-color: derive(#d7cbc0, 20%);">
+                                <children>
+                                    <StackPane fx:id="resultDisplayPlaceholder" minHeight="140" prefHeight="140.0"
+                                               prefWidth="200.0" style="-fx-background-color: #ececec"/>
+                                    <StackPane fx:id="commandBoxPlaceholder" prefHeight="150.0" prefWidth="200.0"
+                                               style="-fx-background-color: derive(#d7cbc0, 20%);"/>
+                                </children>
                                 <padding>
-                                    <Insets top="10" right="10" bottom="10" left="10" />
+                                    <Insets bottom="10" />
                                 </padding>
-                                <!-- Placeholder for the ModuleListPanel -->
-                                <StackPane fx:id="moduleListPanelPlaceholder" maxHeight="Infinity"/>
-                            </VBox>
-                            <VBox fx:id="tutoriallist" spacing="5"
-                                  xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-                                <padding>
-                                    <Insets top="10" right="10" bottom="10" left="10" />
-                                </padding>
-                                <!-- Placeholder for the TutorialListPanel -->
-                                <StackPane fx:id="tutorialListPanelPlaceholder" maxHeight="Infinity"/>
-                            </VBox>
-                            <VBox fx:id="personList" spacing="5"
-                                  xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-                                <padding>
-                                    <Insets top="10" right="10" bottom="10" left="10" />
-                                </padding>
-                                <StackPane fx:id="personListPanelPlaceholder" maxHeight="Infinity"/>
-                            </VBox>
-                        </items>
-                    </SplitPane>
-                </center>
-                <bottom>
-                    <VBox prefHeight="111.0" prefWidth="604.0" BorderPane.alignment="CENTER"
-                          style="-fx-background-color: derive(#d7cbc0, 20%);">
-                        <children>
-                            <StackPane fx:id="resultDisplayPlaceholder" minHeight="140" prefHeight="140.0"
-                                       prefWidth="200.0" style="-fx-background-color: #ececec"/>
-                            <StackPane fx:id="commandBoxPlaceholder" prefHeight="150.0" prefWidth="200.0"
-                                       style="-fx-background-color: derive(#d7cbc0, 20%);"/>
-                        </children>
-                        <padding>
-                            <Insets bottom="10" />
-                        </padding>
                     </VBox>
                 </bottom>
                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

@@ -196,6 +196,11 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public TutorialTeam searchTeamByPredicate(Predicate<TutorialTeam> predicate, TutorialClass tutorialClass,
+                                                  ModuleCode moduleCode) {
+            return null;
+        }
+        @Override
         public void deleteStudentFromTeam(Person person, TutorialTeam tutorialTeam) {
             throw new AssertionError("This method should not be called.");
         }
@@ -233,8 +238,6 @@ public class AddStudentCommandTest {
         public ObservableList<ModuleCode> getFilteredModuleList() {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
         public ObservableList<Person> getSortedPersonList(Comparator<Person> comparator) {
             throw new AssertionError("This method should not be called.");
         }

@@ -186,6 +186,7 @@ public interface Model {
      */
 
     void updateFilteredModuleList(Predicate<ModuleCode> predicate);
+
     /**
      * Search for person by a given {@code predicate}.
      */
@@ -195,4 +196,7 @@ public interface Model {
      * Deletes the given person from the given tutorial class in the given module.
      */
     void deletePersonFromTutorialClass(Person personToAdd, ModuleCode module, TutorialClass tutorialClass);
+
+    TutorialTeam searchTeamByPredicate(Predicate<TutorialTeam> predicate, TutorialClass tutorialClass,
+                                       ModuleCode moduleCode);
 }

@@ -101,11 +101,14 @@ public class Person {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
-                .add("email", email)
-                .add("stuId", stuId)
-                .add("tags", tags)
-                .toString();
+            .add("name", name)
+            .add("email", email)
+            .add("stuId", stuId)
+            .add("tags", tags)
+            .toString();
+    }
+    public String toStringTwo() {
+        return "name=" + name + ", email=" + email + ", stuId=" + stuId;
     }
 
 }

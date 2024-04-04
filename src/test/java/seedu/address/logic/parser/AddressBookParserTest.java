@@ -37,6 +37,7 @@ import seedu.address.logic.commands.ListClassesCommand;
 import seedu.address.logic.commands.ListStudentsCommand;
 import seedu.address.logic.commands.ListStudentsOfClassCommand;
 import seedu.address.logic.commands.SearchStudentCommand;
+import seedu.address.logic.commands.ViewTeamCommand;
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByEmailCommand;
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByIdCommand;
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassCommand;
@@ -206,6 +207,44 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_addTeam() throws Exception {
+        ModuleCode moduleCode = new ModuleCode("CS2103T");
+        TutorialClass tutorialClass = new TutorialClass("T01");
+        String teamName = "Team A";
+
+        AddTeamCommand command = (AddTeamCommand) parser.parseCommand(
+            AddTeamCommand.COMMAND_WORD + " " + PREFIX_MODULECODE + " " + moduleCode + " "
+                + PREFIX_TUTORIALCLASS + " " + tutorialClass + " "
+                + PREFIX_NAME + " " + teamName);
+        assertEquals(new AddTeamCommand(moduleCode, tutorialClass, teamName), command);
+    }
+
+    @Test
+    public void parseCommand_deleteTeam() throws Exception {
+        ModuleCode moduleCode = new ModuleCode("CS2103T");
+        TutorialClass tutorialClass = new TutorialClass("T01");
+        String teamName = "Team A";
+
+        DeleteTeamCommand command = (DeleteTeamCommand) parser.parseCommand(
+            DeleteTeamCommand.COMMAND_WORD + " " + PREFIX_MODULECODE + " " + moduleCode + " "
+                + PREFIX_TUTORIALCLASS + " " + tutorialClass + " "
+                + PREFIX_NAME + " " + teamName);
+        assertEquals(new DeleteTeamCommand(moduleCode, tutorialClass, teamName), command);
+    }
+
+    @Test
+    public void parseCommand_viewTeam() throws Exception {
+        ModuleCode moduleCode = new ModuleCode("CS2103T");
+        TutorialClass tutorialClass = new TutorialClass("T01");
+        String teamName = "Team A";
+
+        ViewTeamCommand command = (ViewTeamCommand) parser.parseCommand(
+            ViewTeamCommand.COMMAND_WORD + " " + PREFIX_MODULECODE + " " + moduleCode + " "
+                + PREFIX_TUTORIALCLASS + " " + tutorialClass + " "
+                + PREFIX_NAME + " " + teamName);
+        assertEquals(new ViewTeamCommand(PREFIX_NAME, teamName, moduleCode, tutorialClass), command);
+    }
+    @Test
     public void parseCommand_deleteStudentFromTeam() throws Exception {
         final String moduleCode = "CS2103T";
         final String tutorialClass = "T09";
@@ -245,18 +284,6 @@ public class AddressBookParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
-    @Test
-    public void parseCommand_addTeam() throws Exception {
-        final String teamName = "Team 1";
-        final String moduleCode = "CS2103T";
-        final String tutorialClass = "T09";
-        AddTeamCommand command = (AddTeamCommand) parser.parseCommand(AddTeamCommand.COMMAND_WORD + " "
-            + PREFIX_MODULECODE + moduleCode + " "
-            + PREFIX_TUTORIALCLASS + tutorialClass + " "
-            + PREFIX_NAME + teamName);
-        assertEquals(new AddTeamCommand(new ModuleCode(moduleCode),
-            new TutorialClass(tutorialClass), teamName), command);
-    }
 
 
     @Test
@@ -270,18 +297,6 @@ public class AddressBookParserTest {
             new TutorialClass(tutorialClass)), command);
     }
 
-    @Test
-    public void parseCommand_deleteTeam() throws Exception {
-        final String teamName = "Team 1";
-        final String moduleCode = "CS2103T";
-        final String tutorialClass = "T09";
-        DeleteTeamCommand command = (DeleteTeamCommand) parser.parseCommand(DeleteTeamCommand.COMMAND_WORD + " "
-            + PREFIX_MODULECODE + moduleCode + " "
-            + PREFIX_TUTORIALCLASS + tutorialClass + " "
-            + PREFIX_NAME + teamName);
-        assertEquals(new DeleteTeamCommand(new ModuleCode(moduleCode),
-            new TutorialClass(tutorialClass), teamName), command);
-    }
     @Test
     public void parseCommand_deleteStudent() throws Exception {
         final String studentId = "A1234561Z";
