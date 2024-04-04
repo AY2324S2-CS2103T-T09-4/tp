@@ -43,7 +43,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_STUDENTID + "STUDENT ID] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_INDEX + "1 "
             + PREFIX_STUDENTID + "A1234567Z "
             + PREFIX_EMAIL + "johndoe@example.com";
 

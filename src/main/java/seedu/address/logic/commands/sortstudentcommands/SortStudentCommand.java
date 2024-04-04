@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
  */
 public class SortStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "/sort_student";
+    public static final String COMMAND_WORD = "/sort_students";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts students based on name, id or email.\n"
             + "Parameters: "
