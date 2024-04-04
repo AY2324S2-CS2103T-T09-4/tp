@@ -104,7 +104,11 @@ Commands on students:
 
    - `/search_student id/A0123456A or /search_student email/johndoe@gmail.com` : Searches for a student with id `A0123456A` or email `johndoe@gmail.com`.
 
+   - `/edit_student index/1 name/John` : Edits the first student's name to `John`
+
    - `/list_students` : View the list of all students available.
+
+   - `/sort_students by/id or by/name` : Sorts the list of students in lexicographical order by id or name.
 
    - `/add_class module/CS2103T class/T09` : Adds a new tutorial class `T09` under the module `CS2103T`.
 
@@ -522,6 +526,7 @@ Explanation: This randomly allocates all the students in the tutorial class `T01
 | **Add New Students**                    | `/add_student name/ <student_name> id/ <student_id> email/ <student_email> tag/<tag>` <br> e.g., `/add_student name/Dohn Joe id/A0123456A email/johndoe@gmail.com id/A0123456A`                                                          |
 | **Delete students**                     | `/delete_student <id/, email/> <id or email>`<br> e.g., `delete_student id/A0259209B` or `/delete_student email/johndoe@gmail.com`                                                                                                       |
 | **Search for students**                 | `/search_student <id/, email/, tc/, name/> <id or email or tutorial or name>`<br> e.g.,`/search_student id/A0123456A`                                                                                                                    |
+| **Edit student contact**                | `/edit_student index/<index> <id/, email/, name/, tag/>`<br> e.g.,`/edit_student index/1 name/John`                                                                                                                                      |
 | **Sort students**                       | `/sort_students by/<name or email or id> `<br> e.g.,`search_student by/id` or `/search_student by/name`                                                                                                                                  |
 | **View all students**                   | `/list_students`                                                                                                                                                                                                                         |
 | **Add new tutorial class**              | `/add_class module/<module_code> tutorial/<tutorial_class>` <br> e.g., `/add_class module/CS2103T tutorial/T09`                                                                                                                          |
