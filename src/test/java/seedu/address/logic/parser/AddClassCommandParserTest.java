@@ -1,10 +1,14 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.commands.CommandTestUtil.CLASS_SIZE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CLASS_SIZE;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_SIZE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -31,9 +35,9 @@ public class AddClassCommandParserTest {
         String moduleCode = VALID_MODULE_AMY;
         String expectedMessage = TutorialClass.MESSAGE_CONSTRAINTS;
 
-        String userInput = MODULE_DESC_AMY + TUTORIAL_DESC_AMY;
+        String userInput = MODULE_DESC_AMY + TUTORIAL_DESC_AMY + CLASS_SIZE_DESC;
         AddClassCommand expectedCommand = new AddClassCommand(new ModuleCode(moduleCode),
-                new TutorialClass(VALID_TUTORIAL_AMY),
+                new TutorialClass(VALID_TUTORIAL_AMY, VALID_CLASS_SIZE),
                 Optional.ofNullable(new ModuleCode(moduleCode).getDescription()));
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -53,6 +57,14 @@ public class AddClassCommandParserTest {
         // no module stated
         assertParseFailure(parser, " " + PREFIX_MODULECODE + ""
                 + TUTORIAL_DESC_AMY, expectedMessage2);
+    }
+
+    @Test
+    public void parse_invalidClassSize_failure() {
+        String expectedMessage = TutorialClass.MESSAGE_SIZE_CONSTRAINTS;
+        String invalidClassSize = " " + PREFIX_SIZE + INVALID_CLASS_SIZE;
+        // invalid class size
+        assertParseFailure(parser, MODULE_DESC_AMY + TUTORIAL_DESC_AMY + invalidClassSize, expectedMessage);
     }
 }
 

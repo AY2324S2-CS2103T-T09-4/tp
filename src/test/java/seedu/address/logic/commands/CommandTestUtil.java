@@ -7,9 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NUM_OF_TEAMS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -48,6 +48,7 @@ public class CommandTestUtil {
 
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final int VALID_CLASS_SIZE = 5;
     public static final int VALID_NUM_OF_TEAMS = 1;
     public static final String INVALID_NUM_OF_TEAMS = "aaaaa";
 
@@ -63,6 +64,7 @@ public class CommandTestUtil {
     public static final String MODULE_DESC_BOB = " " + PREFIX_MODULECODE + VALID_MODULE_BOB;
     public static final String TUTORIAL_DESC_AMY = " " + PREFIX_TUTORIALCLASS + VALID_TUTORIAL_AMY;
     public static final String TUTORIAL_DESC_BOB = " " + PREFIX_TUTORIALCLASS + VALID_TUTORIAL_BOB;
+    public static final String CLASS_SIZE_DESC = " " + PREFIX_SIZE + VALID_CLASS_SIZE;
     public static final String NUM_OF_TEAMS_DESC = " " + PREFIX_NUM_OF_TEAMS + VALID_NUM_OF_TEAMS;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
@@ -71,6 +73,7 @@ public class CommandTestUtil {
     public static final String INVALID_PERSON_STUDENT_ID = "A2222222A";
     public static final String INVALID_MODULECODE = "22JK";
     public static final String INVALID_TUTORIAL = "HHHH@";
+    public static final int INVALID_CLASS_SIZE = -1;
 
     // Team related constants
     public static final String VALID_TEAM_NAME_AMY = "Team 1";
@@ -116,11 +119,12 @@ public class CommandTestUtil {
 
     /**
      * Executes the given {@code command}, confirms that <br>
-     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult}
+     * <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-                                            Model expectedModel) {
+            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -131,11 +135,12 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper to
+     * {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-                                            Model expectedModel) {
+            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -144,7 +149,8 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered person list and selected person in
+     * {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -156,8 +162,10 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the person at the given
+     * {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {

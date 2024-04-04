@@ -26,6 +26,7 @@ import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassB
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByIdCommand;
 import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassByIndexCommand;
 import seedu.address.logic.messages.PersonMessages;
+import seedu.address.logic.messages.TutorialClassMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -49,7 +50,7 @@ public class AddStudentToClassCommandTest {
     public void setUp() {
         ModuleCode newModule = new ModuleCode(VALID_MODULE_AMY);
         model.addModule(newModule);
-        TutorialClass newTutorialClass = new TutorialClass(VALID_TUTORIAL_AMY);
+        TutorialClass newTutorialClass = new TutorialClass(VALID_TUTORIAL_AMY, 1);
         newModule.addTutorialClass(newTutorialClass);
         tutorialClass = newTutorialClass;
     }
@@ -88,6 +89,19 @@ public class AddStudentToClassCommandTest {
         assertCommandFailure(addStudentToClassByEmailCommand, model,
                 String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS, Messages.format(person),
                         tutorialClass));
+    }
+
+    @Test
+    public void execute_classFull_fail() {
+        Person person1 = new PersonBuilder().build();
+        Person person2 = new PersonBuilder().withEmail(VALID_EMAIL_BOB).withStudentId(VALID_STUDENT_ID_BOB).build();
+        model.addPerson(person1);
+        model.addPerson(person2);
+        tutorialClass.addStudent(person1);
+        AddStudentToClassByEmailCommand addStudentToClassByEmailCommand = new AddStudentToClassByEmailCommand(
+                person2.getEmail(), new ModuleCode(VALID_MODULE_AMY), new TutorialClass(VALID_TUTORIAL_AMY));
+        assertCommandFailure(addStudentToClassByEmailCommand, model,
+                String.format(TutorialClassMessages.MESSAGE_CLASS_FULL, tutorialClass));
     }
 
     @Test

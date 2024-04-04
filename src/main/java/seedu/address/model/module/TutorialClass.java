@@ -95,7 +95,8 @@ public class TutorialClass {
      * @param students      in the tutorial class
      * @param teams         in the tutorial class
      */
-    public TutorialClass(String tutorialClass, int classSize, ArrayList<Person> students, ArrayList<TutorialTeam> teams) {
+    public TutorialClass(String tutorialClass, int classSize, ArrayList<Person> students,
+            ArrayList<TutorialTeam> teams) {
         requireAllNonNull(tutorialClass);
         checkArgument(isValidTutorialClass(tutorialClass), MESSAGE_CONSTRAINTS);
         this.tutorialName = tutorialClass;
