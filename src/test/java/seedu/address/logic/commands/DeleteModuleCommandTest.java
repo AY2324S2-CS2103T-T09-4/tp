@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.messages.ModuleMessages.MESSAGE_DELETE_MODULE_SUCCESS;
 import static seedu.address.logic.messages.ModuleMessages.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -33,7 +32,7 @@ public class DeleteModuleCommandTest {
         actualModel.addModule(module);
 
         assertCommandSuccess(new DeleteModuleCommand(new ModuleCode(VALID_MODULE_AMY)), actualModel,
-                String.format(MESSAGE_DELETE_MODULE_SUCCESS, VALID_MODULE_AMY), expectedModel);
+                String.format(DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS, VALID_MODULE_AMY), expectedModel);
 
         assertEquals(actualModel.getFilteredModuleList().size(), 0);
     }

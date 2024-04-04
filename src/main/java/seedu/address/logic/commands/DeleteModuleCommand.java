@@ -2,11 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.messages.ModuleMessages.MESSAGE_DELETE_MODULE_SUCCESS;
-import static seedu.address.logic.messages.ModuleMessages.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.ModuleMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 
@@ -16,7 +15,7 @@ import seedu.address.model.module.ModuleCode;
 public class DeleteModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "/delete_module";
-
+    public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Removed %1$s!";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a module with the module code specified\n"
             + "Parameters:" + PREFIX_MODULECODE + "MODULE_CODE\n"
@@ -40,7 +39,7 @@ public class DeleteModuleCommand extends Command {
 
         ModuleCode existingModule = model.findModuleFromList(module);
         if (existingModule == null) {
-            String moduleNotFoundMessage = String.format(MESSAGE_MODULE_NOT_FOUND, module);
+            String moduleNotFoundMessage = String.format(ModuleMessages.MESSAGE_MODULE_NOT_FOUND, module);
             throw new CommandException(moduleNotFoundMessage);
         } else {
             model.deleteModule(existingModule);

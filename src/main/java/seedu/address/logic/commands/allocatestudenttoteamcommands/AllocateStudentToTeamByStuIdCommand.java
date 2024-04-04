@@ -10,7 +10,9 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.messages.TeamMessages;
+import seedu.address.logic.messages.ModuleMessages;
+import seedu.address.logic.messages.PersonMessages;
+import seedu.address.logic.messages.TutorialTeamMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
@@ -22,8 +24,6 @@ import seedu.address.model.person.StudentId;
  * Allocates a student to a team in a tutorial Class in TAHelper.
  */
 public class AllocateStudentToTeamByStuIdCommand extends AllocateStudentToTeamCommand {
-
-    public static final String COMMAND_WORD = "/allocate_team";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Allocates a student a team in the tutorial class.\n"
             + "Parameters: "
@@ -46,7 +46,7 @@ public class AllocateStudentToTeamByStuIdCommand extends AllocateStudentToTeamCo
      * Creates an AllocateStudentToTeam object.
      */
     public AllocateStudentToTeamByStuIdCommand(StudentId studentId, ModuleCode moduleCode,
-                                        TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
+            TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
         CollectionUtil.requireAllNonNull(studentId, moduleCode, tutorialClass, tutorialTeam);
         this.studentId = studentId;
         this.moduleCode = moduleCode;
@@ -59,7 +59,8 @@ public class AllocateStudentToTeamByStuIdCommand extends AllocateStudentToTeamCo
         requireNonNull(model);
 
         if (model.findTutorialClassFromList(tutorialClass, moduleCode) == null) {
-            throw new CommandException(MESSAGE_CLASS_DOES_NOT_EXIST);
+            throw new CommandException(String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE,
+                    tutorialClass, moduleCode));
         }
 
         ModuleCode module = model.findModuleFromList(moduleCode);
@@ -69,15 +70,16 @@ public class AllocateStudentToTeamByStuIdCommand extends AllocateStudentToTeamCo
         TutorialTeam tutTeam = tutClass.getTutorialTeam(tutClass, tutorialTeam);
 
         if (student == null) {
-            throw new CommandException(MESSAGE_STUDENT_DOES_NOT_EXIST);
+            throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, studentId));
         }
 
         if (tutTeam == null) {
-            throw new CommandException(String.format(TeamMessages.MESSAGE_TEAM_DOES_NOT_EXIST, tutorialTeam, tutClass));
+            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_DOES_NOT_EXIST,
+                    tutorialTeam, tutClass));
         }
 
         // throws commandException if any condition fails
-        checkAllocateCondition(student, tutClass, tutTeam);
+        checkAllocateCondition(model, student, tutClass, tutTeam, moduleCode);
         model.allocateStudentToTeam(student, tutTeam);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutTeam));

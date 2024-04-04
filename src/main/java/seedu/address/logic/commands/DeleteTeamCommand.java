@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.TutorialTeamMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTutorialPair;
@@ -18,7 +19,6 @@ import seedu.address.model.module.TutorialTeam;
  */
 public class DeleteTeamCommand extends Command {
     public static final String MESSAGE_DELETE_TEAM_SUCCESS = "Removed %1$s from %2$s %3$s!";
-    public static final String MESSAGE_TEAM_NOT_FOUND = "%1$s not in %2$s %3$s!";
     public static final String COMMAND_WORD = "/delete_team";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -57,7 +57,8 @@ public class DeleteTeamCommand extends Command {
         if (tutorialClass.hasTeam(team)) {
             tutorialClass.deleteTeam(team);
         } else {
-            throw new CommandException(String.format(MESSAGE_TEAM_NOT_FOUND, team, module, tutorialClass));
+            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_NOT_FOUND, team,
+                    module, tutorialClass));
         }
 
         return new CommandResult(generateSuccessMessage(module, tutorialClass, team));

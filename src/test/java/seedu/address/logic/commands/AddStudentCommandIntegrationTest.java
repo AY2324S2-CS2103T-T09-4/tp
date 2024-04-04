@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
+import seedu.address.logic.messages.PersonMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -34,7 +35,7 @@ public class AddStudentCommandIntegrationTest {
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddStudentCommand(validPerson), model,
-                String.format(AddStudentCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+                String.format(AddStudentCommand.MESSAGE_ADD_STUDENT_SUCCESS, Messages.format(validPerson)),
                 expectedModel);
     }
 
@@ -42,7 +43,7 @@ public class AddStudentCommandIntegrationTest {
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
         assertCommandFailure(new AddStudentCommand(personInList), model,
-                AddStudentCommand.MESSAGE_DUPLICATE_PERSON);
+                String.format(PersonMessages.MESSAGE_DUPLICATE_PERSON, Messages.format(personInList)));
     }
 
 }

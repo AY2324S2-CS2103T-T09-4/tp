@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.messages.PersonMessages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -30,7 +31,8 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * EditCommand.
  */
 public class EditCommandTest {
 
@@ -154,7 +156,8 @@ public class EditCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
+                outOfBoundIndex.getOneBased()));
     }
 
     @Test
@@ -166,14 +169,16 @@ public class EditCommandTest {
                 .withEmail(secondPersonEmail.toString()).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EMAIL);
+        assertCommandFailure(editCommand, model,
+                String.format(PersonMessages.MESSAGE_DUPLICATE_EMAIL, secondPersonEmail));
 
         // edit with own email
         Email firstPersonEmail = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()).getEmail();
         descriptor = new EditPersonDescriptorBuilder().withEmail(firstPersonEmail.toString()).build();
         editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EMAIL);
+        assertCommandFailure(editCommand, model,
+                String.format(PersonMessages.MESSAGE_DUPLICATE_EMAIL, firstPersonEmail));
     }
 
     @Test
@@ -185,7 +190,8 @@ public class EditCommandTest {
                 .withEmail(personInList.getEmail().toString()).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EMAIL);
+        assertCommandFailure(editCommand, model,
+                String.format(PersonMessages.MESSAGE_DUPLICATE_EMAIL, personInList.getEmail()));
     }
 
     @Test
@@ -198,7 +204,8 @@ public class EditCommandTest {
                 .withStudentId(secondPersonStudentId.toString()).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENTID);
+        assertCommandFailure(editCommand, model,
+                String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENTID, secondPersonStudentId));
 
         // edit with own student id
         StudentId firstPersonStudentId = model.getFilteredPersonList()
@@ -206,7 +213,8 @@ public class EditCommandTest {
         descriptor = new EditPersonDescriptorBuilder().withStudentId(firstPersonStudentId.toString()).build();
         editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENTID);
+        assertCommandFailure(editCommand, model,
+                String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENTID, firstPersonStudentId));
     }
 
     @Test
@@ -218,7 +226,8 @@ public class EditCommandTest {
                 .withStudentId(personInList.getStudentId().toString()).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENTID);
+        assertCommandFailure(editCommand, model,
+                String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENTID, personInList.getStudentId()));
     }
 
     /**
@@ -235,7 +244,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
+                outOfBoundIndex.getOneBased()));
     }
 
     @Test

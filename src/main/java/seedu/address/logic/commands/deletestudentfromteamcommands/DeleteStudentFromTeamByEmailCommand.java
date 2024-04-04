@@ -8,7 +8,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.PersonMessages;
-import seedu.address.logic.messages.TeamMessages;
+import seedu.address.logic.messages.TutorialTeamMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTutorialPair;
@@ -50,7 +50,7 @@ public class DeleteStudentFromTeamByEmailCommand extends DeleteStudentFromTeamCo
 
         TutorialTeam team = tutorialClass.getTutorialTeam(tutorialClass, tutorialTeam);
         if (team == null) {
-            throw new CommandException(String.format(TeamMessages.MESSAGE_TEAM_DOES_NOT_EXIST, tutorialTeam,
+            throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_DOES_NOT_EXIST, tutorialTeam,
                     tutorialClass));
         }
 
@@ -61,7 +61,7 @@ public class DeleteStudentFromTeamByEmailCommand extends DeleteStudentFromTeamCo
         }
         if (!(team.hasStudent(personToDelete))) {
             throw new CommandException(
-                    String.format(TeamMessages.MESSAGE_STUDENT_NOT_FOUND_IN_TEAM,
+                    String.format(TutorialTeamMessages.MESSAGE_STUDENT_NOT_FOUND_IN_TEAM,
                             Messages.format(personToDelete), tutorialClass));
         } else {
             model.deleteStudentFromTeam(personToDelete, team);

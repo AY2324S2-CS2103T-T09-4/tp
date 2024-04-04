@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.PersonMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -31,8 +32,8 @@ public class AddStudentCommand extends Command {
             + PREFIX_EMAIL + "Zack@example.com "
             + PREFIX_TAG + "Student ";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in your list!";
+    public static final String MESSAGE_ADD_STUDENT_SUCCESS = "New person added: %1$s";
+
 
     private final Person toAdd;
 
@@ -49,11 +50,11 @@ public class AddStudentCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(String.format(PersonMessages.MESSAGE_DUPLICATE_PERSON, Messages.format(toAdd)));
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return new CommandResult(String.format(MESSAGE_ADD_STUDENT_SUCCESS, Messages.format(toAdd)));
     }
 
     @Override
