@@ -5,6 +5,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -13,7 +14,6 @@ import seedu.address.logic.commands.AddClassCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
-
 
 
 /**
@@ -28,7 +28,7 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
     public AddClassCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-            PREFIX_MODULECODE, PREFIX_TUTORIALCLASS, PREFIX_DESCRIPTION);
+            PREFIX_MODULECODE, PREFIX_TUTORIALCLASS, PREFIX_DESCRIPTION, PREFIX_SIZE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS)
             || !argMultimap.getPreamble().isEmpty()) {
@@ -38,6 +38,14 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
         String moduleCode = argMultimap.getValue(PREFIX_MODULECODE).orElse("");
         String tutorialClass = argMultimap.getValue(PREFIX_TUTORIALCLASS).orElse("");
         Optional<String> description = argMultimap.getValue(PREFIX_DESCRIPTION);
+        Optional<String> classSizeString = argMultimap.getValue(PREFIX_SIZE);
+
+        int classSize;
+        if (classSizeString.isPresent()) {
+            classSize = ParserUtil.parseClassSize(classSizeString.get());
+        } else {
+            classSize = Integer.MAX_VALUE;
+        }
 
         if (!(ModuleCode.isValidModuleCode(moduleCode))) {
             throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
@@ -45,7 +53,7 @@ public class AddClassCommandParser implements Parser<AddClassCommand> {
         if (!(TutorialClass.isValidTutorialClass(tutorialClass))) {
             throw new ParseException(TutorialClass.MESSAGE_CONSTRAINTS);
         }
-        return new AddClassCommand(new ModuleCode(moduleCode), new TutorialClass(tutorialClass), description);
+        return new AddClassCommand(new ModuleCode(moduleCode), new TutorialClass(tutorialClass, classSize), description);
     }
 
     /**

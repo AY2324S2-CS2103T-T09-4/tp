@@ -45,16 +45,11 @@ public class AddStudentToClassByIndexCommand extends AddStudentToClassCommand {
             throw new CommandException(
                     String.format(PersonMessages.MESSAGE_PERSON_INDEX_NOT_FOUND, targetIndex.getOneBased()));
         }
-
-        if (tutorialClass.hasStudent(personToAdd)) {
-            throw new CommandException(String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS,
-                    Messages.format(personToAdd), tutorialClass));
-        } else {
-            model.addPersonToTutorialClass(personToAdd, module, tutorialClass);
-            return new CommandResult(
-                    String.format(PersonMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS,
-                     Messages.format(personToAdd), module, tutorialClass));
-        }
+        checkIfCanAddStudent(tutorialClass, personToAdd);
+        model.addPersonToTutorialClass(personToAdd, module, tutorialClass);
+        return new CommandResult(
+                String.format(PersonMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS,
+                        Messages.format(personToAdd), module, tutorialClass));
     }
 
     /**

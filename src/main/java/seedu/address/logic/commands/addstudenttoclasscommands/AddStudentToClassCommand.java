@@ -5,12 +5,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.PersonMessages;
+import seedu.address.logic.messages.TutorialClassMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
+import seedu.address.model.person.Person;
 
 /**
  * A class that handles the /add_student_to_class command execution.
@@ -42,6 +46,16 @@ public abstract class AddStudentToClassCommand extends Command {
 
     protected TutorialClass getTutorialClass() {
         return tutorialClass;
+    }
+
+    protected void checkIfCanAddStudent(TutorialClass targetClass, Person studentToAdd) throws CommandException {
+        if (targetClass.hasStudent(studentToAdd)) {
+            throw new CommandException(String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS,
+                    Messages.format(studentToAdd), tutorialClass));
+        }
+        if (targetClass.isFull()) {
+            throw new CommandException(String.format(TutorialClassMessages.MESSAGE_CLASS_FULL, tutorialClass));
+        }
     }
 
     public abstract CommandResult execute(Model model) throws CommandException;

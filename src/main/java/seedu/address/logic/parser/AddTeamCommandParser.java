@@ -4,9 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddTeamCommand;
@@ -28,14 +29,13 @@ public class AddTeamCommandParser implements Parser<AddTeamCommand> {
     public AddTeamCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS,
-                PREFIX_NAME, PREFIX_TEAM_SIZE);
+                PREFIX_NAME, PREFIX_SIZE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTeamCommand.MESSAGE_USAGE));
         }
 
-        boolean isTeamSizePresent = argMultimap.getValue(PREFIX_TEAM_SIZE).isPresent();
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULECODE).get());
         TutorialClass tutorialClass = ParserUtil.parseTutorialClass(argMultimap.getValue(PREFIX_TUTORIALCLASS).get());
         String teamName = argMultimap.getValue(PREFIX_NAME).orElse("");
@@ -44,20 +44,18 @@ public class AddTeamCommandParser implements Parser<AddTeamCommand> {
             throw new ParseException(TutorialTeam.MESSAGE_NAME_CONSTRAINTS);
         }
 
-        if (isTeamSizePresent) {
-            int teamSize;
+        Optional<Integer> teamSizeOptional = argMultimap.getValue(PREFIX_SIZE).flatMap(sizeString -> {
             try {
-                teamSize = Integer.parseInt(argMultimap.getValue(PREFIX_TEAM_SIZE).get());
-            } catch (NumberFormatException e) {
-                throw new ParseException(TutorialTeam.MESSAGE_SIZE_CONSTRAINTS);
+                return Optional.of(ParserUtil.parseTeamSize(sizeString));
+            } catch (ParseException e) {
+                return Optional.empty();
             }
-            if (teamSize <= 0) {
-                throw new ParseException(TutorialTeam.MESSAGE_SIZE_CONSTRAINTS);
-            }
-            return new AddTeamCommand(moduleCode, tutorialClass, teamName, teamSize);
-        } else {
-            return new AddTeamCommand(moduleCode, tutorialClass, teamName);
-        }
+        });
+
+        int teamSize = teamSizeOptional.orElse(Integer.MAX_VALUE);
+
+        return new AddTeamCommand(moduleCode, tutorialClass, teamName, teamSize);
+
     }
 
     /**

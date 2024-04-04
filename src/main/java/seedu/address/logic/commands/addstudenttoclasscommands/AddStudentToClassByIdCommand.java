@@ -48,14 +48,10 @@ public class AddStudentToClassByIdCommand extends AddStudentToClassCommand {
         if (personToAdd == null) {
             throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, studentId));
         }
-        if (tutorialClass.hasStudent(personToAdd)) {
-            throw new CommandException(String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS,
-                    Messages.format(personToAdd), tutorialClass));
-        } else {
-            model.addPersonToTutorialClass(personToAdd, module, tutorialClass);
-            return new CommandResult(String.format(PersonMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS,
-                    Messages.format(personToAdd), module, tutorialClass));
-        }
+        checkIfCanAddStudent(tutorialClass, personToAdd);
+        model.addPersonToTutorialClass(personToAdd, module, tutorialClass);
+        return new CommandResult(String.format(PersonMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS,
+                Messages.format(personToAdd), module, tutorialClass));
     }
 
     /**

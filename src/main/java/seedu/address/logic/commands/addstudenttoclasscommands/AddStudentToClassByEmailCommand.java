@@ -40,25 +40,23 @@ public class AddStudentToClassByEmailCommand extends AddStudentToClassCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ModuleTutorialPair moduleAndTutorialClass = ModuleTutorialPair.getModuleAndTutorialClass(model,
-                getModule(), getTutorialClass());
-        TutorialClass tutorialClass = moduleAndTutorialClass.getTutorialClass();
-        ModuleCode module = moduleAndTutorialClass.getModule();
-        Person personToAdd;
-
-        personToAdd = model.searchPersonByPredicate(predicate);
-        if (personToAdd == null) {
-            throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, email));
-        }
-        if (tutorialClass.hasStudent(personToAdd)) {
-            throw new CommandException(
-                    String.format(TutorialClassMessages.MESSAGE_DUPLICATE_STUDENT_IN_CLASS,
-                            Messages.format(personToAdd), tutorialClass));
-        } else {
+        try {
+            ModuleTutorialPair moduleAndTutorialClass = ModuleTutorialPair.getModuleAndTutorialClass(model,
+                    getModule(), getTutorialClass());
+            TutorialClass tutorialClass = moduleAndTutorialClass.getTutorialClass();
+            ModuleCode module = moduleAndTutorialClass.getModule();
+            Person personToAdd;
+            personToAdd = model.searchPersonByPredicate(predicate);
+            if (personToAdd == null) {
+                throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, email));
+            }
+            checkIfCanAddStudent(tutorialClass, personToAdd);
             model.addPersonToTutorialClass(personToAdd, module, tutorialClass);
             return new CommandResult(
                     String.format(TutorialClassMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS,
                             Messages.format(personToAdd), module, tutorialClass));
+        } catch (CommandException e) {
+            throw new CommandException(e.getMessage());
         }
     }
 

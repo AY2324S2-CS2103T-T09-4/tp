@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 
 import java.util.Optional;
 
@@ -26,13 +27,16 @@ public class AddClassCommand extends Command {
             + "Parameters: " + PREFIX_MODULECODE + "MODULE_CODE "
             + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS "
             + PREFIX_DESCRIPTION + "[description/DESCRIPTION] (optional)\n"
+            + PREFIX_SIZE + "[size/SIZE] (optional)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_MODULECODE + "CS2103T "
             + PREFIX_TUTORIALCLASS + "T09 "
-            + PREFIX_DESCRIPTION + "Software Engineering ";
+            + PREFIX_DESCRIPTION + "Software Engineering "
+            + PREFIX_SIZE + "10";
 
     private final ModuleCode module;
-    private final TutorialClass tutorialString;
+    private final TutorialClass tutorialClass;
     private final Optional<String> description;
+
 
     /**
      * Constructs an AddClassCommand to add the specified {@code TutorialClass} to
@@ -43,29 +47,28 @@ public class AddClassCommand extends Command {
     public AddClassCommand(ModuleCode module, TutorialClass tutorialClass, Optional<String> description) {
         requireAllNonNull(module);
         this.module = module;
-        this.tutorialString = tutorialClass;
+        this.tutorialClass = tutorialClass;
         this.description = description;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         ModuleCode existingModule = model.findModuleFromList(module);
         if (existingModule != null) {
-            if (existingModule.hasTutorialClass(tutorialString)) {
+            if (existingModule.hasTutorialClass(tutorialClass)) {
                 String duplicateMessage = String.format(TutorialClassMessages.MESSAGE_DUPLICATE_CLASS,
-                        module, tutorialString);
+                        module, tutorialClass);
                 throw new CommandException(duplicateMessage);
             } else {
-                existingModule.addTutorialClass(tutorialString);
+                existingModule.addTutorialClass(tutorialClass);
             }
         } else {
             description.ifPresent(module::setDescription);
-            module.addTutorialClass(tutorialString);
+            module.addTutorialClass(tutorialClass);
             model.addModule(module);
         }
-        return new CommandResult(generateSuccessMessage(module, tutorialString));
+        return new CommandResult(generateSuccessMessage(module, tutorialClass));
     }
 
     /**
@@ -91,6 +94,6 @@ public class AddClassCommand extends Command {
         }
 
         AddClassCommand e = (AddClassCommand) other;
-        return module.equals(e.module) && tutorialString.equals(e.tutorialString);
+        return module.equals(e.module) && tutorialClass.equals(e.tutorialClass);
     }
 }
