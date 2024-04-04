@@ -105,6 +105,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasModule(ModuleCode moduleCode) {
+        requireNonNull(moduleCode);
+        return addressBook.hasModule(moduleCode);
+    }
+
+    @Override
     public boolean hasPersonWithStudentId(StudentId id) {
         requireAllNonNull(id);
         return addressBook.hasPersonWithStudentId(id);
@@ -154,15 +160,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasTeamInTutorial(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
-        requireAllNonNull(tutorialClass, tutorialTeam);
-        return addressBook.hasTeamInTutorial(tutorialClass, tutorialTeam);
-    }
-
-    @Override
-    public TutorialTeam getTutorialTeam(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
-        requireAllNonNull(tutorialClass, tutorialTeam);
-        return addressBook.getTutorialTeam(tutorialClass, tutorialTeam);
+    public void randomTeamAllocation(ModuleCode moduleCode, TutorialClass tutorialClass, int numOfTeams) {
+        requireAllNonNull(moduleCode, tutorialClass, numOfTeams);
+        addressBook.randomTeamAllocation(moduleCode, tutorialClass, numOfTeams);
     }
 
     /**
@@ -173,24 +173,6 @@ public class ModelManager implements Model {
     public void addTeam(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
         requireNonNull(tutorialTeam);
         addressBook.addTeam(tutorialClass, tutorialTeam);
-    }
-
-    @Override
-    public boolean hasTeamSizeExceeded(TutorialTeam tutorialTeam) {
-        requireNonNull(tutorialTeam);
-        return addressBook.hasTeamSizeExceeded(tutorialTeam);
-    };
-
-    @Override
-    public boolean isStudentInAnyTeam(Person student, TutorialClass tutorialClass) {
-        requireAllNonNull(student, tutorialClass);
-        return addressBook.isStudentInAnyTeam(student, tutorialClass);
-    }
-
-    @Override
-    public boolean isStudentInTutorialClass(Person student, TutorialClass tutorialClass) {
-        requireAllNonNull(student, tutorialClass);
-        return addressBook.isStudentInTutorialClass(student, tutorialClass);
     }
 
     @Override

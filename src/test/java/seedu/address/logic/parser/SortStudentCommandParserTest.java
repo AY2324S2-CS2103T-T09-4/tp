@@ -9,7 +9,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.SortStudentCommand;
+import seedu.address.logic.commands.sortstudentcommands.SortStudentCommand;
+import seedu.address.logic.commands.sortstudentcommands.SortStudentParameter;
 
 /**
  * Contains unit tests for SortStudentCommandParser.
@@ -27,30 +28,37 @@ public class SortStudentCommandParserTest {
     @Test
     public void parse_validArgs_returnsSortStudentCommand() {
         // valid name
-        SortStudentCommand command = new SortStudentCommand("name");
+        SortStudentCommand command = new SortStudentCommand(SortStudentParameter.NAME);
         assertParseSuccess(parser, " " + PREFIX_SORT_BY + "name", command);
 
-        // valid name
-        command = new SortStudentCommand("id");
+        // valid id
+        command = new SortStudentCommand(SortStudentParameter.STUDENTID);
         assertParseSuccess(parser, " " + PREFIX_SORT_BY + "id", command);
 
-        // valid name
-        command = new SortStudentCommand("email");
+        // valid email
+        command = new SortStudentCommand(SortStudentParameter.EMAIL);
         assertParseSuccess(parser, " " + PREFIX_SORT_BY + "email", command);
 
         // case-insensitive
-        command = new SortStudentCommand("name");
+        command = new SortStudentCommand(SortStudentParameter.NAME);
         assertParseSuccess(parser, " " + PREFIX_SORT_BY + "NaMe", command);
 
-        // extended preamble
-        command = new SortStudentCommand("id");
+        // extended preamble with white spaces
+        command = new SortStudentCommand(SortStudentParameter.STUDENTID);
         assertParseSuccess(parser, "      " + PREFIX_SORT_BY + "id      ", command);
+    }
+
+    @Test
+    public void parse_invalidStrings_returnsSortStudentCommand() {
+        SortStudentCommand command = new SortStudentCommand(SortStudentParameter.INVALID);
+        assertParseSuccess(parser, " " + PREFIX_SORT_BY + "test", command);
+        assertParseSuccess(parser, " " + PREFIX_SORT_BY + 1, command);
     }
 
     @Test
     public void parse_invalidArgs_failure() {
         // sort by prefix present but missing input
-        assertParseFailure(parser, " " + PREFIX_SORT_BY,
+        assertParseFailure(parser, " " + PREFIX_SORT_BY + "",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortStudentCommand.MESSAGE_USAGE));
 
         // missing prefix

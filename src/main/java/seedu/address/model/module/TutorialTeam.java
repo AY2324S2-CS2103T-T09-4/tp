@@ -1,5 +1,6 @@
 package seedu.address.model.module;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -19,6 +20,8 @@ public class TutorialTeam {
     public static final String MESSAGE_NAME_CONSTRAINTS = "Team names should only contain alphanumeric "
             + "characters and spaces, and it should not be blank";
     public static final String MESSAGE_SIZE_CONSTRAINTS = "Team size should be a positive integer";
+
+    public static final String MESSAGE_NUMBER_CONSTRAINTS = "Please enter a valid integer for team size";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
@@ -191,7 +194,33 @@ public class TutorialTeam {
             }
         }
         return false;
+    }
 
+    /**
+     * Returns true if the {@code tutorialTeam} size has exceeded its limit.
+     * @param tutorialTeam size to check.
+     * @return a boolean that indicates whether the team size will be exceeded by adding another person.
+     */
+    public boolean hasTeamSizeExceeded(TutorialTeam tutorialTeam) {
+        requireNonNull(tutorialTeam);
+        int maxTeamSize = tutorialTeam.getTeamSize();
+        int currTeamSize = tutorialTeam.getStudents().size();
+        return (maxTeamSize <= currTeamSize);
+    };
+
+    /**
+     * Checks if the same person is in the team already.
+     * @param student to check if exist in team.
+     * @param tutorialTeam to check.
+     * @return a boolean true if the student exists in the team, else false.
+     */
+    public boolean isSamePersonInTeam(Person student, TutorialTeam tutorialTeam) {
+        for (Person person : tutorialTeam.getStudents()) {
+            if (person.isSamePerson(student)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

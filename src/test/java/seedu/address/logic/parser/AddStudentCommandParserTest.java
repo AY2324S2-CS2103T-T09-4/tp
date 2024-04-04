@@ -54,7 +54,6 @@ public class AddStudentCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + EMAIL_DESC_BOB + STUDENT_ID_DESC_BOB
                 + TAG_DESC_FRIEND, new AddStudentCommand(expectedPerson));
 
-
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();

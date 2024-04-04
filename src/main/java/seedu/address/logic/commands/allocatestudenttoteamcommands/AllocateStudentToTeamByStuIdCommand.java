@@ -69,7 +69,7 @@ public class AllocateStudentToTeamByStuIdCommand extends AllocateStudentToTeamCo
         TutorialClass tutClass = model.findTutorialClassFromList(tutorialClass, module);
 
         Person student = model.getUniquePersonList().getPerson(studentId);
-        TutorialTeam tutTeam = model.getTutorialTeam(tutClass, tutorialTeam);
+        TutorialTeam tutTeam = tutClass.getTutorialTeam(tutClass, tutorialTeam);
 
         if (student == null) {
             throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, studentId));

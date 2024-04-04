@@ -77,7 +77,7 @@ public class AllocateStudentToTeamByIndexCommand extends AllocateStudentToTeamCo
                             index.getOneBased(), tutClass));
         }
 
-        TutorialTeam tutTeam = model.getTutorialTeam(tutClass, tutorialTeam);
+        TutorialTeam tutTeam = tutClass.getTutorialTeam(tutClass, tutorialTeam);
 
         if (tutTeam == null) {
             throw new CommandException(

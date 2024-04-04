@@ -147,27 +147,12 @@ public class AddStudentCommandTest {
         };
 
         @Override
-        public boolean hasTeamInTutorial(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
+        public void randomTeamAllocation(ModuleCode moduleCode, TutorialClass tutorialClass, int numOfTeams) {
             throw new AssertionError("This method should not be called.");
         };
 
         @Override
-        public TutorialTeam getTutorialTeam(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean isStudentInAnyTeam(Person student, TutorialClass tutorialClass) {
-            throw new AssertionError("This method should not be called.");
-        };
-
-        @Override
-        public boolean isStudentInTutorialClass(Person student, TutorialClass tutorialClass) {
-            throw new AssertionError("This method should not be called.");
-        };
-
-        @Override
-        public boolean hasTeamSizeExceeded(TutorialTeam tutorialTeam) {
+        public boolean hasModule(ModuleCode moduleCode) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_BY;
 
-import seedu.address.logic.commands.SortStudentCommand;
+import seedu.address.logic.commands.sortstudentcommands.SortStudentCommand;
+import seedu.address.logic.commands.sortstudentcommands.SortStudentParameter;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -30,7 +31,30 @@ public class SortStudentCommandParser implements Parser<SortStudentCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SORT_BY);
 
-        return new SortStudentCommand(argMultimap.getValue(PREFIX_SORT_BY).get().toLowerCase());
+        String sortByParam = argMultimap.getValue(PREFIX_SORT_BY).get();
+        SortStudentParameter sortStudentParameter = parseSortStudentParameter(sortByParam);
+        return new SortStudentCommand(sortStudentParameter);
     }
 
+    private SortStudentParameter parseSortStudentParameter(String param) {
+        String trimmedParam = param.trim().toLowerCase();
+
+        if (trimmedParam.equals("name")) {
+            return SortStudentParameter.NAME;
+        }
+
+        if (trimmedParam.equals("id")) {
+            return SortStudentParameter.STUDENTID;
+        }
+
+        if (trimmedParam.equals("email")) {
+            return SortStudentParameter.EMAIL;
+        }
+
+        if (trimmedParam.equals("")) {
+            return SortStudentParameter.EMPTY;
+        }
+
+        return SortStudentParameter.INVALID;
+    }
 }

@@ -67,7 +67,7 @@ public class AllocateStudentToTeamByEmailCommand extends AllocateStudentToTeamCo
         TutorialClass tutClass = model.findTutorialClassFromList(tutorialClass, module);
 
         Person student = model.getUniquePersonList().getPersonByEmail(email);
-        TutorialTeam tutTeam = model.getTutorialTeam(tutClass, tutorialTeam);
+        TutorialTeam tutTeam = tutClass.getTutorialTeam(tutClass, tutorialTeam);
 
         if (student == null) {
             throw new CommandException(String.format(PersonMessages.MESSAGE_PERSON_EMAIL_NOT_FOUND, email));
