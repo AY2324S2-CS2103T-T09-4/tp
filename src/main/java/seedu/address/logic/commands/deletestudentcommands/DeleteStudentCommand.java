@@ -41,6 +41,7 @@ public abstract class DeleteStudentCommand extends Command {
 
     /**
      * Deletes a specified student from all tutorial classes from all modules in a model.
+     * Also deletes the student from all teams included in the tutorial classes (implementation inside deleteStudent)
      *
      * @param model that contains the modules and tutorial classes
      * @param student to be deleted
