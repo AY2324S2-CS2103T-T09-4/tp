@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+!define input "/delete_team module/CS2103T tutorial/T09 name/Team 1"
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteTeamCommandParser" as DeleteTeamCommandParser LOGIC_COLOR
+participant "d:DeleteTeamCommand" as DeleteTeamCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(input)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(input)
+activate AddressBookParser
+
+create DeleteTeamCommandParser
+AddressBookParser -> DeleteTeamCommandParser
+activate DeleteTeamCommandParser
+
+DeleteTeamCommandParser --> AddressBookParser
+deactivate DeleteTeamCommandParser
+
+AddressBookParser -> DeleteTeamCommandParser : parse("module/CS2103T tutorial/T09 name/Team 1")
+activate DeleteTeamCommandParser
+
+create DeleteTeamCommand
+DeleteTeamCommandParser -> DeleteTeamCommand
+activate DeleteTeamCommand
+
+DeleteTeamCommand --> DeleteTeamCommandParser :
+deactivate DeleteTeamCommand
+
+DeleteTeamCommandParser --> AddressBookParser : d(p)
+deactivate DeleteTeamCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteTeamCommandParser -[hidden]-> AddressBookParser
+destroy DeleteTeamCommandParser
+
+AddressBookParser --> LogicManager : d(p)
+deactivate AddressBookParser
+
+LogicManager -> DeleteTeamCommand : execute(m)
+activate DeleteTeamCommand
+
+DeleteTeamCommand -> Model : getModuleAndTutorialClass(model)
+activate Model
+
+Model --> DeleteTeamCommand : moduleAndTutorialClass
+DeleteTeamCommand -> Model : moduleAndTutorialClass.getModule()
+activate Model
+
+Model --> DeleteTeamCommand : "CS2103T"
+DeleteTeamCommand -> Model : moduleAndTutorialClass.getTutorialClass()
+activate Model
+
+Model --> DeleteTeamCommand : "T09"
+DeleteTeamCommand -> Model : tutorialClass.deleteTeam("Team 1")
+deactivate Model
+
+create CommandResult
+DeleteTeamCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteTeamCommand
+deactivate CommandResult
+
+DeleteTeamCommand --> LogicManager : r
+deactivate DeleteTeamCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

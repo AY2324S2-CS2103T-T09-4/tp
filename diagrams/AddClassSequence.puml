@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+!define input "/add_class module/CS2103T tutorial/T09"
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddClassCommandParser" as AddClassCommandParser LOGIC_COLOR
+participant "d:AddClassCommand" as AddClassCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(input)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(input)
+activate AddressBookParser
+
+create AddClassCommandParser
+AddressBookParser -> AddClassCommandParser
+activate AddClassCommandParser
+
+AddClassCommandParser --> AddressBookParser
+deactivate AddClassCommandParser
+
+AddressBookParser -> AddClassCommandParser : parse("module/CS2103T tutorial/T09")
+activate AddClassCommandParser
+
+create AddClassCommand
+AddClassCommandParser -> AddClassCommand
+activate AddClassCommand
+
+AddClassCommand --> AddClassCommandParser
+deactivate AddClassCommand
+
+AddClassCommandParser --> AddressBookParser : d(p)
+deactivate AddClassCommandParser
+
+AddressBookParser --> LogicManager : d(p)
+deactivate AddressBookParser
+
+LogicManager -> AddClassCommand : execute(m)
+activate AddClassCommand
+
+AddClassCommand -> Model : addModule(p)
+activate Model
+
+Model --> AddClassCommand
+deactivate Model
+
+create CommandResult
+AddClassCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddClassCommand
+deactivate CommandResult
+
+AddClassCommand --> LogicManager : r
+deactivate AddClassCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

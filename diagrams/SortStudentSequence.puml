@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SortStudentCommandParser" as SortStudentCommandParser LOGIC_COLOR
+participant "s:SortStudentByIdCommand" as SortStudentByIdCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(sortStudent)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(sortStudent)
+activate AddressBookParser
+
+create SortStudentCommandParser
+AddressBookParser -> SortStudentCommandParser
+activate SortStudentCommandParser
+
+SortStudentCommandParser --> AddressBookParser
+deactivate SortStudentCommandParser
+
+AddressBookParser -> SortStudentCommandParser : parse(by)
+activate SortStudentCommandParser
+
+create SortStudentByIdCommand
+SortStudentCommandParser -> SortStudentByIdCommand
+activate SortStudentByIdCommand
+
+SortStudentByIdCommand --> SortStudentCommandParser :
+deactivate SortStudentByIdCommand
+
+SortStudentCommandParser --> AddressBookParser : s
+deactivate SortStudentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortStudentCommandParser -[hidden]-> AddressBookParser
+destroy SortStudentCommandParser
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> SortStudentByIdCommand : execute(m)
+activate SortStudentByIdCommand
+
+SortStudentByIdCommand -> Model : getSortedPersonList(p)
+activate Model
+
+Model --> SortStudentByIdCommand : p.getStudentId()
+deactivate Model
+
+create CommandResult
+SortStudentByIdCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortStudentByIdCommand
+deactivate CommandResult
+
+SortStudentByIdCommand --> LogicManager : r
+deactivate SortStudentByIdCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
