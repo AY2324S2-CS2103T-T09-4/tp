@@ -6,7 +6,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.messages.TeamMessages;
+import seedu.address.logic.messages.TutorialTeamMessages;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTutorialPair;
@@ -52,16 +52,14 @@ public class DeleteStudentFromTeamByIndexCommand extends DeleteStudentFromTeamCo
             personToDelete = team.getStudents().get(targetIndex.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(
-                    String.format(TeamMessages.MESSAGE_PERSON_INDEX_NOT_FOUND, targetIndex.getOneBased(), team));
+                    String.format(TutorialTeamMessages.MESSAGE_PERSON_INDEX_NOT_FOUND,
+                            targetIndex.getOneBased(), team));
         }
 
-        if (team == null) {
-            throw new CommandException(String.format(TeamMessages.MESSAGE_TEAM_DOES_NOT_EXIST, tutorialTeam,
-                    tutorialClass));
-        }
+
         if (!(team.hasStudent(personToDelete))) {
             throw new CommandException(
-                    String.format(TeamMessages.MESSAGE_STUDENT_NOT_FOUND_IN_TEAM,
+                    String.format(TutorialTeamMessages.MESSAGE_STUDENT_NOT_FOUND_IN_TEAM,
                             Messages.format(personToDelete), tutorialClass));
         } else {
             model.deleteStudentFromTeam(personToDelete, team);

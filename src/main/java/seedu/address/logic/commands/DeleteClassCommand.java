@@ -16,8 +16,6 @@ import seedu.address.model.module.TutorialClass;
  */
 public class DeleteClassCommand extends Command {
     public static final String MESSAGE_DELETE_CLASS_SUCCESS = "Removed %1$s %2$s!";
-    public static final String MESSAGE_MODULE_NOT_FOUND = "%1$s not in list!";
-    public static final String MESSAGE_CLASS_NOT_FOUND = "%1$s %2$s not in list!";
     public static final String COMMAND_WORD = "/delete_class";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD

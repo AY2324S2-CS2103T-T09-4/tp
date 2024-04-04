@@ -78,7 +78,7 @@ public class DeleteStudentFromClassCommandTest {
                 String.format(PersonMessages.MESSAGE_PERSON_STUDENT_ID_NOT_FOUND, INVALID_PERSON_STUDENT_ID));
 
         assertCommandFailure(deleteStudentFromClassByIndexCommand, model,
-                String.format(TutorialClassMessages.MESSAGE_PERSON_INDEX_NOT_FOUND, testIndex.getOneBased(),
+                String.format(TutorialClassMessages.MESSAGE_PERSON_INDEX_NOT_FOUND_IN_CLASS, testIndex.getOneBased(),
                         tutorialClass));
     }
 

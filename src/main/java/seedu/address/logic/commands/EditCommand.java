@@ -20,6 +20,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.PersonMessages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -51,14 +52,11 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-    public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in the address book.";
-    public static final String MESSAGE_DUPLICATE_STUDENTID = "This student id already exists in the address book.";
-
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -87,12 +85,13 @@ public class EditCommand extends Command {
 
         Optional<Email> emailToBeEdited = editPersonDescriptor.getEmail();
         if (emailToBeEdited.isPresent() && model.hasPersonWithEmail(emailToBeEdited.get())) {
-            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+            throw new CommandException(String.format(PersonMessages.MESSAGE_DUPLICATE_EMAIL, emailToBeEdited.get()));
         }
 
         Optional<StudentId> studentIdToBeEdited = editPersonDescriptor.getStudentId();
         if (studentIdToBeEdited.isPresent() && model.hasPersonWithStudentId(studentIdToBeEdited.get())) {
-            throw new CommandException(MESSAGE_DUPLICATE_STUDENTID);
+            throw new CommandException(
+                    String.format(PersonMessages.MESSAGE_DUPLICATE_STUDENTID, studentIdToBeEdited.get()));
         }
 
         model.setPerson(personToEdit, editedPerson);
@@ -140,7 +139,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * Stores the details to edit the person with. Each non-empty field value will
+     * replace the
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
@@ -149,7 +149,8 @@ public class EditCommand extends Command {
         private StudentId studentId;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -188,6 +189,7 @@ public class EditCommand extends Command {
         public void setStudentId(StudentId stuId) {
             this.studentId = stuId;
         }
+
         public Optional<StudentId> getStudentId() {
             return Optional.ofNullable(studentId);
         }
@@ -201,7 +203,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
