@@ -1,0 +1,11 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+ModuleCode *-down-> "*" TutorialClass
+TutorialClass *--> "0...classSize" Person
+TutorialClass *--> "*" TutorialTeam
+TutorialTeam *-down-> "0..teamSize" Person
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+start
+:User executes AddStudent command;
+
+if (Parse AddStudent command?) then ([success])
+    :Search in the model's Person list\n to check if the student exist;
+    if (is there a match by ID or Email?) then ([yes])
+        :Throws CommandException with\n a duplicate Person Message;
+    else ([no])
+        :Adds the Person to add\n into the model's Person list;
+        :Generate CommandResult with\n corresponding person added success message;
+    endif
+
+else ([failure])
+    :Throws ParseException due to invalid input;
+endif
+
+stop
+@enduml
