@@ -13,7 +13,38 @@ TAHelper is a **desktop app for managing contacts, optimized for use via a Line 
 ## Why choose TAHelper?
 
 ## Table of contents
-<!-- * Table of Contents -->
+- [TAHelper User Guide](#tahelper-user-guide)
+- [Why choose TAHelper](#why-choose-tahelper)
+- [Target Audience](#target-audience)
+- [Purpose of User Guide](#purpose-of-user-guide)
+- [Navigating the User Guide](#navigating-the-user-guide)
+- [Quick Start](#quick-start)
+- [Navigating the GUI](#navigating-the-gui)
+- [Features](#features)
+  - [Command Format](#command-format)
+  - [Adding new students](#adding-new-students--addstudent)
+  - [Deleting students](#deleting-students--deletestudent)
+  - [Searching for students](#searching-for-students--searchstudent)
+  - [Edit student contacts](#edit-student-contact--editstudent)
+  - [Listing all students](#listing-all-students--liststudents)
+  - [Sort all students](#sort-all-students--sortstudents)
+  - [Allocating students to tutorial teams](#allocating-students-to-tutorial-teams--allocateteam)
+  - [Adding new tutorial class](#adding-new-tutorial-class--addclass)
+  - [Deleting tutorial class](#deleting-tutorial-class--deleteclass)
+  - [Deleting modules](#deleting-modules--deletemodule)
+  - [Listing all tutorial classes](#listing-all-tutorial-classes--listclasses)
+  - [Adding student to tutorial class](#adding-student-to-tutorial-class--addstudenttoclass)
+  - [Deleting students from tutorial class](#deleting-students-from-tutorial-class--deletestudentfromclass)
+  - [Adding new tutorial team](#adding-new-tutorial-team--addteam)
+  - [Listing all students of a tutorial class](#listing-all-students-of-a-tutorial-class--classliststudents)
+  - [View a team in tutorial class](#view-a-team-in-a-tutorial-class--viewteams)
+  - [Randomly allocate into teams all students in a tutorial class](#randomly-allocate-into-teams-all-students-in-a-tutorial-class--randomteams)
+  - [Deleting students from team](#deleting-students-from-team--deletestudentfromteam)
+- [FAQ](#faq)
+- [Known issues](#known-issues)
+- [Glossary](#glossary)
+- [Command summary](#command-summary)
+
 ---
 
 ## Target Audience
@@ -61,11 +92,12 @@ confidence to make full use of TAHelper's features.
       - Press the windows button and type `cmd` into the search bar.
       - Then `cd` into the folder you put the jar file in.
       - It should look something like this:
-      - ![cmd](images/cmdwinguide.png)
+      ![cmd](images/cmdwinguide.png)
 
     - Mac OS:
       - Search for Terminal in "Utilities" under "Applications".
       - It should look something like this:
+
 
 5. Launching TAHelper
     - Type `java -jar tahelper.jar` command and hit Enter to run TAHelper.<br>
@@ -83,7 +115,7 @@ confidence to make full use of TAHelper's features.
       - The student entry with the ID `A0123456A` or email `johndoe@gmail.com` will be deleted.
       - This deletion will be reflected on User Interface of TAHelper as well.
 
-    - For more Commands that will improve your experience, ![click here]
+    - For more Commands that will improve your experience, [click here](#command-summary)
 
 [Back to table of contents](#table-of-contents)
 
@@ -341,7 +373,6 @@ Explanation: This allocates a student with email matching `johndoe@gmail.com` in
 
 Explanation: This allocates a student with index position `1` in the tutorial class `T01` to a tutorial team `team1` of the tutorial class `T01` under the module `CS2101`.
 
-
 ---
 ### Adding new tutorial class : `add_class`
 
@@ -382,6 +413,7 @@ Examples:
 Explanation: Deletes tutorial class `T10` from the module `CS2103T`
 - `/delete_class module/CS2109S class/T01`
 Explanation: Deletes tutorial class `T01` from the module `CS2109S`
+
 ---
 ### Deleting modules : `delete_module`
 
@@ -431,7 +463,6 @@ Examples:
 - Add student by index: `/add_student_to_class index/1 module/CS2103T class/T10`
 
 ---
-
 ### Deleting students from tutorial class: `delete_student_from_class`
 
 Deletes the specified student from a specified team.
@@ -473,6 +504,7 @@ Examples:
 
 - Without team size:`/add_team module/CS2103T class/T10 name/Team 1`
 - With team size: `/add_team module/CS2103T class/T10 name/Team 1 size/3`
+
 ---
 ### Listing all students of a tutorial class : `class_list_students`
 
@@ -491,6 +523,7 @@ Example:
 - `class_list_students module/CS2103T class/T09`
 - `class_list_students module/CS2101 class/T01`
 
+---
 ### View a team in a tutorial class : `view_teams`
 
 View the information about a team in a tutorial class.
@@ -511,7 +544,6 @@ Example:
 - View team by index: `/view_teams index/1 module/CS2103T class/T09`
 
 ---
-
 ### Randomly allocate into teams all students in a tutorial class : `random_teams`
 
 Randomly allocates all students in a tutorial class into different teams in the tutorial class.
@@ -563,14 +595,12 @@ must be in the team before command execution.Explanation: This deletes the stude
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TAHelper home folder.
 
 ---
-
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 ---
-
-### Glossary
+## Glossary
 
 | Term                               | Definition and/or Explanation                                                                                                                                                                                  |
 |------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -584,7 +614,6 @@ must be in the team before command execution.Explanation: This deletes the stude
 | **NUS**                            | Refers to National University Of Singapore, which is located at Central Singapore.                                                                                                                             |
 
 ---
-
 ## Command summary
 
 | Action                                  | Format, Examples                                                                                                                                                                                                                         |
@@ -593,7 +622,7 @@ must be in the team before command execution.Explanation: This deletes the stude
 | **Delete students**                     | `/delete_student <id/, email/> <id or email>`<br> e.g., `delete_student id/A0259209B` or `/delete_student email/johndoe@gmail.com`                                                                                                       |
 | **Search for students**                 | `/search_student <id/, email/, tc/, name/> <id or email or tutorial or name>`<br> e.g.,`/search_student id/A0123456A`                                                                                                                    |
 | **Edit student contact**                | `/edit_student index/<index> <id/, email/, name/, tag/>`<br> e.g.,`/edit_student index/1 name/John`                                                                                                                                      |
-| **Sort students**                       | `/sort_students by/<name or email or id> `<br> e.g.,`search_student by/id` or `/search_student by/name`                                                                                                                                  |
+| **Sort students**                       | `/sort_students by/<name or email or id> `<br> e.g.,`sort_students by/id` or `/sort_students by/name`                                                                                                                                    |
 | **View all students**                   | `/list_students`                                                                                                                                                                                                                         |
 | **Add new tutorial class**              | `/add_class module/<module_code> tutorial/<tutorial_class> [description/<description>] [size/<class_size>]` <br> e.g., `/add_class module/CS2103T tutorial/T09 description/Software Engineering size/10`                                 |
 | **Delete tutorial class**               | `/delete_class module/<module_code> tutorial/<tutorial_class>` <br> e.g., `/delete_class module/CS2103T tutorial/T09`                                                                                                                    |
