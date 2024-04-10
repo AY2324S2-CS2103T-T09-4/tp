@@ -97,11 +97,10 @@ confidence to make full use of TAHelper's features.
     - Mac OS:
       - Search for Terminal in "Utilities" under "Applications".
       - It should look something like this:
-      
 
 5. Launching TAHelper
     - Type `java -jar tahelper.jar` command and hit Enter to run TAHelper.<br>
-    - It should look something like this (in this case my jar file is in a folder called tahelper): 
+    - It should look something like this (in this case my jar file is in a folder called `tahelper`):
     - ![cmd](images/cmdwinguide2.png)
     - A GUI similar to the below should appear in a few seconds.<br>
     - ![Ui](images/Ui.png) (to update!!).
@@ -143,7 +142,7 @@ Commands on students:
 
    - `/allocate_teams id/A1234567Z module/CS2101 tutorial/T01 name/team1` : Allocate a student to the specified team `team1` in the tutorial class `T01` of module `CS2101`.
 
-   - `/add_student_to_class id/A1234567Z module/CS2101 tutorial/T01` : Add a student the tutorial class `T01` of module `CS2101`. 
+   - `/add_student_to_class id/A1234567Z module/CS2101 tutorial/T01` : Add a student the tutorial class `T01` of module `CS2101`.
 
 Commands on modules:
 
@@ -154,7 +153,7 @@ Commands on modules:
    - `/list_classes` : List of all tutorial classes available.
 
    - `/class_list_students module/CS2103T class/T09` : List all the students in the tutorial class `T09` under the module `CS2103T`
-   
+
    - `/view_teams name/Team 1 module/CS2103T class/T09` or `/view_teams index/1 module/CS2103T class/T09` : View the information of the team with team name `Team 1` or index `1` in tutorial class `T09` under module `CS2103T`
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -174,7 +173,7 @@ Here are the main components of the commands:
 | Command Word | /add, /search, /delete | The type of command to be executed by the system.                                                                                                 |
 | Prefix       | name/, email/, id/     | The attributes of the quantity observed.                                                                                                          |
 | Parameters   | NAME, EMAIL, STUDENTID | The value of the attribute that the user have to provide after the prefix.                                                                        |
-| Index        | 1, 3                   | The position of the student in the list it is referencing. Eg. Index 1 of tutorial class `T01` refers to the 1st student in the `T01` class list. | 
+| Index        | 1, 3                   | The position of the student in the list it is referencing. Eg. Index 1 of tutorial class `T01` refers to the 1st student in the `T01` class list. |
 
 Here are symbols used in the commands:
 
@@ -225,7 +224,7 @@ Format: `/add_student name/NAME email/EMAIL id/STUDENT_ID`
 
 - The following parameters to add a student contact are supported:
 
-  1. Name   
+  1. Name
   2. Email
   3. Student ID
 
