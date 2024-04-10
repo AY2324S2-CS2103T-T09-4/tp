@@ -591,13 +591,24 @@ must be in the team before command execution.Explanation: This deletes the stude
 ---
 ## FAQ
 
+**Q**: How can I check the Java version on my computer?<br>
+**A**: Open your command terminal (refer to [quick start point 4](#quick-start)) if you forgot, and type the following command:<br>
+`java -version`
+
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TAHelper home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TAHelper home folder. This file will be found in the data folder which you store the `tahelper.jar` at.
+
+**Q**: Will my data be saved when using your app?<br>
+**A**: Your data will always be saved in the data folder where you store the `tahelper.jar`. However, be sure to only make changes to the data through `tahelper` itself and do not directly alter the data from the data file.
+
+[Back to table of contents](#table-of-contents)
 
 ---
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+[Back to table of contents](#table-of-contents)
 
 ---
 ## Glossary
@@ -612,13 +623,17 @@ must be in the team before command execution.Explanation: This deletes the stude
 | **Lexicographical Order**          | is the ordering of strings based on the unicode value of each character in the string.                                                                                                                         |
 | **CS**                             | Refers to Computer Science.                                                                                                                                                                                    |
 | **NUS**                            | Refers to National University Of Singapore, which is located at Central Singapore.                                                                                                                             |
+| **Command**                        | Refers to an action or input that the user types in `tahelper` to run a task for the user.                                                                                                                     |
+| **Parameter**                      | Refers to a placeholder text that the user has to provide in order for `tahelper` to recognise the information they want when executing a command.                                                             |
+
+[Back to table of contents](#table-of-contents)
 
 ---
 ## Command summary
 
 | Action                                  | Format, Examples                                                                                                                                                                                                                         |
 |-----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add New Students**                    | `/add_student name/ <student_name> id/ <student_id> email/ <student_email> tag/<tag>` <br> e.g., `/add_student name/Dohn Joe id/A0123456A email/johndoe@gmail.com id/A0123456A`                                                          |
+| **Add New Students**                    | `/add_student name/<student_name> email/<student_email> id/<student_id> [tag/<tag>]` <br> e.g., `/add_student name/Dohn Joe email/johndoe@gmail.com id/A0123456A`                                                                        |
 | **Delete students**                     | `/delete_student <id/, email/> <id or email>`<br> e.g., `delete_student id/A0259209B` or `/delete_student email/johndoe@gmail.com`                                                                                                       |
 | **Search for students**                 | `/search_student <id/, email/, tc/, name/> <id or email or tutorial or name>`<br> e.g.,`/search_student id/A0123456A`                                                                                                                    |
 | **Edit student contact**                | `/edit_student index/<index> <id/, email/, name/, tag/>`<br> e.g.,`/edit_student index/1 name/John`                                                                                                                                      |
@@ -634,6 +649,8 @@ must be in the team before command execution.Explanation: This deletes the stude
 | **Add new team**                        | `/add_team module/<moduleCode> tutorial/<tutorialClass> name/<team_name> [size/<team_size>]` <br> e.g., `/add_team module/CS2103T tutorial/T09 name/Team 1 size/5`                                                                       |
 | **Delete team**                         | `/delete_team module/<moduleCode> tutorial/<tutorialClass> name/<team_name>` <br> e.g., `/delete_team module/CS2103 tutorial/T09 name/Team 4`                                                                                            |
 | **View team**                           | `/view_teams <index/, name/> <index or name> module/<moduleCode> tutorial/<tutorialClass>` <br> e.g., `/view_teams name/Team 1 module/CS2103T tutorial/T09`                                                                              |
-| **Randomly allocate team**              | `/random_teams module/<module> tutorial/<tutorialClass> teams/<number_of_teams>` <br> e.g., `/random_teams module/CS2103 tutorial/T09 teams/4`                                                                                           |
-| **Allocate students to team**           | `/allocate_team <id/, email/> <student_id or email> module/<moduleCode> tutorial/<tutorial_class> name/<team_name>` <br> e.g., `/allocate_team id/A1234567K module/CS2103 tutorial/T09 name/4`                                           |
+| **Randomly allocate team**              | `/random_teams module/<moduleCode> tutorial/<tutorialClass> teams/<number_of_teams>` <br> e.g., `/random_teams module/CS2103 tutorial/T09 teams/4`                                                                                       |
+| **Allocate students to team**           | `/allocate_team <id/<student_id> or email/<email>> module/<moduleCode> tutorial/<tutorial_class> name/<team_name>` <br> e.g., `/allocate_team id/A1234567K module/CS2103 tutorial/T09 name/team4`                                        |
 | **Delete students from team**           | `/delete_student_from_team <id/, email/, index/> <student_id or email or index> module/<moduleCode> tutorial/<tutorialClass> name/<team_name>` <br> e.g., `/delete_student_from_team id/A1234567K module/CS2103 tutorial/T09 name/4`     |
+
+[Back to table of contents](#table-of-contents)
