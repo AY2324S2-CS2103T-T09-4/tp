@@ -56,6 +56,7 @@ public class DeleteStudentFromClassByEmailCommand extends DeleteStudentFromClass
                             Messages.format(personToDelete), tutorialClass));
         } else {
             model.deletePersonFromTutorialClass(personToDelete, module, tutorialClass);
+            model.getAddressBook().setStudentsInTutorialClass(tutorialClass);
             return new CommandResult(
                     String.format(TutorialClassMessages.MESSAGE_DELETE_STUDENT_FROM_CLASS_SUCCESS,
                             Messages.format(personToDelete), module, tutorialClass));
