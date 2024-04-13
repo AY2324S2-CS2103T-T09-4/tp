@@ -48,7 +48,7 @@ public class ViewTeamCommandTest {
         ViewTeamCommand command = new ViewTeamCommand(PREFIX_NAME, "Team A", moduleCode, tutorialClass);
         CommandResult result = command.execute(model);
 
-        assertEquals("Team Name: Team A, Team Size: 2, Students: name=John, email=john@example.com, "
+        assertEquals("Team Name: Team A, Team Capacity: 2, Students: name=John, email=john@example.com, "
             + "stuId=A1234561Z, name=Alice, email=alice@example.com, stuId=A1234562Z", result.getFeedbackToUser());
     }
 

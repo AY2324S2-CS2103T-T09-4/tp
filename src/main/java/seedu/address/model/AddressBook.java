@@ -34,7 +34,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final ArrayList<TutorialClass> tutorialClasses;
     private final ArrayList<TutorialTeam> tutorialTeams;
 
-    private final UniquePersonList studentsInTeam;
+    private ObservableList<Person> studentsInTeam;
+    private ObservableList<Person> studentsInClass;
+    private ObservableList<TutorialTeam> tutorialTeamsList;
+    private ObservableList<TutorialClass> tutorialClassInModules;
 
 
     /*
@@ -52,7 +55,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         modules = new ArrayList<>();
         tutorialClasses = new ArrayList<>();
         tutorialTeams = new ArrayList<>();
-        studentsInTeam = new UniquePersonList();
 
     }
 
@@ -98,11 +100,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.tutorialTeams.addAll(tutorialTeams);
     }
 
-    public void setStudentsInTeam(List<Person> students) {
-        requireNonNull(students);
-        this.studentsInTeam.setPersons(students);
-    }
-
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -112,7 +109,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         setModules(newData.getModuleList());
         setClass(newData.getTutorialList());
         setTutorialTeams(newData.getTutorialTeamList());
-        setStudentsInTeam(newData.getStudentsInTeamList());
     }
 
     //// person-level operations
@@ -375,13 +371,25 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Person> getStudentsInTeamList() {
-        return studentsInTeam.asUnmodifiableObservableList();
+    public void setStudentsInTeam(TutorialTeam tutorialTeam) {
+        studentsInTeam = FXCollections.observableArrayList(tutorialTeam.getStudents());
     }
-
+    @Override
+    public ObservableList<Person> getStudentsInTeamList() {
+        return studentsInTeam;
+    }
     @Override
     public ObservableList<Person> getStudentsInTutorialClass(TutorialClass tutorialClass) {
         return FXCollections.observableList(tutorialClass.getStudents());
+    }
+    @Override
+    public void setStudentsInTutorialClass(TutorialClass tutorialClass) {
+        studentsInClass = FXCollections.observableArrayList(tutorialClass.getStudents());
+    }
+
+    @Override
+    public ObservableList<Person> getStudentsInTutorialClassList() {
+        return studentsInClass;
     }
 
     @Override
@@ -395,6 +403,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<TutorialTeam> getTeamList() {
         return FXCollections.observableList(tutorialTeams);
+    }
+    @Override
+    public void setTutorialClassesInModules(ModuleCode moduleCode) {
+        tutorialClassInModules = FXCollections.observableArrayList(moduleCode.getTutorialClasses());
+    }
+    @Override
+    public ObservableList<TutorialClass> getTutorialClassInModules() {
+        return tutorialClassInModules;
+    }
+    @Override
+    public void setTutorialTeamsInClass(TutorialClass tutorialClass) {
+        tutorialTeamsList = FXCollections.observableArrayList(tutorialClass.getTeams());
+    }
+    @Override
+    public ObservableList<TutorialTeam> getUiTutorialTeamList() {
+        return tutorialTeamsList;
     }
     @Override
     public void setSortedPersonList(Comparator<Person> comparator) {

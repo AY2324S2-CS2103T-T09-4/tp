@@ -129,7 +129,8 @@ public class ListStudentsOfClassCommandTest {
         CommandResult commandResult = listCommand.execute(model);
 
         StringBuilder expectedResult = new StringBuilder();
-        expectedResult.append("Module: CS2101, Tutorial Class: T01\nStudents: Alice, Bob,");
+        expectedResult.append("Module: CS2101, Tutorial Class: T01\nStudents: Alice (ID: A1234561Z), "
+            + "Bob (ID: A1234562Z),");
 
         assertEquals(expectedResult.toString(), commandResult.getFeedbackToUser());
     }

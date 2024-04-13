@@ -38,11 +38,11 @@ public class ViewTeamCommandParser implements Parser<ViewTeamCommand> {
         TutorialClass tutorialClass;
         predicateType = getPredicateType(argMultimap);
         predicateValue = argMultimap.getValue(predicateType).orElseThrow(() ->
-            new ParseException("Predicate type is missing"));
+            new ParseException("Predicate type is missing."));
         moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULECODE)
-            .orElseThrow(() -> new ParseException("Module code is missing")));
+            .orElseThrow(() -> new ParseException("Module code is missing.")));
         tutorialClass = ParserUtil.parseTutorialClass(argMultimap.getValue(PREFIX_TUTORIALCLASS)
-            .orElseThrow(() -> new ParseException("Tutorial class is missing")));
+            .orElseThrow(() -> new ParseException("Tutorial class is missing.")));
 
         return new ViewTeamCommand(predicateType, predicateValue, moduleCode, tutorialClass);
     }

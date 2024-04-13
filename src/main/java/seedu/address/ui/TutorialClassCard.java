@@ -47,6 +47,7 @@ public class TutorialClassCard extends UiPart<Region> {
         this.personListPanel = personListPanel;
         tutorialClassLabel.setText(tutorialClass.toString());
         updateImage();
+        initialize();
         updateTeamComboBox(tutorialClass.getTeams());
     }
 
