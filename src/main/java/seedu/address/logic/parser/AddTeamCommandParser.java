@@ -3,8 +3,8 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
 import java.util.Optional;
@@ -29,16 +29,16 @@ public class AddTeamCommandParser implements Parser<AddTeamCommand> {
     public AddTeamCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS,
-            PREFIX_NAME, PREFIX_SIZE);
+            PREFIX_TEAMNAME, PREFIX_SIZE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS, PREFIX_NAME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS, PREFIX_TEAMNAME)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTeamCommand.MESSAGE_USAGE));
         }
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULECODE).get());
         TutorialClass tutorialClass = ParserUtil.parseTutorialClass(argMultimap.getValue(PREFIX_TUTORIALCLASS).get());
-        String teamName = argMultimap.getValue(PREFIX_NAME).orElse("");
+        String teamName = argMultimap.getValue(PREFIX_TEAMNAME).orElse("");
 
         if (!TutorialTeam.isValidTeamName(teamName)) {
             throw new ParseException(TutorialTeam.MESSAGE_NAME_CONSTRAINTS);

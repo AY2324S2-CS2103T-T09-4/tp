@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -26,9 +26,9 @@ public class AddTeamCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Create a team with a name and an optional size, assigned to a particular tutorial class\n"
         + "Parameters: " + PREFIX_MODULECODE + "MODULE_CODE "
-        + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS " + PREFIX_NAME + "TEAM_NAME " + PREFIX_SIZE + "TEAM_SIZE\n"
+        + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS " + PREFIX_TEAMNAME + "TEAM_NAME " + PREFIX_SIZE + "TEAM_SIZE\n"
         + "Example: " + COMMAND_WORD + " " + PREFIX_MODULECODE + "CS2103T "
-        + PREFIX_TUTORIALCLASS + "T09 " + PREFIX_NAME + "Team 1 " + PREFIX_SIZE + "5";
+        + PREFIX_TUTORIALCLASS + "T09 " + PREFIX_TEAMNAME + "Team 1 " + PREFIX_SIZE + "5";
 
     private final ModuleCode module;
     private final TutorialClass tutorialClass;

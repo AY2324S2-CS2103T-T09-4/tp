@@ -132,7 +132,13 @@ confidence to make full use of TAHelper's features.
 
 ## Navigating the GUI
 
-GUI Components
+![GUI](images/Gui.png)
+- Users can enter their command in the `Command Line`. The output of their commands will be shown in the `Output` box
+- All modules are listed under the `Modules` column
+- All tutorial classes belonging to the selected module are listed under the `Tutorials` column
+- Within each tutorial class, the team can be selected from the dropdown menu.
+- Depending on the user interaction, the list of students in the module, tutorial or team will be shown under the `Students` column. For example, clicking on a module card will display all students in that module. Similarly, clicking on a tutorial class and selecting a team from the dropdown will display all students in that team.
+- For extra help, users can click on the `Help` button at the top left hand corner of the GUI, which will navigate to the user guide.
 
 
 [Back to table of contents](#table-of-contents)
@@ -151,23 +157,31 @@ Commands on students:
 
    - `/sort_students by/id or by/name` : Sorts the list of students in lexicographical order by id or name.
 
-   - `/add_class module/CS2103T class/T09` : Adds a new tutorial class `T09` under the module `CS2103T`.
+   - `/allocate_team id/A1234567Z module/CS2101 tutorial/T01 team/team1` : Allocate a student to the specified team `team1` in the tutorial class `T01` of module `CS2101`.
 
-   - `/allocate_team id/A1234567Z module/CS2101 tutorial/T01 name/team1` : Allocate a student to the specified team `team1` in the tutorial class `T01` of module `CS2101`.
+   - `/add_student_to_class id/A1234567Z module/CS2101 tutorial/T01` : Add the student with the student id `A1234567Z` to the tutorial class `T01` of module `CS2101`.
 
-   - `/add_student_to_class id/A1234567Z module/CS2101 tutorial/T01` : Add a student the tutorial class `T01` of module `CS2101`.
+   - `/delete_student_from_class id/A1234567Z module/CS2101 tutorial/T01` : Deletes the student with the student id `A1234567Z` from the tutorial class `T01` of module `CS2101`.
+
+   - `/delete_student_from_team id/A1234567Z module/CS2101 tutorial/T01 team/Team 1` : Deletes the student with the student id `A1234567Z` from the team `Team 1` in tutorial class `T01` of module `CS2101`.
 
 Commands on modules:
 
    - `/add_class module/CS2103T tutorial/T09` : Adds a new tutorial class `T09` under the module `CS2103T`.
 
-   - `/delete_class module/CS2103T tutorial/T09` : Deletes a tutorial class `T09` under the module `CS2103T`.
+   - `/delete_class module/CS2103T tutorial/T09` : Deletes the tutorial class `T09` under the module `CS2103T`.
 
    - `/delete_module module/CS2103T` : Deletes the module `CS2103T` from the system.
 
    - `/list_classes` : List of all tutorial classes available.
 
-   - `/class_list_students module/CS2103T tutorial/T09` : List all the students in the tutorial class `T09` under the module `CS2103T`
+   - `/class_list_students module/CS2103T tutorial/T09` : List all the students in the tutorial class `T09` under the module `CS2103T`.
+
+   - `/add_team module/CS2103T tutorial/T09 team/Team 1` : Adds a new team with team name `Team 1` to tutorial class `T09` under the module `CS2103T`.
+
+   - `/delete_team module/CS2103T tutorial/T09 team/Team 1` : Removes the team with team name `Team 1` from tutorial class `T09` under the module `CS2103T`.
+
+   - `/random_teams module/CS2103T tutorial/T09 teams/4` : Randomly allocates all students in the tutorial class `T09` under the module `CS2103T` into different teams in the tutorial class.
    
    - `/view_teams name/Team 1 module/CS2103T tutorial/T09` or `/view_teams index/1 module/CS2103T tutorial/T09` : View the information of the team with team name `Team 1` or index `1` in tutorial class `T09` under module `CS2103T`
 
@@ -189,7 +203,7 @@ Here are the main components of the commands:
 |--------------|:-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
 | Command Word | /add, /search, /delete | The type of command to be executed by the system.                                                                                                 |
 | Prefix       | name/, email/, id/     | The attributes of the quantity observed.                                                                                                          |
-| Parameters   | NAME, EMAIL, STUDENTID | The value of the attribute that the user have to provide after the prefix.                                                                        |
+| Parameters   | NAME, EMAIL, STUDENT_ID | The value of the attribute that the user have to provide after the prefix.                                                                        |
 | Index        | 1, 3                   | The position of the student in the list it is referencing. Eg. Index 1 of tutorial class `T01` refers to the 1st student in the `T01` class list. |
 
 Here are symbols used in the commands:
@@ -217,17 +231,17 @@ Parameters:
 
 Here are symbols used in the commands:
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add name/NAME`, `NAME` is a parameter which can be used as `add name/John Doe`.
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.
+  e.g. in `add name/NAME`, `NAME` is a parameter which can be used as `add name/John Doe`.<br><br>
 
-- Items in square brackets are optional.<br>
-  e.g `name/NAME` can be used as `name/John Doe`.
+- Items in square brackets are optional.
+  e.g `/add_class module/MODULE tutorial/TUTORIAL [description/DESC] [size/SIZE]` can be used as `/add_class module/CS2103T tutorial/T09`.<br><br>
 
-- Parameters must follow the order specified in the user guide.<br>
-  e.g. if the command specifies `name/NAME id/ID', it has to be in this format.
+- Parameters must follow the order specified in the user guide.
+  e.g. if the command specifies `name/NAME id/ID', it has to be in this format.<br><br>
 
-- Extraneous parameters for commands that do not take in parameters (such as `list_student`) will be ignored.<br>
-  e.g. if the command specifies `list_student 123`, it will be interpreted as `list_student`.
+- Extraneous parameters for commands that do not take in parameters (such as `list_student`) will be ignored.
+  e.g. if the command specifies `list_student 123`, it will be interpreted as `list_student`. <br><br>
 
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
@@ -492,13 +506,14 @@ Explanation: This deletes the student with student id `A0123456A` from tutorial 
 
 Adds a new team with the specified team name to the specified tutorial class.
 
-Format: `/add_team module/MODULE class/TUTORIAL name/TEAM_NAME [size/TEAM_SIZE]`
+Format: `/add_team module/MODULE class/TUTORIAL team/TEAM_NAME [size/TEAM_SIZE]`
 
 - An optional team size can be specified to apply a size restriction on the team.
 - Team size must be a positive integer. Any invalid inputs (non-numeric, negative integers) returns an error.
-- Two teams are equal if they have the same name and belong to the same tutorial (i.e no tutorial should have more than 1 team with the same name).
+- Two teams are equal if they have the same name and belong to the same tutorial (i.e no tutorial should have more than 1 team with the same name), irregardless of size.
 - If the module code does not exist, it returns an error.
 - If the tutorial class within that module code does not exist, it returns an error.
+- If the team already exists in that tutorial class, it returns an error.
 - If no parameters are specified, it returns an error.
 
 Expected output:
@@ -506,8 +521,26 @@ Upon successful addition, the command will return a confirmation messaging stati
 
 Examples:
 
-- Without team size:`/add_team module/CS2103T class/T10 name/Team 1`
-- With team size: `/add_team module/CS2103T class/T10 name/Team 1 size/3`
+- Without team size:`/add_team module/CS2103T class/T10 team/Team 1`
+- With team size: `/add_team module/CS2103T class/T10 team/Team 1 size/3`
+
+[Back to table of contents](#table-of-contents)
+
+---
+### Deleting team : `delete_team`
+
+Deletes a specified team from the specified module and tutorial.
+
+Format: `/delete_team module/MODULE tutorial/TUTORIAL team/TEAM_NAME`
+
+- If the module code does not exist, it returns an error message.
+- If the tutorial class within that module code does not exist, it returns an error.
+- If the team within that tutorial class does not exist, it returns an error. 
+
+Examples:
+
+- `/delete_module module/CS2103T tutorial/T09 team/Team 1` <br>
+Explanation: Deletes team `Team 1` from the module `CS2103T` and tutorial `T09`
 
 [Back to table of contents](#table-of-contents)
 
@@ -706,8 +739,8 @@ must be in the team before command execution.Explanation: This deletes the stude
 | **Delete students from tutorial class** | By ID: `/delete_student_from_class id/STUDENT_ID module/MODULE tutorial/TUTORIAL`<br>By index: `/delete_student_from_class index/INDEX module/MODULE tutorial/TUTORIAL`<br>By email: `/delete_student_from_class email/EMAIL module/MODULE tutorial/TUTORIAL`<br><br> e.g: `/delete_student_from_class id/A1234561Z module/CS2103T tutorial/T09` |
 | **List students of a tutorial class**   | `/class_list_students module/MODULE tutorial/TUTORIAL` <br><br> e.g: `/class_list_students module/CS2103T tutorial/T09`                                                                                                                    |
 | **Delete module**                       | `/delete_module module/MODULE` <br><br> e.g: `/delete_module module/CS2103T`                                                                                                                                                           |
-| **Add new team**                        | `/add_team module/MODULE tutorial/TUTORIAL name/TEAM_NAME [size/TEAM_SIZE]` <br><br> e.g: `/add_team module/CS2103T tutorial/T09 name/Team 1 size/5`                                                                       |
-| **Delete team**                         | `/delete_team module/MODULE tutorial/TUTORIAL name/TEAM_NAME` <br><br> e.g: `/delete_team module/CS2103 tutorial/T09 name/Team 4`                                                                                            |
+| **Add new team**                        | `/add_team module/MODULE tutorial/TUTORIAL team/TEAM_NAME [size/TEAM_SIZE]` <br><br> e.g: `/add_team module/CS2103T tutorial/T09 team/Team 1 size/5`                                                                       |
+| **Delete team**                         | `/delete_team module/MODULE tutorial/TUTORIAL team/TEAM_NAME` <br><br> e.g: `/delete_team module/CS2103 tutorial/T09 team/Team 4`                                                                                            |
 | **View team**                           | By name: `/view_teams name/TEAM_NAME module/MODULE tutorial/TUTORIAL` <br>By index: `/view_teams index/INDEX module/MODULE tutorial/TUTORIAL`<br><br> e.g: `/view_teams name/Team 1 module/CS2103T tutorial/T09`                                                                              |
 | **Randomly allocate team**              | `/random_teams module/MODULE tutorial/TUTORIAL teams/NUMBER_OF_TEAMS` <br><br> e.g: `/random_teams module/CS2103 tutorial/T09 teams/4`                                                                                       |
 | **Allocate students to team**           | `/allocate_team id/ID module/MODULE tutorial/TUTORIAL team/TEAM_NAME` <br><br> e.g: `/allocate_team id/A1234567K module/CS2103 tutorial/T09 team/Team 4`                                        |
