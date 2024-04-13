@@ -6,7 +6,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code TutorialClass}'s {@code TutorialClass} matches the keyword given.
+ * Tests that a {@code TutorialClass}'s {@code tutorialName} matches the keyword given.
  */
 public class TutorialContainsKeywordPredicate implements Predicate<TutorialClass> {
 

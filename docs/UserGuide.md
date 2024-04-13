@@ -51,7 +51,19 @@ TAHelper is a **desktop app for managing contacts, optimized for use via a Line 
 
 - TAHelper is specifically designed to assist and help Teaching Assistants (TA) of NUS Computer Science Modules,
 which caters to their need to store information in a way that is easy to track and visualise, as well as keep student's
-details in a centralised storage. Our target audience is specifically only TAs of NUS Computer Science Modules.
+details in a centralised storage. This makes it easy for TAs to disseminate information and reference contact information of their students easily.
+Our target audience is specifically only TAs of NUS Computer Science Modules.
+
+[Back to table of contents](#table-of-contents)
+
+### Assumptions about our Target Audience
+1. Firstly, being TAs of a Computer Science (CS) module in NUS, we can safely assume that they have a decent grasp of basic of CLI and
+basic software that they have learnt from many of the introductory CS modules they have taken in NUS.
+2. Secondly, being well-versed with many technical terms and absorbing large amounts of information through all the modules and studying they have been through,
+we can safely assume that most, if not all of our users will be able to comprehend and familiarise themselves with not only the User Guide but also our TAHelper system.
+This essentially allows them to seamlessly integrate themselves with TAHelper and make it user-friendly for them.
+3. Thirdly, another assumption made is that each module and tutorial class has its own Excel sheet for student management purposes. This cause information to be sparse and make it slightly more difficult to access.
+We can expect that highly utility for TAs who teach more than 1 tutorial class as it provides more convenience for communications between students, and handling of administrative task.
 
 [Back to table of contents](#table-of-contents)
 
@@ -98,13 +110,12 @@ confidence to make full use of TAHelper's features.
       - Search for Terminal in "Utilities" under "Applications".
       - It should look something like this:
 
-
 5. Launching TAHelper
     - Type `java -jar tahelper.jar` command and hit Enter to run TAHelper.<br>
-    - It should look something like this (in this case my jar file is in a folder called tahelper):
+    - It should look something like this (in this case my jar file is in a folder called `tahelper`):
     - ![cmd](images/cmdwinguide2.png)
     - A GUI similar to the below should appear in a few seconds.<br>
-    - ![Ui](images/Ui.png) (to update!!).
+    ![Ui](images/Ui.png) (to update!!).
 
 
 6. Here are some commands to try out to get a feel of a TAHelper! type them in the Command box
@@ -124,6 +135,7 @@ confidence to make full use of TAHelper's features.
 GUI Components
 
 
+[Back to table of contents](#table-of-contents)
 
 Commands on students:
 
@@ -159,8 +171,10 @@ Commands on modules:
    
    - `/view_teams name/Team 1 module/CS2103T tutorial/T09` or `/view_teams index/1 module/CS2103T tutorial/T09` : View the information of the team with team name `Team 1` or index `1` in tutorial class `T09` under module `CS2103T`
 
+
 1. Refer to the [Features](#features) below for details of each command.
 
+[Back to table of contents](#table-of-contents)
 
 ---
 ## Features
@@ -218,6 +232,8 @@ Here are symbols used in the commands:
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
 
+[Back to table of contents](#table-of-contents)
+
 ---
 ### Adding new students : `add_student`
 
@@ -245,6 +261,8 @@ Example:
 
 Explanation: This adds a student with name `Dohn Joe`, email `johndoe@gmail.com` and ID `A0123456A` into the TAHelper system.
 
+[Back to table of contents](#table-of-contents)
+
 ---
 ### Deleting students : `delete_student`
 
@@ -268,6 +286,8 @@ Examples:
 - Delete by email: `/delete_student email/e0123456@u.nus.edu`
 - Delete by index: `/delete_student index/1`
 
+[Back to table of contents](#table-of-contents)
+
 ---
 ### Searching for students : `search_student`
 
@@ -286,6 +306,8 @@ The command will display the list of all students that match the corresponding p
 Examples:
 - `/search_student id/A012345A` Returns student with corresponding id
 - `/search_student email/@GMAIL` Returns all students who have `@gmail` in their email
+
+[Back to table of contents](#table-of-contents)
 
 ---
 ### Edit student contact: `edit_student`
@@ -306,6 +328,8 @@ Examples:
 - `/edit_student index/1 name/Aaron` will edit the student's name at index 1
 - `/edit_student index/5 id/A1234567B email/new_email@gmail.com` will edit the student's id and email at index 5
 
+[Back to table of contents](#table-of-contents)
+
 ---
 ### Listing all students : `list_students`
 
@@ -315,6 +339,8 @@ Format: `/list_students`
 
 Expected output:
 The command will display the list of all students along with their student information. If there are no matching students, a message will display indicating no students listed.
+
+[Back to table of contents](#table-of-contents)
 
 ---
 ### Sort all students: `sort_students`
@@ -333,6 +359,8 @@ The command will display the list of all students, sorted by the specified param
 Examples:
 - `/sort_student by/name`
 - `/sort_student by/email`
+
+[Back to table of contents](#table-of-contents)
 
 ---
 ### Allocating students to tutorial teams : `allocate_team`
@@ -375,6 +403,8 @@ Explanation: This allocates a student with email matching `johndoe@gmail.com` in
 
 Explanation: This allocates a student with index position `1` in the tutorial class `T01` to a tutorial team `team1` of the tutorial class `T01` under the module `CS2101`.
 
+[Back to table of contents](#table-of-contents)
+
 ---
 ### Adding new tutorial class : `add_class`
 
@@ -398,6 +428,8 @@ Else, creates a new module `CS2103T` with 1 tutorial class under it: `T10`
 Explanation: If module `CS2109S` already exists in the system, adds a tutorial class `T01` to the existing module.
   Else, creates a new module `CS2109S` with 1 tutorial class with description `Introduction to AI` and class size of `10` under it: `T01`
 
+[Back to table of contents](#table-of-contents)
+
 ---
 ### Deleting tutorial class : `delete_class`
 
@@ -418,6 +450,8 @@ Explanation: Deletes tutorial class `T10` from the module `CS2103T`
 - `/delete_class module/CS2109S tutorial/T01`
 Explanation: Deletes tutorial class `T01` from the module `CS2109S`
 
+[Back to table of contents](#table-of-contents)
+
 ---
 ### Deleting modules : `delete_module`
 
@@ -435,6 +469,8 @@ Explanation: Deletes module `CS2103T` from the system
 - `/delete_module module/CS2109S` <br>
 Explanation: Deletes module `CS2109S` from the system
 
+[Back to table of contents](#table-of-contents)
+
 ---
 ### Listing all tutorial classes: `list_classes`
 
@@ -443,6 +479,8 @@ Shows a list of all tutorial classes in the address book.
 Format: `list_classes`
 
 Expected output: The command will display the list of all tutorial classes. If there are no existing classes, the command will return a message indicating that there are no classes currently.
+
+[Back to table of contents](#table-of-contents)
 
 ---
 ### Adding student to tutorial class : `add_student_to_class`
@@ -466,6 +504,8 @@ Examples:
 - Add student by email: `/add_student_to_class email/test@gmail.com module/CS2103T class/T10`
 - Add student by index: `/add_student_to_class index/1 module/CS2103T class/T10`
 
+[Back to table of contents](#table-of-contents)
+
 ---
 ### Deleting students from tutorial class: `delete_student_from_class`
 
@@ -486,6 +526,8 @@ Expected output: `Deleted STUDENT_NAME from MODULE_CODE TUTORIAL_CLASS!`
 Example: `/delete_student_from_class id/A0123456A module/CS2103T tutorial/T09`
 
 Explanation: This deletes the student with student id `A0123456A` from tutorial class `T09` of module `CS2103T`
+
+[Back to table of contents](#table-of-contents)
 
 ---
 ### Adding new tutorial team : `add_team`
@@ -509,6 +551,8 @@ Examples:
 - Without team size:`/add_team module/CS2103T class/T10 name/Team 1`
 - With team size: `/add_team module/CS2103T class/T10 name/Team 1 size/3`
 
+[Back to table of contents](#table-of-contents)
+
 ---
 ### Listing all students of a tutorial class : `class_list_students`
 
@@ -526,6 +570,8 @@ Example:
 
 - `class_list_students module/CS2103T tutorial/T09`
 - `class_list_students module/CS2101 tutorial/T01`
+
+[Back to table of contents](#table-of-contents)
 
 ---
 ### View a team in a tutorial class : `view_teams`
@@ -546,6 +592,8 @@ Example:
 
 - View team by team name: `/view_teams name/Team 1 module/CS2103T tutorial/T09`
 - View team by index: `/view_teams index/1 module/CS2103T tutorial/T09`
+
+[Back to table of contents](#table-of-contents)
 
 ---
 ### Randomly allocate into teams all students in a tutorial class : `random_teams`
@@ -570,6 +618,8 @@ Example:
 
 Explanation: This randomly allocates all the students in the tutorial class `T01` of module `CS2101` into 2 teams.
 
+[Back to table of contents](#table-of-contents)
+
 ---
 ### Deleting students from team: `delete_student_from_team`
 
@@ -592,16 +642,29 @@ Example: `/delete_student_from_team id/A0123456A module/CS2103T tutorial/T09 tea
 
 must be in the team before command execution.Explanation: This deletes the student with student id `A0123456A` from team `4` of tutorial class `T09` of module `CS2103T`
 
+[Back to table of contents](#table-of-contents)
+
 ---
 ## FAQ
 
+**Q**: How can I check the Java version on my computer?<br>
+**A**: Open your command terminal (refer to [quick start point 4](#quick-start)) if you forgot, and type the following command:<br>
+`java -version`
+
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TAHelper home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TAHelper home folder. This file will be found in the data folder which you store the `tahelper.jar` at.
+
+**Q**: Will my data be saved when using your app?<br>
+**A**: Your data will always be saved in the data folder where you store the `tahelper.jar`. However, be sure to only make changes to the data through `tahelper` itself and do not directly alter the data from the data file.
+
+[Back to table of contents](#table-of-contents)
 
 ---
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+[Back to table of contents](#table-of-contents)
 
 ---
 ## Glossary
@@ -616,6 +679,10 @@ must be in the team before command execution.Explanation: This deletes the stude
 | **Lexicographical Order**          | is the ordering of strings based on the unicode value of each character in the string.                                                                                                                         |
 | **CS**                             | Refers to Computer Science.                                                                                                                                                                                    |
 | **NUS**                            | Refers to National University Of Singapore, which is located at Central Singapore.                                                                                                                             |
+| **Command**                        | Refers to an action or input that the user types in `tahelper` to run a task for the user.                                                                                                                     |
+| **Parameter**                      | Refers to a placeholder text that the user has to provide in order for `tahelper` to recognise the information they want when executing a command.                                                             |
+
+[Back to table of contents](#table-of-contents)
 
 ---
 ## Command summary
@@ -638,6 +705,8 @@ must be in the team before command execution.Explanation: This deletes the stude
 | **Add new team**                        | `/add_team module/<moduleCode> tutorial/<tutorialClass> name/<team_name> [size/<team_size>]` <br> e.g., `/add_team module/CS2103T tutorial/T09 name/Team 1 size/5`                                                                       |
 | **Delete team**                         | `/delete_team module/<moduleCode> tutorial/<tutorialClass> name/<team_name>` <br> e.g., `/delete_team module/CS2103 tutorial/T09 name/Team 4`                                                                                            |
 | **View team**                           | `/view_teams <index/, name/> <index or name> module/<moduleCode> tutorial/<tutorialClass>` <br> e.g., `/view_teams name/Team 1 module/CS2103T tutorial/T09`                                                                              |
-| **Randomly allocate team**              | `/random_teams module/<module> tutorial/<tutorialClass> teams/<number_of_teams>` <br> e.g., `/random_teams module/CS2103 tutorial/T09 teams/4`                                                                                           |
-| **Allocate students to team**           | `/allocate_team <id/, email/> <student_id or email> module/<moduleCode> tutorial/<tutorial_class> name/<team_name>` <br> e.g., `/allocate_team id/A1234567K module/CS2103 tutorial/T09 name/4`                                           |
+| **Randomly allocate team**              | `/random_teams module/<moduleCode> tutorial/<tutorialClass> teams/<number_of_teams>` <br> e.g., `/random_teams module/CS2103 tutorial/T09 teams/4`                                                                                       |
+| **Allocate students to team**           | `/allocate_team <id/<student_id> or email/<email>> module/<moduleCode> tutorial/<tutorial_class> name/<team_name>` <br> e.g., `/allocate_team id/A1234567K module/CS2103 tutorial/T09 name/team4`                                        |
 | **Delete students from team**           | `/delete_student_from_team <id/, email/, index/> <student_id or email or index> module/<moduleCode> tutorial/<tutorialClass> name/<team_name>` <br> e.g., `/delete_student_from_team id/A1234567K module/CS2103 tutorial/T09 name/4`     |
+
+[Back to table of contents](#table-of-contents)

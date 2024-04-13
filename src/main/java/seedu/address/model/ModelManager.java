@@ -156,6 +156,10 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    /**
+     * Allocates the {@code student} to the {@code tutorialTeam}
+     * @param tutorialTeam to allocate the {@code student} into.
+     */
     @Override
     public void allocateStudentToTeam(Person student, TutorialTeam tutorialTeam) {
         requireAllNonNull(student, tutorialTeam);
@@ -169,10 +173,11 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Generates a given number of teams for the tutorial class
-     * @param moduleCode of the module to add teams to
-     * @param tutorialClass of the module to add teams to
-     * @param numOfTeams to be added
+     * Randomly allocates the students in {@code tutorialClass} into {@code numOfTeams} different teams.
+     *
+     * @param moduleCode that the {@code tutorialClass} is in.
+     * @param tutorialClass to allocate the different students into the teams to.
+     * @param numOfTeams to be randomly generated.
      */
     public void randomTeamAllocation(ModuleCode moduleCode, TutorialClass tutorialClass, int numOfTeams) {
         requireAllNonNull(moduleCode, tutorialClass, numOfTeams);
@@ -181,7 +186,7 @@ public class ModelManager implements Model {
 
     /**
      * Add a team to the tutorial class
-     * @param tutorialTeam to be added to the tutorial class
+     * @param tutorialTeam to be added to the {@code tutorialClass}.
      */
     @Override
     public void addTeam(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
@@ -226,7 +231,7 @@ public class ModelManager implements Model {
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
-     * @Return UniquePersonList.
+     * @return UniquePersonList.
      */
     @Override
     public UniquePersonList getUniquePersonList() {
@@ -273,6 +278,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
     }
+
     /**
      * Searches for a person in the list of filtered persons based on the given predicate.
      *

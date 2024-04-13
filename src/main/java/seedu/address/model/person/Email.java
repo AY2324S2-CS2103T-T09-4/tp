@@ -45,9 +45,9 @@ public class Email {
     }
 
     /**
-     * Returns true if 2 student emails are identical to {@code email} id value.
-     * @param email
-     * @return boolean if they are identical.
+     * Returns true if the current object's email are identical to {@code email}.
+     * @param email to check against
+     * @return boolean true if they are identical.
      */
     public boolean isSameEmail(Email email) {
         requireNonNull(email);

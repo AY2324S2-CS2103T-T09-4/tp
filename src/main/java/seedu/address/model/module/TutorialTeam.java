@@ -182,7 +182,7 @@ public class TutorialTeam {
 
     /**
      * Checks if a student exist, check by their studentId.
-     * @return true if a person is in the list of students
+     * @return true if a person is in {@code tutorialTeam}.
      */
     public boolean hasStudentVerified(Person student, TutorialTeam tutorialTeam) {
         ArrayList<Person> teamList = tutorialTeam.getStudents();
@@ -200,7 +200,7 @@ public class TutorialTeam {
     /**
      * Returns true if the {@code tutorialTeam} size has exceeded its limit.
      * @param tutorialTeam size to check.
-     * @return a boolean that indicates whether the team size will be exceeded by adding another person.
+     * @return true if the current team size is larger than or equal to the max team size.
      */
     public boolean hasTeamSizeExceeded(TutorialTeam tutorialTeam) {
         requireNonNull(tutorialTeam);
@@ -210,10 +210,10 @@ public class TutorialTeam {
     };
 
     /**
-     * Checks if the same person is in the team already.
-     * @param student to check if exist in team.
+     * Checks if {@code student} is in {@code tutorialTeam} already.
+     * @param student to check if exist in {@code tutorialTeam}.
      * @param tutorialTeam to check.
-     * @return a boolean true if the student exists in the team, else false.
+     * @return a boolean true if {@code student} exists in the {@code tutorialTeam}.
      */
     public boolean isSamePersonInTeam(Person student, TutorialTeam tutorialTeam) {
         for (Person person : tutorialTeam.getStudents()) {

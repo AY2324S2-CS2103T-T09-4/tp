@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 /**
  * A prefix that marks the beginning of an argument in an arguments string.
- * E.g. 'tag/' in '/add_students name/john ...... tag/ friend'.
+ * E.g. 'name/' in '/add_student name/john ...... tag/ friend'.
  */
 public class Prefix {
     private final String prefix;
