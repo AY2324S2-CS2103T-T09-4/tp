@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -24,9 +24,9 @@ public class DeleteTeamCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a team from the tutorial class specified\n"
             + "Parameters:" + PREFIX_MODULECODE + "MODULE_CODE "
-            + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS " + PREFIX_NAME + "TEAM_NAME\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_MODULECODE + " CS2103T "
-            + PREFIX_TUTORIALCLASS + "T09 " + PREFIX_NAME + "Team 1";
+            + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS " + PREFIX_TEAMNAME + "TEAM_NAME\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_MODULECODE + "CS2103T "
+            + PREFIX_TUTORIALCLASS + "T09 " + PREFIX_TEAMNAME + "Team 1";
 
     private final ModuleCode module;
     private final TutorialClass tutorialClass;

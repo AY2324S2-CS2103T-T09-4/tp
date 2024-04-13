@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TEAM_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TEAM_SIZE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_AMY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMNAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -45,7 +45,7 @@ public class AddTeamCommandParserTest {
     @Test
     public void parse_teamWithInvalidName_failure() {
         String expectedMessage = TutorialTeam.MESSAGE_NAME_CONSTRAINTS;
-        String userInput = MODULE_DESC_AMY + TUTORIAL_DESC_AMY + " " + PREFIX_NAME + " ";
+        String userInput = MODULE_DESC_AMY + TUTORIAL_DESC_AMY + " " + PREFIX_TEAMNAME + " ";
         assertParseFailure(parser, userInput, expectedMessage);
     }
 
