@@ -115,7 +115,7 @@ confidence to make full use of TAHelper's features.
     - It should look something like this (in this case my jar file is in a folder called `tahelper`):
     - ![cmd](images/cmdwinguide2.png)
     - A GUI similar to the below should appear in a few seconds.<br>
-    - ![Ui](images/Ui.png) (to update!!).
+    ![Ui](images/Ui.png) (to update!!).
 
 
 6. Here are some commands to try out to get a feel of a TAHelper! type them in the Command box
