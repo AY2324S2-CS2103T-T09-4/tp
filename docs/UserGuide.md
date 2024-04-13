@@ -51,7 +51,19 @@ TAHelper is a **desktop app for managing contacts, optimized for use via a Line 
 
 - TAHelper is specifically designed to assist and help Teaching Assistants (TA) of NUS Computer Science Modules,
 which caters to their need to store information in a way that is easy to track and visualise, as well as keep student's
-details in a centralised storage. Our target audience is specifically only TAs of NUS Computer Science Modules.
+details in a centralised storage. This makes it easy for TAs to disseminate information and reference contact information of their students easily.
+Our target audience is specifically only TAs of NUS Computer Science Modules.
+
+[Back to table of contents](#table-of-contents)
+
+### Assumptions about our Target Audience
+1. Firstly, being TAs of a Computer Science (CS) module in NUS, we can safely assume that they have a decent grasp of basic of CLI and
+basic software that they have learnt from many of the introductory CS modules they have taken in NUS.
+2. Secondly, being well-versed with many technical terms and absorbing large amounts of information through all the modules and studying they have been through,
+we can safely assume that most, if not all of our users will be able to comprehend and familiarise themselves with not only the User Guide but also our TAHelper system.
+This essentially allows them to seamlessly integrate themselves with TAHelper and make it user-friendly for them.
+3. Thirdly, another assumption made is that each module and tutorial class has its own Excel sheet for student management purposes. This cause information to be sparse and make it slightly more difficult to access.
+We can expect that highly utility for TAs who teach more than 1 tutorial class as it provides more convenience for communications between students, and handling of administrative task.
 
 [Back to table of contents](#table-of-contents)
 
