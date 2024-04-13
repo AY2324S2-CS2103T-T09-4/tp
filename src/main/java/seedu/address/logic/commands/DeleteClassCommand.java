@@ -58,7 +58,7 @@ public class DeleteClassCommand extends Command {
         } else {
             existingModule.deleteTutorialClass(tutorialString);
         }
-
+        model.getAddressBook().setTutorialClassesInModules(module);
         return new CommandResult(generateSuccessMessage(module, tutorialString));
     }
 

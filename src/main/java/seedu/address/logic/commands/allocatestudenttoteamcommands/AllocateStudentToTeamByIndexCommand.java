@@ -87,6 +87,7 @@ public class AllocateStudentToTeamByIndexCommand extends AllocateStudentToTeamCo
         // throws commandException if any condition fails
         checkAllocateCondition(model, studentToAllocate, tutClass, tutTeam, moduleCode);
         model.allocateStudentToTeam(studentToAllocate, tutTeam);
+        model.getAddressBook().setStudentsInTeam(tutTeam);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutTeam));
     }

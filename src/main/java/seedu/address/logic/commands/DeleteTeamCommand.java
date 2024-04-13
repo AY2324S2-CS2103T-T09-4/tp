@@ -60,7 +60,8 @@ public class DeleteTeamCommand extends Command {
             throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_TEAM_NOT_FOUND, team,
                     module, tutorialClass));
         }
-
+        model.getAddressBook().setTutorialTeamsInClass(tutorialClass);
+        model.getAddressBook().setTutorialClassesInModules(module);
         return new CommandResult(generateSuccessMessage(module, tutorialClass, team));
     }
 

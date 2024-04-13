@@ -52,6 +52,7 @@ public class AddStudentToClassByEmailCommand extends AddStudentToClassCommand {
             }
             checkIfCanAddStudent(tutorialClass, personToAdd);
             model.addPersonToTutorialClass(personToAdd, module, tutorialClass);
+            model.getAddressBook().setStudentsInTutorialClass(tutorialClass);
             return new CommandResult(
                     String.format(TutorialClassMessages.MESSAGE_ADD_STUDENT_TO_CLASS_SUCCESS,
                             Messages.format(personToAdd), module, tutorialClass));
