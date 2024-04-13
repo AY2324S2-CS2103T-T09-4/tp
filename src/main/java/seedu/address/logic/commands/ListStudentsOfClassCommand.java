@@ -54,7 +54,9 @@ public class ListStudentsOfClassCommand extends Command {
         StringBuilder result = new StringBuilder();
         result.append("Module: ").append(module).append(", Tutorial Class: ")
             .append(tutorialClass).append("\nStudents: ");
-        existingTutorialClass.getStudents().forEach(student -> result.append(student.getName()).append(", "));
+        existingTutorialClass.getStudents().forEach(student -> result.append(student.getName())
+            .append(" (ID: ").append(student.getStudentId()).append("), "));
+        model.getAddressBook().setStudentsInTutorialClass(existingTutorialClass);
         return new CommandResult(result.toString().trim());
     }
 

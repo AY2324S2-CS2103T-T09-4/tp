@@ -169,6 +169,9 @@ public interface Model {
     ObservableList<ModuleCode> getFilteredModuleList();
     ObservableList<Person> getSortedPersonList(Comparator<Person> comparator);
     ObservableList<Person> getStudentsInTeamList();
+
+    ObservableList<Person> getStudentsInClassList();
+
     ObservableList<Person> getStudentsInTutorialClass(TutorialClass tutorialClass);
 
     /**
