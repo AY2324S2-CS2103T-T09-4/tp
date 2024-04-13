@@ -98,6 +98,7 @@ public class RandomTeamAllocationCommand extends Command {
         }
 
         model.randomTeamAllocation(module, tutorial, numOfTeams);
+        model.getAddressBook().setTutorialClassesInModules(module);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutorial));
     }

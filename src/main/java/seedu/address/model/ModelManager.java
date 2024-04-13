@@ -257,6 +257,10 @@ public class ModelManager implements Model {
     public ObservableList<Person> getStudentsInTeamList() {
         return addressBook.getStudentsInTeamList();
     }
+    @Override
+    public ObservableList<Person> getStudentsInClassList() {
+        return addressBook.getStudentsInTutorialClassList();
+    }
 
     @Override
     public ObservableList<Person> getStudentsInTutorialClass(TutorialClass tutorialClass) {

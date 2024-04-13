@@ -22,15 +22,30 @@ public interface ReadOnlyAddressBook {
 
     UniquePersonList getUniquePersonList();
 
+    void setStudentsInTutorialClass(TutorialClass tutorialClass);
+
+    ObservableList<Person> getStudentsInTutorialClassList();
+
     /**
      * Returns an unmodifiable view of the modules list.
      * This list will not contain any duplicate modules.
      */
     ObservableList<ModuleCode> getModuleList();
 
+    void setTutorialClassesInModules(ModuleCode moduleCode);
+
+    ObservableList<TutorialClass> getTutorialClassInModules();
+
+    void setTutorialTeamsInClass(TutorialClass tutorialClass);
+
+    ObservableList<TutorialTeam> getUiTutorialTeamList();
+
     void setSortedPersonList(Comparator<Person> comparator);
     ObservableList<Person> getSortedPersonList();
     ObservableList<TutorialTeam> getTutorialTeamList();
+
+    void setStudentsInTeam(TutorialTeam tutorialTeam);
+
     ObservableList<Person> getStudentsInTeamList();
 
     /**
