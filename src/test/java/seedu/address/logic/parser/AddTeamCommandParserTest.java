@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TEAM_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TEAM_SIZE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TUTORIAL_AMY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMNAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
