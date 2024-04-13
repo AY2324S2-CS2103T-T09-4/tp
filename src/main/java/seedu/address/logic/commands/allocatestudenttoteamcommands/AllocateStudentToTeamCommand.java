@@ -7,7 +7,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.TutorialTeamMessages;
 import seedu.address.model.Model;
-import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialClass;
 import seedu.address.model.module.TutorialTeam;
 import seedu.address.model.person.Person;
@@ -18,6 +17,8 @@ import seedu.address.model.person.Person;
 public abstract class AllocateStudentToTeamCommand extends Command {
 
     public static final String COMMAND_WORD = "/allocate_team";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Allocates a student a team in the tutorial class.\n";
 
     public static final String MESSAGE_SUCCESS = "Allocate student to team: %s";
     public static final String MESSAGE_STUDENT_NOT_IN_TUTORIAL = "Student needs to be in that tutorial group first.";
