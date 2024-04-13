@@ -30,7 +30,7 @@ public class TutorialClass {
     public static final String VALIDATION_REGEX = "^[A-Z]\\d{2}$";
 
     public final String tutorialName;
-    private int classSize;
+    private final int classSize;
     private final ArrayList<Person> students;
     private final ArrayList<TutorialTeam> teams;
 
@@ -75,9 +75,9 @@ public class TutorialClass {
     }
 
     /**
-     * A constructor for TutorialClass. Creates a tutorial class with students.
-     * @param tutorialClass to be added
-     * @param students      in the tutorial class
+     * A constructor for TutorialClass. Creates a tutorial class with {@code students}.
+     * @param tutorialClass to be created.
+     * @param students list of Persons in the tutorial class.
      */
     public TutorialClass(String tutorialClass, ArrayList<Person> students) {
         requireAllNonNull(tutorialClass);
@@ -89,9 +89,8 @@ public class TutorialClass {
     }
 
     /**
-     * A constructor for TutorialClass. Creates a tutorial class with students and
-     * teams.
-     * @param tutorialClass to be added
+     * A constructor for TutorialClass. Creates a tutorial class with students and teams.
+     * @param tutorialClass to be created.
      * @param students      in the tutorial class
      * @param teams         in the tutorial class
      */
@@ -202,10 +201,10 @@ public class TutorialClass {
     }
 
     /**
-     * Checks if a student is in the {@code tutorialClass} of that {@code moduleCode}
-     * @param student to check if student exist in tutorialClass.
-     * @param tutorialClass to check if the student is in
-     * @return a boolean indicating if the student is in that {@code tutorialClass}
+     * Checks if a student is in the {@code tutorialClass}.
+     * @param student to check if student exist in {@code tutorialClass}.
+     * @param tutorialClass to check if the student is in.
+     * @return a boolean indicating if the student is in that {@code tutorialClass}.
      */
     public boolean isStudentInTutorialClass(Person student, TutorialClass tutorialClass) {
         List<Person> students = tutorialClass.getStudents();
@@ -213,7 +212,7 @@ public class TutorialClass {
     }
 
     /**
-     * Checks if the team is in the tutorial class.
+     * Checks if there are 2 teams with the same team name.
      * @param team
      */
     public boolean hasTeam(TutorialTeam team) {
@@ -227,8 +226,8 @@ public class TutorialClass {
 
     /**
      * Returns true if a team with the same identity as {@code tutorialTeam} exists in the {@code tutorialClass}
-     * @param tutorialClass of the tutorialTeam.
-     * @param tutorialTeam to check if it exist.
+     * @param tutorialClass with the list of teams to check against.
+     * @param tutorialTeam to check if it exists.
      */
     public boolean hasTeamInTutorial(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
         requireNonNull(tutorialClass);
@@ -238,6 +237,12 @@ public class TutorialClass {
         return teams.stream().anyMatch(tutorialClass::hasTeam);
     }
 
+    /**
+     * Get the tutorial team that has team name equal to {@code tutorialTeam}'s team name.
+     * @param tutorialClass of the list of tutorial teams to check against.
+     * @param tutorialTeam to check if the team name exist in the list of teams in the {@code tutorialClass}.
+     * @return
+     */
     public TutorialTeam getTutorialTeam(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
         requireNonNull(tutorialClass);
         requireNonNull(tutorialTeam);
@@ -274,7 +279,7 @@ public class TutorialClass {
 
     /**
      * Deletes a team from the tutorial class.
-     * @param team
+     * @param team to delete.
      */
     public void deleteTeam(TutorialTeam team) {
         teams.remove(team);

@@ -32,7 +32,8 @@ public class SearchStudentCommandParser implements Parser<SearchStudentCommand> 
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_EMAIL);
 
-        if (!hasOnlyOnePrefix(argMultimap, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_EMAIL)) {
+        if (!hasOnlyOnePrefix(argMultimap, PREFIX_NAME, PREFIX_STUDENTID, PREFIX_EMAIL)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchStudentCommand.MESSAGE_USAGE));
         }
 
