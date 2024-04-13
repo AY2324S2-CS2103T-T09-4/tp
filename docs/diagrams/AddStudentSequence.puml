@@ -68,3 +68,4 @@ deactivate AddStudentCommand
 deactivate LogicManager
 
 @enduml
+

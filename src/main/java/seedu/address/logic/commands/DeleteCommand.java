@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from tahelper system.
+ * Deletes a person identified using the displayed index from tahelper system.
  */
 public class DeleteCommand extends Command {
 

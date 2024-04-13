@@ -38,7 +38,7 @@ public class RandomTeamAllocationCommandParser implements Parser<RandomTeamAlloc
         int numOfTeams = ParserUtil.parseNumberOfTeams(argMultimap.getValue(PREFIX_NUM_OF_TEAMS).get());
 
         if (numOfTeams <= 0) {
-            throw new ParseException(String.format(RandomTeamAllocationCommand.MESSAGE_NUM_OF_TEAMS_NEGATIVE));
+            throw new ParseException(String.format(RandomTeamAllocationCommand.MESSAGE_NUM_OF_TEAMS_NONZERO));
         }
 
         return new RandomTeamAllocationCommand(moduleCode, tutorialClass, numOfTeams);

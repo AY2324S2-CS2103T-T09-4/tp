@@ -24,6 +24,7 @@ public class Person {
 
     /**
      * Every field must be present and not null.
+     * Constructs a Person object.
      */
     public Person(Name name, Email email, StudentId stuId, Set<Tag> tags) {
         requireAllNonNull(name, email, stuId, tags);
