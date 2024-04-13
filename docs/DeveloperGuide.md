@@ -864,6 +864,10 @@ _{More to be added}_
 
 #### Use case 1: Add new students
 
+**Actor**: User
+
+**System**: TAHelper
+
 **MSS:**
 
 1. User specifies the student to be added.
@@ -891,6 +895,10 @@ _{More to be added}_
 
 #### Use case 2: Delete students
 
+**Actor**: User
+
+**System**: TAHelper
+
 **MSS:**
 
 1. User specifies the student to be deleted.
@@ -913,6 +921,10 @@ _{More to be added}_
 
 #### Use case 3: Search for students
 
+**Actor**: User
+
+**System**: TAHelper
+
 **MSS:**
 
 1. User specifies the student to be searched for.
@@ -933,10 +945,14 @@ _{More to be added}_
 
 #### Use case 4: View all students
 
+**Actor**: User
+
+**System**: TAHelper
+
 **MSS:**
 
 1. User wants to view all students' information.
-2. System displays all students information (name, email, student id and tutorial class).
+2. System displays all the student's information (name, email, student id).
    Use case ends.
 
 **Extensions:**
@@ -951,6 +967,10 @@ _{More to be added}_
     <br>
 
 #### Use case 5: Add new tutorial class
+
+**Actor**: User
+
+**System**: TAHelper
 
 **MSS:**
 
@@ -973,6 +993,10 @@ _{More to be added}_
 
 #### Use case 6: Delete tutorial class
 
+**Actor**: User
+
+**System**: TAHelper
+
 **MSS:**
 
 1. User specifies the class to be deleted.
@@ -991,6 +1015,10 @@ _{More to be added}_
 
 #### Use case 7: View all classes
 
+**Actor**: User
+
+**System**: TAHelper
+
 **MSS**
 
 1. User wants to view all classes.
@@ -1003,11 +1031,64 @@ _{More to be added}_
   - 1a1. Return an error indicating command not recognised and provides the correct command format.
   - Use case ends.
 - 1b. Additional arguments are specified after the command.
-  - 1b1. System will ignore those arguments and execute the comamnd as usual.
+  - 1b1. System will ignore those arguments and execute the command as usual.
 - 2a. There are no existing classes.
   - 2a1. System will return a message indicating that there are no existing classes in the list.
     <br>
 
+#### Use case 8: Allocate Student to tutorial team
+
+**Actor**: User
+
+**System**: TAHelper
+
+**MSS**
+1. User specifies the student id of the student, the module code, tutorial class, and the tutorial team name
+in the tutorial class to allocate the student into.
+2. User enters the command and along with the details.
+3. System allocates student into tutorial team and displays a message. 
+   Use case ends.
+
+**Extensions**
+
+- 1a. The specified student is not in the system.
+  - 1a1. TAHelper returns an error indicating that student is not in the system.
+  - Use case ends.
+- 1b. The specified student is not in the tutorial class of the specified module.
+  - 1b1. TAHelper returns an error indicating that student needs to be in the specified tutorial class of the specified module first.
+  - Use case ends.
+- 1c. The specified tutorial team is not in the tutorial class.
+  - 1c1: TAHelper returns an error indicating that the team does not exist in the tutorial class.
+  - Use case ends.
+- 1d. The tutorial class is not in the system.
+  - 1d1: TAHelper returns an error indicating that the tutorial class is not in the specified module.
+  - Use case ends.
+
+### Use case 9: Randomly allocating a list of students in the tutorial class into teams.
+
+**Actor**: User
+
+**System**: TAHelper
+
+**MSS**
+1. User specifies the module code, tutorial class, and number of teams to split the list of students in the tutorial class into.
+2. User enters the command along with the details.
+3. System allocates the list of students in the tutorial class into different tutorial teams and displays a message.
+   Use case ends.
+
+**Extensions**
+
+- 1a. The specified tutorial class does not exist under the module specified.
+  - 1a1. TAHelper returns an error message.
+  - Use case ends.
+- 1b. The specified module does not exist.
+  - 1b1. TAHelper returns an error message indicating that module does not exist in the system.
+  - Use case ends.
+- 1c. The specified number of teams is invalid.
+  - 1c1. TAHelper returns an error message indicating that the number of teams is invalid.
+  - Use case ends.
+
+---
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -1049,17 +1130,35 @@ testers are expected to do more _exploratory_ testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+---
+### Adding a person
+1. Adding a new person into the TAHelper system.
 
+  1. Prerequisites: NIL.
+
+  1. Test case 1: Entering `/add_student name/Dohn Joe email/johndoe@gmail.com id/A0123456A` for the first time<br>
+      Expected: A new student is successfully added into the TAHelper system.
+
+  2. Test case 2: Entering `/add_student name/Dohn Joe email/johndoe@gmail.com id/A6543210A` with the same email<br>
+      Expected: An error message displayed. A person with the same email cannot be added because a student with the same email already exist in the TAHelper system.
+  
+  3. Test case 3: `/add_student name/Dohn Joe email/johndoe@gmail.com id/0123`
+      Expected: An error message is displayed as the input id value is invalid.
+
+  4. Test case 4: `/add_student name/john email/john@gmail.com id/A9876543A tag/Tutee`
+      Expected: A new student is successfully added into the TAHelper system.
+
+
+---
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -1075,6 +1174,31 @@ testers are expected to do more _exploratory_ testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+
+---
+### Allocating a student to a team in tutorial class.
+1. Allocating a student to a team in the tutorial class by studentId, email or index that they belong to in the tutorial class list.
+
+   1. Prerequisites: 
+      1. The student (Person's object) should already been in the module's tutorial class list of students.
+      2. The module and tutorial class in that module must already exist in the system.
+      3. The team to allocate the student into must exist in that tutorial class.
+      4. The student to allocate must already exist in TAHelper system.
+
+   2. To set up these prerequisites: visit [] to add student into tutorial class, and visit [] to add tutorial team into the tutorial class.
+
+   3. Test case 1 (Allocating by student id): `/allocate_team id/A9876543A module/CS2101 tutorial/T02 team/Team1`
+      Expected: Student successfully added to Team1 of tutorial T02.
+
+   4. Test case 2 (Allocating by email) (Assuming Test case 1 is not executed on the same person): `/allocate_team email/Jared@example.com module/CS2101 tutorial/T02 team/Team1`
+      Expected: Student successfully added to Team1 of tutorial T02.
+
+   5. Test case 3 (Allocating a student that is not in that tutorial group): `/allocate_team id/A1111111Z module/CS2101 tutorial/T02 team/Team1`
+      Expected: An error message is displayed indicating that the student needs to be in the tutorial group first.
+
+   6. Test case 4 (Allocating a student that is not in the TAHelper system): `/allocate_team id/A0987654A module/CS2101 tutorial/T02 team/Team1`
+      Expected: An error message is played indicating that the student is not in TAHelper system.
+
 1. _{ more test cases …​ }_
 
 ### Saving data
@@ -1084,3 +1208,61 @@ testers are expected to do more _exploratory_ testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+---
+
+## **Appendix: Planned Enhancements**
+
+## Planned Enhancements
+---
+
+### Name value regular expression (regex) validation improvements
+
+**Current implementation**
+1. Currently, the name class employs a slightly less strict regular expression in order to validate the name that users input when adding a new Person. This means that currently, the system accepts a Person's name that is solely consisting of integers.
+which in most cases, is not culturally accepted or possible in the world. Furthermore, it does not support names with higher complexity such as "Jai S/O John". However, such names are perfectly acceptable formats and such formats appear in many names in Singapore and around the world.
+
+**Proposed enhancement(s)**
+1. We look to implement a stricter validation regular expression (regex) for the name valid value so that the system is able to accept names that have special symbols in them.
+2. Furthermore, we also want to implement a regex expression that ensures that a Person's name cannot solely contain all integer values.
+
+---
+
+### Email value regular expression (regex) validation improvements
+
+**Current implementation**
+1. Currently, the email class employs a slightly less strict regular expression in order to validate the email that users input when adding a new Person. This means that user are able to input email format that is not a valid email by convention.
+Current implementation only mainly checks if the `@` symbol is present, and does not check if a valid domain has been entered.
+
+**Proposed enhancement(s)**
+1. We look to implement a stricter validation regular expression (regex) for the email valid value so that the system is only able to accept email values that are more appropriate and valid in terms of real world context.
+This enhancements could come in the form of ensure that a valid domain name has been passed in, as well as ensuring that the `.com` format for the wider public or the `u.nus.edu.sg` format for example, is specified in the context of NUS students.
+
+---
+
+### More detailed error messages for AddStudentCommand
+
+**Current implementation**
+1. Currently, when a user tries to add a student with the same email or student id as any student in the system, the system will display a generic error message that tells user the person they want to add already exist in the system.
+However, it does not tell users which value, email or student id, clashes with another Person object in the system.
+
+**Proposed enhancement(s)**
+1. We look to implement a more detailed error message that specifies which field, email or id, or both, that violated the unique valid policy of a person object in the system.
+This way, it will improve user experience as users are able to fix the issue with more specific aid/help.
+
+
+---
+
+### Add column labels on UI to improve readability.
+
+**Current implementation**
+1. Current implementation for the columns does not show what the entries in the columns represent. Although we can safely assume that upon seeing the entries in each column, our target audience would be able to understand what the column means,
+but it can sometimes get confusing and overwhelming, especially for the last column, which handles the entries of students.
+
+**Proposed enhancement(s)**
+1. Firstly, we look to implement a label that tells users that the left column represents the list of modules, middle column represents the list of tutorial classes in that module,
+and the right column represents the list of students.
+2. Secondly, we want to implement even more specific label, such as when user enters the module to view the list of classes for that module, the label for the middle column (the column displaying the list of tutorial classes) should show that something like
+'CS2101 tutorial classes', something that is specific to the module.
+3. Thirdly, similar to point 2, we want to implement even more specific person column label, such as when user enters to view the list of students in a tutorial class, the label shows something like 'T01's class list'.
+This will greatly aid user's readability, and it is an enhancement we want to make.
