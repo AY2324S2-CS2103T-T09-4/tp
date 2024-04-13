@@ -45,7 +45,7 @@ public class AllocateStudentToTeamByIndexCommand extends AllocateStudentToTeamCo
     private final TutorialTeam tutorialTeam;
 
     /**
-     * Creates an AllocateStudentToTeam object.
+     * Creates an AllocateStudentToTeam object based on an Index.
      */
     public AllocateStudentToTeamByIndexCommand(Index index, ModuleCode moduleCode,
             TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
@@ -60,7 +60,8 @@ public class AllocateStudentToTeamByIndexCommand extends AllocateStudentToTeamCo
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.findTutorialClassFromList(tutorialClass, moduleCode) == null) {
+        boolean doesTutorialExist = model.findTutorialClassFromList(tutorialClass, moduleCode) != null;
+        if (!doesTutorialExist) {
             throw new CommandException(String.format(ModuleMessages.MESSAGE_TUTORIAL_DOES_NOT_BELONG_TO_MODULE,
                     tutorialClass, moduleCode));
         }
@@ -78,14 +79,14 @@ public class AllocateStudentToTeamByIndexCommand extends AllocateStudentToTeamCo
         }
 
         TutorialTeam tutTeam = tutClass.getTutorialTeam(tutClass, tutorialTeam);
-
-        if (tutTeam == null) {
+        boolean doesTutTeamExist = tutTeam != null;
+        if (!doesTutTeamExist) {
             throw new CommandException(
                     String.format(PersonMessages.MESSAGE_PERSON_INDEX_NOT_FOUND, index.getOneBased()));
         }
 
         // throws commandException if any condition fails
-        checkAllocateCondition(model, studentToAllocate, tutClass, tutTeam, moduleCode);
+        checkAllocateCondition(studentToAllocate, tutClass, tutTeam);
         model.allocateStudentToTeam(studentToAllocate, tutTeam);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutTeam));

@@ -24,8 +24,7 @@ public class JsonAdaptedTutorialClass {
     private final int classSize;
 
     /**
-     * Constructs a {@code JsonAdaptedTutorialClass} with the given
-     * {@code tutorialName}.
+     * Constructs a {@code JsonAdaptedTutorialClass} with the given {@code tutorialName} and {@code classSize}.
      */
     @JsonCreator
     public JsonAdaptedTutorialClass(@JsonProperty("tutorialName") String tutorialName,
@@ -35,6 +34,7 @@ public class JsonAdaptedTutorialClass {
         if (teams != null) {
             this.teams.addAll(teams);
         }
+
         if (students != null) {
             this.students.addAll(students);
         }
@@ -75,7 +75,7 @@ public class JsonAdaptedTutorialClass {
         ArrayList<TutorialTeam> listOfTeams = new ArrayList<>();
 
         if (tutorialName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, tutorialName));
+            throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
         }
         if (!TutorialClass.isValidTutorialClass(tutorialName)) {
             throw new IllegalValueException(TutorialClass.MESSAGE_CONSTRAINTS);

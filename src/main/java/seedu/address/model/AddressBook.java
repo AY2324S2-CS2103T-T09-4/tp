@@ -201,11 +201,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Randomly allocates the students in {@code tutorial class} into {@code numOfTeams} of different teams.
+     * Randomly allocates the students in {@code tutorialClass} into {@code numOfTeams} different teams.
      *
-     * @param moduleCode of the tutorial class.
+     * @param moduleCode that the {@code tutorialClass} is in.
      * @param tutorialClass to allocate the different students into the teams to.
-     * @param numOfTeams of teams to split into.
+     * @param numOfTeams to be randomly generated.
      */
     public void randomTeamAllocation(ModuleCode moduleCode, TutorialClass tutorialClass, int numOfTeams) {
         requireAllNonNull(moduleCode, tutorialClass, numOfTeams);
@@ -290,7 +290,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Allocates the {@code studentId} to the {@code tutorialTeam}
+     * Allocates the {@code student} to the {@code tutorialTeam}
      * @param tutorialTeam to allocate the student into.
      */
     public void allocateStudentToTeam(Person student, TutorialTeam tutorialTeam) {
@@ -300,7 +300,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Deletes the {@code studentId} from the {@code tutorialTeam}
+     * Deletes the {@code student} from the {@code tutorialTeam}
      * @param student to be deleted.
      * @param tutorialTeam to delete the student from.
      */
@@ -311,10 +311,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-    * Adds a team into the tutorial class
+    * Adds a {@code tutorialTeam} into the {@code tutorialClass}
     *
-    * @param tutorialClass to add the tutorialTeam to.
-    * @param tutorialTeam to be added into the tutorialClass.
+    * @param tutorialClass to add the {@code tutorialTeam} to.
+    * @param tutorialTeam to be added into the {@code tutorialClass}.
     */
     public void addTeam(TutorialClass tutorialClass, TutorialTeam tutorialTeam) {
         requireNonNull(tutorialClass);

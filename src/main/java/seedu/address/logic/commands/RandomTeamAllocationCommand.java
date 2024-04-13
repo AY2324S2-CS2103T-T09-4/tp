@@ -39,17 +39,17 @@ public class RandomTeamAllocationCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Successfully randomly allocate students for tutorial class %s";
 
-    public static final String MESSAGE_NUM_OF_TEAMS_NEGATIVE = "Number of teams must be more than 0!";
+    public static final String MESSAGE_NUM_OF_TEAMS_NONZERO = "Number of teams must be more than 0!";
     private final ModuleCode moduleCode;
     private final TutorialClass tutorialClass;
     private final int numOfTeams;
 
     /**
-     * Creates a RandomTeamAllocation to randomly allocate students of the specified tutorial class to different teams.
+     * Creates a RandomTeamAllocation to randomly allocate students of {@code tutorialClass} to different teams.
      *
      * @param moduleCode of the tutorial class.
-     * @param tutorialClass to allocate the teams.
-     * @param teams to split into.
+     * @param tutorialClass that contains the students to split into teams.
+     * @param teams number of teams to split into.
      */
     public RandomTeamAllocationCommand(ModuleCode moduleCode, TutorialClass tutorialClass, int teams) {
         requireAllNonNull(moduleCode, tutorialClass, teams);
@@ -59,7 +59,7 @@ public class RandomTeamAllocationCommand extends Command {
     }
 
     /**
-     * Checks if it is possible to split into different teams where each team has at least 1 student in it.
+     * Checks if it is possible to split into different teams based on {@code tutorialClass} size and number of teams.
      *
      * @param tutorialClass to check the number of students
      * @param numOfTeams number of teams to split into
@@ -85,8 +85,9 @@ public class RandomTeamAllocationCommand extends Command {
         boolean doesModuleExist = model.hasModule(moduleCode);
         ModuleCode module = model.findModuleFromList(moduleCode);
         TutorialClass tutorial = model.findTutorialClassFromList(tutorialClass, module);
+        boolean doesTutorialExist = (tutorial != null);
 
-        if (!doesModuleExist || tutorial == null) {
+        if (!doesModuleExist || !doesTutorialExist) {
             return new CommandResult(MESSAGE_MODULE_TUTORIAL_NOT_EXIST);
         }
 
