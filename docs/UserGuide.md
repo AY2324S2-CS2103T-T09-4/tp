@@ -13,7 +13,38 @@ TAHelper is a **desktop app for managing contacts, optimized for use via a Line 
 ## Why choose TAHelper?
 
 ## Table of contents
-<!-- * Table of Contents -->
+- [TAHelper User Guide](#tahelper-user-guide)
+- [Why choose TAHelper](#why-choose-tahelper)
+- [Target Audience](#target-audience)
+- [Purpose of User Guide](#purpose-of-user-guide)
+- [Navigating the User Guide](#navigating-the-user-guide)
+- [Quick Start](#quick-start)
+- [Navigating the GUI](#navigating-the-gui)
+- [Features](#features)
+  - [Command Format](#command-format)
+  - [Adding new students](#adding-new-students--addstudent)
+  - [Deleting students](#deleting-students--deletestudent)
+  - [Searching for students](#searching-for-students--searchstudent)
+  - [Edit student contacts](#edit-student-contact--editstudent)
+  - [Listing all students](#listing-all-students--liststudents)
+  - [Sort all students](#sort-all-students--sortstudents)
+  - [Allocating students to tutorial teams](#allocating-students-to-tutorial-teams--allocateteam)
+  - [Adding new tutorial class](#adding-new-tutorial-class--addclass)
+  - [Deleting tutorial class](#deleting-tutorial-class--deleteclass)
+  - [Deleting modules](#deleting-modules--deletemodule)
+  - [Listing all tutorial classes](#listing-all-tutorial-classes--listclasses)
+  - [Adding student to tutorial class](#adding-student-to-tutorial-class--addstudenttoclass)
+  - [Deleting students from tutorial class](#deleting-students-from-tutorial-class--deletestudentfromclass)
+  - [Adding new tutorial team](#adding-new-tutorial-team--addteam)
+  - [Listing all students of a tutorial class](#listing-all-students-of-a-tutorial-class--classliststudents)
+  - [View a team in tutorial class](#view-a-team-in-a-tutorial-class--viewteams)
+  - [Randomly allocate into teams all students in a tutorial class](#randomly-allocate-into-teams-all-students-in-a-tutorial-class--randomteams)
+  - [Deleting students from team](#deleting-students-from-team--deletestudentfromteam)
+- [FAQ](#faq)
+- [Known issues](#known-issues)
+- [Glossary](#glossary)
+- [Command summary](#command-summary)
+
 ---
 
 ## Target Audience
@@ -61,12 +92,12 @@ confidence to make full use of TAHelper's features.
       - Press the windows button and type `cmd` into the search bar.
       - Then `cd` into the folder you put the jar file in.
       - It should look something like this:
-      - ![cmd](images/cmdwinguide.png)
+      ![cmd](images/cmdwinguide.png)
 
     - Mac OS:
       - Search for Terminal in "Utilities" under "Applications".
       - It should look something like this:
-      - 
+      
 
 5. Launching TAHelper
     - Type `java -jar tahelper.jar` command and hit Enter to run TAHelper.<br>
@@ -84,7 +115,7 @@ confidence to make full use of TAHelper's features.
       - The student entry with the ID `A0123456A` or email `johndoe@gmail.com` will be deleted.
       - This deletion will be reflected on User Interface of TAHelper as well.
 
-    - For more Commands that will improve your experience, ![click here]
+    - For more Commands that will improve your experience, [click here](#command-summary)
 
 [Back to table of contents](#table-of-contents)
 
@@ -116,15 +147,17 @@ Commands on students:
 
 Commands on modules:
 
-   - `/add_class module/CS2103T class/T09` : Adds a new tutorial class `T09` under the module `2103T`.
+   - `/add_class module/CS2103T tutorial/T09` : Adds a new tutorial class `T09` under the module `CS2103T`.
 
-   - `/delete_class module/CS2103T class/T09` : Deletes a tutorial class `T09` under the module `CS2103T`.
+   - `/delete_class module/CS2103T tutorial/T09` : Deletes a tutorial class `T09` under the module `CS2103T`.
+
+   - `/delete_module module/CS2103T` : Deletes the module `CS2103T` from the system.
 
    - `/list_classes` : List of all tutorial classes available.
 
-   - `/class_list_students module/CS2103T class/T09` : List all the students in the tutorial class `T09` under the module `CS2103T`
+   - `/class_list_students module/CS2103T tutorial/T09` : List all the students in the tutorial class `T09` under the module `CS2103T`
    
-   - `/view_teams name/Team 1 module/CS2103T class/T09` or `/view_teams index/1 module/CS2103T class/T09` : View the information of the team with team name `Team 1` or index `1` in tutorial class `T09` under module `CS2103T`
+   - `/view_teams name/Team 1 module/CS2103T tutorial/T09` or `/view_teams index/1 module/CS2103T tutorial/T09` : View the information of the team with team name `Team 1` or index `1` in tutorial class `T09` under module `CS2103T`
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -132,7 +165,7 @@ Commands on modules:
 ---
 ## Features
 
-<box type="info" seamless>
+<box type="info" seamless/>
 
 **Notes about the command format:**<br>
 ### Command Format
@@ -154,19 +187,19 @@ Here are symbols used in the commands:
 
 Parameters:
 
-| Field       | Prefix       | Description/Constraints                                                                                                                                                     |
-|-------------|:-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| NAME        | name/        | Alphanumeric characters                                                                                                                                                     |
-| EMAIL       | email/       | need to follow the format `example@mail.com`                                                                                                                                |
-| STUDENTID   | id/          | Follows the format of NUS Student ID that starts with A. Format must be `A`, followed 7 numeric digits, and end off with a alphabetical letter.                             |
-| MODULE      | module/      | Follows the format of NUS CS modules, which starts with either 2 or 3 alphabetical letters, followed by 4 numeric integer between 0-9, and an optional alphabetical letter. |
-| TUTORIAL    | tutorial/    | Follows the format of NUS tutorial class naming, which starts with 1 alphabetical letter and 2 numeric integers from 0-9.                                                   |
-| TEAMNAME    | team/        | Alphanumeric characters                                                                                                                                                     |
-| TAG         | tag/         | tag associated with the student.  Alphanumeric characters                                                                                                                   |
-| SIZE        | size/        | The size of the team or class. A single numeric integer value that is more than 0.                                                                                          |
-| DESCRIPTION | description/ | The description of the module.                                                                                                                                              |
-| BY          | by/          | The parameter you want to search by, Alphanumeric characters                                                                                                                |
-| INDEX       | index/       | The index of the associated student                                                                                                                                         |
+| Field       | Prefix       | Description/Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|-------------|:-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| NAME        | name/        | Alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| EMAIL       | email/       | need to follow the format `example@mail.com`                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| STUDENTID   | id/          | Follows the format of NUS Student ID that starts with A. Format must be `A`, followed 7 numeric digits, and end off with a alphabetical letter.                                                                                                                                                                                                                                                                                                                       |
+| MODULE      | module/      | Follows the format of NUS CS modules, which starts with either 2 or 3 alphabetical letters, followed by 4 numeric integer between 0-9, and an optional alphabetical letters.<br/> Note: Module codes are case sensitive (must be in all capitals), so `CS2103T` is valid but `cs2103t` is not                                                                                                                                                                         |
+| TUTORIAL    | tutorial/    | Follows the format of most NUS tutorial class naming, which starts with 1 alphabetical letter and 2 numeric integers from 0-9. <br/> Note: Tutorial class names are case sensitive (must be a capital letter), so `T09` is valid but `t09` is not.<br/> As of now, tutorial class names with other formats are not accepted. (such as `TO43`)                                                                                                                         |
+| TEAMNAME    | team/        | Alphanumeric characters.<br> As of now, the team related error messages may sometimes add `Team` before the team name, which might lead to confusion. <br> To clarify this, for all purposes, the team name is stored as the exact name you give, and the word `Team` is not appended to it. (e.g. `team/1` is stored as team name `1` and not team name `Team 1`). <br> The actual name of the team is shown in the UI within the tutorial class it was added under. |
+| TAG         | tag/         | tag associated with the student.  Alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                             |
+| SIZE        | size/        | The size of the team or class. A single numeric integer value that is more than 0.                                                                                                                                                                                                                                                                                                                                                                                    |
+| DESCRIPTION | description/ | The description of the module.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| BY          | by/          | The parameter you want to search by, Alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                          |
+| INDEX       | index/       | The index of the associated student                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 Here are symbols used in the commands:
 
@@ -342,25 +375,26 @@ Explanation: This allocates a student with email matching `johndoe@gmail.com` in
 
 Explanation: This allocates a student with index position `1` in the tutorial class `T01` to a tutorial team `team1` of the tutorial class `T01` under the module `CS2101`.
 
-
 ---
 ### Adding new tutorial class : `add_class`
 
 Adds a tutorial class with the specified module code and name.
 
-Format: `/add_class module/MODULE_CODE class/TUTORIAL_CLASS [description/DESC] [size/SIZE]`
+Format: `/add_class module/MODULE_CODE tutorial/TUTORIAL_CLASS [description/DESC] [size/SIZE]`
 
 Note:
 - An optional class size can be specified to apply a size restriction on the class.
 - Class size must be a positive integer. Any invalid inputs (non-numeric, negative integers) returns an error.
 - If none of the parameters is specified, or if only one is specified, returns an error.
+- If the module already exists in the system, the system will add the tutorial class specified to the existing module.
+  Else, the system will create a new module with module code `MODULE_CODE` and add the specified tutorial class under it. 
+  As such. there is no `add_module` command, as this command doubles up to do that too.
 
 Examples:
-
-- `/add_class module/CS2103T class/T10` <br>
+- `/add_class module/CS2103T tutorial/T10` <br>
 Explanation: If module `CS2103T` already exists in the system, adds a tutorial class `T10` to the existing module.
 Else, creates a new module `CS2103T` with 1 tutorial class under it: `T10`
-- `/add_class module/CS2109S class/T01 description/Introduction to AI size/10` <br>
+- `/add_class module/CS2109S tutorial/T01 description/Introduction to AI size/10` <br>
 Explanation: If module `CS2109S` already exists in the system, adds a tutorial class `T01` to the existing module.
   Else, creates a new module `CS2109S` with 1 tutorial class with description `Introduction to AI` and class size of `10` under it: `T01`
 
@@ -369,7 +403,7 @@ Explanation: If module `CS2109S` already exists in the system, adds a tutorial c
 
 Deletes a specified tutorial class from the list of classes.
 
-Format: `/delete_class module/MODULE_CODE class/TUTORIAL_CLASS`
+Format: `/delete_class module/MODULE_CODE tutorial/TUTORIAL_CLASS`
 
 Note:
 - If the module code does not exist, it returns an error.
@@ -379,10 +413,11 @@ Note:
 
 Examples:
 
-- `/delete_class module/CS2103T class/T10`
+- `/delete_class module/CS2103T tutorial/T10`
 Explanation: Deletes tutorial class `T10` from the module `CS2103T`
-- `/delete_class module/CS2109S class/T01`
+- `/delete_class module/CS2109S tutorial/T01`
 Explanation: Deletes tutorial class `T01` from the module `CS2109S`
+
 ---
 ### Deleting modules : `delete_module`
 
@@ -395,9 +430,9 @@ Format: `/delete_module module/MODULE_CODE`
 
 Examples:
 
-- `/delete_class module/CS2103T` <br>
+- `/delete_module module/CS2103T` <br>
 Explanation: Deletes module `CS2103T` from the system
-- `/delete_class module/CS2109S` <br>
+- `/delete_module module/CS2109S` <br>
 Explanation: Deletes module `CS2109S` from the system
 
 ---
@@ -432,7 +467,6 @@ Examples:
 - Add student by index: `/add_student_to_class index/1 module/CS2103T class/T10`
 
 ---
-
 ### Deleting students from tutorial class: `delete_student_from_class`
 
 Deletes the specified student from a specified team.
@@ -449,7 +483,7 @@ Important Note:
 
 Expected output: `Deleted STUDENT_NAME from MODULE_CODE TUTORIAL_CLASS!`
 
-Example: `/delete_student_from_team id/A0123456A module/CS2103T tutorial/T09`
+Example: `/delete_student_from_class id/A0123456A module/CS2103T tutorial/T09`
 
 Explanation: This deletes the student with student id `A0123456A` from tutorial class `T09` of module `CS2103T`
 
@@ -474,12 +508,13 @@ Examples:
 
 - Without team size:`/add_team module/CS2103T class/T10 name/Team 1`
 - With team size: `/add_team module/CS2103T class/T10 name/Team 1 size/3`
+
 ---
 ### Listing all students of a tutorial class : `class_list_students`
 
 View the list of all students available
 
-Format: `/class_list_student module/MODULE_CODE class/TUTORIAL_CLASS`
+Format: `/class_list_student module/MODULE_CODE tutorial/TUTORIAL_CLASS`
 
 - If the module code does not exist, it returns an error.
 - If the tutorial class within that module code does not exist, it returns an error.
@@ -489,14 +524,15 @@ The command will display the list of all students along with their student infor
 
 Example:
 
-- `class_list_students module/CS2103T class/T09`
-- `class_list_students module/CS2101 class/T01`
+- `class_list_students module/CS2103T tutorial/T09`
+- `class_list_students module/CS2101 tutorial/T01`
 
+---
 ### View a team in a tutorial class : `view_teams`
 
 View the information about a team in a tutorial class.
 
-Format: `/view_teams [name/TEAM_NAME] [index/INDEX] module/MODULE_CODE class/TUTORIAL_CLASS`
+Format: `/view_teams name/TEAM_NAME module/MODULE_CODE tutorial/TUTORIAL_CLASS` or `/view_teams index/INDEX module/MODULE_CODE tutorial/TUTORIAL_CLASS`
 
 - If the module code does not exist, it returns an error message.
 - If the tutorial class within that module code does not exist, it returns an error message.
@@ -508,11 +544,10 @@ The command will display the team with its information. If there is no such exis
 
 Example:
 
-- View team by team name: `/view_teams name/Team 1 module/CS2103T class/T09`
-- View team by index: `/view_teams index/1 module/CS2103T class/T09`
+- View team by team name: `/view_teams name/Team 1 module/CS2103T tutorial/T09`
+- View team by index: `/view_teams index/1 module/CS2103T tutorial/T09`
 
 ---
-
 ### Randomly allocate into teams all students in a tutorial class : `random_teams`
 
 Randomly allocates all students in a tutorial class into different teams in the tutorial class.
@@ -549,7 +584,7 @@ Format: `/delete_student_from_team id/STUDENT_ID module/MODULE_CODE tutorial/TUT
 Important Note:
 - The team needs to be associated with the tutorial class specified.
 - The tutorial class needs to be associated with the module specified.
-- The student
+- As of now, the team related error messages may sometimes add `Team` before the team name, which might lead to confusion. To clarify this, for all purposes, the team name is stored as the exact name you give, and the word `Team` is not appended to it. As such, if you created the team with team name `1`, you need to use `delete_student_from_team` with team name `1` and not `Team 1`.
 
 Expected output: `Deleted STUDENT_NAME from MODULE_CODE TUTORIAL_CLASS, Team TEAM_NAME`
 
@@ -564,14 +599,12 @@ must be in the team before command execution.Explanation: This deletes the stude
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TAHelper home folder.
 
 ---
-
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 ---
-
-### Glossary
+## Glossary
 
 | Term                               | Definition and/or Explanation                                                                                                                                                                                  |
 |------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -585,7 +618,6 @@ must be in the team before command execution.Explanation: This deletes the stude
 | **NUS**                            | Refers to National University Of Singapore, which is located at Central Singapore.                                                                                                                             |
 
 ---
-
 ## Command summary
 
 | Action                                  | Format, Examples                                                                                                                                                                                                                         |
@@ -594,7 +626,7 @@ must be in the team before command execution.Explanation: This deletes the stude
 | **Delete students**                     | `/delete_student <id/, email/> <id or email>`<br> e.g., `delete_student id/A0259209B` or `/delete_student email/johndoe@gmail.com`                                                                                                       |
 | **Search for students**                 | `/search_student <id/, email/, tc/, name/> <id or email or tutorial or name>`<br> e.g.,`/search_student id/A0123456A`                                                                                                                    |
 | **Edit student contact**                | `/edit_student index/<index> <id/, email/, name/, tag/>`<br> e.g.,`/edit_student index/1 name/John`                                                                                                                                      |
-| **Sort students**                       | `/sort_students by/<name or email or id> `<br> e.g.,`search_student by/id` or `/search_student by/name`                                                                                                                                  |
+| **Sort students**                       | `/sort_students by/<name or email or id> `<br> e.g.,`sort_students by/id` or `/sort_students by/name`                                                                                                                                    |
 | **View all students**                   | `/list_students`                                                                                                                                                                                                                         |
 | **Add new tutorial class**              | `/add_class module/<module_code> tutorial/<tutorial_class> [description/<description>] [size/<class_size>]` <br> e.g., `/add_class module/CS2103T tutorial/T09 description/Software Engineering size/10`                                 |
 | **Delete tutorial class**               | `/delete_class module/<module_code> tutorial/<tutorial_class>` <br> e.g., `/delete_class module/CS2103T tutorial/T09`                                                                                                                    |

@@ -55,6 +55,7 @@ public class DeleteStudentFromClassByIdCommand extends DeleteStudentFromClassCom
                     Messages.format(personToDelete), tutorialClass));
         } else {
             model.deletePersonFromTutorialClass(personToDelete, module, tutorialClass);
+            model.getAddressBook().setStudentsInTutorialClass(tutorialClass);
             return new CommandResult(String.format(PersonMessages.MESSAGE_DELETE_STUDENT_FROM_CLASS_SUCCESS,
                     Messages.format(personToDelete), module, tutorialClass));
         }

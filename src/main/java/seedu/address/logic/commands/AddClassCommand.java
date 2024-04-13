@@ -67,6 +67,7 @@ public class AddClassCommand extends Command {
             description.ifPresent(module::setDescription);
             module.addTutorialClass(tutorialClass);
             model.addModule(module);
+            model.getAddressBook().setTutorialClassesInModules(module);
         }
         return new CommandResult(generateSuccessMessage(module, tutorialClass));
     }

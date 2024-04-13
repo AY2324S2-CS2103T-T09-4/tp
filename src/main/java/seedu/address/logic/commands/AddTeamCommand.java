@@ -24,11 +24,11 @@ public class AddTeamCommand extends Command {
     public static final String COMMAND_WORD = "/add_team";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Create a team with a name and an optional size, assigned to a particular tutorial class\n"
-            + "Parameters: " + PREFIX_MODULECODE + "MODULE_CODE "
-            + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS " + PREFIX_NAME + "TEAM_NAME " + PREFIX_SIZE + "TEAM_SIZE\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_MODULECODE + "CS2103T "
-            + PREFIX_TUTORIALCLASS + "T09 " + PREFIX_NAME + "Team 1 " + PREFIX_SIZE + "5";
+        + ": Create a team with a name and an optional size, assigned to a particular tutorial class\n"
+        + "Parameters: " + PREFIX_MODULECODE + "MODULE_CODE "
+        + PREFIX_TUTORIALCLASS + "TUTORIAL_CLASS " + PREFIX_NAME + "TEAM_NAME " + PREFIX_SIZE + "TEAM_SIZE\n"
+        + "Example: " + COMMAND_WORD + " " + PREFIX_MODULECODE + "CS2103T "
+        + PREFIX_TUTORIALCLASS + "T09 " + PREFIX_NAME + "Team 1 " + PREFIX_SIZE + "5";
 
     private final ModuleCode module;
     private final TutorialClass tutorialClass;
@@ -70,16 +70,18 @@ public class AddTeamCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         ModuleTutorialPair moduleAndTutorialClass = ModuleTutorialPair.getModuleAndTutorialClass(model,
-                module, tutorialClass);
+            module, tutorialClass);
         ModuleCode module = moduleAndTutorialClass.getModule();
         TutorialClass tutorialClass = moduleAndTutorialClass.getTutorialClass();
 
         TutorialTeam newTeam = new TutorialTeam(teamName, teamSize);
         if (tutorialClass.hasTeam(newTeam)) {
             throw new CommandException(String.format(TutorialTeamMessages.MESSAGE_DUPLICATE_TEAM,
-                    teamName, module, tutorialClass));
+                teamName, module, tutorialClass));
         } else {
             model.addTeam(tutorialClass, newTeam);
+            model.getAddressBook().setTutorialTeamsInClass(tutorialClass);
+            model.getAddressBook().setTutorialClassesInModules(module);
         }
 
         if (teamSize != Integer.MAX_VALUE) {
@@ -107,7 +109,7 @@ public class AddTeamCommand extends Command {
      */
     private String generateSuccessMessage(ModuleCode module, TutorialClass tutorialString, String teamName) {
         return String.format(MESSAGE_ADD_TEAM_SUCCESS_WITHOUT_SIZE, teamName, module,
-                tutorialString);
+            tutorialString);
     }
 
     /**
@@ -120,7 +122,7 @@ public class AddTeamCommand extends Command {
      * @return The success message.
      */
     private String generateSuccessMessage(ModuleCode module, TutorialClass tutorialString, String teamName,
-            int teamSize) {
+                                          int teamSize) {
         return String.format(MESSAGE_ADD_TEAM_SUCCESS_WITH_SIZE, teamName, teamSize, module, tutorialString);
     }
 
@@ -137,6 +139,6 @@ public class AddTeamCommand extends Command {
 
         AddTeamCommand e = (AddTeamCommand) other;
         return module.equals(e.module) && tutorialClass.equals(e.tutorialClass) && teamName.equals(e.teamName)
-                && teamSize == e.teamSize;
+            && teamSize == e.teamSize;
     }
 }

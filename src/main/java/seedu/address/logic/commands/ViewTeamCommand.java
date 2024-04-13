@@ -37,6 +37,7 @@ public class ViewTeamCommand extends Command {
         + PREFIX_MODULECODE + "MODULE CODE "
         + PREFIX_TUTORIALCLASS + "TUTORIAL CLASS "
         + "Example: " + COMMAND_WORD + " "
+        + "name/Team 1 "
         + PREFIX_MODULECODE + "CS2103T "
         + PREFIX_TUTORIALCLASS + "T09 ";
 
@@ -88,7 +89,7 @@ public class ViewTeamCommand extends Command {
             if (!isInteger(predicateValue)) {
                 return new CommandResult("Integer needed for predicate value");
             }
-            teamToView = findTeamByIndex(model, Index.fromZeroBased(Integer.parseInt(predicateValue)), tutorialClass,
+            teamToView = findTeamByIndex(model, Index.fromOneBased(Integer.parseInt(predicateValue)), tutorialClass,
                 moduleInList);
             if (teamToView == null || !tutorialInList.hasTeam(teamToView)) {
                 throw new CommandException(String.format(MESSAGE_TEAM_NOT_FOUND, predicateType, predicateValue));
@@ -105,8 +106,8 @@ public class ViewTeamCommand extends Command {
         if (studentsString.length() > 2) {
             studentsString = studentsString.substring(0, studentsString.length() - 2);
         }
-
-        return new CommandResult("Team Name: " + teamToView.getTeamName() + ", Team Size: "
+        model.getAddressBook().setStudentsInTeam(teamToView);
+        return new CommandResult("Team Name: " + teamToView.getTeamName() + ", Team Capacity: "
             + teamToView.getTeamSize() + ", Students: " + studentsString);
     }
 
@@ -122,15 +123,13 @@ public class ViewTeamCommand extends Command {
         TutorialClass tutorialInList = model.findTutorialClassFromList(tutorialClass, moduleCode);
         Predicate<TutorialTeam> indexPredicate = tutorialTeam -> {
             ObservableList<TutorialTeam> filteredList = FXCollections.observableList(tutorialInList.getTeams());
-            int teamIndex = filteredList.indexOf(tutorialTeam);
-            return teamIndex == index.getZeroBased();
+            int teamIndex = filteredList.indexOf(tutorialTeam) + 1;
+            return teamIndex == index.getOneBased();
         };
         TutorialTeam team = model.searchTeamByPredicate(indexPredicate, tutorialClass, moduleCode);
-
         if (team == null) {
-            throw new CommandException("Invalid team index. Please provide a valid index within the range.");
+            throw new CommandException("No team found.");
         }
-
         return team;
     }
 
