@@ -26,7 +26,7 @@ public class ModuleCode {
     private String description;
 
     /**
-     * A constructor for Module. Used to initialise a new module with no tutorial classes
+     * A constructor for ModuleCode. Used to initialise a new module with no tutorial classes
      *
      * @param moduleCode of the module to be created
      */
@@ -34,21 +34,20 @@ public class ModuleCode {
         requireAllNonNull(moduleCode);
         checkArgument(isValidModuleCode(moduleCode), MESSAGE_CONSTRAINTS);
         this.moduleCode = moduleCode;
-        this.tutorialClasses = new ArrayList<TutorialClass>();
+        this.tutorialClasses = new ArrayList<>();
     }
 
     /**
-     * A constructor for Module. Used to initialise a new module with the tutorial class specified.
-     * This is the constructor used when /add_class is used.
+     * A constructor for ModuleCode. Used to initialise a new {@code moduleCode} with {@code tutorialClass}.
      *
-     * @param moduleCode of the module to be created
-     * @param tutorialClass to be added within the module
+     * @param moduleCode of the module to be created.
+     * @param tutorialClass to be added within the module.
      */
     public ModuleCode(String moduleCode, String tutorialClass) {
         requireAllNonNull(moduleCode);
         checkArgument(isValidModuleCode(moduleCode), MESSAGE_CONSTRAINTS);
         this.moduleCode = moduleCode;
-        this.tutorialClasses = new ArrayList<TutorialClass>();
+        this.tutorialClasses = new ArrayList<>();
         tutorialClasses.add(new TutorialClass(tutorialClass));
     }
     /**
@@ -69,8 +68,8 @@ public class ModuleCode {
     }
 
     /**
-     * A constructor for Module. Used to initialise a new module with the list of tutorial classes specified.
-     * Used to get the representation of the module from the list of classes and the moduleCode specified.
+     * A constructor for ModuleCode. Used to initialise a new {@code moduleCode} with {@code tutorialClasses}.
+     * Used to get the representation of the module from {@code tutorialClasses} and {@code moduleCode}.
      *
      * @param moduleCode of the module to be created
      * @param tutorialClasses of the module to be created
@@ -81,6 +80,7 @@ public class ModuleCode {
         this.moduleCode = moduleCode;
         this.tutorialClasses = tutorialClasses;
     }
+
     /**
      * Returns true if a given string is a valid module code.
      */

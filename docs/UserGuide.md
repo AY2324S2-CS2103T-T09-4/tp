@@ -171,6 +171,7 @@ Commands on modules:
    
    - `/view_teams name/Team 1 module/CS2103T tutorial/T09` or `/view_teams index/1 module/CS2103T tutorial/T09` : View the information of the team with team name `Team 1` or index `1` in tutorial class `T09` under module `CS2103T`
 
+
 1. Refer to the [Features](#features) below for details of each command.
 
 [Back to table of contents](#table-of-contents)

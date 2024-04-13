@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a person to TAHelper.
+ * Adds a Person object to TAHelper.
  */
 public class AddStudentCommand extends Command {
 
