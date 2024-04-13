@@ -260,6 +260,68 @@ Step 6. Finally, a `CommandResult` is created and the student is deleted.
   - Pros: Reduces duplicate code and much cleaner (i.e only 1 command class is executed).
   - Cons: The logic handling may be slightly more complex and messy within the class as all parameters have to be dealt with seperately (potentially using different logic).
 
+### \[Implemented\] Edit student
+
+The implemented edit mechanism is facilitated by the `EditCommand` and `EditCommandParser`. `EditCommand` extends the
+`Command` class and contains auxiliary operations that support the mechanism, such as creating the edited person to replace
+the target. `EditCommandParser` implements the `Parser` interface and its operations.
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Example: `/edit_student index/1 id/A1234567L`
+
+<puml src="diagrams/EditStudentSequence.puml" alt="EditStudentSequence" />
+
+Step 1. The user executes `/edit_student index/1 id/A1234567L` command to edit the first student's id. The command calls
+`AddressBookParser#parseCommand()`, which extracts the command word of the command and the arguments of the command.
+
+Step 2. The `AddressBookParser` then creates a new `EditCommandParser` and calls `EditCommandParser#parse()`, 
+with `index/1 id/A1234567L` as the arguments.
+
+Step 3. The `EditCommandParser` parses the arguments to determine which target student and parameter is being edited.
+
+<box type="info" seamless>
+
+**Important Note:** At least one of the parameters must be present for the command to successfully return.
+
+</box>
+
+Step 4. `EditCommandParser` creates an `EditPersonDescriptor`, and sets the values to be edited. An `EditCommand` is created, 
+passing the `EditPersonDescriptor` as an argument.
+
+Step 5. `LogicManager` calls `EditCommand#execute()`, passing `Model` as an argument. This method creates an `editedPerson`, 
+with all the edited information. 
+
+<box type="info" seamless>
+
+**Important Note:** Throughout the process, the method checks for duplicate persons in the Address Book. This
+refers to either same person, person with same email or person with same id.
+
+</box>
+
+Step 6. Finally, the method calls `Model#setPerson`, which replaces the target person with the edited person, and `Model#updateFilteredPersonList()`
+to update the list with the new information. A `CommandResult` is created, informing of successful execution.
+
+<box type="info" seamless>
+
+**Important Note:** Currently, edited student information only displays on the list it was edited in. The edited details
+are not propagated to other lists (students in different class/modules). More information can be found in the planned
+enhancements section.
+
+</box>
+
+#### Design considerations:
+
+**Aspect: Modularity and extensibility:**
+
+- **Alternative 1 (current choice):** Lump into one generic command that handles each parameter accordingly.
+  - Pros: Reduces duplicate code and much cleaner (i.e only 1 command class is executed).
+  - Cons: The logic handling may be slightly more complex and messy within the class as all parameters have to be dealt with seperately (potentially using different logic). Since the scale of the command is relatively small, we have opted for this implementation to keep things simple.
+
+- **Alternative 2:** Separate each specific command into a different class, while overlapping code is abstracted to an abstract class.
+  - Pros: Specific commands are instantiated and thus can be easily traced and is more readable. Any reusable code is defined in the abstract class which can then be reused by the subclasses.
+  - Cons: May have duplicate code to a certain extent.
+
 ### \[Implemented\] Add student to tutorial class
 
 The implemented add mechanism is facilitated by the abstract `AddStudentToClassCommand` along with its specific commands `AddStudentToClassByEmailCommand`, `AddStudentToClassByIdCommand` and `AddStudentToClassByIndexCommand`, as well as the parser `AddStudentToClassCommandParser`.
@@ -457,8 +519,14 @@ Step 6. Finally, a `CommandResult` is created and the new filtered is displayed 
 
 The implemented search mechanism is facilitated by `SortStudentCommand` and `SortStudentCommandParser`.
 `SortStudentCommandParser` implements the `Parser` interface and it's operations. `SortStudentCommand` extends the
-`Command` class with the ability to update `Model`'s filtered person list using `Predicate`. It supports the following
-`Predicate`:
+`Command` class with the ability to update `Model`'s person list. `SortStudentCommand` supports the enumerations found
+within `SortStudentParameter`.
+
+**Note:** Unlike other commands that modify the current displayed person list using `Predicate`, `SortStudentCommand` 
+calls `Model#getSortedPersonList()`, which returns a copy of the `UniquePersonList` that can be sorted using
+comparators.
+
+The following are the current parameters that are supported with `SortStudentCommand`.
 
 - `name` — Sort students based on name.
 - `email` — Sort students based on email.
@@ -485,11 +553,12 @@ Step 3. The `SortStudentCommandParser` parses the arguments to determine which p
 
 </box>
 
-Step 4. `SortStudentCommandParser` creates `SearchStudentCommand` and gets the value `id` from the prefix, passing the predicate
-as an argument into the command.
+Step 4. `id` is parsed by `SortStudentCommandParser`, returning a `SortStudentParameter`. `SortStudentCommandParser`
+creates `SortStudentCommand` and passes the new parameter as an argument.
 
-Step 5. `LogicManager` calls `SortStudentCommand#execute()`, passing `Model` as an argument. This method calls
-`AddressBook#getSortedPersonList()` with the given predicate, returning the sorted list in `AddressBook` with the sorted order of the students.
+Step 5. `LogicManager` calls `SortStudentCommand#execute()`, passing `Model` as an argument. A `Comparator` is created, passing a 
+function that compares by `id` as an argument. The execute method then calls `AddressBook#getSortedPersonList()` with the 
+given comparator, returning the sorted list in `AddressBook` with the sorted order of the students.
 
 Step 6. Finally, a `CommandResult` is created and the sorted list of students is displayed to the user.
 
