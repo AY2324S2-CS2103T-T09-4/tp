@@ -81,7 +81,7 @@ public class CommandTestUtil {
     public static final String VALID_TEAM_NAME_BOB = "Team 2";
     public static final String VALID_TEAM_NAME_NEW = "Team 3";
     public static final int VALID_TEAM_SIZE = 5;
-    public static final String TEAM_NAME_DESC_AMY = " " + PREFIX_NAME + VALID_TEAM_NAME_AMY;
+    public static final String TEAM_NAME_DESC_AMY = " " + PREFIX_TEAMNAME + VALID_TEAM_NAME_AMY;
     public static final String TEAM_DESC_AMY = " " + PREFIX_TEAMNAME + VALID_TEAM_NAME_AMY;
     public static final String INVALID_TEAM_NAME = "Team 1!";
     public static final String INVALID_TEAM_DESC_AMY = " " + PREFIX_TEAMNAME + INVALID_TEAM_NAME;

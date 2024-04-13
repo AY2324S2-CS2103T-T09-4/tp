@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULECODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAMNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIALCLASS;
 
 import java.util.stream.Stream;
@@ -27,15 +27,15 @@ public class DeleteTeamCommandParser implements Parser<DeleteTeamCommand> {
     public DeleteTeamCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS,
-                PREFIX_NAME);
+                PREFIX_TEAMNAME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS, PREFIX_NAME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_MODULECODE, PREFIX_TUTORIALCLASS, PREFIX_TEAMNAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTeamCommand.MESSAGE_USAGE));
         }
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULECODE).get());
         TutorialClass tutorialClass = ParserUtil.parseTutorialClass(argMultimap.getValue(PREFIX_TUTORIALCLASS).get());
-        String teamName = argMultimap.getValue(PREFIX_NAME).get();
+        String teamName = argMultimap.getValue(PREFIX_TEAMNAME).get();
         return new DeleteTeamCommand(moduleCode, tutorialClass, teamName);
     }
 

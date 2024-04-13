@@ -215,7 +215,7 @@ public class AddressBookParserTest {
         AddTeamCommand command = (AddTeamCommand) parser.parseCommand(
             AddTeamCommand.COMMAND_WORD + " " + PREFIX_MODULECODE + " " + moduleCode + " "
                 + PREFIX_TUTORIALCLASS + " " + tutorialClass + " "
-                + PREFIX_NAME + " " + teamName);
+                + PREFIX_TEAMNAME + " " + teamName);
         assertEquals(new AddTeamCommand(moduleCode, tutorialClass, teamName), command);
     }
 
@@ -228,7 +228,7 @@ public class AddressBookParserTest {
         DeleteTeamCommand command = (DeleteTeamCommand) parser.parseCommand(
             DeleteTeamCommand.COMMAND_WORD + " " + PREFIX_MODULECODE + " " + moduleCode + " "
                 + PREFIX_TUTORIALCLASS + " " + tutorialClass + " "
-                + PREFIX_NAME + " " + teamName);
+                + PREFIX_TEAMNAME + " " + teamName);
         assertEquals(new DeleteTeamCommand(moduleCode, tutorialClass, teamName), command);
     }
 
