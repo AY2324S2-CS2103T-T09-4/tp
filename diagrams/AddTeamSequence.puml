@@ -1,7 +1,7 @@
 @startuml
 !include style.puml
 skinparam ArrowFontStyle plain
-!define input "/add_team module/CS2103T tutorial/T09 name/Team 1 size/5"
+!define input "/add_team module/CS2103T tutorial/T09 team/Team 1 size/5"
 
 
 box Logic LOGIC_COLOR_T1
@@ -29,7 +29,7 @@ activate AddTeamCommandParser
 AddTeamCommandParser --> AddressBookParser
 deactivate AddTeamCommandParser
 
-AddressBookParser -> AddTeamCommandParser : parse("module/CS2103T tutorial/T09 name/Team 1 size/5")
+AddressBookParser -> AddTeamCommandParser : parse("module/CS2103T tutorial/T09 team/Team 1 size/5")
 activate AddTeamCommandParser
 
 create AddTeamCommand
@@ -47,6 +47,17 @@ deactivate AddressBookParser
 
 LogicManager -> AddTeamCommand : execute(m)
 activate AddTeamCommand
+
+AddTeamCommand -> Model : getModuleAndTutorialClass(model)
+activate Model
+
+Model --> AddTeamCommand : moduleAndTutorialClass
+AddTeamCommand -> Model : moduleAndTutorialClass.getModule()
+activate Model
+
+Model --> AddTeamCommand : "CS2103T"
+AddTeamCommand -> Model : moduleAndTutorialClass.getTutorialClass()
+activate Model
 
 AddTeamCommand -> Model : addTeam(p)
 activate Model
