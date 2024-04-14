@@ -1,7 +1,7 @@
 @startuml
 !include style.puml
 skinparam ArrowFontStyle plain
-!define input "/delete_team module/CS2103T tutorial/T09 name/Team 1"
+!define input "/delete_team module/CS2103T tutorial/T09 team/Team 1"
 
 
 box Logic LOGIC_COLOR_T1
@@ -29,7 +29,7 @@ activate DeleteTeamCommandParser
 DeleteTeamCommandParser --> AddressBookParser
 deactivate DeleteTeamCommandParser
 
-AddressBookParser -> DeleteTeamCommandParser : parse("module/CS2103T tutorial/T09 name/Team 1")
+AddressBookParser -> DeleteTeamCommandParser : parse("module/CS2103T tutorial/T09 team/Team 1")
 activate DeleteTeamCommandParser
 
 create DeleteTeamCommand

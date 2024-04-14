@@ -22,24 +22,25 @@ TAHelper is a **desktop app for managing contacts, optimized for use via a Line 
 - [Navigating the GUI](#navigating-the-gui)
 - [Features](#features)
   - [Command Format](#command-format)
-  - [Adding new students](#adding-new-students--addstudent)
-  - [Deleting students](#deleting-students--deletestudent)
-  - [Searching for students](#searching-for-students--searchstudent)
-  - [Edit student contacts](#edit-student-contact--editstudent)
-  - [Listing all students](#listing-all-students--liststudents)
-  - [Sort all students](#sort-all-students--sortstudents)
-  - [Adding new tutorial class](#adding-new-tutorial-class--addclass)
-  - [Deleting tutorial class](#deleting-tutorial-class--deleteclass)
-  - [Deleting modules](#deleting-modules--deletemodule)
-  - [Listing all tutorial classes](#listing-all-tutorial-classes--listclasses)
-  - [Adding student to tutorial class](#adding-student-to-tutorial-class--addstudenttoclass)
-  - [Deleting students from tutorial class](#deleting-students-from-tutorial-class--deletestudentfromclass)
-  - [Adding new tutorial team](#adding-new-tutorial-team--addteam)
-  - [Allocating students to tutorial teams](#allocating-students-to-tutorial-teams--allocateteam)
-  - [Listing all students of a tutorial class](#listing-all-students-of-a-tutorial-class--classliststudents)
-  - [View a team in tutorial class](#view-a-team-in-a-tutorial-class--viewteams)
-  - [Randomly allocate into teams all students in a tutorial class](#randomly-allocate-into-teams-all-students-in-a-tutorial-class--randomteams)
-  - [Deleting students from team](#deleting-students-from-team--deletestudentfromteam)
+  - [Adding new students](#adding-new-students-add-student)
+  - [Deleting students](#deleting-students-delete-student)
+  - [Searching for students](#searching-for-students-search-student)
+  - [Edit student contacts](#edit-student-contact-edit-student)
+  - [Listing all students](#listing-all-students-list-students)
+  - [Sort all students](#sort-all-students-sort-students)
+  - [Adding new tutorial class](#adding-new-tutorial-class-add-class)
+  - [Deleting tutorial class](#deleting-tutorial-class-delete-class)
+  - [Deleting modules](#deleting-modules-delete-module)
+  - [Listing all tutorial classes](#listing-all-tutorial-classes-list-classes)
+  - [Adding student to tutorial class](#adding-student-to-tutorial-class-add-student-to-class)
+  - [Deleting students from tutorial class](#deleting-students-from-tutorial-class-delete-student-from-class)
+  - [Adding new tutorial team](#adding-new-tutorial-team-add-team)
+  - [Deleting tutorial team](#deleting-tutorial-team-delete-team)
+  - [Allocating students to tutorial teams](#allocating-students-to-tutorial-teams-allocate-team)
+  - [Listing all students of a tutorial class](#listing-all-students-of-a-tutorial-class-class-list-students)
+  - [View a team in tutorial class](#view-a-team-in-a-tutorial-class-view-teams)
+  - [Randomly allocate into teams all students in a tutorial class](#randomly-allocate-into-teams-all-students-in-a-tutorial-class-random-teams)
+  - [Deleting students from team](#deleting-students-from-team-delete-student-from-team)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
 - [Glossary](#glossary)
@@ -282,9 +283,12 @@ Explanation: This adds a student with name `Dohn Joe`, email `johndoe@gmail.com`
 
 Delete a student contact based on the parameter specified by the user.
 
-Format: `/delete_student [id/STUDENT_ID] [email/EMAIL] [index/INDEX]`
+Format: 
+1. By ID: `/delete_student id/STUDENT_ID`
+2. By email: `/delete_student email/EMAIL`
+3. By index: `/delete_student index/INDEX`
 
-- At least one of the optional parameters (id/email/index) must be provided.
+- Only one of the optional parameters (id/email/index) must be provided. If more than one optional parameters are provided, the order of priority for deleting a student is: By index -> By ID -> By Email
 - Leading/trailing spaces are removed.
 - A complete match must be provided in order for successful operation.
 - If the specified student belongs to any tutorial class/teams, the student will be deleted from that particular class/team as well.
@@ -457,10 +461,12 @@ Expected output: The command will display the list of all tutorial classes. If t
 ### Adding student to tutorial class : `add_student_to_class`
 
 Adds a specified student based on the provided parameter to a specified tutorial class.
+Format: 
+1. By ID: `/add_student_to_class id/STUDENT_ID module/MODULE tutorial/TUTORIAL`
+2. By email: `/add_student_to_class email/EMAIL module/MODULE tutorial/TUTORIAL`
+3. By index: `/add_student_to_class index/INDEX module/MODULE tutorial/TUTORIAL`
 
-Format: `/add_student_to_class [id/STUDENTID] [index/INDEX] [email/EMAIL] module/MODULE tutorial/TUTORIAL`
-
-- At least one of the optional parameters (id/email/index) must be provided.
+- Only one of the optional parameters (id/email/index) must be provided. If more than one optional parameters are provided, the order of priority for adding a student to a class is: By index -> By ID -> By Email
 - If the module code does not exist, it returns an error.
 - If the tutorial class within that module code does not exist, it returns an error.
 - If the student does not exist, it returns an error.
@@ -527,7 +533,7 @@ Examples:
 [Back to table of contents](#table-of-contents)
 
 ---
-### Deleting team : `delete_team`
+### Deleting tutorial team : `delete_team`
 
 Deletes a specified team from the specified module and tutorial.
 
@@ -549,10 +555,10 @@ Explanation: Deletes team `Team 1` from the module `CS2103T` and tutorial `T09`
 
 Allocates a student to an existing tutorial team within a tutorial class.
 
-List of acceptable formats:<br>
-    1. By ID: `/allocate_team id/ID module/MODULE tutorial/TUTORIAL team/TEAM_NAME`
-    2. By email: `/allocate_team email/EMAIL module/MODULE tutorial/TUTORIAL team/TEAM_NAME`
-    3. By index: `/allocate_team index/INDEX module/MODULE tutorial/TUTORIAL team/TEAM_NAME`
+Formats:
+1. By ID: `/allocate_team id/ID module/MODULE tutorial/TUTORIAL team/TEAM_NAME`
+2. By email: `/allocate_team email/EMAIL module/MODULE tutorial/TUTORIAL team/TEAM_NAME`
+3. By index: `/allocate_team index/INDEX module/MODULE tutorial/TUTORIAL team/TEAM_NAME`
 
 - All fields from any acceptable formats have to be specified.
 - Leading/trailing spaces are removed.

@@ -1,14 +1,14 @@
 @startuml
 !include style.puml
 skinparam ArrowFontStyle plain
-!define input "/delete_student id/A1234567L"
+!define input "/delete_student id/A0123456X"
 
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":DeleteStudentCommandParser" as DeleteStudentCommandParser LOGIC_COLOR
-participant "d:DeleteStudentCommand" as DeleteStudentCommand LOGIC_COLOR
+participant "d:DeleteByIdStudentCommand" as DeleteStudentByIdCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -29,43 +29,49 @@ activate DeleteStudentCommandParser
 DeleteStudentCommandParser --> AddressBookParser
 deactivate DeleteStudentCommandParser
 
-AddressBookParser -> DeleteStudentCommandParser : parse("id/A1234567L")
+AddressBookParser -> DeleteStudentCommandParser : parse("id/A0123456X")
 activate DeleteStudentCommandParser
 
-create DeleteStudentCommand
-DeleteStudentCommandParser -> DeleteStudentCommand
-activate DeleteStudentCommand
+create DeleteStudentByIdCommand
+DeleteStudentCommandParser -> DeleteStudentByIdCommand
+activate DeleteStudentByIdCommand
 
-DeleteStudentCommand --> DeleteStudentCommandParser :
-deactivate DeleteStudentCommand
+DeleteStudentByIdCommand --> DeleteStudentCommandParser :
+deactivate DeleteStudentByIdCommand
 
-DeleteStudentCommandParser --> AddressBookParser : d(p)
+DeleteStudentCommandParser --> AddressBookParser : d
 deactivate DeleteStudentCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 DeleteStudentCommandParser -[hidden]-> AddressBookParser
 destroy DeleteStudentCommandParser
 
-AddressBookParser --> LogicManager : d(p)
+AddressBookParser --> LogicManager : d
 deactivate AddressBookParser
 
-LogicManager -> DeleteStudentCommand : execute(m)
-activate DeleteStudentCommand
+LogicManager -> DeleteStudentByIdCommand : execute(m)
+activate DeleteStudentByIdCommand
 
-DeleteStudentCommand -> Model : deletePerson(p)
+DeleteStudentByIdCommand -> Model : searchPersonByPredicate()
 activate Model
 
-Model --> DeleteStudentCommand
+Model --> DeleteStudentByIdCommand : p
+deactivate Model
+
+DeleteStudentByIdCommand -> Model : deletePerson(p)
+activate Model
+
+Model --> DeleteStudentByIdCommand
 deactivate Model
 
 create CommandResult
-DeleteStudentCommand -> CommandResult
+DeleteStudentByIdCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteStudentCommand
+CommandResult --> DeleteStudentByIdCommand
 deactivate CommandResult
 
-DeleteStudentCommand --> LogicManager : r
-deactivate DeleteStudentCommand
+DeleteStudentByIdCommand --> LogicManager : r
+deactivate DeleteStudentByIdCommand
 
 [<--LogicManager
 deactivate LogicManager

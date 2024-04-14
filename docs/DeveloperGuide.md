@@ -224,15 +224,16 @@ The implemented add mechanism is facilitated by the abstract `DeleteStudentComma
 - `DeleteStudentByIndexCommand` — Delete student based on specified index (viewable from the UI).
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
-
-Example: `/delete_student id/A01234567X`
+Format: `/delete_student [id/ID] [email/EMAIL] [index/INDEX]`
+*Only 1 of the 3 parameters (id, email, index) must be specified
+Example: `/delete_student id/A0123456X`
 
 <puml src="diagrams/DeleteStudentSequence.puml" alt="DeleteStudentSequence" />
 
-Step 1. The user executes `/delete_student id/A01234567X` command to delete the particular student with id `A01234567X`.
+Step 1. The user executes `/delete_student id/A0123456X` command to delete the particular student with id `A0123456X`.
 The `execute` command calls `AddressBookParser#parseCommand()`, which extracts the command word of the command and the arguments of the command.
 
-Step 2. The `AddressBookParser` then creates a new `DeleteStudentCommandParser` and calls `DeleteStudentCommandParser#parse()`, with `id/A01234567X` as the argument.
+Step 2. The `AddressBookParser` then creates a new `DeleteStudentCommandParser` and calls `DeleteStudentCommandParser#parse()`, with `id/A0123456X` as the argument.
 
 Step 3. The `DeleteStudentCommandParser` parses the arguments to determine what parameter is used to specify the target student (email, index or id).
 
@@ -331,12 +332,13 @@ The implemented add mechanism is facilitated by the abstract `AddStudentToClassC
 `AddStudentToClassCommand` extends the `Command` class and contains auxillary operations that supports the mechanism, such as retrieving the target tutorial class. Each of the following commands further extends `AddStudentToClassCommand` based on its specific functionality:
 
 - `AddStudentToClassByEmailCommand` — Add student based on specified email to a tutorial class.
-- `AddStudentToClassByIdCommand` — Add student based on specified student id to a tutorial class.
+- `AddStudentToClassByIdCommand` — Add student based on specified student ID to a tutorial class.
 - `AddStudentToClassByIndexCommand` — Add student based on specified index (viewable from the UI) to a tutorial class
 
-Given below is an example usage scenario and how the add mechanism behaves at each step.
-
-Example: `/add_student_to_class id/A01234567X module/CS2103T tutorial/T09`
+Given below is an example usage scenario and how the add mechanism behaves at each step. <br>
+Format: `/add_student_to_class [id/ID] [email/EMAIL] [index/INDEX] module/MODULE tutorial/TUTORIL`
+*Only 1 of the 3 optional parameters (id, email, index) must be specified
+Example: `/add_student_to_class id/A0123456X module/CS2103T tutorial/T09`
 
 <puml src="diagrams/AddStudentToClassSequence.puml" alt="AddStudentToClassSequence" />
 
@@ -745,41 +747,43 @@ Step 3. The result string is then trimmed and `CommandResult`.
 The implementation of adding a class is facilitated by the `AddTeamCommand` and `AddTeamCommandParser`. `AddTeamCommandParser` implements the `Parser` interface and it's operations. `AddTeamCommand` extends the
 `Command` class and contains auxillary operations that supports the mechanism.
 
-Given below is an example usage scenario and how the add mechanism behaves at each step.
-
-Example: `/add_team module/CS2103 tutorial/T09 name/Team 1 size/5`
+Given below is an example usage scenario and how the add mechanism behaves at each step. <br>
+Format: `/add_team module/MODULE tutorial/TUTORIAL team/TEAM_NAME [size/SIZE]`
+Example: `/add_team module/CS2103 tutorial/T09 team/Team 1 size/5`
 
 <puml src="diagrams/AddTeamSequence.puml" alt="AddTeamSequence" />
 
 Execution steps:
-Step 1. The user inputs and executes `/add_team module/CS2103 tutorial/T09 name/Team 1 size/5` command to add a team `Team 1` of size `5` to the tutorial class `T09` of module `CS2103T`
+Step 1. The user inputs and executes `/add_team module/CS2103 tutorial/T09 team/Team 1 size/5` command to add a team `Team 1` of size `5` to the tutorial class `T09` of module `CS2103T`
 
 The `execute` command calls `AddressBookParser#parseCommand()`, which extracts the command word of the command and the arguments of the command.
 
-Step 2. The `AddressBookParser` then creates a new `AddTeamCommandParser` and calls `AddTeamCommandParser#parse()`, with `name/Team 1`, `size/5`, `module/CS2103T`, `tutorial/T09` as the arguments for the function.
+Step 2. The `AddressBookParser` then creates a new `AddTeamCommandParser` and calls `AddTeamCommandParser#parse()`, with `team/Team 1`, `size/5`, `module/CS2103T`, `tutorial/T09` as the arguments for the function.
 
-Step 3. The `AddClassCommandParser` parses the arguments and get the values of the user input associated with the prefixes, from there determine the team to add.
+Step 3. The `AddTeamCommandParser` parses the arguments and get the values of the user input associated with the prefixes, from there determine the team to add.
 
 <box type="info" seamless>
 
-**Important Note:** All fields must be specified. There must be a valid value for name, size, module and tutorial.
-Additionally, name, module and tutorial must be unique compared to the values already present in the system to get achieve a successful add.
-Tags here are optional and need not be specified.
+**Important Note:** Team name, module and tutorial must be specified with valid values. Size is an optional parameter. If size is not specified, the default size of the team is set to `INTEGER.MAX_VALUE`.
 
 </box>
 
 Step 4. Based on the prefixes, `AddTeamCommandParser` creates an `AddTeamCommand` object. Each command contains all the required prefixes and values to used to create the command object.
 
-Step 5. `LogicManager` calls `AddTeamCommand#execute()`, passing `Model` as an argument. This method retrieves the adds the student to the TAHelper system.
-Throughout the process, error handling (e.g checking for duplicate module code or tutorial, making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
+Step 5. `LogicManager` calls `AddTeamCommand#execute()`, passing `Model` as an argument. Within the execution process, the method retrieves the module and tutorial from the model. Within the tutorial, the method checks if a team with the same name exists. If such a team already exists, the method will return an error.
 
-Step 6. Finally, a `CommandResult` is created and the team is added to the TAHelper system.
+**Important Note:** Two teams are considered equal if and only if they have the same team name and belong to the same tutorial class, irregardless of size.
+
+Throughout the process, error handling (e.g checking for valid module and tutorial class, making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
+
+
+Step 6. Finally, a `CommandResult` is created and the team is added to the tutorial class specified.
 
 #### Design considerations:
 
-**Aspect: Modularity and extensibility:**
+**Aspect: Robustness:**
 
-- **Alternative 1 (current choice):** A unique team name, module code and tutorial class is required when adding classes into the TAHelper system, as well as user have to specify all fields, team name, module code and tutorial class in order to add a new team successfully.
+- **Alternative 1 (current choice):** Using `null` to represent an optional team size cand tutorial class is required when adding classes into the TAHelper system, as well as user have to specify all fields, team name, module code and tutorial class in order to add a new team successfully.
   - Pros: Ensures that all teams are unique and not repeated. This helps facilitate other commands such as allocate student to teams to find a match in team easily without duplicates.
   - Cons: Users may inadvertently provide incorrect or non-existent module codes or tutorial class identifiers, leading to errors in the system. This could result in frustration and a poor user experience.
 
@@ -793,42 +797,50 @@ The implementation of adding a class is facilitated by the `DeleteTeamCommand` a
 `Command` class and contains auxillary operations that supports the mechanism.
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
-
-Example: `/delete_team module/CS2103T tutorial/T09 name/Team 1`
+Format: `/delete_team module/MODULE tutorial/TUTORIAL team/TEAM_NAME`
+Example: `/delete_team module/CS2103T tutorial/T09 team/Team 1`
 
 <puml src="diagrams/DeleteTeamSequence.puml" alt="DeleteTeamSequence" />
 
 Execution steps:
-Step 1. The user inputs and executes `/delete_team module/CS2103T tutorial/T09 name/Team 1` command to delete a team `Team 1` in tutorial `T09` of module `CS2103T`.
+Step 1. The user inputs and executes `/delete_team module/CS2103T tutorial/T09 team/Team 1` command to delete a team `Team 1` in tutorial `T09` of module `CS2103T`.
 
 The `execute` command calls `AddressBookParser#parseCommand()`, which extracts the command word of the command and the arguments of the command.
 
-Step 2. The `AddressBookParser` then creates a new `DeleteTeamCommandParser` and calls `DeleteTeamCommandParser#parse()`, with `name/Team 1`, `module/CS2103T`, `tutorial/T09` as the arguments for the function.
+Step 2. The `AddressBookParser` then creates a new `DeleteTeamCommandParser` and calls `DeleteTeamCommandParser#parse()`, with `team/Team 1`, `module/CS2103T`, `tutorial/T09` as the arguments for the function.
 
 Step 3. The `DeleteTeamCommandParser` parses the arguments and get the values of the user input associated with the prefixes, from there determine the tutorial of the module to delete.
 
 <box type="info" seamless>
 
-**Important Note:** All fields must be specified. There must be a valid value for module and tutorial.
-Additionally, module and tutorial must match with one of the values already present in the system to get achieve a successful delete.
-Tags here are optional and need not be specified.
+**Important Note:** All fields must be specified. There must be a valid value for module, tutorial and team, which must match with one of the values already present in the system to get achieve a successful delete.
+Additionally, two teams are considered equal if and only if they have the same team name and belong to the same tutorial class, irregardless of size.
 
 </box>
 
 Step 4. Based on the prefixes, `DeleteTeamCommandParser` creates an `DeleteTeamCommand` object. Each command contains all the required prefixes and values to used to create the command object.
 
-Step 5. `LogicManager` calls `DeleteTeamCommand#execute()`, passing `Model` as an argument. This method retrieves the adds the student to the TAHelper system.
-Throughout the process, error handling (e.g checking for duplicate module code or tutorial, making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
+Step 5. `LogicManager` calls `DeleteTeamCommand#execute()`, passing `Model` as an argument. Within the execution process, the method retrieves the module and tutorial from the model. Thereafter, it retrieves the team from the tutorial class. 
+Throughout the process, error handling (e.g checking for valid module, tutorial and team, making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
 
 Step 6. Finally, a `CommandResult` is created and the team is deleted from the TAHelper system.
 
 #### Design considerations:
 
-**Aspect: Modularity and extensibility:**
+**Aspect: Functionality:**
 
-- **Alternative 1 (current choice):** A unique team name, module code and tutorial class is required when deleting teams from the TAHelper system, as well as user have to specify all fields, team name, module code and tutorial class in order to delete a team successfully.
-  - Pros: Ensures that the team is only deleted if there is a match in the system. Also ensure that the other teams of the tutorial class is not deleted if no team is specified.
-  - Cons: Users may inadvertently provide incorrect or non-existent team or module codes or tutorial class identifiers, leading to errors in the system. This could result in frustration and a poor user experience.
+- **Alternative 1 (current choice):** Team size is not included in equality check of teams.
+  - Pros:
+    - **Simplification of team identity**: Excluding team size simplifies the concept of what defines a team, making it easier to manage teams, especially if the team size changes. In most cases, team size is less relevant to its identity and more about its functional role or participation
+  - Cons:
+    - **Potential for ambiguity/Inaccurate representation**: Not considering team size might lead to situations where teams with the same name but of different sizes are treated the same, which can cause issues in contexts where size is a significant factor. However, this is mitigated by also including tutorial class in the equality check (i.e there can be multiple teams of the same name within the system as long as they are in different tutorials)
+
+- **Alternative 2 :** Team size is included in equality check of teams.
+  - Pros: 
+    - **Precision**: Including team size allows the system to distinguish between teams more precisely.
+    - **Data integrity**: This method can prevent confusion or errors in operations where the specific composition of the team (including its size) is crucial, especially for future enhancements such as scheduling.
+  - Cons: 
+    - **Complexity in team management**:  might complicate the management of teams, especially in dynamic settings where team sizes can fluctuate. Changes in team size would necessitate creating a new team or redefining the team entity.
 
 ### \[Implemented\] Allocate student to team
 
