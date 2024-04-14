@@ -166,7 +166,7 @@ The implemented add mechanism is facilitated by the abstract `AddStudentCommand`
 
 `AddStudentCommandParser` implements the `Parser` interface and its relevant operations.
 
-`AddStudentCommand` extends the `Command` class and contains auxillary operations that supports the mechanism.
+`AddStudentCommand` extends the `Command` class and contains auxiliary operations that supports the mechanism.
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
@@ -217,7 +217,7 @@ The implemented add mechanism is facilitated by the abstract `DeleteStudentComma
 
 `DeleteStudentCommandParser` implements the `Parser` interface and its operations.
 
-`DeleteStudentCommand` extends the `Command` class and contains auxillary operations that supports the mechanism, such as retrieving the target tutorial class. Each of the following commands further extends `DeleteStudentCommand` based on its specific functionality:
+`DeleteStudentCommand` extends the `Command` class and contains auxiliary operations that supports the mechanism, such as retrieving the target tutorial class. Each of the following commands further extends `DeleteStudentCommand` based on its specific functionality:
 
 - `DeleteStudentByEmailCommand` — Delete student based on specified email.
 - `DeleteStudentByIdCommand` — Delete student based on specified student id.
@@ -329,14 +329,14 @@ The implemented add mechanism is facilitated by the abstract `AddStudentToClassC
 
 `AddStudentToClassCommandParser` implements the `Parser` interface and its operations.
 
-`AddStudentToClassCommand` extends the `Command` class and contains auxillary operations that supports the mechanism, such as retrieving the target tutorial class. Each of the following commands further extends `AddStudentToClassCommand` based on its specific functionality:
+`AddStudentToClassCommand` extends the `Command` class and contains auxiliary operations that supports the mechanism, such as retrieving the target tutorial class. Each of the following commands further extends `AddStudentToClassCommand` based on its specific functionality:
 
 - `AddStudentToClassByEmailCommand` — Add student based on specified email to a tutorial class.
 - `AddStudentToClassByIdCommand` — Add student based on specified student ID to a tutorial class.
 - `AddStudentToClassByIndexCommand` — Add student based on specified index (viewable from the UI) to a tutorial class
 
 Given below is an example usage scenario and how the add mechanism behaves at each step. <br>
-Format: `/add_student_to_class [id/ID] [email/EMAIL] [index/INDEX] module/MODULE tutorial/TUTORIL`
+Format: `/add_student_to_class [id/ID] [email/EMAIL] [index/INDEX] module/MODULE tutorial/TUTORIAL`
 *Only 1 of the 3 optional parameters (id, email, index) must be specified
 Example: `/add_student_to_class id/A0123456X module/CS2103T tutorial/T09`
 
@@ -379,7 +379,7 @@ The implemented add mechanism is facilitated by the abstract `DeleteStudentFromC
 
 `DeleteStudentFromClassCommandParser` implements the `Parser` interface and its operations.
 
-`DeleteStudentFromClassCommand` extends the `Command` class and contains auxillary operations that supports the mechanism, such as retrieving the target tutorial class. Each of the following commands further extends `DeleteStudentCommand` based on its specific functionality:
+`DeleteStudentFromClassCommand` extends the `Command` class and contains auxiliary operations that supports the mechanism, such as retrieving the target tutorial class. Each of the following commands further extends `DeleteStudentCommand` based on its specific functionality:
 
 - `DeleteStudentFromClassByEmailCommand` — Delete student based on specified email from a tutorial class.
 - `DeleteStudentFromClassByIdCommand` — Delete student based on specified student id from a tutorial class.
@@ -425,7 +425,7 @@ Step 6. Finally, a `CommandResult` is created and the student is deleted from th
 ### \[Implemented\] List students of class
 
 The implementation of adding a class is facilitated by the `ListStudentsOfClassCommand` and `ListStudentsOfClassCommandParser`. `ListStudentsOfClassCommandParser` implements the `Parser` interface and it's operations. `ListStudentsOfClassCommand` extends the
-`Command` class and contains auxillary operations that supports the mechanism.
+`Command` class and contains auxiliary operations that supports the mechanism.
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
@@ -578,7 +578,7 @@ Step 6. Finally, a `CommandResult` is created and the sorted list of students is
 ### \[Implemented\] Add class
 
 The implementation of adding a class is facilitated by the `AddClassCommand` and `AddClassCommandParser`. `AddClassCommandParser` implements the `Parser` interface and it's operations. `AddClassCommand` extends the
-`Command` class and contains auxillary operations that supports the mechanism.
+`Command` class and contains auxiliary operations that supports the mechanism.
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
@@ -626,7 +626,7 @@ Step 6. Finally, a `CommandResult` is created and the class is added to the TAHe
 ### \[Implemented\] Delete class
 
 The implementation of adding a class is facilitated by the `DeleteClassCommand` and `DeleteClassCommandParser`. `DeleteClassCommandParser` implements the `Parser` interface and it's operations. `DeleteClassCommand` extends the
-`Command` class and contains auxillary operations that supports the mechanism.
+`Command` class and contains auxiliary operations that supports the mechanism.
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
@@ -674,7 +674,7 @@ Step 6. Finally, a `CommandResult` is created and the class is deleted from the 
 ### \[Implemented\] Delete module
 
 The implementation of adding a class is facilitated by the `DeleteModuleCommand` and `DeletModuleCommandParser`. `DeleteModuleCommandParser` implements the `Parser` interface and it's operations. `DeleteModuleCommand` extends the
-`Command` class and contains auxillary operations that supports the mechanism.
+`Command` class and contains auxiliary operations that supports the mechanism.
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
@@ -745,7 +745,7 @@ Step 3. The result string is then trimmed and `CommandResult`.
 ### \[Implemented\] Add team
 
 The implementation of adding a class is facilitated by the `AddTeamCommand` and `AddTeamCommandParser`. `AddTeamCommandParser` implements the `Parser` interface and it's operations. `AddTeamCommand` extends the
-`Command` class and contains auxillary operations that supports the mechanism.
+`Command` class and contains auxiliary operations that supports the mechanism.
 
 Given below is an example usage scenario and how the add mechanism behaves at each step. <br>
 Format: `/add_team module/MODULE tutorial/TUTORIAL team/TEAM_NAME [size/SIZE]`
@@ -794,7 +794,7 @@ Step 6. Finally, a `CommandResult` is created and the team is added to the tutor
 ### \[Implemented\] Delete team
 
 The implementation of adding a class is facilitated by the `DeleteTeamCommand` and `DeleteTeamCommandParser`. `DeleteTeamCommandParser` implements the `Parser` interface and it's operations. `DeleteTeamCommand` extends the
-`Command` class and contains auxillary operations that supports the mechanism.
+`Command` class and contains auxiliary operations that supports the mechanism.
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 Format: `/delete_team module/MODULE tutorial/TUTORIAL team/TEAM_NAME`
@@ -844,52 +844,99 @@ Step 6. Finally, a `CommandResult` is created and the team is deleted from the T
 
 ### \[Implemented\] Allocate student to team
 
-The implemented add mechanism is facilitated by the abstract `AllocateStudentToTeamCommand` along with its specific commands `AllocateStudentToTeamByEmailCommand`, `AllocateStudentToTeamByIdCommand` and `AllocateStudentToTeamByIndexCommand`, as well as the parser `AllocateStudentToTeamCommandParser`.
+The implemented allocate mechanism is facilitated by the common class `AllocateStudentToTeamCommand` along with its specific commands `AllocateStudentToTeamByEmailCommand`, `AllocateStudentToTeamByIdCommand` and `AllocateStudentToTeamByIndexCommand`, as well as the parser `AllocateStudentToTeamCommandParser`.
 
 `AllocateStudentToTeamCommandParser` implements the `Parser` interface and its operations.
 
-`AllocateStudentToTeamCommand` extends the `Command` class and contains auxillary operations that supports the mechanism, such as retrieving the target tutorial class. Each of the following commands further extends `AllocateStudentToTeamCommand` based on its specific functionality:
+`AllocateStudentToTeamCommand` extends the `Command` class and contains auxiliary operations that supports the mechanism, such as retrieving the target tutorial class. Each of the following commands further extends `AllocateStudentToTeamCommand` based on its specific functionality:
 
 - `AllocateStudentToTeamByEmailCommand` — Allocate student based on specified email to a team.
-- `AllocateStudentToTeamByIdCommand` — Allocate student based on specified student id to a team.
+- `AllocateStudentToTeamByIdCommand` — Allocate student based on specified student ID to a team.
 - `AllocateStudentToTeamByIndexCommand` — Allocate student based on specified index (viewable from the UI) to a team.
 
-Given below is an example usage scenario and how the add mechanism behaves at each step.
+Given below is an example usage scenario and how the add mechanism behaves at each step.<br>
 
-Example: `/allocate_team id/A01234567X module/CS2103T tutorial/T09 team/Team 1`
+Format: `/allocate_team [id/ID] [email/EMAIL] [index/INDEX] module/MODULE tutorial/TUTORIAL team/TEAMNAME`
+*Only 1 of the 3 optional parameters (id, email, index) must be specified.
+
+Example: `/allocate_team id/A0123456X module/CS2103T tutorial/T09 team/Team 1`
 
 <puml src="diagrams/AllocateStudentToTeamSequence.puml" alt="AllocateStudentToTeamSequence" />
 
-Step 1. The user executes `/allocate_team id/A01234567X module/CS2103T tutorial/T09 team/Team 1` command to add the particular student with id `A01234567X` to team `Team 1` in the tutorial class `T09` of module `CS2103T`.
+Step 1. The user executes `/allocate_team id/A0123456X module/CS2103T tutorial/T09 team/Team 1` command to add the particular student with ID `A0123456X` to team `Team 1` in the tutorial class `T09` of module `CS2103T`.
 The `execute` command calls `AddressBookParser#parseCommand()`, which extracts the command word of the command and the arguments of the command.
 
-Step 2. The `AddressBookParser` then creates a new `AllocateStudentToTeamCommandParser` and calls `AllocateStudentToTeamCommandParser#parse()`, with `id/A01234567X`, `team/Team 1`, `module/CS2103T` and `tutorial/T09` as the arguments.
+Step 2. The `AddressBookParser` then creates a new `AllocateStudentToTeamCommandParser` and calls `AllocateStudentToTeamCommandParser#parse()`, with `id/A01234567X`, `module/CS2103T`, `tutorial/T09` and `team/Team 1` as the arguments.
 
-Step 3. The `AllocateStudentToTeamCommandParser` parses the arguments to determine what parameter is used to specify the target student (email, index or id). Additionally, the `TutorialTeam`, `ModuleCode` and `TutorialClass` is determined.
+Step 3. The `AllocateStudentToTeamCommandParser` parses the arguments to determine what parameter is used to specify the target student (email, index or id). Additionally, the `TutorialTeam`, `ModuleCode` and `TutorialClass` are determined.
 
 <box type="info" seamless>
 
-**Important Note:** The team, tutorial class and module code must be specified. To determine the target student, only one prefix should used per command. If there are multiple prefixes, the target priority is as follows: By Index -> By Student ID -> By Email
+**Important Note:** The team, tutorial class and module code must be specified. To determine the target student, only one prefix should be used per command. If there are multiple prefixes, the target priority is as follows: By Student ID -> By Email -> By Index
 
 </box>
 
-Step 4. Based on the prefix used, `AllocateStudentToTeamCommandParser` creates the specific `AllocateStudentToTeamCommand` accordingly. Each command contains a specific predicate to find the student.
+Step 4. Based on the prefix used, `AllocateStudentToTeamCommandParser` creates the specific `AllocateStudentToTeamCommand` accordingly. Each command contains the information it needs to add the target student into a tutorial team.
 
-Step 5. `LogicManager` calls `AllocateStudentToTeamCommand#execute()`, passing `Model` as an argument. This method retrieves the target module and tutorial class. Then, the method retrieves the student to add using the defined predicate. Throughout the process, error handling (e.g checking for invalid student/module/tutorial/team) is utilised to mitigate potential discrepancies and ensure valid execution.
+Step 5. `LogicManager` calls `AllocateStudentToTeamCommand#execute()`, passing `Model` as an argument. This method retrieves the target module and tutorial class. Then, the method retrieves the student to add using the defined value. Throughout the process, error handling (e.g checking for invalid student/module/tutorial/team) is utilised to mitigate potential discrepancies and ensure valid execution.
 
-Step 6. Finally, a `CommandResult` is created and the student is added to the tutorial class.
+Step 6. Finally, a `CommandResult` is created and the student is added to the tutorial team.
 
 #### Design considerations:
 
 **Aspect: Modularity and extensibility:**
 
-- **Alternative 1 (current choice):** Seperate each specific command into a different class, while overlapping code is abstracted to an abstract class.
-  - Pros: Specific commands are instantiated and thus can be easily traced and is more readable. Any reusable code is defined in the abstract class which can then be reused by the subclasses.
+- **Alternative 1 (current choice):** Separate each specific command into a different class, while overlapping code is abstracted to a common class in which the different classes can extend from.
+  - Pros: Specific commands are instantiated and thus can be easily traced and is more readable. Any reusable code is defined in the common class which can then be reused by the subclasses. Logic of the program is also more well-defined and behaviours related to one form of allocate command can be grouped together.
   - Cons: May have duplicate code to a certain extent.
 
 * **Alternative 2:** Lump into one generic command that handles each parameter accordingly.
-  - Pros: Reduces duplicate code and much cleaner (i.e only 1 command class is executed).
-  - Cons: The logic handling may be slightly more complex and messy within the class as all parameters have to be dealt with seperately (potentially using different logic).
+  - Pros: Reduces duplicate code and slightly cleaner to a certain extent. (i.e only 1 command class is executed).
+  - Cons: The logic handling may be slightly more complex and messy within the class as all parameters have to be dealt with separately (potentially using different logic).
+
+
+### \[Implemented\] Randomly allocate students to teams in tutorial class
+
+The implemented random allocation mechanism is facilitated by the class `RandomTeamAllocationCommand`, as well as the parser `RandomTeamAllocationCommandParser`.
+
+`RandomTeamAllocationCommandParser` implements the `Parser` interface and its operations.
+
+`RandomTeamAllocationCommand` extends the `Command` class and contains auxiliary operations that supports the mechanism, such as retrieving the target tutorial class.
+
+Format: `/random_teams module/MODULE tutorial/TUTORIAL teams/NUMBER_OF_TEAMS`
+
+Example: `/random_teams module/CS2103T tutorial/T09 teams/2`
+
+Step 1. The user executes `/random_teams module/CS2103T tutorial/T09 teams/2` command to randomly allocate the students in tutorial class `T09` of module `CS2103T` into `2` different teams.
+The `execute` command calls `AddressBookParser#parseCommand()`, which extracts the command word of the command and the arguments of the command.
+
+Step 2. The `AddressBookParser` then creates a new `RandomTeamAllocationCommandParser` and calls `RandomTeamAllocationCommandParser#parse()`, with `module/CS2103T`, `tutorial/T09` and `teams/2` as the arguments.
+
+Step 3. The `RandomTeamAllocationCommandParser` parses the arguments to determine the parameters based on the user input. The `ModuleCode`, `TutorialClass` and `NumberOfTeams` are determined.
+
+<box type="info" seamless></box>
+
+Step 4. Based on the prefix given, `RandomTeamAllocationCommandParser` creates a new `RandomTeamAllocationCommand` accordingly. Each command contains the information it needs to randomly allocate all the students in the tutorial class into different teams.
+
+Step 5. `LogicManager` calls `RandomTeamAllocationCommand#execute()`, passing `Model` as an argument. This method retrieves the target module and tutorial class. Then, the method retrieves the number of teams to split the list of students into. Throughout the process, error handling (e.g checking for invalid module/tutorial/number) is utilised to mitigate potential discrepancies and ensure valid execution.
+
+Step 6. Finally, a `CommandResult` is created and the list of students in the tutorial class is randomly allocated into the number of teams specified.
+
+#### Design considerations:
+
+**Aspect: Functionality:**
+
+- **Alternative 1 (current choice):** Randomly allocates the list of students into different teams, and delete all the current existing teams in the tutorial class first before doing the allocation.
+  - Pros:
+    - **Allocation is not hindered by existing teams**: Existing teams being present in the tutorial class will not cause incorrect allocation of students, and ensure all students get allocated properly.
+  - Cons:
+    - **Potential Data Loss**: Teams can be formed for various purposes and may not only have 1 set of teams. Deleting all existing teams before randomly allocating can cause data from the other teams, used for other purpose, to be lost.
+
+- **Alternative 2 :** Does not delete all existing teams in the tutorial class. Instead, each time the random allocation command is run, a new set of teams is created, and stored in the tutorial class.
+    - Pros:
+      - **No assumptions made**: The command does not make any assumptions about the purpose of the existing teams in the tutorial class.
+    - Cons:
+      - **Complexity in implementation**: This implementation may be very complex and difficult to implement. Furthermore, if not done well, it can lead to a lot of bugs.
 
 ---
 
@@ -915,14 +962,14 @@ Step 6. Finally, a `CommandResult` is created and the student is added to the tu
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: manage students'contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage students' contacts faster than a typical mouse/GUI driven app
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | Iteration | As a …​ | I want to …​                                                                   | So that I can…​                                                                     |
-| -------- | --------- | ------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+|----------|-----------|---------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
 | `* * *`  | v1.2      | TA      | add new students to a class                                                    | maintain an up-to-date list of enrolled students.                                   |
 | `* * *`  | v1.2      | TA      | add partial info of students                                                   | still add students even if I don’t have all their information.                      |
 | `* * *`  | v1.2      | TA      | delete a student from my class if they drop the module/class                   | keep my class list accurate and up-to-date.                                         |
