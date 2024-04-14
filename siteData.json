@@ -73,12 +73,21 @@
         "product-scope": "Product scope",
         "user-stories": "User stories",
         "use-cases": "Use cases",
+        "use-case-9-randomly-allocating-a-list-of-students-in-the-tutorial-class-into-teams": "Use case 9: Randomly allocating a list of students in the tutorial class into teams.",
         "non-functional-requirements": "Non-Functional Requirements",
         "glossary": "Glossary",
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
         "launch-and-shutdown": "Launch and shutdown",
+        "adding-a-person": "Adding a person",
         "deleting-a-person": "Deleting a person",
-        "saving-data": "Saving data"
+        "allocating-a-student-to-a-team-in-tutorial-class": "Allocating a student to a team in tutorial class.",
+        "saving-data": "Saving data",
+        "appendix-planned-enhancements": "Appendix: Planned Enhancements",
+        "planned-enhancements": "Planned Enhancements",
+        "name-value-regular-expression-regex-validation-improvements": "Name value regular expression (regex) validation improvements",
+        "email-value-regular-expression-regex-validation-improvements": "Email value regular expression (regex) validation improvements",
+        "more-detailed-error-messages-for-addstudentcommand": "More detailed error messages for AddStudentCommand",
+        "add-column-labels-on-ui-to-improve-readability": "Add column labels on UI to improve readability."
       },
       "headingKeywords": {}
     },
