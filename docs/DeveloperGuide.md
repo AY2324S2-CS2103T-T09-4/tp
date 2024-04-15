@@ -11,9 +11,11 @@ pageNav: 3
 
 ---
 
-## **Acknowledgements**
+## **About TA-Helper**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+TAs often have difficulties in managing students to teams in their classes, especially if they are managing multiple classes and even modules at the saem time. Due to the large number of students, TAs need to track of many nominal rolls for their classes. To effectively manage all students, a TA should have a single platform to keep track of all students, modules and classes taught. Furthermore, students may need to be grouped into various teams for assessment and group project purposes.
+
+TA-Helper is a all-in-one desktop student contact management application for TAs to take control of the trivial student management work so that they can focus on what is most important, teaching and delivering quality content to students!
 
 ---
 
@@ -51,7 +53,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `/delete_student index/1`.
 
 <puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
@@ -91,7 +93,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("/delete_student index/1")` API call as an example.
 
 <puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
 
@@ -226,7 +228,7 @@ The implemented add mechanism is facilitated by the abstract `DeleteStudentComma
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 Format: `/delete_student [id/ID] [email/EMAIL] [index/INDEX]`
-*Only 1 of the 3 parameters (id, email, index) must be specified
+\*Only 1 of the 3 parameters (id, email, index) must be specified
 Example: `/delete_student id/A0123456X`
 
 <puml src="diagrams/DeleteStudentSequence.puml" alt="DeleteStudentSequence" />
@@ -277,7 +279,7 @@ Example: `/edit_student index/1 id/A1234567L`
 Step 1. The user executes `/edit_student index/1 id/A1234567L` command to edit the first student's id. The command calls
 `AddressBookParser#parseCommand()`, which extracts the command word of the command and the arguments of the command.
 
-Step 2. The `AddressBookParser` then creates a new `EditCommandParser` and calls `EditCommandParser#parse()`, 
+Step 2. The `AddressBookParser` then creates a new `EditCommandParser` and calls `EditCommandParser#parse()`,
 with `index/1 id/A1234567L` as the arguments.
 
 Step 3. The `EditCommandParser` parses the arguments to determine which target student and parameter is being edited.
@@ -288,11 +290,11 @@ Step 3. The `EditCommandParser` parses the arguments to determine which target s
 
 </box>
 
-Step 4. `EditCommandParser` creates an `EditPersonDescriptor`, and sets the values to be edited. An `EditCommand` is created, 
+Step 4. `EditCommandParser` creates an `EditPersonDescriptor`, and sets the values to be edited. An `EditCommand` is created,
 passing the `EditPersonDescriptor` as an argument.
 
-Step 5. `LogicManager` calls `EditCommand#execute()`, passing `Model` as an argument. This method creates an `editedPerson`, 
-with all the edited information. 
+Step 5. `LogicManager` calls `EditCommand#execute()`, passing `Model` as an argument. This method creates an `editedPerson`,
+with all the edited information.
 
 <box type="info" seamless>
 
@@ -317,6 +319,7 @@ enhancements](#appendix-planned-enhancements) section.
 **Aspect: Modularity and extensibility:**
 
 - **Alternative 1 (current choice):** Lump into one generic command that handles each parameter accordingly.
+
   - Pros: Reduces duplicate code and much cleaner (i.e only 1 command class is executed).
   - Cons: The logic handling may be slightly more complex and messy within the class as all parameters have to be dealt with seperately (potentially using different logic). Since the scale of the command is relatively small, we have opted for this implementation to keep things simple.
 
@@ -338,7 +341,7 @@ The implemented add mechanism is facilitated by the abstract `AddStudentToClassC
 
 Given below is an example usage scenario and how the add mechanism behaves at each step. <br>
 Format: `/add_student_to_class [id/ID] [email/EMAIL] [index/INDEX] module/MODULE tutorial/TUTORIAL`
-*Only 1 of the 3 optional parameters (id, email, index) must be specified
+\*Only 1 of the 3 optional parameters (id, email, index) must be specified
 Example: `/add_student_to_class id/A0123456X module/CS2103T tutorial/T09`
 
 <puml src="diagrams/AddStudentToClassSequence.puml" alt="AddStudentToClassSequence" />
@@ -525,7 +528,7 @@ The implemented search mechanism is facilitated by `SortStudentCommand` and `Sor
 `Command` class with the ability to update `Model`'s person list. `SortStudentCommand` supports the enumerations found
 within `SortStudentParameter`.
 
-**Note:** Unlike other commands that modify the current displayed person list using `Predicate`, `SortStudentCommand` 
+**Note:** Unlike other commands that modify the current displayed person list using `Predicate`, `SortStudentCommand`
 calls `Model#getSortedPersonList()`, which returns a copy of the `UniquePersonList` that can be sorted using
 comparators.
 
@@ -559,8 +562,8 @@ Step 3. The `SortStudentCommandParser` parses the arguments to determine which p
 Step 4. `id` is parsed by `SortStudentCommandParser`, returning a `SortStudentParameter`. `SortStudentCommandParser`
 creates `SortStudentCommand` and passes the new parameter as an argument.
 
-Step 5. `LogicManager` calls `SortStudentCommand#execute()`, passing `Model` as an argument. A `Comparator` is created, passing a 
-function that compares by `id` as an argument. The execute method then calls `AddressBook#getSortedPersonList()` with the 
+Step 5. `LogicManager` calls `SortStudentCommand#execute()`, passing `Model` as an argument. A `Comparator` is created, passing a
+function that compares by `id` as an argument. The execute method then calls `AddressBook#getSortedPersonList()` with the
 given comparator, returning the sorted list in `AddressBook` with the sorted order of the students.
 
 Step 6. Finally, a `CommandResult` is created and the sorted list of students is displayed to the user.
@@ -609,7 +612,6 @@ Step 4. Based on the prefixes, `AddClassCommandParser` creates an `AddClassComma
 
 Step 5. `LogicManager` calls `AddClassCommand#execute()`, passing `Model` as an argument. This method retrieves the class to add to the system.
 Throughout the process, error handling (e.g checking for duplicate module code or tutorial, making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
-
 
 Step 6. Finally, a `CommandResult` is created and the class is added to the TAHelper system.
 
@@ -670,6 +672,7 @@ Step 6. Finally, a `CommandResult` is created and the class is deleted from the 
   - Cons: Users may inadvertently provide incorrect or non-existent module codes or tutorial class identifiers, leading to errors in the system. This could result in frustration and a poor user experience.
 
 * **Alternative 2:** Allow user the option to delete the entire module without specifying the tutorial class.
+
   - Pros: Users can delete modules without needing to specify the tutorial class, allowing for greater ease in the workflow. This allows users who are no longer teaching the module to remove all the information with one command.
   - Cons: Users may accidentally delete the entire module if they forgot to specify the tutorial class identifier and this may lead to great data damage. A separate command to delete module would be better.
 
@@ -782,7 +785,6 @@ Step 5. `LogicManager` calls `AddTeamCommand#execute()`, passing `Model` as an a
 
 Throughout the process, error handling (e.g checking for valid module and tutorial class, making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
 
-
 Step 6. Finally, a `CommandResult` is created and the team is added to the tutorial class specified.
 
 #### Design considerations:
@@ -826,7 +828,7 @@ Additionally, two teams are considered equal if and only if they have the same t
 
 Step 4. Based on the prefixes, `DeleteTeamCommandParser` creates an `DeleteTeamCommand` object. Each command contains all the required prefixes and values to used to create the command object.
 
-Step 5. `LogicManager` calls `DeleteTeamCommand#execute()`, passing `Model` as an argument. Within the execution process, the method retrieves the module and tutorial from the model. Thereafter, it retrieves the team from the tutorial class. 
+Step 5. `LogicManager` calls `DeleteTeamCommand#execute()`, passing `Model` as an argument. Within the execution process, the method retrieves the module and tutorial from the model. Thereafter, it retrieves the team from the tutorial class.
 Throughout the process, error handling (e.g checking for valid module, tutorial and team, making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
 
 Step 6. Finally, a `CommandResult` is created and the team is deleted from the TAHelper system.
@@ -836,17 +838,18 @@ Step 6. Finally, a `CommandResult` is created and the team is deleted from the T
 **Aspect: Functionality:**
 
 - **Alternative 1 (current choice):** Team size is not included in equality check of teams.
+
   - Pros:
     - **Simplification of team identity**: Excluding team size simplifies the concept of what defines a team, making it easier to manage teams, especially if the team size changes. In most cases, team size is less relevant to its identity and more about its functional role or participation
   - Cons:
     - **Potential for ambiguity/Inaccurate representation**: Not considering team size might lead to situations where teams with the same name but of different sizes are treated the same, which can cause issues in contexts where size is a significant factor. However, this is mitigated by also including tutorial class in the equality check (i.e there can be multiple teams of the same name within the system as long as they are in different tutorials)
 
 - **Alternative 2 :** Team size is included in equality check of teams.
-  - Pros: 
+  - Pros:
     - **Precision**: Including team size allows the system to distinguish between teams more precisely.
     - **Data integrity**: This method can prevent confusion or errors in operations where the specific composition of the team (including its size) is crucial, especially for future enhancements such as scheduling.
-  - Cons: 
-    - **Complexity in team management**:  might complicate the management of teams, especially in dynamic settings where team sizes can fluctuate. Changes in team size would necessitate creating a new team or redefining the team entity.
+  - Cons:
+    - **Complexity in team management**: might complicate the management of teams, especially in dynamic settings where team sizes can fluctuate. Changes in team size would necessitate creating a new team or redefining the team entity.
 
 ### \[Implemented\] Allocate student to team
 
@@ -863,7 +866,7 @@ The implemented allocate mechanism is facilitated by the common class `AllocateS
 Given below is an example usage scenario and how the add mechanism behaves at each step.<br>
 
 Format: `/allocate_team [id/ID] [email/EMAIL] [index/INDEX] module/MODULE tutorial/TUTORIAL team/TEAMNAME`
-*Only 1 of the 3 optional parameters (id, email, index) must be specified.
+\*Only 1 of the 3 optional parameters (id, email, index) must be specified.
 
 Example: `/allocate_team id/A0123456X module/CS2103T tutorial/T09 team/Team 1`
 
@@ -900,7 +903,6 @@ Step 6. Finally, a `CommandResult` is created and the student is added to the tu
   - Pros: Reduces duplicate code and slightly cleaner to a certain extent. (i.e only 1 command class is executed).
   - Cons: The logic handling may be slightly more complex and messy within the class as all parameters have to be dealt with separately (potentially using different logic).
 
-
 ### \[Implemented\] Randomly allocate students to teams in tutorial class
 
 The implemented random allocation mechanism is facilitated by the class `RandomTeamAllocationCommand`, as well as the parser `RandomTeamAllocationCommandParser`.
@@ -933,16 +935,17 @@ Step 6. Finally, a `CommandResult` is created and the list of students in the tu
 **Aspect: Functionality:**
 
 - **Alternative 1 (current choice):** Randomly allocates the list of students into different teams, and delete all the current existing teams in the tutorial class first before doing the allocation.
+
   - Pros:
     - **Allocation is not hindered by existing teams**: Existing teams being present in the tutorial class will not cause incorrect allocation of students, and ensure all students get allocated properly.
   - Cons:
     - **Potential Data Loss**: Teams can be formed for various purposes and may not only have 1 set of teams. Deleting all existing teams before randomly allocating can cause data from the other teams, used for other purpose, to be lost.
 
 - **Alternative 2 :** Does not delete all existing teams in the tutorial class. Instead, each time the random allocation command is run, a new set of teams is created, and stored in the tutorial class.
-    - Pros:
-      - **No assumptions made**: The command does not make any assumptions about the purpose of the existing teams in the tutorial class.
-    - Cons:
-      - **Complexity in implementation**: This implementation may be very complex and difficult to implement. Furthermore, if not done well, it can lead to a lot of bugs.
+  - Pros:
+    - **No assumptions made**: The command does not make any assumptions about the purpose of the existing teams in the tutorial class.
+  - Cons:
+    - **Complexity in implementation**: This implementation may be very complex and difficult to implement. Furthermore, if not done well, it can lead to a lot of bugs.
 
 ### \[Implemented\] View team
 
@@ -988,7 +991,6 @@ Step 6. Finally, a `CommandResult` is created and the information of the team is
 - **Alternative 1 (current choice):** Only one parameter allowed per command.
   - Pros: Easy to implement.
   - Cons: Does not allow users to fine tune searches based on multiple fields.
-  
 - **Alternative 2:** Allow for multiple parameters.
   - Pros: Users can filter searches to a higher degree
   - Cons: Handling combinations of different fields could be complex
@@ -1075,7 +1077,7 @@ Step 6. Finally, a `CommandResult` is created and the student is deleted from th
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | Iteration | As a …​ | I want to …​                                                                   | So that I can…​                                                                     |
-|----------|-----------|---------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| -------- | --------- | ------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
 | `* * *`  | v1.2      | TA      | add new students to a class                                                    | maintain an up-to-date list of enrolled students.                                   |
 | `* * *`  | v1.2      | TA      | add partial info of students                                                   | still add students even if I don’t have all their information.                      |
 | `* * *`  | v1.2      | TA      | delete a student from my class if they drop the module/class                   | keep my class list accurate and up-to-date.                                         |
@@ -1097,7 +1099,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | v1.3      | TA      | view team composition                                                          | see a comprehensive overview of the students in each team                           |
 | `* * *`  | v1.3      | TA      | delete a student from a team                                                   | change the members of the team.                                                     |
 | `* * *`  | v1.3      | TA      | allocate students into teams                                                   | form teams for class projects and assignments.                                      |
-
 
 ### Use cases
 
@@ -1382,8 +1383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 1f. Invalid input command.
   - 1f1: Returns an error indicating command not recognised and provides the correct command format.
   - Use case ends.
-<br>
-    
+    <br>
 
 #### Use case 12: Delete student from class
 
@@ -1416,7 +1416,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 1f. Invalid input command.
   - 1f1: Returns an error indicating command not recognised and provides the correct command format.
   - Use case ends.
-<br>
+    <br>
 
 #### Use case 13: View all students in a class
 
@@ -1538,22 +1538,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **System**: TAHelper
 
 **MSS**
+
 1. User specifies the student id of the student, the module code, tutorial class, and the tutorial team name
-in the tutorial class to allocate the student into.
+   in the tutorial class to allocate the student into.
 2. User enters the command and along with the details.
 3. System allocates student into tutorial team and displays a message.
    Use case ends.
 
 **Extensions**
-- 1a. The specified student is not in the system. 
+
+- 1a. The specified student is not in the system.
   - 1a1. TAHelper returns an error indicating that student is not in the system.
-  - Use case ends. 
+  - Use case ends.
 - 1b. The specified student is not in the tutorial class of the specified module.
   - 1b1. TAHelper returns an error indicating that student needs to be in the specified tutorial class of the specified module first.
   - Use case ends.
 - 1c. The specified tutorial team is not in the tutorial class.
   - 1c1: TAHelper returns an error indicating that the team does not exist in the tutorial class.
-  - Use case ends. 
+  - Use case ends.
 - 1d. The tutorial class is not in the system.
   - 1d1: TAHelper returns an error indicating that the tutorial class is not in the specified module.
   - Use case ends.
@@ -1566,12 +1568,14 @@ in the tutorial class to allocate the student into.
 **System**: TAHelper
 
 **MSS**
+
 1. User specifies the module code, tutorial class, and number of teams to split the list of students in the tutorial class into.
 2. User enters the command along with the details.
 3. System allocates the list of students in the tutorial class into different tutorial teams and displays a message.
    Use case ends.
 
 **Extensions**
+
 - 1a. The specified tutorial class does not exist under the module specified.
   - 1a1. TAHelper returns an error message.
   - Use case ends.
@@ -1583,14 +1587,13 @@ in the tutorial class to allocate the student into.
   - Use case ends.
     <br>
 
-
 #### Use case 19: View team information
 
 **MSS**
 
 1. User wants to view information of a particular team in a class.
-2. System shows the information of the team in the class.
-=======
+2. # System shows the information of the team in the class.
+
 - 1a. The specified student is not in the system.
   - 1a1. TAHelper returns an error indicating that student is not in the system.
   - Use case ends.
@@ -1658,25 +1661,27 @@ testers are expected to do more _exploratory_ testing.
       Expected: The most recent window size and location is retained.
 
 ---
+
 ### Adding a person
+
 1. Adding a new person into the TAHelper system.
 
-  1. Prerequisites: NIL.
+1. Prerequisites: NIL.
 
-  1. Test case 1: Entering `/add_student name/Dohn Joe email/johndoe@gmail.com id/A0123456A` for the first time<br>
-      Expected: A new student is successfully added into the TAHelper system.
+1. Test case 1: Entering `/add_student name/Dohn Joe email/johndoe@gmail.com id/A0123456A` for the first time<br>
+   Expected: A new student is successfully added into the TAHelper system.
 
-  2. Test case 2: Entering `/add_student name/Dohn Joe email/johndoe@gmail.com id/A6543210A` with the same email<br>
-      Expected: An error message displayed. A person with the same email cannot be added because a student with the same email already exist in the TAHelper system.
-  
-  3. Test case 3: `/add_student name/Dohn Joe email/johndoe@gmail.com id/0123`
-      Expected: An error message is displayed as the input id value is invalid.
+1. Test case 2: Entering `/add_student name/Dohn Joe email/johndoe@gmail.com id/A6543210A` with the same email<br>
+   Expected: An error message displayed. A person with the same email cannot be added because a student with the same email already exist in the TAHelper system.
 
-  4. Test case 4: `/add_student name/john email/john@gmail.com id/A9876543A tag/Tutee`
-      Expected: A new student is successfully added into the TAHelper system.
+1. Test case 3: `/add_student name/Dohn Joe email/johndoe@gmail.com id/0123`
+   Expected: An error message is displayed as the input id value is invalid.
 
+1. Test case 4: `/add_student name/john email/john@gmail.com id/A9876543A tag/Tutee`
+   Expected: A new student is successfully added into the TAHelper system.
 
 ---
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -1692,12 +1697,14 @@ testers are expected to do more _exploratory_ testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-
 ---
+
 ### Allocating a student to a team in tutorial class.
+
 1. Allocating a student to a team in the tutorial class by studentId, email or index that they belong to in the tutorial class list.
 
-   1. Prerequisites: 
+   1. Prerequisites:
+
       1. The student (Person's object) should already been in the module's tutorial class list of students.
       2. The module and tutorial class in that module must already exist in the system.
       3. The team to allocate the student into must exist in that tutorial class.
@@ -1717,46 +1724,57 @@ testers are expected to do more _exploratory_ testing.
    6. Test case 4 (Allocating a student that is not in the TAHelper system): `/allocate_team id/A0987654A module/CS2101 tutorial/T02 team/Team1`
       Expected: An error message is played indicating that the student is not in TAHelper system.
 
-
 ## **Appendix: Planned Enhancements**
+
 ## Planned Enhancements
 
 ### Standardise the error messages (especially regarding teams).
+
 **Current implementation**
+
 1. Currently, some of our error messages may lead to confusion in team names, as the error message might append `Team` before the team name, which might confuse the user on whether the team name is `1` or `Team 1`, for example.
    <br>
 
 **Proposed enhancement(s)**
+
 1. Make the error messages more clear in highlighting the 'true' team name.
 
 ---
 
 ### /delete_all_classes command to delete all classes from a specified module
+
 **Current implementation**
+
 1. Currently, there is no way to delete all classes from a specified module quickly, as we have to delete them one by one.
 
 **Proposed enhancement(s)**
+
 1. A /delete_all_classes command could be implemented to help support this feature. This is different from /delete_module as this command deletes the module itself too, but /delete_all_classes would leave the module itself intact.
 
 ---
 
 ### Support for more tutorial class name formats
+
 **Current implementation**
+
 1. Currently, our system only supports tutorial class names with 1 letter followed by 2 digits (e.g. `T01`). This could result in errors when trying to use a valid tutorial class name (such as `DTk1234`'s `TO43` or `CS2101`'s `SG15`)
 
 **Proposed enhancement(s)**
+
 1. Support as many types of tutorial class name types as possible, especially the more common ones.
-<br> Examples: 2 letters + 2 digits (e.g. `TO43`), 1 letter + 1 digit (e.g. `T5`)
+   <br> Examples: 2 letters + 2 digits (e.g. `TO43`), 1 letter + 1 digit (e.g. `T5`)
 
 ---
 
 ### Name value regular expression (regex) validation improvements
 
 **Current implementation**
+
 1. Currently, the name class employs a slightly less strict regular expression in order to validate the name that users input when adding a new Person. This means that currently, the system accepts a Person's name that is solely consisting of integers.
-which in most cases, is not culturally accepted or possible in the world. Furthermore, it does not support names with higher complexity such as "Jai S/O John". However, such names are perfectly acceptable formats and such formats appear in many names in Singapore and around the world.
+   which in most cases, is not culturally accepted or possible in the world. Furthermore, it does not support names with higher complexity such as "Jai S/O John". However, such names are perfectly acceptable formats and such formats appear in many names in Singapore and around the world.
 
 **Proposed enhancement(s)**
+
 1. We look to implement a stricter validation regular expression (regex) for the name valid value so that the system is able to accept names that have special symbols in them.
 2. Furthermore, we also want to implement a regex expression that ensures that a Person's name cannot solely contain all integer values.
 
@@ -1765,34 +1783,40 @@ which in most cases, is not culturally accepted or possible in the world. Furthe
 ### Email value regular expression (regex) validation improvements
 
 **Current implementation**
+
 1. Currently, the email class employs a slightly less strict regular expression in order to validate the email that users input when adding a new Person. This means that user are able to input email format that is not a valid email by convention.
-Current implementation only mainly checks if the `@` symbol is present, and does not check if a valid domain has been entered.
+   Current implementation only mainly checks if the `@` symbol is present, and does not check if a valid domain has been entered.
 
 **Proposed enhancement(s)**
+
 1. We look to implement a stricter validation regular expression (regex) for the email valid value so that the system is only able to accept email values that are more appropriate and valid in terms of real world context.
-This enhancements could come in the form of ensure that a valid domain name has been passed in, as well as ensuring that the `.com` format for the wider public or the `u.nus.edu.sg` format for example, is specified in the context of NUS students.
+   This enhancements could come in the form of ensure that a valid domain name has been passed in, as well as ensuring that the `.com` format for the wider public or the `u.nus.edu.sg` format for example, is specified in the context of NUS students.
 
 ---
 
 ### More detailed error messages for AddStudentCommand
 
 **Current implementation**
+
 1. Currently, when a user tries to add a student with the same email or student id as any student in the system, the system will display a generic error message that tells user the person they want to add already exist in the system.
-However, it does not tell users which value, email or student id, clashes with another Person object in the system.
+   However, it does not tell users which value, email or student id, clashes with another Person object in the system.
 
 **Proposed enhancement(s)**
+
 1. We look to implement a more detailed error message that specifies which field, email or id, or both, that violated the unique valid policy of a person object in the system.
-This way, it will improve user experience as users are able to fix the issue with more specific aid/help.
+   This way, it will improve user experience as users are able to fix the issue with more specific aid/help.
 
 ---
 
 ### More detailed and descriptive error messages for AllocateStudentToTeamCommand
 
 **Current implementation**
+
 1. Currently, the error message when the /allocate_team is ran with an invalid command format is "Invalid command format!
    /allocate_team: Allocates a student a team in the tutorial class". However, this does not indicate to users which part of the command format is incorrect or invalid, potentially making it difficult for users to identify the part of the command where they have input wrongly.
 
 **Proposed enhancement(s)**
+
 1. We look to implement a more descriptive error message that tells user which part of the AllocateStudentToTeamCommand that cause the command to be invalid. This way users can adapt to the invalid input and correct it quickly, which improves user experience.
 2. We also look to implement a more descriptive error message based on invalid inputs, invalid teams and other miscellaneous inputs.
 
@@ -1801,9 +1825,11 @@ This way, it will improve user experience as users are able to fix the issue wit
 ### More detailed and descriptive error messages for RandomTeamAllocationCommand
 
 **Current implementation**
+
 1. Currently, the error message when the /random_teams is run with a module or tutorial class that does not exist is "Please check if you have entered an existing module and tutorial". However, this does not indicate to users whether module or tutorial does not exist in the system, which may potentially make it more difficult for users to identify whether it is module or class which does not exist.
 
 **Proposed enhancement(s)**
+
 1. We look to implement a more descriptive error message that tells user exactly whether module or tutorial class does not exist. This way users can adapt to the input values and correct it quickly, which improves user experience.
 2. We also look to implement a more descriptive error message based on invalid inputs, invalid number of teams and other miscellaneous inputs.
 
@@ -1812,61 +1838,74 @@ This way, it will improve user experience as users are able to fix the issue wit
 ### Add column labels on UI to improve readability.
 
 **Current implementation**
+
 1. Current implementation for the columns does not show what the entries in the columns represent. Although we can safely assume that upon seeing the entries in each column, our target audience would be able to understand what the column means,
-but it can sometimes get confusing and overwhelming, especially for the last column, which handles the entries of students.
+   but it can sometimes get confusing and overwhelming, especially for the last column, which handles the entries of students.
 
 **Proposed enhancement(s)**
+
 1. Firstly, we look to implement a label that tells users that the left column represents the list of modules, middle column represents the list of tutorial classes in that module,
-and the right column represents the list of students.
+   and the right column represents the list of students.
 2. Secondly, we want to implement even more specific label, such as when user enters the module to view the list of classes for that module, the label for the middle column (the column displaying the list of tutorial classes) should show that something like
-'CS2101 tutorial classes', something that is specific to the module.
+   'CS2101 tutorial classes', something that is specific to the module.
 3. Thirdly, similar to point 2, we want to implement even more specific person column label, such as when user enters to view the list of students in a tutorial class, the label shows something like 'T01's class list'.
-This will greatly aid user's readability, and it is an enhancement we want to make.
+   This will greatly aid user's readability, and it is an enhancement we want to make.
 
 ---
 
 ### Propagate students' edited information from EditCommand to other student lists
 
 **Current implementation**
+
 1. When editing a student's information using `/edit_student`, changes only appear on the list currently being displayed.
 2. In order to sync a student information across modules, tutorial classes and teams, users would need to display the respective
-list in the UI and re-execute the command to make changes.
+   list in the UI and re-execute the command to make changes.
 3. This can be an inconvenience and could lead to difficulties in keeping track of changes.
 
 **Proposed enhancement(s)**
+
 1. We look to improving the `/edit_student` command, such that it will propagate any changes made on a single student list to
-all other lists within the app. This allows for syncing of information across the different modules, tutorial classes and teams.
+   all other lists within the app. This allows for syncing of information across the different modules, tutorial classes and teams.
 
 ---
 
 ### Improve the Random Allocation of students algorithm.
 
 **Current implementation**
+
 1. Current implementation only checks if the randomly selected tutorial team to add the student to is full before randomly selecting another one to add the student into.
-This can be a problem if the user wants to split the students into many teams (For example: user inputs 5 teams to split 16 people into.). What we might see is that sometimes, there might be a disproportionate number of people in one group.
-Where some groups might not even have students inside.
+   This can be a problem if the user wants to split the students into many teams (For example: user inputs 5 teams to split 16 people into.). What we might see is that sometimes, there might be a disproportionate number of people in one group.
+   Where some groups might not even have students inside.
 
 **Proposed enhancement(s)**
-1. We will look into improving the random allocation algorithm, where the algorithm will allocate in batches, first batch ensuring that every team will have 1 member, next batch ensuring that they have 2 members, until the last batch where it will allocate the remaining students. 
+
+1. We will look into improving the random allocation algorithm, where the algorithm will allocate in batches, first batch ensuring that every team will have 1 member, next batch ensuring that they have 2 members, until the last batch where it will allocate the remaining students.
 2. It will be random too as the people in the first batch will be randomly generated and then removed after being added, and so on.
+
 ---
+
 ### Add custom exceptions
 
 **Current implementation**
+
 1. When an error occurs, the command will return a generic command exception along with the specified error message. However, this can potentially pose several problems:
-a. **Lack of specificity**: It is difficult to determine the nature and cause of the encountered issue, aside from relying on the error message. This makes it challenging to accurately diagnose, leading to longer troubleshooting times.
-b.**Difficulty in error identification**: Without distinct error types, it becomes difficult to classify and identify different types of errors.
-c.**Limited error handling capabilities**: A generic command exception approach may not adequately support specialised error handling, such as conditional error handling based on error types. Having a wider range of error handling for different types can help with flexibility.
+   a. **Lack of specificity**: It is difficult to determine the nature and cause of the encountered issue, aside from relying on the error message. This makes it challenging to accurately diagnose, leading to longer troubleshooting times.
+   b.**Difficulty in error identification**: Without distinct error types, it becomes difficult to classify and identify different types of errors.
+   c.**Limited error handling capabilities**: A generic command exception approach may not adequately support specialised error handling, such as conditional error handling based on error types. Having a wider range of error handling for different types can help with flexibility.
 
 **Proposed enhancement(s)**
+
 1. We will introduce custom exceptions tailored to specific error scenarios, allowing for more precise identification and error handling.
 2. By doing so, we can potentially add custom error handling depending on the type of error thrown too, making the system more flexible and robust.
+
 ---
+
 ### Seed command for generating sample data
 
 **Current implementation**
+
 1. Currently, there is no seed command implemented. Developers/end-users are required to manually create sample data for testing or initialisation purposes. This approach can be time-consuming and error-prone
 
 **Proposed enhancement(s)**
-1. We will introduce a seed command to initialise sample data. By executing the seed command, developers/users can populate the database with mock students, modules, tutorials and teams. This automated approach will not only save time but aslo reduce the likelihood of errors. Clear documentation and usage guidelines will accompany the seed command too.
 
+1. We will introduce a seed command to initialise sample data. By executing the seed command, developers/users can populate the database with mock students, modules, tutorials and teams. This automated approach will not only save time but aslo reduce the likelihood of errors. Clear documentation and usage guidelines will accompany the seed command too.
