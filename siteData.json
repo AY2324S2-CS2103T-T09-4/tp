@@ -68,6 +68,7 @@
         "implemented-add-team": "[Implemented] Add team",
         "implemented-delete-team": "[Implemented] Delete team",
         "implemented-allocate-student-to-team": "[Implemented] Allocate student to team",
+        "implemented-randomly-allocate-students-to-teams-in-tutorial-class": "[Implemented] Randomly allocate students to teams in tutorial class",
         "implemented-view-team": "[Implemented] View team",
         "implemented-delete-student-from-team": "[Implemented] Delete student from team",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
@@ -92,7 +93,8 @@
         "name-value-regular-expression-regex-validation-improvements": "Name value regular expression (regex) validation improvements",
         "email-value-regular-expression-regex-validation-improvements": "Email value regular expression (regex) validation improvements",
         "more-detailed-error-messages-for-addstudentcommand": "More detailed error messages for AddStudentCommand",
-        "add-column-labels-on-ui-to-improve-readability": "Add column labels on UI to improve readability."
+        "add-column-labels-on-ui-to-improve-readability": "Add column labels on UI to improve readability.",
+        "improve-the-random-allocation-of-students-algorithm": "Improve the Random Allocation of students algorithm."
       },
       "headingKeywords": {}
     },
