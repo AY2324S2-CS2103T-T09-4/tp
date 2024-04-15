@@ -5,12 +5,21 @@
 ---
 
 # TAHelper User Guide
-
+---
+## Welcome to TAHelper!
+---
+Let TAHelper take control of the trivial student management work so that you can focus on what is most important, teaching and delivering quality content to your students!
+---
 TAHelper is a **desktop app for managing contacts, optimized for use via a Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAHelper can get your students' contact management tasks done faster than traditional GUI apps.
 
+- Start your journey with us [here](#quick-start) today! Learn the basics, and seamless integrate into TAHelper today!
 - For some uncommon or unfamiliar terms used in this User Guide, [click here](#glossary) for the definition and explanation of some.
 
 ## Why choose TAHelper?
+TAHelper offers a whole array of convenience and help:
+- Efficient student contact management: A extensive range of commands means that complex student management task can be accomplished in just 1 command.
+- Effortless management of student information: all student contact related task can all be done on TAHelper itself, offering a one-stop solution.
+- Instant retrieval of information: With just 1 command, any information you want about the students, module, tutorial or tutorial teams can be retrieved.
 
 ## Table of contents
 - [TAHelper User Guide](#tahelper-user-guide)
@@ -61,10 +70,10 @@ Our target audience is specifically only TAs of NUS Computer Science Modules.
 1. Firstly, being TAs of a Computer Science (CS) module in NUS, we can safely assume that they have a decent grasp of basic of CLI and
 basic software that they have learnt from many of the introductory CS modules they have taken in NUS.
 2. Secondly, being well-versed with many technical terms and absorbing large amounts of information through all the modules and studying they have been through,
-we can safely assume that most, if not all of our users will be able to comprehend and familiarise themselves with not only the User Guide but also our TAHelper system.
+we can safely assume that most, if not all of our target users will be able to comprehend and familiarise themselves with not only the User Guide but also our TAHelper system.
 This essentially allows them to seamlessly integrate themselves with TAHelper and make it user-friendly for them.
 3. Thirdly, another assumption made is that each module and tutorial class has its own Excel sheet for student management purposes. This cause information to be sparse and make it slightly more difficult to access.
-We can expect that highly utility for TAs who teach more than 1 tutorial class as it provides more convenience for communications between students, and handling of administrative task.
+We can expect that this application will have a higher utility for TAs who teach more than 1 tutorial class as it provides more convenience for communications between students, and handling of administrative tasks.
 
 [Back to table of contents](#table-of-contents)
 
@@ -81,7 +90,7 @@ Welcome to the TAHelper User Guide! Our goal is to assist and provide you the lu
 confidence to make full use of TAHelper's features.
 
 - Effortless Navigation: [Refer here](#table-of-contents) for the table of contents to aid your navigation.
-- Quick start guide for New Users: If you're a new user, visit our [Quick Start](#quick-start) section to set up and launch the application!
+- Quick start guide for new Users: If you're a new user, visit our [Quick Start](#quick-start) section to set up and launch the application!
 - Features: Want to leverage the capabilities of TAHelper? Visit our [Features](#features) section to fully utilise the features we offer!
 
 [Back to table of contents](#table-of-contents)
@@ -90,6 +99,7 @@ confidence to make full use of TAHelper's features.
 
 1. Ensuring the correct version of Java installed:
     - Ensure you have Java `11` or above installed in your Computer.
+    - Visit this [website](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html) to download Java `11`.
 
 
 2. Download TAHelper from [here](https://github.com/AY2324S2-CS2103T-T09-4/tp/releases)
@@ -110,11 +120,15 @@ confidence to make full use of TAHelper's features.
     - Mac OS:
       - Search for Terminal in "Utilities" under "Applications".
       - It should look something like this:
+      ![cmd](images/cmdmacguide.png)
 
 5. Launching TAHelper
     - Type `java -jar tahelper.jar` command and hit Enter to run TAHelper.<br>
     - It should look something like this (in this case my jar file is in a folder called `tahelper`):
+    - For Windows OS Users:
     ![cmd](images/cmdwinguide2.png)
+    - For MacOS Users:<br>
+    ![cmd](images/cmdmacguide2.jpg)
     - A GUI similar to the below should appear in a few seconds.<br>
     ![Ui](images/Ui.png).
 
@@ -124,7 +138,7 @@ confidence to make full use of TAHelper's features.
       - A new student entry should appear on the UI with the details reflected clearly.
 
     - `/delete_student id/A0123456A or /delete_student email/johndoe@gmail.com`: Deletes the student that you have add with the previous command.
-      - The student entry with the ID `A0123456A` or email `johndoe@gmail.com` will be deleted.
+      - The student entry with the NUS student ID `A0123456A` or email `johndoe@gmail.com` will be deleted.
       - This deletion will be reflected on User Interface of TAHelper as well.
 
     - For more Commands that will improve your experience, [click here](#command-summary)
@@ -182,7 +196,7 @@ Commands on modules:
 
    - `/delete_team module/CS2103T tutorial/T09 team/Team 1` : Removes the team with team name `Team 1` from tutorial class `T09` under the module `CS2103T`.
 
-   - `/random_teams module/CS2103T tutorial/T09 teams/4` : Randomly allocates all students in the tutorial class `T09` under the module `CS2103T` into different teams in the tutorial class.
+   - `/random_teams module/CS2103T tutorial/T09 teams/2` : Randomly allocates all students in the tutorial class `T09` under the module `CS2103T` into `2` different teams in the tutorial class.
    
    - `/view_teams name/Team 1 module/CS2103T tutorial/T09` or `/view_teams index/1 module/CS2103T tutorial/T09` : View the information of the team with team name `Team 1` or index `1` in tutorial class `T09` under module `CS2103T`
 
@@ -200,12 +214,12 @@ Commands on modules:
 ### Command Format
 Here are the main components of the commands:
 
-| Component    | Example                | Description                                                                                                                                       |
-|--------------|:-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command Word | /add, /search, /delete | The type of command to be executed by the system.                                                                                                 |
-| Prefix       | name/, email/, id/     | The attributes of the quantity observed.                                                                                                          |
+| Component    | Example                 | Description                                                                                                                                       |
+|--------------|:------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command Word | /add, /search, /delete  | The type of command to be executed by the system.                                                                                                 |
+| Prefix       | name/, email/, id/      | The attributes of the quantity observed.                                                                                                          |
 | Parameters   | NAME, EMAIL, STUDENT_ID | The value of the attribute that the user have to provide after the prefix.                                                                        |
-| Index        | 1, 3                   | The position of the student in the list it is referencing. Eg. Index 1 of tutorial class `T01` refers to the 1st student in the `T01` class list. |
+| Index        | 1, 3                    | The position of the student in the list it is referencing. Eg. Index 1 of tutorial class `T01` refers to the 1st student in the `T01` class list. |
 
 Here are symbols used in the commands:
 
@@ -219,16 +233,16 @@ Parameters:
 | Field       | Prefix       | Description/Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 |-------------|:-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | NAME        | name/        | Alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| EMAIL       | email/       | need to follow the format `example@mail.com`                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| STUDENT_ID   | id/          | Follows the format of NUS Student ID that starts with A. Format must be `A`, followed 7 numeric digits, and end off with a alphabetical letter.                                                                                                                                                                                                                                                                                                                       |
+| EMAIL       | email/       | best to follow the format `example@mail.com`                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| STUDENT_ID  | id/          | Follows the format of NUS Student ID that starts with A. Format must be `A`, followed 7 numeric digits, and end off with a alphabetical letter.                                                                                                                                                                                                                                                                                                                       |
 | MODULE      | module/      | Follows the format of NUS CS modules, which starts with either 2 or 3 alphabetical letters, followed by 4 numeric integer between 0-9, and an optional alphabetical letters.<br/> Note: Module codes are case sensitive (must be in all capitals), so `CS2103T` is valid but `cs2103t` is not                                                                                                                                                                         |
 | TUTORIAL    | tutorial/    | Follows the format of most NUS tutorial class naming, which starts with 1 alphabetical letter and 2 numeric integers from 0-9. <br/> Note: Tutorial class names are case sensitive (must be a capital letter), so `T09` is valid but `t09` is not.<br/> As of now, tutorial class names with other formats are not accepted. (such as `TO43`)                                                                                                                         |
-| TEAM_NAME    | team/        | Alphanumeric characters.<br> As of now, the team related error messages may sometimes add `Team` before the team name, which might lead to confusion. <br> To clarify this, for all purposes, the team name is stored as the exact name you give, and the word `Team` is not appended to it. (e.g. `team/1` is stored as team name `1` and not team name `Team 1`). <br> The actual name of the team is shown in the UI within the tutorial class it was added under. |
+| TEAM_NAME   | team/        | Alphanumeric characters.<br> As of now, the team related error messages may sometimes add `Team` before the team name, which might lead to confusion. <br> To clarify this, for all purposes, the team name is stored as the exact name you give, and the word `Team` is not appended to it. (e.g. `team/1` is stored as team name `1` and not team name `Team 1`). <br> The actual name of the team is shown in the UI within the tutorial class it was added under. |
 | TAG         | tag/         | Tag associated with the student.  Alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                             |
-| SIZE        | size/        | The size of the team or class. A numeric integer value that is more than 0.                                                                                                                                                                                                                                                                                                                                                                                    |
+| SIZE        | size/        | The size of the team or class. A numeric integer value that is more than 0.                                                                                                                                                                                                                                                                                                                                                                                           |
 | DESCRIPTION | description/ | The description of the module.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | BY          | by/          | The parameter you want to search by. Alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                                                          |
-| INDEX       | index/       | The index of the associated student. A numeric integer value that is more than 0.                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| INDEX       | index/       | The index of the associated student. A numeric integer value that is more than 0.                                                                                                                                                                                                                                                                                                                                                                                     |
 
 Here are symbols used in the commands:
 

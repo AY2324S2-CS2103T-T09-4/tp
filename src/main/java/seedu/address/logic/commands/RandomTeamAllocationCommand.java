@@ -26,7 +26,7 @@ public class RandomTeamAllocationCommand extends Command {
             + "Parameters: "
             + PREFIX_MODULECODE + "MODULE CODE "
             + PREFIX_TUTORIALCLASS + "TUTORIAL CLASS "
-            + PREFIX_NUM_OF_TEAMS + "NUMBER OF TEAMS "
+            + PREFIX_NUM_OF_TEAMS + "NUMBER OF TEAMS \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULECODE + "CS2103T "
             + PREFIX_TUTORIALCLASS + "T09 "

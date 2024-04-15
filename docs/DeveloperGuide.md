@@ -1672,6 +1672,29 @@ This way, it will improve user experience as users are able to fix the issue wit
 
 ---
 
+### More detailed and descriptive error messages for AllocateStudentToTeamCommand
+
+**Current implementation**
+1. Currently, the error message when the /allocate_team is ran with an invalid command format is "Invalid command format!
+   /allocate_team: Allocates a student a team in the tutorial class". However, this does not indicate to users which part of the command format is incorrect or invalid, potentially making it difficult for users to identify the part of the command where they have input wrongly.
+
+**Proposed enhancement(s)**
+1. We look to implement a more descriptive error message that tells user which part of the AllocateStudentToTeamCommand that cause the command to be invalid. This way users can adapt to the invalid input and correct it quickly, which improves user experience.
+2. We also look to implement a more descriptive error message based on invalid inputs, invalid teams and other miscellaneous inputs.
+
+---
+
+### More detailed and descriptive error messages for RandomTeamAllocationCommand
+
+**Current implementation**
+1. Currently, the error message when the /random_teams is run with a module or tutorial class that does not exist is "Please check if you have entered an existing module and tutorial". However, this does not indicate to users whether module or tutorial does not exist in the system, which may potentially make it more difficult for users to identify whether it is module or class which does not exist.
+
+**Proposed enhancement(s)**
+1. We look to implement a more descriptive error message that tells user exactly whether module or tutorial class does not exist. This way users can adapt to the input values and correct it quickly, which improves user experience.
+2. We also look to implement a more descriptive error message based on invalid inputs, invalid number of teams and other miscellaneous inputs.
+
+---
+
 ### Add column labels on UI to improve readability.
 
 **Current implementation**
