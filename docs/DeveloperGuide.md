@@ -228,7 +228,7 @@ The implemented add mechanism is facilitated by the abstract `DeleteStudentComma
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 Format: `/delete_student [id/ID] [email/EMAIL] [index/INDEX]`
-\*Only 1 of the 3 parameters (id, email, index) must be specified
+*Only 1 of the 3 parameters (id, email, index) must be specified
 Example: `/delete_student id/A0123456X`
 
 <puml src="diagrams/DeleteStudentSequence.puml" alt="DeleteStudentSequence" />
