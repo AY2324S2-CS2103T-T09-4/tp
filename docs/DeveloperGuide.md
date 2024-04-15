@@ -187,7 +187,7 @@ Step 3. The `AddStudentCommandParser` parses the arguments and get the values of
 <box type="info" seamless>
 
 **Important Note:** All fields must be specified. There must be a valid value for name, email and id.
-Additionally, email and id must be unique compared to the values already present in the system to get achieve a sucessful add.
+Additionally, email and id must be unique compared to the values already present in the system to get achieve a successful add.
 Tags here are optional and need not be specified.
 
 </box>
@@ -208,7 +208,7 @@ Step 6. Finally, a `CommandResult` is created and the student is added to the TA
   - Cons: An individual, at least in the context of NUS, can be uniquely identified by either their email E....@u.nus.edu, or by their Student ID. Therefore, specifying both may not be required and may cause extra work.
 
 * **Alternative 2:** Allow user to specify more information about themselves such as year of study, course of study, just to name a few. This way we can support even more commands that searches say based on course of study, year of study etc.
-  - Pros: Search, add, delete, sort commands all can become more specfic, and the commands can make use of more information to achieve its desired outcome as well, instead of solely relying on email or id, which although present in the system, may not be readily available or easily remembered by the users themselves.
+  - Pros: Search, add, delete, sort commands all can become more specific, and the commands can make use of more information to achieve its desired outcome as well, instead of solely relying on email or id, which although present in the system, may not be readily available or easily remembered by the users themselves.
   - Cons: The addition of these fields to the system could lead to increase complexity of the codebase and increased coupling between components in the codebase. This will make the codebase harder to debug and maintain. Also, these field possibly being optional may lead to an increase in the number of null values and thus null checks in the system, which can make the codes in the codebase harder to reason about and refactor in the future.
 
 ### \[Implemented\] Delete student
@@ -968,21 +968,23 @@ Step 6. Finally, a `CommandResult` is created and the list of students in the tu
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | Iteration | As a …​ | I want to …​                                                                   | So that I can…​                                                                     |
-|----------|-----------|---------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| `* * *`  | v1.2      | TA      | add new students to a class                                                    | maintain an up-to-date list of enrolled students.                                   |
-| `* * *`  | v1.2      | TA      | add partial info of students                                                   | still add students even if I don’t have all their information.                      |
-| `* * *`  | v1.2      | TA      | delete a student from my class if they drop the module/class                   | keep my class list accurate and up-to-date.                                         |
-| `*  `    | v1.2      | TA      | search for my students based on their NUS ID, emails, names or tutorial groups | locate details of students without having to go through the entire list             |
-| `* * *`  | v1.2      | TA      | view all students and their particulars                                        | have a comprehensive overview of the enrolled students in my class.                 |
-| `* * `   | v1.2      | TA      | view all the tutorial classes and their student composition                    | have an overview of the classes that I am teaching.                                 |
-| `* *`    | v1.2      | TA      | add a tutorial class that I am teaching.                                       | track a tutorial class and the students in it.                                      |
-| `* *`    | v1.2      | TA      | remove a tutorial class that I am teaching.                                    | remove any unrelated classes that I do not want to no longer want to keep track of. |
-| `* `     | v1.2      | TA      | add students to a tutorial class                                               | assign students to a tutorial class and teams within the class.                     |
-| `* * `   | v1.3      | TA      | edit a student's information                                                   | amend a student's detail in case there are any errors or changes.                   |
-| `*`      | v1.3      | TA      | sort students based on their name, student ID or email.                        | easily organise and manage student records.                                         |
-| `* * *`  | v1.3      | TA      | create a new team for a tutorial class                                         | segregate students to teams within a tutorial class.                                |
-| `* * *`  | v1.3      | TA      | delete a team from a tutorial class                                            | remove unnecessary teams and organise my classes.                                   |
+| Priority | Iteration | As a …​ | I want to …​                                                                   | So that I can…​                                                                                   |
+|----------|-----------|---------|--------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| `* * *`  | v1.2      | TA      | add new students to a class                                                    | maintain an up-to-date list of enrolled students.                                                 |
+| `* * *`  | v1.2      | TA      | add partial info of students                                                   | still add students even if I don’t have all their information.                                    |
+| `* * *`  | v1.2      | TA      | delete a student from my class if they drop the module/class                   | keep my class list accurate and up-to-date.                                                       |
+| `*  `    | v1.2      | TA      | search for my students based on their NUS ID, emails, names or tutorial groups | locate details of students without having to go through the entire list                           |
+| `* * *`  | v1.2      | TA      | view all students and their particulars                                        | have a comprehensive overview of the enrolled students in my class.                               |
+| `* * `   | v1.2      | TA      | view all the tutorial classes and their student composition                    | have an overview of the classes that I am teaching.                                               |
+| `* *`    | v1.2      | TA      | add a tutorial class that I am teaching.                                       | track a tutorial class and the students in it.                                                    |
+| `* *`    | v1.2      | TA      | remove a tutorial class that I am teaching.                                    | remove any unrelated classes that I do not want to no longer want to keep track of.               |
+| `* `     | v1.2      | TA      | add students to a tutorial class                                               | assign students to a tutorial class and teams within the class.                                   |
+| `* * `   | v1.3      | TA      | edit a student's information                                                   | amend a student's detail in case there are any errors or changes.                                 |
+| `*`      | v1.3      | TA      | sort students based on their name, student ID or email.                        | easily organise and manage student records.                                                       |
+| `* * *`  | v1.3      | TA      | create a new team for a tutorial class                                         | segregate students to teams within a tutorial class.                                              |
+| `* * *`  | v1.3      | TA      | delete a team from a tutorial class                                            | remove unnecessary teams and organise my classes.                                                 |
+| `* *`    | v1.3      | TA      | randomly generate team allocations                                             | ensure fairness for class projects and assignments, whilst making the process quick and seamless. |
+| `* *`    | v1.3      | TA      | allocate students into teams                                                   | group students into different groups for purposes such as class projects and assignments.         |
 
 _{More to be added}_
 
@@ -1378,7 +1380,6 @@ However, it does not tell users which value, email or student id, clashes with a
 1. We look to implement a more detailed error message that specifies which field, email or id, or both, that violated the unique valid policy of a person object in the system.
 This way, it will improve user experience as users are able to fix the issue with more specific aid/help.
 
-
 ---
 
 ### Add column labels on UI to improve readability.
@@ -1394,3 +1395,17 @@ and the right column represents the list of students.
 'CS2101 tutorial classes', something that is specific to the module.
 3. Thirdly, similar to point 2, we want to implement even more specific person column label, such as when user enters to view the list of students in a tutorial class, the label shows something like 'T01's class list'.
 This will greatly aid user's readability, and it is an enhancement we want to make.
+
+
+---
+
+### Improve the Random Allocation of students algorithm.
+
+**Current implementation**
+1. Current implementation only checks if the randomly selected tutorial team to add the student to is full before randomly selecting another one to add the student into.
+This can be a problem if the user wants to split the students into many teams (For example: user inputs 5 teams to split 16 people into.). What we might see is that sometimes, there might be a disproportionate number of people in one group.
+Where some groups might not even have students inside.
+
+**Proposed enhancement(s)**
+1. We will look into improving the random allocation algorithm, where the algorithm will allocate in batches, first batch ensuring that every team will have 1 member, next batch ensuring that they have 2 members, until the last batch where it will allocate the remaining students. 
+2. It will be random too as the people in the first batch will be randomly generated and then removed after being added, and so on.
