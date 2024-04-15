@@ -1159,7 +1159,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1c1: Returns an error indicating command not recognised and provides the correct command format.
     <br>
 
-#### Use case 3: Search for students
+#### Use case 3: Edit students
+
+**Actor**: User
+
+**System**: TAHelper
+
+**MSS**
+
+1. User specifies the student to be edited along with the new information.
+2. System edits the student from the list of students.
+   Use case ends.
+
+**Extensions:**
+
+- 1a. User specifies the same information as the student to be edited
+  - 1a1: Returns an error indicating that the student already exists.
+  - Use case ends.
+- 1b. User specifies to edit student's ID.
+  - 1b1. Student ID already exists in the system.
+    - 1b1.1: Returns an error indicating that the student with the provided ID already exists.
+    - Use case ends.
+- 1c. User specifies to edit student's email.
+  - 1c1. Email already exists in the system.
+    - 1c1.1. Returns an error indicating that the student with the provided email already exists.
+    - Use case ends.
+- 1d. Invalid index.
+  - 1d1. Index does not exist in the system.
+    - 1d1.1: Returns an error indicating that the index is out of bounds.
+    - Use case ends.
+- 1e. Invalid input command.
+  - 1e1: Returns an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+    <br>
+
+#### Use case 4: Search for students
 
 **Actor**: User
 
@@ -1183,7 +1217,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 2a1. System will display all matching results for the specified value.
     <br>
 
-#### Use case 4: View all students
+#### Use case 5: View all students
 
 **Actor**: User
 
@@ -1206,7 +1240,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 2a1. System will return a message indicating that there are no students in the list.
     <br>
 
-#### Use case 5: Add new tutorial class
+#### Use case 6: Sort students
+
+**Actor**: User
+
+**System**: TAHelper
+
+**MSS:**
+
+1. User specifies to sort the list by a specified parameter.
+2. System shows a sorted list of all students.
+   Use case ends.
+
+**Extensions:**
+
+- 1a. User specifies to sort the list by an invalid parameter.
+  - 1a1. Returns an error indicating parameter is not valid for sorting.
+  - Use case ends.
+- 1b. Invalid input command.
+  - 1b1: Returns an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+    <br>
+
+#### Use case 7: Add new tutorial class
 
 **Actor**: User
 
@@ -1231,7 +1287,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - Use case ends.
     <br>
 
-#### Use case 6: Delete tutorial class
+#### Use case 8: Delete tutorial class
 
 **Actor**: User
 
@@ -1253,7 +1309,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - Use case ends.
     <br>
 
-#### Use case 7: View all classes
+#### Use case 9: View all classes
 
 **Actor**: User
 
@@ -1276,7 +1332,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 2a1. System will return a message indicating that there are no existing classes in the list.
     <br>
 
-#### Use case 8: Delete module
+#### Use case 10: Delete module
 
 **MSS:**
 
@@ -1294,7 +1350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - Use case ends.
     <br>
 
-#### Use case 9: Add student to class
+#### Use case 11: Add student to class
 
 **MSS:**
 
@@ -1328,7 +1384,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>
     
 
-#### Use case 10: Delete student from class
+#### Use case 12: Delete student from class
 
 **MSS:**
 
@@ -1361,7 +1417,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - Use case ends.
 <br>
 
-#### Use case 11: Add new tutorial team
+#### Use case 13: View all students in a class
+
+**MSS**
+
+1. User wants to view all students in a class.
+2. System shows a list of all students in the class.
+
+- 1a. Invalid input command.
+  - 1a1. Return an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+- 1b. Additional arguments are specified after the command.
+  - 1b1. System will ignore those arguments and execute the command as usual.
+- 2a. There is no class matching the specified class.
+  - 2a1. System will return a message indicating that there is no such class in the list.
+- 2b. There are no students in the class.
+  - 2b1. System will return a message indicating that there are no existing students in the class in the list.
+    <br>
+
+#### Use case 14: Add new tutorial team
 
 **Actor**: User
 
@@ -1392,7 +1466,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - Use case ends.
     <br>
 
-#### Use case 12: Delete tutorial team
+#### Use case 15: Delete tutorial team
 
 **Actor**: User
 
@@ -1420,7 +1494,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - Use case ends.
     <br>
 
-#### Use case 13: Delete student from team
+#### Use case 16: Delete student from team
 
 **MSS:**
 
@@ -1434,46 +1508,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1a1. Student ID does not exist in the system.
     - 1a1.1: Returns an error indicating that the student with the provided ID does not exist.
     - Use case ends.
-  - 1a2. Module code does not exist in the system.
-    - 1a2.1: Returns an error indicating that the module with that module code does not exist.
-    - Use case ends.
-  - 1a3. Tutorial class does not exist in the module specified.
-    - 1a3.1: Returns an error indicating that the tutorial class does not exist in the module specified.
-    - Use case ends.
-  - 1a4. Team does not exist in the tutorial class specified
-    - 1a4.1: Returns an error indicating that the tutorial team does not exist in the tutorial class specified.
-    - Use case ends.
 - 1b. User specifies to delete student by email.
   - 1b1. Email does not exist in the system.
     - 1b1.1. Returns an error indicating that the student with the provided email does not exist.
-    - Use case ends.
-  - 1b2. Module code does not exist in the system.
-    - 1b2.1: Returns an error indicating that the module with that module code does not exist.
-    - Use case ends.
-  - 1b3. Tutorial class does not exist in the module specified.
-    - 1b3.1: Returns an error indicating that the tutorial class does not exist in the module specified.
-    - Use case ends.
-  - 1b4. Team does not exist in the tutorial class specified
-    - 1b4.1: Returns an error indicating that the tutorial team does not exist in the tutorial class specified.
     - Use case ends.
 - 1c. User specifies to delete student by index.
   - 1c1. Index does not exist in the tutorial class.
     - 1c1.1. Returns an error indicating that the student with the provided index does not exist.
     - Use case ends.
-  - 1c2. Module code does not exist in the system.
-    - 1c2.1: Returns an error indicating that the module with that module code does not exist.
-    - Use case ends.
-  - 1c3 Tutorial class does not exist in the module specified.
-    - 1c3.1: Returns an error indicating that the tutorial class does not exist in the module specified.
-    - Use case ends.
-  - 1c4. Team does not exist in the tutorial class specified
-    - 1c4.1: Returns an error indicating that the tutorial team does not exist in the tutorial class specified.
-    - Use case ends.
-- 1d. Invalid input command.
-  - 1d1: Returns an error indicating command not recognised and provides the correct command format.
+- 1d. Invalid module specified.
+  - 1d1: Returns an error indicating that the module does not exist.
+  - Use case ends.
+- 1e. Invalid tutorial specified.
+  - 1e1: Returns an error indicating that the tutorial does not exist in the specified module.
+  - Use case ends.
+- 1f. Invalid team specified.
+  - 1f1: Returns an error indicating that the team does not exist in the specified tutorial.
+  - Use case ends.
+- 1g. Invalid input command.
+  - 1g1: Returns an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
     <br>
 
-#### Use case 14: Allocate Student to tutorial team
+#### Use case 17: Allocate Student to tutorial team
 
 **Actor**: User
 
@@ -1501,7 +1558,7 @@ in the tutorial class to allocate the student into.
   - Use case ends.
     <br>
 
-#### Use case 12: Randomly allocating a list of students in the tutorial class into teams.
+#### Use case 18: Randomly allocating a list of students in the tutorial class into teams.
 
 **Actor**: User
 
@@ -1525,25 +1582,8 @@ in the tutorial class to allocate the student into.
   - Use case ends.
     <br>
 
-#### Use case 13: View all students in a class
 
-**MSS**
-
-1. User wants to view all students in a class.
-2. System shows a list of all students in the class.
-
-- 1a. Invalid input command.
-  - 1a1. Return an error indicating command not recognised and provides the correct command format.
-  - Use case ends.
-- 1b. Additional arguments are specified after the command.
-  - 1b1. System will ignore those arguments and execute the command as usual.
-- 2a. There is no class matching the specified class.
-  - 2a1. System will return a message indicating that there is no such class in the list.
-- 2b. There are no students in the class.
-  - 2b1. System will return a message indicating that there are no existing students in the class in the list.
-    <br>
-
-#### Use case 14: View team information
+#### Use case 19: View team information
 
 **MSS**
 
@@ -1564,61 +1604,6 @@ in the tutorial class to allocate the student into.
   - Use case ends.
     <br>
 
-#### Use case 15: Sort students
-
-**Actor**: User
-
-**System**: TAHelper
-
-**MSS:**
-
-1. User specifies to sort the list by a specified parameter.
-2. System shows a sorted list of all students.
-   Use case ends.
-
-**Extensions:**
-
-- 1a. User specifies to sort the list by an invalid parameter.
-  - 1a1. Returns an error indicating parameter is not valid for sorting.
-  - Use case ends.
-- 1b. Invalid input command.
-  - 1b1: Returns an error indicating command not recognised and provides the correct command format.
-  - Use case ends.
-    <br>
-
-#### Use case 16: Edit students
-
-**Actor**: User
-
-**System**: TAHelper
-
-**MSS**
-
-1. User specifies the student to be edited along with the new information.
-2. System edits the student from the list of students.
-   Use case ends.
-
-**Extensions:**
-
-- 1a. User specifies the same information as the student to be edited
-  - 1a1: Returns an error indicating that the student already exists.
-  - Use case ends.
-- 1b. User specifies to edit student's ID.
-  - 1b1. Student ID already exists in the system.
-    - 1b1.1: Returns an error indicating that the student with the provided ID already exists.
-    - Use case ends.
-- 1c. User specifies to edit student's email.
-  - 1c1. Email already exists in the system.
-    - 1c1.1. Returns an error indicating that the student with the provided email already exists.
-    - Use case ends.
-- 1d. Invalid index.
-  - 1d1. Index does not exist in the system.
-    - 1d1.1: Returns an error indicating that the index is out of bounds.
-    - Use case ends.
-- 1e. Invalid input command.
-  - 1e1: Returns an error indicating command not recognised and provides the correct command format.
-  - Use case ends.
-    <br>
 ---
 
 ### Non-Functional Requirements
