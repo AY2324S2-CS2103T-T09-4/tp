@@ -1224,7 +1224,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1a1. Return an error indicating command not recognised and provides the correct command format.
   - Use case ends.
 - 1b. Invalid tutorial class attributes are specified.
-  - 2a1. Returns an error indicating that user has to specify tutorial class in the correct format.
+  - 1b1. Returns an error indicating that user has to specify tutorial class in the correct format.
   - Use case ends.
 - 1c. The specified tutorial class already exists.
   - 1c1: Returns an error indicating that the tutorial class already exists
@@ -1294,12 +1294,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - Use case ends.
     <br>
 
-#### Use case 9: Delete student from class
+#### Use case 9: Add student to class
+
+**MSS:**
+
+1. User specifies the student to be added, along with the module code and tutorial class to add the student to.
+2. System adds the student from the list of students to the tutorial class.
+   Use case ends.
+
+**Extensions:**
+
+- 1a. User specifies to add student by student ID.
+  - 1a1. Student ID does not exist in the system.
+    - 1a1.1: Returns an error indicating that the student with the provided ID does not exist.
+    - Use case ends.
+- 1b. User specifies to add student by email.
+  - 1b1. Email does not exist in the system.
+    - 1b1.1. Returns an error indicating that the student with the provided email does not exist.
+    - Use case ends.
+- 1c. User specifies to add student by index.
+  - 1c1. Index does not exist in the tutorial class.
+    - 1c1.1. Returns an error indicating that the student with the provided index does not exist.
+    - Use case ends.
+- 1d. Invalid module specified.
+  - 1d1: Returns an error indicating that the module does not exist.
+  - Use case ends.
+- 1e. Invalid tutorial specified.
+  - 1e1: Returns an error indicating that the tutorial does not exist in the specified module.
+  - Use case ends.
+- 1f. Invalid input command.
+  - 1f1: Returns an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+<br>
+    
+
+#### Use case 10: Delete student from class
 
 **MSS:**
 
 1. User specifies the student to be deleted and the module code and tutorial class name of the class to be deleted from.
-2. System deletes the student from the list of students and tutorial group (if any).
+2. System deletes the student from the list of students in the tutorial class.
    Use case ends.
 
 **Extensions:**
@@ -1308,37 +1342,85 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1a1. Student ID does not exist in the system.
     - 1a1.1: Returns an error indicating that the student with the provided ID does not exist.
     - Use case ends.
-  - 1a2. Module code does not exist in the system.
-    - 1a2.1: Returns an error indicating that the module with that module code does not exist.
-    - Use case ends.
-  - 1a3. Tutorial class does not exist in the module specified.
-    - 1a3.1: Returns an error indicating that the tutorial class does not exist in the module specified.
-    - Use case ends.
 - 1b. User specifies to delete student by email.
   - 1b1. Email does not exist in the system.
     - 1b1.1. Returns an error indicating that the student with the provided email does not exist.
-    - Use case ends.
-  - 1b2. Module code does not exist in the system.
-    - 1b2.1: Returns an error indicating that the module with that module code does not exist.
-    - Use case ends.
-  - 1b3. Tutorial class does not exist in the module specified.
-    - 1b3.1: Returns an error indicating that the tutorial class does not exist in the module specified.
     - Use case ends.
 - 1c. User specifies to delete student by index.
   - 1c1. Index does not exist in the tutorial class.
     - 1c1.1. Returns an error indicating that the student with the provided index does not exist.
     - Use case ends.
-  - 1c2. Module code does not exist in the system.
-    - 1c2.1: Returns an error indicating that the module with that module code does not exist.
-    - Use case ends.
-  - 1c3 Tutorial class does not exist in the module specified.
-    - 1c3.1: Returns an error indicating that the tutorial class does not exist in the module specified.
-    - Use case ends.
-- 1d. Invalid input command.
-  - 1d1: Returns an error indicating command not recognised and provides the correct command format.
+- 1d. Invalid module specified.
+  - 1d1: Returns an error indicating that the module does not exist.
+  - Use case ends.
+- 1e. Invalid tutorial specified.
+  - 1e1: Returns an error indicating that the tutorial does not exist in the specified module.
+  - Use case ends.
+- 1f. Invalid input command.
+  - 1f1: Returns an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+<br>
+
+#### Use case 11: Add new tutorial team
+
+**Actor**: User
+
+**System**: TAHelper
+
+**MSS:**
+
+1. User specifies the team to be added, along with the module and tutorial class to add the team to.
+2. System adds the tutorial team to the tutorial class.
+   Use case ends.
+
+**Extensions:**
+
+- 1a. Invalid input command.
+  - 1a1. Return an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+- 1b. Invalid tutorial team attributes are specified.
+  - 2a1. Returns an error indicating that user has to specify tutorial team in the correct format.
+  - Use case ends.
+- 1c. Invalid module specified.
+  - 1c1: Returns an error indicating that the module does not exist.
+  - Use case ends.
+- 1d. Invalid tutorial specified.
+  - 1d1: Returns an error indicating that the tutorial does not exist in the specified module.
+  - Use case ends.
+- 1e. The specified tutorial team (i.e with same name) already exists.
+  - 1e1: Returns an error indicating that the tutorial team already exists in the specified module and tutorial.
+  - Use case ends.
     <br>
 
-#### Use case 10: Delete student from team
+#### Use case 12: Delete tutorial team
+
+**Actor**: User
+
+**System**: TAHelper
+
+**MSS:**
+
+1. User specifies the team to be deleted, along with the module and tutorial class to delete the team from.
+2. System deletes the tutorial team from the tutorial class.
+   Use case ends.
+
+**Extensions:**
+
+- 1a. Invalid input command.
+  - 1a1. Return an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+- 1b. Invalid module specified.
+  - 1b1: Returns an error indicating that the module does not exist.
+  - Use case ends.
+- 1c. Invalid tutorial specified.
+  - 1c1: Returns an error indicating that the tutorial does not exist in the specified module.
+  - Use case ends.
+- 1d. The tutorial team specified does not exist in the specified module and tutorial.
+  - 1d1. Returns an error indicating tutorial team does not exist.
+  - Use case ends.
+    <br>
+
+#### Use case 13: Delete student from team
 
 **MSS:**
 
@@ -1391,7 +1473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1d1: Returns an error indicating command not recognised and provides the correct command format.
     <br>
 
-#### Use case 11: Allocate Student to tutorial team
+#### Use case 14: Allocate Student to tutorial team
 
 **Actor**: User
 
@@ -1649,15 +1731,6 @@ testers are expected to do more _exploratory_ testing.
    6. Test case 4 (Allocating a student that is not in the TAHelper system): `/allocate_team id/A0987654A module/CS2101 tutorial/T02 team/Team1`
       Expected: An error message is played indicating that the student is not in TAHelper system.
 
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 
 ## **Appendix: Planned Enhancements**
 ## Planned Enhancements
@@ -1767,3 +1840,24 @@ Where some groups might not even have students inside.
 **Proposed enhancement(s)**
 1. We will look into improving the random allocation algorithm, where the algorithm will allocate in batches, first batch ensuring that every team will have 1 member, next batch ensuring that they have 2 members, until the last batch where it will allocate the remaining students. 
 2. It will be random too as the people in the first batch will be randomly generated and then removed after being added, and so on.
+---
+### Add custom exceptions
+
+**Current implementation**
+1. When an error occurs, the command will return a generic command exception along with the specified error message. However, this can potentially pose several problems:
+a. **Lack of specificity**: It is difficult to determine the nature and cause of the encountered issue, aside from relying on the error message. This makes it challenging to accurately diagnose, leading to longer troubleshooting times.
+b.**Difficulty in error identification**: Without distinct error types, it becomes difficult to classify and identify different types of errors.
+c.**Limited error handling capabilities**: A generic command exception approach may not adequately support specialised error handling, such as conditional error handling based on error types. Having a wider range of error handling for different types can help with flexibility.
+
+**Proposed enhancement(s)**
+1. We will introduce custom exceptions tailored to specific error scenarios, allowing for more precise identification and error handling.
+2. By doing so, we can potentially add custom error handling depending on the type of error thrown too, making the system more flexible and robust.
+---
+### Seed command for generating sample data
+
+**Current implementation**
+1. Currently, there is no seed command implemented. Developers/end-users are required to manually create sample data for testing or initialisation purposes. This approach can be time-consuming and error-prone
+
+**Proposed enhancement(s)**
+1. We will introduce a seed command to initialise sample data. By executing the seed command, developers/users can populate the database with mock students, modules, tutorials and teams. This automated approach will not only save time but aslo reduce the likelihood of errors. Clear documentation and usage guidelines will accompany the seed command too.
+
