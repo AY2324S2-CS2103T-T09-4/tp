@@ -170,7 +170,7 @@ with(this){return _c('h3',{attrs:{"id":"edit-student-contact-edit-student"}},[_v
 with(this){return _c('p',[_v("Format: "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("/edit_student index/INDEX [id/STUDENT_ID] [email/EMAIL] [name/NAME]")])])}
 },function anonymous(
 ) {
-with(this){return _c('ul',[_c('li',[_v("Index has to be a positive integer.")]),_v(" "),_c('li',[_v("At least one of the optional parameters must be provided.")]),_v(" "),_c('li',[_v("Multiple parameters can be provided (not duplicates). Command will edit all parameters specified.")]),_v(" "),_c('li',[_v("If the edited student id or email already exists in the list, the command will return an error message.")])])}
+with(this){return _c('ul',[_c('li',[_v("Index has to be a positive integer.")]),_v(" "),_c('li',[_v("At least one of the optional parameters must be provided.")]),_v(" "),_c('li',[_v("Multiple parameters can be provided (not duplicates). Command will edit all parameters specified.")]),_v(" "),_c('li',[_v("If the edited student id or email already exists in the list, the command will return an error message.")]),_v(" "),_c('li',[_v("Changes made only affect the currently displayed list. In order to sync a student's information across different\nmodules, tutorial classes or teams, the "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("/edit_student")]),_v(" command has to be executed again on the different student\nlists in modules, tutorial classes or teams.")])])}
 },function anonymous(
 ) {
 with(this){return _c('ul',[_c('li',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("/edit_student index/1 name/Aaron")]),_v(" will edit the student's name at index 1")]),_v(" "),_c('li',[_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("/edit_student index/5 id/A1234567B email/new_email@gmail.com")]),_v(" will edit the student's id and email at index 5")])])}
@@ -470,6 +470,6 @@ with(this){return _c('div',{staticClass:"table-responsive"},[_c('table',{staticC
 with(this){return _c('p',[_c('a',{attrs:{"href":"#table-of-contents"}},[_v("Back to table of contents")])])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.4.0")]),_v(", generated on Mon, 15 Apr 2024, 15:40:38 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.4.0")]),_v(", generated on Mon, 15 Apr 2024, 15:44:51 GMT+8]")])])])}
 }];
   

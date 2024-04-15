@@ -92,6 +92,7 @@
         "email-value-regular-expression-regex-validation-improvements": "Email value regular expression (regex) validation improvements",
         "more-detailed-error-messages-for-addstudentcommand": "More detailed error messages for AddStudentCommand",
         "add-column-labels-on-ui-to-improve-readability": "Add column labels on UI to improve readability.",
+        "propagate-students-edited-information-from-editcommand-to-other-student-lists": "Propagate students' edited information from EditCommand to other student lists",
         "improve-the-random-allocation-of-students-algorithm": "Improve the Random Allocation of students algorithm.",
         "add-custom-exceptions": "Add custom exceptions",
         "seed-command-for-generating-sample-data": "Seed command for generating sample data"
