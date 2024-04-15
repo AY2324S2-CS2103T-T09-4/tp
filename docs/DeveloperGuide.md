@@ -1795,9 +1795,9 @@ There are many instances where the error messages have confused users. For examp
 **Current implementation**
 
 1. When an error occurs, the command will return a generic command exception along with the specified error message. However, this can potentially pose several problems:
-   a. **Lack of specificity**: It is difficult to determine the nature and cause of the encountered issue, aside from relying on the error message. This makes it challenging to accurately diagnose, leading to longer troubleshooting times.
-   b.**Difficulty in error identification**: Without distinct error types, it becomes difficult to classify and identify different types of errors.
-   c.**Limited error handling capabilities**: A generic command exception approach may not adequately support specialised error handling, such as conditional error handling based on error types. Having a wider range of error handling for different types can help with flexibility.
+    a. **Lack of specificity**: It is difficult to determine the nature and cause of the encountered issue, aside from relying on the error message. This makes it challenging to accurately diagnose, leading to longer troubleshooting times.
+    b. **Difficulty in error identification**: Without distinct error types, it becomes difficult to classify and identify different types of errors.
+    c. **Limited error handling capabilities**: A generic command exception approach may not adequately support specialised error handling, such as conditional error handling based on error types. Having a wider range of error handling for different types can help with flexibility.
 
 **Proposed enhancement(s)**
 
