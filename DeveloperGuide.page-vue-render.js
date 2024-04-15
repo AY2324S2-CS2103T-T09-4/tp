@@ -1370,6 +1370,6 @@ with(this){return _c('p',[_c('strong',[_v("Proposed enhancement(s)")])])}
 with(this){return _c('ol',[_c('li',[_v("We will look into improving the random allocation algorithm, where the algorithm will allocate in batches, first batch ensuring that every team will have 1 member, next batch ensuring that they have 2 members, until the last batch where it will allocate the remaining students.")]),_v(" "),_c('li',[_v("It will be random too as the people in the first batch will be randomly generated and then removed after being added, and so on.")])])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.4.0")]),_v(", generated on Mon, 15 Apr 2024, 14:25:06 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.4.0")]),_v(", generated on Mon, 15 Apr 2024, 15:20:06 GMT+8]")])])])}
 }];
   
