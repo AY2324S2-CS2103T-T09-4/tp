@@ -675,7 +675,7 @@ Step 6. Finally, a `CommandResult` is created and the class is deleted from the 
 * **Alternative 3:** Allow user the option to delete all classes in the module without specifying the tutorial class.
   - Pros: Users can delete modules without needing to specify the tutorial class, allowing for greater ease in the workflow. This allows users who are no longer teaching the module to remove all the information with one command.
   - Cons: Users may accidentally delete all tutorial classes if they forgot to specify the tutorial class identifier and this may lead to great data damage. A separate command to delete all classes would be better.
-  - 
+
 ### \[Implemented\] Delete module
 
 The implementation of adding a class is facilitated by the `DeleteModuleCommand` and `DeletModuleCommandParser`. `DeleteModuleCommandParser` implements the `Parser` interface and it's operations. `DeleteModuleCommand` extends the
@@ -1607,16 +1607,33 @@ testers are expected to do more _exploratory_ testing.
 ## **Appendix: Planned Enhancements**
 ## Planned Enhancements
 
-1. Standardise the error messages (especially regarding teams).
-   - Currently, some of our error messages may lead to confusion in team names, as the error message might append `Team` before the team name, which might confuse the user on whether the team name is `1` or `Team 1`, for example.
+### Standardise the error messages (especially regarding teams).
+**Current implementation**
+1. Currently, some of our error messages may lead to confusion in team names, as the error message might append `Team` before the team name, which might confuse the user on whether the team name is `1` or `Team 1`, for example.
    <br>
-   
-2. /delete_all_classes command to delete all classes from a specified module
-  - Currently, there is no way to delete all classes from a specified module quickly, as we have to delete them one by one.
-  - Different from /delete_module as this command deletes the module itself too, but /delete_all_classes would leave the module itself intact.
 
-3. Support for more tutorial class name formats
-  - Currently, our system only supports tutorial class names with 1 letter followed by 2 digits (e.g. `T01`). This could result in errors when trying to use a valid tutorial class name (such as `DTk1234`'s `TO43` or `CS2101`'s `SG15`)
+**Proposed enhancement(s)**
+1. Make the error messages more clear in highlighting the 'true' team name.
+
+---
+
+### /delete_all_classes command to delete all classes from a specified module
+**Current implementation**
+1. Currently, there is no way to delete all classes from a specified module quickly, as we have to delete them one by one.
+
+**Proposed enhancement(s)**
+1. A /delete_all_classes command could be implemented to help support this feature. This is different from /delete_module as this command deletes the module itself too, but /delete_all_classes would leave the module itself intact.
+
+---
+
+### Support for more tutorial class name formats
+**Current implementation**
+1. Currently, our system only supports tutorial class names with 1 letter followed by 2 digits (e.g. `T01`). This could result in errors when trying to use a valid tutorial class name (such as `DTk1234`'s `TO43` or `CS2101`'s `SG15`)
+
+**Proposed enhancement(s)**
+1. Support as many types of tutorial class name types as possible, especially the more common ones.
+<br> Examples: 2 letters + 2 digits (e.g. `TO43`), 1 letter + 1 digit (e.g. `T5`)
+
 ---
 
 ### Name value regular expression (regex) validation improvements
