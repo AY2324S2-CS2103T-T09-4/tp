@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteStudentFromTeamCommandParser" as DeleteStudentFromTeamCommandParser LOGIC_COLOR
+participant "s:DeleteStudentFromTeamByIdCommand" as DeleteStudentFromTeamByIdCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(deleteStudent)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(deleteStudent)
+activate AddressBookParser
+
+create DeleteStudentFromTeamCommandParser
+AddressBookParser -> DeleteStudentFromTeamCommandParser
+activate DeleteStudentFromTeamCommandParser
+
+DeleteStudentFromTeamCommandParser --> AddressBookParser
+deactivate DeleteStudentFromTeamCommandParser
+
+AddressBookParser -> DeleteStudentFromTeamCommandParser : parse(studentId, module, tutorial, team)
+activate DeleteStudentFromTeamCommandParser
+
+create DeleteStudentFromTeamByIdCommand
+DeleteStudentFromTeamCommandParser -> DeleteStudentFromTeamByIdCommand
+activate DeleteStudentFromTeamByIdCommand
+
+DeleteStudentFromTeamByIdCommand --> DeleteStudentFromTeamCommandParser :
+deactivate DeleteStudentFromTeamByIdCommand
+
+DeleteStudentFromTeamCommandParser --> AddressBookParser : s
+deactivate DeleteStudentFromTeamCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteStudentFromTeamCommandParser -[hidden]-> AddressBookParser
+destroy DeleteStudentFromTeamCommandParser
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> DeleteStudentFromTeamByIdCommand : execute(m)
+activate DeleteStudentFromTeamByIdCommand
+
+DeleteStudentFromTeamByIdCommand -> Model : searchPersonByPredicate()
+activate Model
+
+Model --> DeleteStudentFromTeamByIdCommand : p
+deactivate Model
+
+DeleteStudentFromTeamByIdCommand -> Model : deletePersonFromTutorialTeam(p)
+activate Model
+
+Model --> DeleteStudentFromTeamByIdCommand
+deactivate Model
+
+create CommandResult
+DeleteStudentFromTeamByIdCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteStudentFromTeamByIdCommand
+deactivate CommandResult
+
+DeleteStudentFromTeamByIdCommand --> LogicManager : r
+deactivate DeleteStudentFromTeamByIdCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
