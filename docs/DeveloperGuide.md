@@ -1224,7 +1224,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1a1. Return an error indicating command not recognised and provides the correct command format.
   - Use case ends.
 - 1b. Invalid tutorial class attributes are specified.
-  - 2a1. Returns an error indicating that user has to specify tutorial class in the correct format.
+  - 1b1. Returns an error indicating that user has to specify tutorial class in the correct format.
   - Use case ends.
 - 1c. The specified tutorial class already exists.
   - 1c1: Returns an error indicating that the tutorial class already exists
@@ -1294,12 +1294,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - Use case ends.
     <br>
 
-#### Use case 9: Delete student from class
+#### Use case 9: Add student to class
+
+**MSS:**
+
+1. User specifies the student to be added, along with the module code and tutorial class to add the student to.
+2. System adds the student from the list of students to the tutorial class.
+   Use case ends.
+
+**Extensions:**
+
+- 1a. User specifies to add student by student ID.
+  - 1a1. Student ID does not exist in the system.
+    - 1a1.1: Returns an error indicating that the student with the provided ID does not exist.
+    - Use case ends.
+- 1b. User specifies to add student by email.
+  - 1b1. Email does not exist in the system.
+    - 1b1.1. Returns an error indicating that the student with the provided email does not exist.
+    - Use case ends.
+- 1c. User specifies to add student by index.
+  - 1c1. Index does not exist in the tutorial class.
+    - 1c1.1. Returns an error indicating that the student with the provided index does not exist.
+    - Use case ends.
+- 1d. Invalid module specified.
+  - 1d1: Returns an error indicating that the module does not exist.
+  - Use case ends.
+- 1e. Invalid tutorial specified.
+  - 1e1: Returns an error indicating that the tutorial does not exist in the specified module.
+  - Use case ends.
+- 1f. Invalid input command.
+  - 1f1: Returns an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+<br>
+    
+
+#### Use case 10: Delete student from class
 
 **MSS:**
 
 1. User specifies the student to be deleted and the module code and tutorial class name of the class to be deleted from.
-2. System deletes the student from the list of students and tutorial group (if any).
+2. System deletes the student from the list of students in the tutorial class.
    Use case ends.
 
 **Extensions:**
@@ -1308,37 +1342,85 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1a1. Student ID does not exist in the system.
     - 1a1.1: Returns an error indicating that the student with the provided ID does not exist.
     - Use case ends.
-  - 1a2. Module code does not exist in the system.
-    - 1a2.1: Returns an error indicating that the module with that module code does not exist.
-    - Use case ends.
-  - 1a3. Tutorial class does not exist in the module specified.
-    - 1a3.1: Returns an error indicating that the tutorial class does not exist in the module specified.
-    - Use case ends.
 - 1b. User specifies to delete student by email.
   - 1b1. Email does not exist in the system.
     - 1b1.1. Returns an error indicating that the student with the provided email does not exist.
-    - Use case ends.
-  - 1b2. Module code does not exist in the system.
-    - 1b2.1: Returns an error indicating that the module with that module code does not exist.
-    - Use case ends.
-  - 1b3. Tutorial class does not exist in the module specified.
-    - 1b3.1: Returns an error indicating that the tutorial class does not exist in the module specified.
     - Use case ends.
 - 1c. User specifies to delete student by index.
   - 1c1. Index does not exist in the tutorial class.
     - 1c1.1. Returns an error indicating that the student with the provided index does not exist.
     - Use case ends.
-  - 1c2. Module code does not exist in the system.
-    - 1c2.1: Returns an error indicating that the module with that module code does not exist.
-    - Use case ends.
-  - 1c3 Tutorial class does not exist in the module specified.
-    - 1c3.1: Returns an error indicating that the tutorial class does not exist in the module specified.
-    - Use case ends.
-- 1d. Invalid input command.
-  - 1d1: Returns an error indicating command not recognised and provides the correct command format.
+- 1d. Invalid module specified.
+  - 1d1: Returns an error indicating that the module does not exist.
+  - Use case ends.
+- 1e. Invalid tutorial specified.
+  - 1e1: Returns an error indicating that the tutorial does not exist in the specified module.
+  - Use case ends.
+- 1f. Invalid input command.
+  - 1f1: Returns an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+<br>
+
+#### Use case 11: Add new tutorial team
+
+**Actor**: User
+
+**System**: TAHelper
+
+**MSS:**
+
+1. User specifies the team to be added, along with the module and tutorial class to add the team to.
+2. System adds the tutorial team to the tutorial class.
+   Use case ends.
+
+**Extensions:**
+
+- 1a. Invalid input command.
+  - 1a1. Return an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+- 1b. Invalid tutorial team attributes are specified.
+  - 2a1. Returns an error indicating that user has to specify tutorial team in the correct format.
+  - Use case ends.
+- 1c. Invalid module specified.
+  - 1c1: Returns an error indicating that the module does not exist.
+  - Use case ends.
+- 1d. Invalid tutorial specified.
+  - 1d1: Returns an error indicating that the tutorial does not exist in the specified module.
+  - Use case ends.
+- 1e. The specified tutorial team (i.e with same name) already exists.
+  - 1e1: Returns an error indicating that the tutorial team already exists in the specified module and tutorial.
+  - Use case ends.
     <br>
 
-#### Use case 10: Delete student from team
+#### Use case 12: Delete tutorial team
+
+**Actor**: User
+
+**System**: TAHelper
+
+**MSS:**
+
+1. User specifies the team to be deleted, along with the module and tutorial class to delete the team from.
+2. System deletes the tutorial team from the tutorial class.
+   Use case ends.
+
+**Extensions:**
+
+- 1a. Invalid input command.
+  - 1a1. Return an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+- 1b. Invalid module specified.
+  - 1b1: Returns an error indicating that the module does not exist.
+  - Use case ends.
+- 1c. Invalid tutorial specified.
+  - 1c1: Returns an error indicating that the tutorial does not exist in the specified module.
+  - Use case ends.
+- 1d. The tutorial team specified does not exist in the specified module and tutorial.
+  - 1d1. Returns an error indicating tutorial team does not exist.
+  - Use case ends.
+    <br>
+
+#### Use case 13: Delete student from team
 
 **MSS:**
 
@@ -1391,7 +1473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1d1: Returns an error indicating command not recognised and provides the correct command format.
     <br>
 
-#### Use case 11: Allocate Student to tutorial team
+#### Use case 14: Allocate Student to tutorial team
 
 **Actor**: User
 
@@ -1419,7 +1501,7 @@ in the tutorial class to allocate the student into.
   - Use case ends.
     <br>
 
-### Use case 12: Randomly allocating a list of students in the tutorial class into teams.
+#### Use case 15: Randomly allocating a list of students in the tutorial class into teams.
 
 **Actor**: User
 
@@ -1443,7 +1525,7 @@ in the tutorial class to allocate the student into.
   - Use case ends.
     <br>
 
-#### Use case 10: View all students in a class
+#### Use case 16: View all students in a class
 
 **MSS**
 
@@ -1461,7 +1543,7 @@ in the tutorial class to allocate the student into.
   - 2b1. System will return a message indicating that there are no existing students in the class in the list.
     <br>
 
-#### Use case 11: View team information
+#### Use case 17: View team information
 
 **MSS**
 
@@ -1594,15 +1676,6 @@ testers are expected to do more _exploratory_ testing.
    6. Test case 4 (Allocating a student that is not in the TAHelper system): `/allocate_team id/A0987654A module/CS2101 tutorial/T02 team/Team1`
       Expected: An error message is played indicating that the student is not in TAHelper system.
 
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 
 ## **Appendix: Planned Enhancements**
 ## Planned Enhancements
