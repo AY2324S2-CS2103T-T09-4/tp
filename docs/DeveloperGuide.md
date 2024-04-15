@@ -13,7 +13,7 @@ pageNav: 3
 
 ## **About TA-Helper**
 
-TAs often have difficulties in managing students to teams in their classes, especially if they are managing multiple classes and even modules at the saem time. Due to the large number of students, TAs need to track of many nominal rolls for their classes. To effectively manage all students, a TA should have a single platform to keep track of all students, modules and classes taught. Furthermore, students may need to be grouped into various teams for assessment and group project purposes.
+TAs often have difficulties in managing students to teams in their classes, especially if they are managing multiple classes and even modules at the same time. Due to the large number of students, TAs need to track of many nominal rolls for their classes. To effectively manage all students, a TA should have a single platform to keep track of all students, modules and classes taught. Furthermore, students may need to be grouped into various teams for assessment and group project purposes.
 
 TA-Helper is a all-in-one desktop student contact management application for TAs to take control of the trivial student management work so that they can focus on what is most important, teaching and delivering quality content to students!
 
@@ -1106,10 +1106,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use case 1: Add new students
 
-**Actor**: User
-
-**System**: TAHelper
-
 **MSS:**
 
 1. User specifies the student to be added.
@@ -1137,10 +1133,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use case 2: Delete students
 
-**Actor**: User
-
-**System**: TAHelper
-
 **MSS:**
 
 1. User specifies the student to be deleted.
@@ -1162,10 +1154,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     <br>
 
 #### Use case 3: Edit students
-
-**Actor**: User
-
-**System**: TAHelper
 
 **MSS**
 
@@ -1197,10 +1185,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use case 4: Search for students
 
-**Actor**: User
-
-**System**: TAHelper
-
 **MSS:**
 
 1. User specifies the student to be searched for.
@@ -1221,10 +1205,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use case 5: View all students
 
-**Actor**: User
-
-**System**: TAHelper
-
 **MSS:**
 
 1. User wants to view all students' information.
@@ -1244,10 +1224,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use case 6: Sort students
 
-**Actor**: User
-
-**System**: TAHelper
-
 **MSS:**
 
 1. User specifies to sort the list by a specified parameter.
@@ -1265,10 +1241,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     <br>
 
 #### Use case 7: Add new tutorial class
-
-**Actor**: User
-
-**System**: TAHelper
 
 **MSS:**
 
@@ -1291,10 +1263,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use case 8: Delete tutorial class
 
-**Actor**: User
-
-**System**: TAHelper
-
 **MSS:**
 
 1. User specifies the class to be deleted.
@@ -1312,10 +1280,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     <br>
 
 #### Use case 9: View all classes
-
-**Actor**: User
-
-**System**: TAHelper
 
 **MSS**
 
@@ -1438,10 +1402,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use case 14: Add new tutorial team
 
-**Actor**: User
-
-**System**: TAHelper
-
 **MSS:**
 
 1. User specifies the team to be added, along with the module and tutorial class to add the team to.
@@ -1468,10 +1428,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     <br>
 
 #### Use case 15: Delete tutorial team
-
-**Actor**: User
-
-**System**: TAHelper
 
 **MSS:**
 
@@ -1533,10 +1489,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use case 17: Allocate Student to tutorial team
 
-**Actor**: User
-
-**System**: TAHelper
-
 **MSS**
 
 1. User specifies the student id of the student, the module code, tutorial class, and the tutorial team name
@@ -1562,10 +1514,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     <br>
 
 #### Use case 18: Randomly allocating a list of students in the tutorial class into teams.
-
-**Actor**: User
-
-**System**: TAHelper
 
 **MSS**
 
@@ -1728,32 +1676,21 @@ testers are expected to do more _exploratory_ testing.
 
 ## Planned Enhancements
 
-### Standardise the error messages (especially regarding teams).
+Team size: 5
+
+### 1. Include command to delete all classes from a specified module
 
 **Current implementation**
 
-1. Currently, some of our error messages may lead to confusion in team names, as the error message might append `Team` before the team name, which might confuse the user on whether the team name is `1` or `Team 1`, for example.
-   <br>
+1. Currently, there is no way to delete all classes from a specified module quickly, as we have to delete them one by one. For example, we can have a `/delete_all_classes module/MODULE` command.
 
 **Proposed enhancement(s)**
 
-1. Make the error messages more clear in highlighting the 'true' team name.
+1. A `/delete_all_classes` command could be implemented to help support this feature. This is different from `/delete_module` as this command deletes the module itself too, but `/delete_all_classes` would leave the module itself intact.
 
 ---
 
-### /delete_all_classes command to delete all classes from a specified module
-
-**Current implementation**
-
-1. Currently, there is no way to delete all classes from a specified module quickly, as we have to delete them one by one.
-
-**Proposed enhancement(s)**
-
-1. A /delete_all_classes command could be implemented to help support this feature. This is different from /delete_module as this command deletes the module itself too, but /delete_all_classes would leave the module itself intact.
-
----
-
-### Support for more tutorial class name formats
+### 2. Support for more tutorial class name formats
 
 **Current implementation**
 
@@ -1766,76 +1703,45 @@ testers are expected to do more _exploratory_ testing.
 
 ---
 
-### Name value regular expression (regex) validation improvements
+### 3. Regular expression (regex) validation improvements
 
 **Current implementation**
 
 1. Currently, the name class employs a slightly less strict regular expression in order to validate the name that users input when adding a new Person. This means that currently, the system accepts a Person's name that is solely consisting of integers.
    which in most cases, is not culturally accepted or possible in the world. Furthermore, it does not support names with higher complexity such as "Jai S/O John". However, such names are perfectly acceptable formats and such formats appear in many names in Singapore and around the world.
-
-**Proposed enhancement(s)**
-
-1. We look to implement a stricter validation regular expression (regex) for the name valid value so that the system is able to accept names that have special symbols in them.
-2. Furthermore, we also want to implement a regex expression that ensures that a Person's name cannot solely contain all integer values.
-
----
-
-### Email value regular expression (regex) validation improvements
-
-**Current implementation**
-
-1. Currently, the email class employs a slightly less strict regular expression in order to validate the email that users input when adding a new Person. This means that user are able to input email format that is not a valid email by convention.
+2. Likewise, the email class employs a slightly less strict regular expression in order to validate the email that users input when adding a new Person. This means that user are able to input email format that is not a valid email by convention.
    Current implementation only mainly checks if the `@` symbol is present, and does not check if a valid domain has been entered.
 
 **Proposed enhancement(s)**
 
-1. We look to implement a stricter validation regular expression (regex) for the email valid value so that the system is only able to accept email values that are more appropriate and valid in terms of real world context.
+1. We look to implement a stricter validation regular expression (regex) for the name valid value so that the system is able to accept names that have special symbols in them. Furthermore, we also want to implement a regex expression that ensures that a Person's name cannot solely contain all integer values.
+2. We look to implement a stricter validation regular expression (regex) for the email valid value so that the system is only able to accept email values that are more appropriate and valid in terms of real world context.
    This enhancements could come in the form of ensure that a valid domain name has been passed in, as well as ensuring that the `.com` format for the wider public or the `u.nus.edu.sg` format for example, is specified in the context of NUS students.
 
 ---
 
-### More detailed error messages for AddStudentCommand
+### 4. More concise, detailed and descriptive error messages
 
 **Current implementation**
+There are many instances where the error messages have confused users. For example,
 
 1. Currently, when a user tries to add a student with the same email or student id as any student in the system, the system will display a generic error message that tells user the person they want to add already exist in the system.
-   However, it does not tell users which value, email or student id, clashes with another Person object in the system.
-
-**Proposed enhancement(s)**
-
-1. We look to implement a more detailed error message that specifies which field, email or id, or both, that violated the unique valid policy of a person object in the system.
-   This way, it will improve user experience as users are able to fix the issue with more specific aid/help.
-
----
-
-### More detailed and descriptive error messages for AllocateStudentToTeamCommand
-
-**Current implementation**
-
-1. Currently, the error message when the /allocate_team is ran with an invalid command format is "Invalid command format!
+2. Currently, the error message when the /allocate_team is ran with an invalid command format is "Invalid command format!
    /allocate_team: Allocates a student a team in the tutorial class". However, this does not indicate to users which part of the command format is incorrect or invalid, potentially making it difficult for users to identify the part of the command where they have input wrongly.
+   However, it does not tell users which value, email or student id, clashes with another Person object in the system.
+3. Currently, the error message when the /random_teams is run with a module or tutorial class that does not exist is "Please check if you have entered an existing module and tutorial". However, this does not indicate to users whether module or tutorial does not exist in the system, which may potentially make it more difficult for users to identify whether it is module or class which does not exist.
+4. When handling teams, the error message might append `Team` before the team name, which might confuse the user on whether the team name is `1` or `Team 1`, for example.
 
 **Proposed enhancement(s)**
 
-1. We look to implement a more descriptive error message that tells user which part of the AllocateStudentToTeamCommand that cause the command to be invalid. This way users can adapt to the invalid input and correct it quickly, which improves user experience.
-2. We also look to implement a more descriptive error message based on invalid inputs, invalid teams and other miscellaneous inputs.
+1. We look to implement a more detailed error message that specifies which field, email or id, or both, that violated the unique valid policy of a person object in the system. This way, it will improve user experience as users are able to fix the issue with more specific aid/help.
+2. We look to implement a more descriptive error message that tells user which part of the AllocateStudentToTeamCommand that cause the command to be invalid. This way users can adapt to the invalid input and correct it quickly, which improves user experience.
+3. We look to implement a more descriptive error message that tells user exactly whether module or tutorial class does not exist. This way users can adapt to the input values and correct it quickly, which improves user experience.
+4. We will also make the error messages more clear in highlighting the 'true' team name.
 
 ---
 
-### More detailed and descriptive error messages for RandomTeamAllocationCommand
-
-**Current implementation**
-
-1. Currently, the error message when the /random_teams is run with a module or tutorial class that does not exist is "Please check if you have entered an existing module and tutorial". However, this does not indicate to users whether module or tutorial does not exist in the system, which may potentially make it more difficult for users to identify whether it is module or class which does not exist.
-
-**Proposed enhancement(s)**
-
-1. We look to implement a more descriptive error message that tells user exactly whether module or tutorial class does not exist. This way users can adapt to the input values and correct it quickly, which improves user experience.
-2. We also look to implement a more descriptive error message based on invalid inputs, invalid number of teams and other miscellaneous inputs.
-
----
-
-### Add column labels on UI to improve readability.
+### 5. Add column labels on UI to improve readability.
 
 **Current implementation**
 
@@ -1853,7 +1759,7 @@ testers are expected to do more _exploratory_ testing.
 
 ---
 
-### Propagate students' edited information from EditCommand to other student lists
+### 6. Propagate students' edited information from EditCommand to other student lists
 
 **Current implementation**
 
@@ -1869,7 +1775,7 @@ testers are expected to do more _exploratory_ testing.
 
 ---
 
-### Improve the Random Allocation of students algorithm.
+### 7. Improve the Random Allocation of students algorithm.
 
 **Current implementation**
 
@@ -1884,7 +1790,7 @@ testers are expected to do more _exploratory_ testing.
 
 ---
 
-### Add custom exceptions
+### 8. Add custom exceptions
 
 **Current implementation**
 
@@ -1900,7 +1806,7 @@ testers are expected to do more _exploratory_ testing.
 
 ---
 
-### Seed command for generating sample data
+### 9. Seed command for generating sample data
 
 **Current implementation**
 
