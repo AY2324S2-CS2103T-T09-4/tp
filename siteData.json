@@ -68,6 +68,7 @@
         "implemented-add-team": "[Implemented] Add team",
         "implemented-delete-team": "[Implemented] Delete team",
         "implemented-allocate-student-to-team": "[Implemented] Allocate student to team",
+        "implemented-view-team": "[Implemented] View team",
         "implemented-delete-student-from-team": "[Implemented] Delete student from team",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
         "appendix-requirements": "Appendix: Requirements",
