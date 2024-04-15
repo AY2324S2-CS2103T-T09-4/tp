@@ -91,6 +91,8 @@
         "name-value-regular-expression-regex-validation-improvements": "Name value regular expression (regex) validation improvements",
         "email-value-regular-expression-regex-validation-improvements": "Email value regular expression (regex) validation improvements",
         "more-detailed-error-messages-for-addstudentcommand": "More detailed error messages for AddStudentCommand",
+        "more-detailed-and-descriptive-error-messages-for-allocatestudenttoteamcommand": "More detailed and descriptive error messages for AllocateStudentToTeamCommand",
+        "more-detailed-and-descriptive-error-messages-for-randomteamallocationcommand": "More detailed and descriptive error messages for RandomTeamAllocationCommand",
         "add-column-labels-on-ui-to-improve-readability": "Add column labels on UI to improve readability.",
         "propagate-students-edited-information-from-editcommand-to-other-student-lists": "Propagate students' edited information from EditCommand to other student lists",
         "improve-the-random-allocation-of-students-algorithm": "Improve the Random Allocation of students algorithm.",
@@ -140,6 +142,8 @@
       "title": "User Guide",
       "headings": {
         "tahelper-user-guide": "TAHelper User Guide",
+        "welcome-to-tahelper": "Welcome to TAHelper!",
+        "let-tahelper-take-control-of-the-trivial-student-management-work-so-that-you-can-focus-on-what-is-most-important-teaching-and-delivering-quality-content-to-your-students": "Let TAHelper take control of the trivial student management work so that you can focus on what is most important, teaching and delivering quality content to your students!",
         "why-choose-tahelper": "Why choose TAHelper?",
         "table-of-contents": "Table of contents",
         "target-audience": "Target Audience",
