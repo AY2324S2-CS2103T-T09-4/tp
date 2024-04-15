@@ -194,7 +194,7 @@ Tags here are optional and need not be specified.
 
 Step 4. Based on the prefixes, `AddStudentCommandParser` creates an `AddStudentCommand` object. Each command contains all the required prefixes and values to used to create the command object.
 
-Step 5. `LogicManager` calls `AddStudentCommand#execute()`, passing `Model` as an argument. This method retrieves the adds the student to the TAHelper system.
+Step 5. `LogicManager` calls `AddStudentCommand#execute()`, passing `Model` as an argument. This method retrieves the student to add to the TAHelper system.
 Throughout the process, error handling (e.g checking for duplicate email or id, making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
 
 Step 6. Finally, a `CommandResult` is created and the student is added to the TAHelper system.
@@ -400,7 +400,7 @@ Step 3. The `DeleteStudentFromClassCommandParser` parses the arguments to determ
 
 <box type="info" seamless>
 
-**Important Note:** The tutorial class and module code must be specified. To determine the target student, only one prefix should used per command. If there are multiple prefixes, the target priority is as follows: By Index -> By Student ID -> By Email
+**Important Note:** The tutorial class and module code must be specified. To determine the target student, only one prefix should be used per command. If there are multiple prefixes, the target priority is as follows: By Index -> By Student ID -> By Email
 
 </box>
 
@@ -440,22 +440,22 @@ The `execute` command calls `AddressBookParser#parseCommand()`, which extracts t
 
 Step 2. The `AddressBookParser` then creates a new `ListStudentsOfClassCommandParser` and calls `ListStudentsOfClassCommandParser#parse()`, with `module/CS2103T`, `tutorial/T09` as the arguments for the function.
 
-Step 3. The `ListStudentsOfClassCommandParser` parses the arguments and get the values of the user input associated with the prefixes, from there determine the tutorial of the module to delete.
+Step 3. The `ListStudentsOfClassCommandParser` parses the arguments and get the values of the user input associated with the prefixes, from there determine the students to display to the user.
 
 <box type="info" seamless>
 
 **Important Note:** All fields must be specified. There must be a valid value for module and tutorial.
-Additionally, module and tutorial must match with one of the values already present in the system to get achieve a successful delete.
+Additionally, module and tutorial must match with one of the values already present in the system to get achieve a successful listing.
 Tags here are optional and need not be specified.
 
 </box>
 
 Step 4. Based on the prefixes, `ListStudentsOfClassCommandParser` creates an `ListStudentsOfClassCommand` object. Each command contains all the required prefixes and values to used to create the command object.
 
-Step 5. `LogicManager` calls `ListStudentsOfClassCommand#execute()`, passing `Model` as an argument. This method retrieves the adds the student to the TAHelper system.
-Throughout the process, error handling (e.g checking for duplicate email or id, making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
+Step 5. `LogicManager` calls `ListStudentsOfClassCommand#execute()`, passing `Model` as an argument. This method retrieves the module and tutorial class.
+Throughout the process, error handling (e.g making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
 
-Step 6. Finally, a `CommandResult` is created and the student is added to the TAHelper system.
+Step 6. Finally, a `CommandResult` is created and the students of a particular tutorial class of a module is listed.
 
 #### Design considerations:
 
@@ -606,8 +606,9 @@ Tags here are optional and need not be specified.
 
 Step 4. Based on the prefixes, `AddClassCommandParser` creates an `AddClassCommand` object. Each command contains all the required prefixes and values to used to create the command object.
 
-Step 5. `LogicManager` calls `AddClassCommand#execute()`, passing `Model` as an argument. This method retrieves the adds the student to the TAHelper system.
+Step 5. `LogicManager` calls `AddClassCommand#execute()`, passing `Model` as an argument. This method retrieves the class to add to the system.
 Throughout the process, error handling (e.g checking for duplicate module code or tutorial, making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
+
 
 Step 6. Finally, a `CommandResult` is created and the class is added to the TAHelper system.
 
@@ -642,7 +643,7 @@ The `execute` command calls `AddressBookParser#parseCommand()`, which extracts t
 
 Step 2. The `AddressBookParser` then creates a new `DeleteClassCommandParser` and calls `DeleteClassCommandParser#parse()`, with `module/CS2103T`, `tutorial/T09` as the arguments for the function.
 
-Step 3. The `AddClassCommandParser` parses the arguments and get the values of the user input associated with the prefixes, from there determine the tutorial of the module to delete.
+Step 3. The `DeleteClassCommandParser` parses the arguments and get the values of the user input associated with the prefixes, from there determine the tutorial of the module to delete.
 
 <box type="info" seamless>
 
@@ -654,10 +655,10 @@ Tags here are optional and need not be specified.
 
 Step 4. Based on the prefixes, `DeleteClassCommandParser` creates an `DeleteClassCommand` object. Each command contains all the required prefixes and values to used to create the command object.
 
-Step 5. `LogicManager` calls `DeleteClassCommand#execute()`, passing `Model` as an argument. This method retrieves the adds the student to the TAHelper system.
-Throughout the process, error handling (e.g checking for duplicate module code or tutorial, making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
+Step 5. `LogicManager` calls `DeleteClassCommand#execute()`, passing `Model` as an argument. This method retrieves the class to delete from the system.
+Throughout the process, error handling (e.g making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
 
-Step 6. Finally, a `CommandResult` is created and the class is deleted from the TAHelper system.
+Step 6. Finally, a `CommandResult` is created and the class is deleted from the module in the TAHelper system.
 
 #### Design considerations:
 
@@ -671,6 +672,10 @@ Step 6. Finally, a `CommandResult` is created and the class is deleted from the 
   - Pros: Users can delete modules without needing to specify the tutorial class, allowing for greater ease in the workflow. This allows users who are no longer teaching the module to remove all the information with one command.
   - Cons: Users may accidentally delete the entire module if they forgot to specify the tutorial class identifier and this may lead to great data damage. A separate command to delete module would be better.
 
+* **Alternative 3:** Allow user the option to delete all classes in the module without specifying the tutorial class.
+  - Pros: Users can delete modules without needing to specify the tutorial class, allowing for greater ease in the workflow. This allows users who are no longer teaching the module to remove all the information with one command.
+  - Cons: Users may accidentally delete all tutorial classes if they forgot to specify the tutorial class identifier and this may lead to great data damage. A separate command to delete all classes would be better.
+  - 
 ### \[Implemented\] Delete module
 
 The implementation of adding a class is facilitated by the `DeleteModuleCommand` and `DeletModuleCommandParser`. `DeleteModuleCommandParser` implements the `Parser` interface and it's operations. `DeleteModuleCommand` extends the
@@ -689,7 +694,7 @@ The `execute` command calls `AddressBookParser#parseCommand()`, which extracts t
 
 Step 2. The `AddressBookParser` then creates a new `DeleteModuleCommandParser` and calls `DeleteModuleCommandParser#parse()`, with `module/CS2103T` as the argument for the function.
 
-Step 3. The `DeleteClassCommandParser` parses the arguments and get the values of the user input associated with the prefixes, from there determine the module to delete.
+Step 3. The `DeleteModuleCommandParser` parses the arguments and get the values of the user input associated with the prefixes, from there determine the module to delete.
 
 <box type="info" seamless>
 
@@ -701,8 +706,8 @@ Tags here are optional and need not be specified.
 
 Step 4. Based on the prefixes, `DeleteModuleCommandParser` creates an `DeleteModuleCommand` object. Each command contains all the required prefixes and values to used to create the command object.
 
-Step 5. `LogicManager` calls `DeleteModuleCommand#execute()`, passing `Model` as an argument. This method retrieves the adds the student to the TAHelper system.
-Throughout the process, error handling (e.g checking for duplicate module code, making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
+Step 5. `LogicManager` calls `DeleteModuleCommand#execute()`, passing `Model` as an argument. This method retrieves the module to delete from the TAHelper system.
+Throughout the process, error handling (e.g making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
 
 Step 6. Finally, a `CommandResult` is created and the module is deleted from the TAHelper system.
 
@@ -938,6 +943,106 @@ Step 6. Finally, a `CommandResult` is created and the list of students in the tu
     - Cons:
       - **Complexity in implementation**: This implementation may be very complex and difficult to implement. Furthermore, if not done well, it can lead to a lot of bugs.
 
+### \[Implemented\] View team
+
+The implementation of viewing a team is facilitated by the `ViewTeamCommand` and `ViewTeamCommandParser`. `ViewTeamCommandParser` implements the `Parser` interface and it's operations. `ViewTeamCommand` extends the
+`Command` class and displays team information based on the parameter of team passed in. It supports the following `Parameters`:
+
+- `Name` — Search and display team information based on team name.
+- `Index` — Search and display team information based on index of team in the tutorial class.
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Example: `/view_teams name/Team 1 module/CS2103T tutorial/T09`
+
+<puml src="diagrams/ViewTeamSequence.puml" alt="ViewTeamSequence" />
+
+Execution steps:
+Step 1. The user inputs and executes `/view_teams name/Team 1 module/CS2103T tutorial/T09` command to view team `Team 1` of the tutorial class `T09` in module `CS2103T`.
+
+The `execute` command calls `AddressBookParser#parseCommand()`, which extracts the command word of the command and the arguments of the command.
+
+Step 2. The `AddressBookParser` then creates a new `ViewTeamCommandParser` and calls `ViewTeamCommandParser#parse()`, with `name/Team 1`, `module/CS2103T`, `tutorial/T09` as the arguments for the function.
+
+Step 3. The `ViewTeamCommandParser` parses the arguments and get the values of the user input associated with the prefixes, from there determine the team to add.
+
+<box type="info" seamless>
+
+**Important Note:** All fields must be specified. There must be a valid value for name, module and tutorial.
+Tags here are optional and need not be specified.
+
+</box>
+
+Step 4. Based on the prefixes, `ViewTeamCommandParser` creates an `ViewTeamCommand` object. Each command contains all the required prefixes and values to used to create the command object.
+
+Step 5. `LogicManager` calls `ViewTeamCommand#execute()`, passing `Model` as an argument. This method retrieves the target team in the tutorial class of the module.
+Throughout the process, error handling (e.g making sure references passed are not null) is utilised to mitigate potential errors and ensure valid execution.
+
+Step 6. Finally, a `CommandResult` is created and the information of the team is displayed.
+
+#### Design considerations:
+
+**Aspect: Modularity and extensibility:**
+
+- **Alternative 1 (current choice):** Only one parameter allowed per command.
+  - Pros: Easy to implement.
+  - Cons: Does not allow users to fine tune searches based on multiple fields.
+  
+- **Alternative 2:** Allow for multiple parameters.
+  - Pros: Users can filter searches to a higher degree
+  - Cons: Handling combinations of different fields could be complex
+
+---
+
+### \[Implemented\] Delete student from team
+
+The implemented add mechanism is facilitated by the abstract `DeleteStudentFromTeamCommand` along with its specific commands `DeleteStudentFromTeamByEmailCommand`, `DeleteStudentFromClassByIdCommand` and `DeleteStudentFromTeamByIndexCommand`, as well as the parser `DeleteStudentFromTeamCommandParser`.
+
+`DeleteStudentFromTeamCommandParser` implements the `Parser` interface and its operations.
+
+`DeleteStudentFromTeamCommand` extends the `Command` class and contains auxillary operations that supports the mechanism, such as retrieving the target tutorial team. Each of the following commands further extends `DeleteStudentFromTeamCommand` based on its specific functionality:
+
+- `DeleteStudentFromTeamByEmailCommand` — Delete student from team based on specified email from a tutorial team.
+- `DeleteStudentFromTeamByIdCommand` — Delete student from team based on specified student id from a tutorial team.
+- `DeleteStudentFromTeamByIndexCommand` — Delete student from team based on specified index (viewable from the UI) from a tutorial team.
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Example: `/delete_student_from_team id/A01234567X module/CS2103T tutorial/T09 team/4`
+
+<puml src="diagrams/DeleteStudentFromTeamSequence.puml" alt="DeleteStudentFromTeamSequence" />
+
+Step 1. The user executes `/delete_student_from_team id/A01234567X module/CS2103T tutorial/T09 team/4` command to delete the particular student with id `A01234567X` from the module `CS2103T` and tutorial class `T09` and team `4`.
+The `execute` command calls `AddressBookParser#parseCommand()`, which extracts the command word of the command and the arguments of the command.
+
+Step 2. The `AddressBookParser` then creates a new `DeleteStudentFromTeamCommandParser` and calls `DeleteStudentFromTeamCommandParser#parse()`, with `id/A01234567X`, `module/CS2103T`, `tutorial/T09` and `team/4` as the arguments.
+
+Step 3. The `DeleteStudentFromTeamCommandParser` parses the arguments to determine what parameter is used to specify the target student (email, index or id). Additionally, the `ModuleCode`, `TutorialClass` and `Team` is determined.
+
+<box type="info" seamless>
+
+**Important Note:** The tutorial class, module code and team must be specified. To determine the target student, only one prefix should be used per command. If there are multiple prefixes, the target priority is as follows: By Index -> By Student ID -> By Email
+
+</box>
+
+Step 4. Based on the prefix used, `DeleteStudentFromTeamCommandParser` creates the specific `DeleteStudentFromTeamCommand` accordingly. Each command contains a specific predicate to find the student.
+
+Step 5. `LogicManager` calls `DeleteStudentFromTeamCommand#execute()`, passing `Model` as an argument. This method retrieves the target module, tutorial class and team. Then, the method retrieves the student to delete using the defined predicate. Throughout the process, error handling (e.g. checking for invalid student/module/tutorial/team) is utilised to mitigate potential discrepancies and ensure valid execution.
+
+Step 6. Finally, a `CommandResult` is created and the student is deleted from the team.
+
+#### Design considerations:
+
+**Aspect: Modularity and extensibility:**
+
+- **Alternative 1 (current choice):** Seperate each specific command into a different class, while overlapping code is abstracted to an abstract class.
+  - Pros: Specific commands are instantiated and thus can be easily traced and is more readable. Any reusable code is defined in the abstract class which can then be reused by the subclasses.
+  - Cons: May have duplicate code to a certain extent.
+
+* **Alternative 2:** Lump into one generic command that handles each parameter accordingly.
+  - Pros: Reduces duplicate code and much cleaner (i.e only 1 command class is executed).
+  - Cons: The logic handling may be slightly more complex and messy within the class as all parameters have to be dealt with seperately (potentially using different logic).
+
 ---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -968,25 +1073,30 @@ Step 6. Finally, a `CommandResult` is created and the list of students in the tu
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | Iteration | As a …​ | I want to …​                                                                   | So that I can…​                                                                                   |
-|----------|-----------|---------|--------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| `* * *`  | v1.2      | TA      | add new students to a class                                                    | maintain an up-to-date list of enrolled students.                                                 |
-| `* * *`  | v1.2      | TA      | add partial info of students                                                   | still add students even if I don’t have all their information.                                    |
-| `* * *`  | v1.2      | TA      | delete a student from my class if they drop the module/class                   | keep my class list accurate and up-to-date.                                                       |
-| `*  `    | v1.2      | TA      | search for my students based on their NUS ID, emails, names or tutorial groups | locate details of students without having to go through the entire list                           |
-| `* * *`  | v1.2      | TA      | view all students and their particulars                                        | have a comprehensive overview of the enrolled students in my class.                               |
-| `* * `   | v1.2      | TA      | view all the tutorial classes and their student composition                    | have an overview of the classes that I am teaching.                                               |
-| `* *`    | v1.2      | TA      | add a tutorial class that I am teaching.                                       | track a tutorial class and the students in it.                                                    |
-| `* *`    | v1.2      | TA      | remove a tutorial class that I am teaching.                                    | remove any unrelated classes that I do not want to no longer want to keep track of.               |
-| `* `     | v1.2      | TA      | add students to a tutorial class                                               | assign students to a tutorial class and teams within the class.                                   |
-| `* * `   | v1.3      | TA      | edit a student's information                                                   | amend a student's detail in case there are any errors or changes.                                 |
-| `*`      | v1.3      | TA      | sort students based on their name, student ID or email.                        | easily organise and manage student records.                                                       |
-| `* * *`  | v1.3      | TA      | create a new team for a tutorial class                                         | segregate students to teams within a tutorial class.                                              |
-| `* * *`  | v1.3      | TA      | delete a team from a tutorial class                                            | remove unnecessary teams and organise my classes.                                                 |
-| `* *`    | v1.3      | TA      | randomly generate team allocations                                             | ensure fairness for class projects and assignments, whilst making the process quick and seamless. |
-| `* *`    | v1.3      | TA      | allocate students into teams                                                   | group students into different groups for purposes such as class projects and assignments.         |
+| Priority | Iteration | As a …​ | I want to …​                                                                   | So that I can…​                                                                     |
+|----------|-----------|---------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| `* * *`  | v1.2      | TA      | add new students to a class                                                    | maintain an up-to-date list of enrolled students.                                   |
+| `* * *`  | v1.2      | TA      | add partial info of students                                                   | still add students even if I don’t have all their information.                      |
+| `* * *`  | v1.2      | TA      | delete a student from my class if they drop the module/class                   | keep my class list accurate and up-to-date.                                         |
+| `*  `    | v1.2      | TA      | search for my students based on their NUS ID, emails, names or tutorial groups | locate details of students without having to go through the entire list             |
+| `* * *`  | v1.2      | TA      | view all students and their particulars                                        | have a comprehensive overview of the enrolled students that I teach.                |
+| `* * `   | v1.2      | TA      | view all the tutorial classes and their student composition                    | have an overview of the classes that I am teaching.                                 |
+| `* *`    | v1.2      | TA      | add a tutorial class that I am teaching.                                       | track a tutorial class and the students in it.                                      |
+| `* *`    | v1.2      | TA      | remove a tutorial class that I am teaching.                                    | remove any unrelated classes that I do not want to no longer want to keep track of. |
+| `* `     | v1.2      | TA      | add students to a tutorial class                                               | assign students to a tutorial class and teams within the class.                     |
+| `* * `   | v1.3      | TA      | edit a student's information                                                   | amend a student's detail in case there are any errors or changes.                   |
+| `*`      | v1.3      | TA      | sort students based on their name, student ID or email.                        | easily organise and manage student records.                                         |
+| `* * *`  | v1.3      | TA      | create a new team for a tutorial class                                         | segregate students to teams within a tutorial class.                                |
+| `* * *`  | v1.3      | TA      | delete a team from a tutorial class                                            | remove unnecessary teams and organise my classes.                                   |
+| `* * *`  | v1.3      | TA      | list all students in a particular tutorial class                               | see a comprehensive overview of the enrolled students in each class                 |
+| `* * *`  | v1.3      | TA      | delete a student from my class                                                 | amend if they drop the module/class.                                                |
+| `* * *`  | v1.3      | TA      | search for students based on tutorial group                                    | send tasks to students from 1 class                                                 |
+| `* * *`  | v1.3      | TA      | delete module from the system                                                  | remove modules I accidentally keyed in.                                             |
+| `* * *`  | v1.3      | TA      | randomly generate team allocations                                             | fairly group my students into different teams for group tasks.                      |
+| `* * *`  | v1.3      | TA      | view team composition                                                          | see a comprehensive overview of the students in each team                           |
+| `* * *`  | v1.3      | TA      | delete a student from a team                                                   | change the members of the team.                                                     |
+| `* * *`  | v1.3      | TA      | allocate students into teams                                                   | form teams for class projects and assignments.                                      |
 
-_{More to be added}_
 
 ### Use cases
 
@@ -1166,7 +1276,122 @@ _{More to be added}_
   - 2a1. System will return a message indicating that there are no existing classes in the list.
     <br>
 
-#### Use case 8: Allocate Student to tutorial team
+#### Use case 8: Delete module
+
+**MSS:**
+
+1. User specifies the module to be deleted.
+2. System deletes the module.
+   Use case ends.
+
+**Extensions:**
+
+- 1a. Invalid input command.
+  - 1a1. Return an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+- 1b. The module specified does not exist.
+  - 1b1. Returns an error indicating invalid module.
+  - Use case ends.
+    <br>
+
+#### Use case 9: Delete student from class
+
+**MSS:**
+
+1. User specifies the student to be deleted and the module code and tutorial class name of the class to be deleted from.
+2. System deletes the student from the list of students and tutorial group (if any).
+   Use case ends.
+
+**Extensions:**
+
+- 1a. User specifies to delete student by student ID.
+  - 1a1. Student ID does not exist in the system.
+    - 1a1.1: Returns an error indicating that the student with the provided ID does not exist.
+    - Use case ends.
+  - 1a2. Module code does not exist in the system.
+    - 1a2.1: Returns an error indicating that the module with that module code does not exist.
+    - Use case ends.
+  - 1a3. Tutorial class does not exist in the module specified.
+    - 1a3.1: Returns an error indicating that the tutorial class does not exist in the module specified.
+    - Use case ends.
+- 1b. User specifies to delete student by email.
+  - 1b1. Email does not exist in the system.
+    - 1b1.1. Returns an error indicating that the student with the provided email does not exist.
+    - Use case ends.
+  - 1b2. Module code does not exist in the system.
+    - 1b2.1: Returns an error indicating that the module with that module code does not exist.
+    - Use case ends.
+  - 1b3. Tutorial class does not exist in the module specified.
+    - 1b3.1: Returns an error indicating that the tutorial class does not exist in the module specified.
+    - Use case ends.
+- 1c. User specifies to delete student by index.
+  - 1c1. Index does not exist in the tutorial class.
+    - 1c1.1. Returns an error indicating that the student with the provided index does not exist.
+    - Use case ends.
+  - 1c2. Module code does not exist in the system.
+    - 1c2.1: Returns an error indicating that the module with that module code does not exist.
+    - Use case ends.
+  - 1c3 Tutorial class does not exist in the module specified.
+    - 1c3.1: Returns an error indicating that the tutorial class does not exist in the module specified.
+    - Use case ends.
+- 1d. Invalid input command.
+  - 1d1: Returns an error indicating command not recognised and provides the correct command format.
+    <br>
+
+#### Use case 10: Delete student from team
+
+**MSS:**
+
+1. User specifies the student to be deleted.
+2. System deletes the student from the list of students and tutorial group (if any).
+   Use case ends.
+
+**Extensions:**
+
+- 1a. User specifies to delete student by student ID.
+  - 1a1. Student ID does not exist in the system.
+    - 1a1.1: Returns an error indicating that the student with the provided ID does not exist.
+    - Use case ends.
+  - 1a2. Module code does not exist in the system.
+    - 1a2.1: Returns an error indicating that the module with that module code does not exist.
+    - Use case ends.
+  - 1a3. Tutorial class does not exist in the module specified.
+    - 1a3.1: Returns an error indicating that the tutorial class does not exist in the module specified.
+    - Use case ends.
+  - 1a4. Team does not exist in the tutorial class specified
+    - 1a4.1: Returns an error indicating that the tutorial team does not exist in the tutorial class specified.
+    - Use case ends.
+- 1b. User specifies to delete student by email.
+  - 1b1. Email does not exist in the system.
+    - 1b1.1. Returns an error indicating that the student with the provided email does not exist.
+    - Use case ends.
+  - 1b2. Module code does not exist in the system.
+    - 1b2.1: Returns an error indicating that the module with that module code does not exist.
+    - Use case ends.
+  - 1b3. Tutorial class does not exist in the module specified.
+    - 1b3.1: Returns an error indicating that the tutorial class does not exist in the module specified.
+    - Use case ends.
+  - 1b4. Team does not exist in the tutorial class specified
+    - 1b4.1: Returns an error indicating that the tutorial team does not exist in the tutorial class specified.
+    - Use case ends.
+- 1c. User specifies to delete student by index.
+  - 1c1. Index does not exist in the tutorial class.
+    - 1c1.1. Returns an error indicating that the student with the provided index does not exist.
+    - Use case ends.
+  - 1c2. Module code does not exist in the system.
+    - 1c2.1: Returns an error indicating that the module with that module code does not exist.
+    - Use case ends.
+  - 1c3 Tutorial class does not exist in the module specified.
+    - 1c3.1: Returns an error indicating that the tutorial class does not exist in the module specified.
+    - Use case ends.
+  - 1c4. Team does not exist in the tutorial class specified
+    - 1c4.1: Returns an error indicating that the tutorial team does not exist in the tutorial class specified.
+    - Use case ends.
+- 1d. Invalid input command.
+  - 1d1: Returns an error indicating command not recognised and provides the correct command format.
+    <br>
+
+#### Use case 11: Allocate Student to tutorial team
 
 **Actor**: User
 
@@ -1176,25 +1401,25 @@ _{More to be added}_
 1. User specifies the student id of the student, the module code, tutorial class, and the tutorial team name
 in the tutorial class to allocate the student into.
 2. User enters the command and along with the details.
-3. System allocates student into tutorial team and displays a message. 
+3. System allocates student into tutorial team and displays a message.
    Use case ends.
 
 **Extensions**
-
-- 1a. The specified student is not in the system.
+- 1a. The specified student is not in the system. 
   - 1a1. TAHelper returns an error indicating that student is not in the system.
-  - Use case ends.
+  - Use case ends. 
 - 1b. The specified student is not in the tutorial class of the specified module.
   - 1b1. TAHelper returns an error indicating that student needs to be in the specified tutorial class of the specified module first.
   - Use case ends.
 - 1c. The specified tutorial team is not in the tutorial class.
   - 1c1: TAHelper returns an error indicating that the team does not exist in the tutorial class.
-  - Use case ends.
+  - Use case ends. 
 - 1d. The tutorial class is not in the system.
   - 1d1: TAHelper returns an error indicating that the tutorial class is not in the specified module.
   - Use case ends.
+    <br>
 
-### Use case 9: Randomly allocating a list of students in the tutorial class into teams.
+### Use case 12: Randomly allocating a list of students in the tutorial class into teams.
 
 **Actor**: User
 
@@ -1207,7 +1432,6 @@ in the tutorial class to allocate the student into.
    Use case ends.
 
 **Extensions**
-
 - 1a. The specified tutorial class does not exist under the module specified.
   - 1a1. TAHelper returns an error message.
   - Use case ends.
@@ -1217,8 +1441,49 @@ in the tutorial class to allocate the student into.
 - 1c. The specified number of teams is invalid.
   - 1c1. TAHelper returns an error message indicating that the number of teams is invalid.
   - Use case ends.
+    <br>
+
+#### Use case 10: View all students in a class
+
+**MSS**
+
+1. User wants to view all students in a class.
+2. System shows a list of all students in the class.
+
+- 1a. Invalid input command.
+  - 1a1. Return an error indicating command not recognised and provides the correct command format.
+  - Use case ends.
+- 1b. Additional arguments are specified after the command.
+  - 1b1. System will ignore those arguments and execute the command as usual.
+- 2a. There is no class matching the specified class.
+  - 2a1. System will return a message indicating that there is no such class in the list.
+- 2b. There are no students in the class.
+  - 2b1. System will return a message indicating that there are no existing students in the class in the list.
+    <br>
+
+#### Use case 11: View team information
+
+**MSS**
+
+1. User wants to view information of a particular team in a class.
+2. System shows the information of the team in the class.
+=======
+- 1a. The specified student is not in the system.
+  - 1a1. TAHelper returns an error indicating that student is not in the system.
+  - Use case ends.
+- 1b. The specified student is not in the tutorial class of the specified module.
+  - 1b1. TAHelper returns an error indicating that student needs to be in the specified tutorial class of the specified module first.
+  - Use case ends.
+- 1c. The specified tutorial team is not in the tutorial class.
+  - 1c1: TAHelper returns an error indicating that the team does not exist in the tutorial class.
+  - Use case ends.
+- 1d. The tutorial class is not in the system.
+  - 1d1: TAHelper returns an error indicating that the tutorial class is not in the specified module.
+  - Use case ends.
+    <br>
 
 ---
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -1339,11 +1604,19 @@ testers are expected to do more _exploratory_ testing.
 
 1. _{ more test cases …​ }_
 
----
-
 ## **Appendix: Planned Enhancements**
-
 ## Planned Enhancements
+
+1. Standardise the error messages (especially regarding teams).
+   - Currently, some of our error messages may lead to confusion in team names, as the error message might append `Team` before the team name, which might confuse the user on whether the team name is `1` or `Team 1`, for example.
+   <br>
+   
+2. /delete_all_classes command to delete all classes from a specified module
+  - Currently, there is no way to delete all classes from a specified module quickly, as we have to delete them one by one.
+  - Different from /delete_module as this command deletes the module itself too, but /delete_all_classes would leave the module itself intact.
+
+3. Support for more tutorial class name formats
+  - Currently, our system only supports tutorial class names with 1 letter followed by 2 digits (e.g. `T01`). This could result in errors when trying to use a valid tutorial class name (such as `DTk1234`'s `TO43` or `CS2101`'s `SG15`)
 ---
 
 ### Name value regular expression (regex) validation improvements
@@ -1395,7 +1668,6 @@ and the right column represents the list of students.
 'CS2101 tutorial classes', something that is specific to the module.
 3. Thirdly, similar to point 2, we want to implement even more specific person column label, such as when user enters to view the list of students in a tutorial class, the label shows something like 'T01's class list'.
 This will greatly aid user's readability, and it is an enhancement we want to make.
-
 
 ---
 
