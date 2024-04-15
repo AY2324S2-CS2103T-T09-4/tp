@@ -338,6 +338,9 @@ Format: `/edit_student index/INDEX [id/STUDENT_ID] [email/EMAIL] [name/NAME]`
 - At least one of the optional parameters must be provided.
 - Multiple parameters can be provided (not duplicates). Command will edit all parameters specified.
 - If the edited student id or email already exists in the list, the command will return an error message.
+- Changes made only affect the currently displayed list. In order to sync a student's information across different 
+modules, tutorial classes or teams, the `/edit_student` command has to be executed again on the different student 
+lists in modules, tutorial classes or teams.
 
 Expected output:
 Upon successful editing, the command will return a confirmation message stating that the student contact has been edited along with the edited student contact.

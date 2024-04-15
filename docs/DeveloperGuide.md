@@ -306,8 +306,8 @@ to update the list with the new information. A `CommandResult` is created, infor
 <box type="info" seamless>
 
 **Important Note:** Currently, edited student information only displays on the list it was edited in. The edited details
-are not propagated to other lists (students in different class/modules). More information can be found in the planned
-enhancements section.
+are not propagated to other lists (students in different class/modules). More information can be found in the [planned
+enhancements](#appendix-planned-enhancements) section.
 
 </box>
 
@@ -1347,3 +1347,17 @@ and the right column represents the list of students.
 'CS2101 tutorial classes', something that is specific to the module.
 3. Thirdly, similar to point 2, we want to implement even more specific person column label, such as when user enters to view the list of students in a tutorial class, the label shows something like 'T01's class list'.
 This will greatly aid user's readability, and it is an enhancement we want to make.
+
+---
+
+### Propagate students' edited information from EditCommand to other student lists
+
+**Current implementation**
+1. When editing a student's information using `/edit_student`, changes only appear on the list currently being displayed.
+2. In order to sync a student information across modules, tutorial classes and teams, users would need to display the respective
+list in the UI and re-execute the command to make changes.
+3. This can be an inconvenience and could lead to difficulties in keeping track of changes.
+
+**Proposed enhancement(s)**
+1. We look to improving the `/edit_student` command, such that it will propagate any changes made on a single student list to
+all other lists within the app. This allows for syncing of information across the different modules, tutorial classes and teams.
