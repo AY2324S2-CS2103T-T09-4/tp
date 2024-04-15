@@ -169,6 +169,8 @@
         "view-a-team-in-a-tutorial-class-view-teams": "View a team in a tutorial class : view_teams",
         "randomly-allocate-into-teams-all-students-in-a-tutorial-class-random-teams": "Randomly allocate into teams all students in a tutorial class : random_teams",
         "deleting-students-from-team-delete-student-from-team": "Deleting students from team: delete_student_from_team",
+        "clearing-all-entries-clear": "Clearing all entries: clear",
+        "exiting-the-program-exit": "Exiting the program: exit",
         "faq": "FAQ",
         "known-issues": "Known issues",
         "glossary": "Glossary",
