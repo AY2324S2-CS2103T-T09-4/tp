@@ -983,7 +983,28 @@ with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
 with(this){return _c('ul',[_c('li',[_v("1a. User specifies to delete student by student ID.\n"),_c('ul',[_c('li',[_v("1a1. Student ID does not exist in the system.\n"),_c('ul',[_c('li',[_v("1a1.1: Returns an error indicating that the student with the provided ID does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1b. User specifies to delete student by email.\n"),_c('ul',[_c('li',[_v("1b1. Email does not exist in the system.\n"),_c('ul',[_c('li',[_v("1b1.1. Returns an error indicating that the student with the provided email does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1c. Invalid input command.\n"),_c('ul',[_c('li',[_v("1c1: Returns an error indicating command not recognised and provides the correct command format.\n"),_c('br')])])])])}
 },function anonymous(
 ) {
-with(this){return _c('h4',{attrs:{"id":"use-case-3-search-for-students"}},[_v("Use case 3: Search for students"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-3-search-for-students","onclick":"event.stopPropagation()"}})])}
+with(this){return _c('h4',{attrs:{"id":"use-case-3-edit-students"}},[_v("Use case 3: Edit students"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-3-edit-students","onclick":"event.stopPropagation()"}})])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("System")]),_v(": TAHelper")])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("MSS")])])}
+},function anonymous(
+) {
+with(this){return _c('ol',[_c('li',[_v("User specifies the student to be edited along with the new information.")]),_v(" "),_c('li',[_v("System edits the student from the list of students.\nUse case ends.")])])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
+},function anonymous(
+) {
+with(this){return _c('ul',[_c('li',[_v("1a. User specifies the same information as the student to be edited\n"),_c('ul',[_c('li',[_v("1a1: Returns an error indicating that the student already exists.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. User specifies to edit student's ID.\n"),_c('ul',[_c('li',[_v("1b1. Student ID already exists in the system.\n"),_c('ul',[_c('li',[_v("1b1.1: Returns an error indicating that the student with the provided ID already exists.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1c. User specifies to edit student's email.\n"),_c('ul',[_c('li',[_v("1c1. Email already exists in the system.\n"),_c('ul',[_c('li',[_v("1c1.1. Returns an error indicating that the student with the provided email already exists.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1d. Invalid index.\n"),_c('ul',[_c('li',[_v("1d1. Index does not exist in the system.\n"),_c('ul',[_c('li',[_v("1d1.1: Returns an error indicating that the index is out of bounds.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1e. Invalid input command.\n"),_c('ul',[_c('li',[_v("1e1: Returns an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
+},function anonymous(
+) {
+with(this){return _c('h4',{attrs:{"id":"use-case-4-search-for-students"}},[_v("Use case 4: Search for students"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-4-search-for-students","onclick":"event.stopPropagation()"}})])}
 },function anonymous(
 ) {
 with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
@@ -1004,7 +1025,7 @@ with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
 with(this){return _c('ul',[_c('li',[_v("1a. Parameter not specified\n"),_c('ul',[_c('li',[_v("1a1/2a1. Returns an error indicating that the user needs to specify valid fields.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. Invalid input command.\n"),_c('ul',[_c('li',[_v("1b1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("2a. Partial match for specified parameter.\n"),_c('ul',[_c('li',[_v("2a1. System will display all matching results for the specified value.\n"),_c('br')])])])])}
 },function anonymous(
 ) {
-with(this){return _c('h4',{attrs:{"id":"use-case-4-view-all-students"}},[_v("Use case 4: View all students"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-4-view-all-students","onclick":"event.stopPropagation()"}})])}
+with(this){return _c('h4',{attrs:{"id":"use-case-5-view-all-students"}},[_v("Use case 5: View all students"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-5-view-all-students","onclick":"event.stopPropagation()"}})])}
 },function anonymous(
 ) {
 with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
@@ -1025,238 +1046,7 @@ with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
 with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. Additional arguments are specified after the command.\n"),_c('ul',[_c('li',[_v("1b1. System will ignore those arguments and execute the command as usual.")])])]),_v(" "),_c('li',[_v("2a. No existing students in the list.\n"),_c('ul',[_c('li',[_v("2a1. System will return a message indicating that there are no students in the list.\n"),_c('br')])])])])}
 },function anonymous(
 ) {
-with(this){return _c('h4',{attrs:{"id":"use-case-5-add-new-tutorial-class"}},[_v("Use case 5: Add new tutorial class"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-5-add-new-tutorial-class","onclick":"event.stopPropagation()"}})])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("System")]),_v(": TAHelper")])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
-},function anonymous(
-) {
-with(this){return _c('ol',[_c('li',[_v("User specifies the class to be added.")]),_v(" "),_c('li',[_v("System adds the tutorial class.\nUse case ends.")])])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
-},function anonymous(
-) {
-with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. Invalid tutorial class attributes are specified.\n"),_c('ul',[_c('li',[_v("1b1. Returns an error indicating that user has to specify tutorial class in the correct format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1c. The specified tutorial class already exists.\n"),_c('ul',[_c('li',[_v("1c1: Returns an error indicating that the tutorial class already exists")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
-},function anonymous(
-) {
-with(this){return _c('h4',{attrs:{"id":"use-case-6-delete-tutorial-class"}},[_v("Use case 6: Delete tutorial class"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-6-delete-tutorial-class","onclick":"event.stopPropagation()"}})])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("System")]),_v(": TAHelper")])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
-},function anonymous(
-) {
-with(this){return _c('ol',[_c('li',[_v("User specifies the class to be deleted.")]),_v(" "),_c('li',[_v("System deletes the tutorial class.\nUse case ends.")])])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
-},function anonymous(
-) {
-with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. The tutorial class specified does not exist.\n"),_c('ul',[_c('li',[_v("1b1. Returns an error indicating invalid tutorial class and shows the list of tutorial classes available.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
-},function anonymous(
-) {
-with(this){return _c('h4',{attrs:{"id":"use-case-7-view-all-classes"}},[_v("Use case 7: View all classes"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-7-view-all-classes","onclick":"event.stopPropagation()"}})])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("System")]),_v(": TAHelper")])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("MSS")])])}
-},function anonymous(
-) {
-with(this){return _c('ol',[_c('li',[_v("User wants to view all classes.")]),_v(" "),_c('li',[_v("System shows a list of all available classes.\nUse case ends.")])])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Extensions")])])}
-},function anonymous(
-) {
-with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. Additional arguments are specified after the command.\n"),_c('ul',[_c('li',[_v("1b1. System will ignore those arguments and execute the command as usual.")])])]),_v(" "),_c('li',[_v("2a. There are no existing classes.\n"),_c('ul',[_c('li',[_v("2a1. System will return a message indicating that there are no existing classes in the list.\n"),_c('br')])])])])}
-},function anonymous(
-) {
-with(this){return _c('h4',{attrs:{"id":"use-case-8-delete-module"}},[_v("Use case 8: Delete module"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-8-delete-module","onclick":"event.stopPropagation()"}})])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
-},function anonymous(
-) {
-with(this){return _c('ol',[_c('li',[_v("User specifies the module to be deleted.")]),_v(" "),_c('li',[_v("System deletes the module.\nUse case ends.")])])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
-},function anonymous(
-) {
-with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. The module specified does not exist.\n"),_c('ul',[_c('li',[_v("1b1. Returns an error indicating invalid module.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
-},function anonymous(
-) {
-with(this){return _c('h4',{attrs:{"id":"use-case-9-add-student-to-class"}},[_v("Use case 9: Add student to class"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-9-add-student-to-class","onclick":"event.stopPropagation()"}})])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
-},function anonymous(
-) {
-with(this){return _c('ol',[_c('li',[_v("User specifies the student to be added, along with the module code and tutorial class to add the student to.")]),_v(" "),_c('li',[_v("System adds the student from the list of students to the tutorial class.\nUse case ends.")])])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
-},function anonymous(
-) {
-with(this){return _c('ul',[_c('li',[_v("1a. User specifies to add student by student ID.\n"),_c('ul',[_c('li',[_v("1a1. Student ID does not exist in the system.\n"),_c('ul',[_c('li',[_v("1a1.1: Returns an error indicating that the student with the provided ID does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1b. User specifies to add student by email.\n"),_c('ul',[_c('li',[_v("1b1. Email does not exist in the system.\n"),_c('ul',[_c('li',[_v("1b1.1. Returns an error indicating that the student with the provided email does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1c. User specifies to add student by index.\n"),_c('ul',[_c('li',[_v("1c1. Index does not exist in the tutorial class.\n"),_c('ul',[_c('li',[_v("1c1.1. Returns an error indicating that the student with the provided index does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1d. Invalid module specified.\n"),_c('ul',[_c('li',[_v("1d1: Returns an error indicating that the module does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1e. Invalid tutorial specified.\n"),_c('ul',[_c('li',[_v("1e1: Returns an error indicating that the tutorial does not exist in the specified module.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1f. Invalid input command.\n"),_c('ul',[_c('li',[_v("1f1: Returns an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
-},function anonymous(
-) {
-with(this){return _c('h4',{attrs:{"id":"use-case-10-delete-student-from-class"}},[_v("Use case 10: Delete student from class"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-10-delete-student-from-class","onclick":"event.stopPropagation()"}})])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
-},function anonymous(
-) {
-with(this){return _c('ol',[_c('li',[_v("User specifies the student to be deleted and the module code and tutorial class name of the class to be deleted from.")]),_v(" "),_c('li',[_v("System deletes the student from the list of students in the tutorial class.\nUse case ends.")])])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
-},function anonymous(
-) {
-with(this){return _c('ul',[_c('li',[_v("1a. User specifies to delete student by student ID.\n"),_c('ul',[_c('li',[_v("1a1. Student ID does not exist in the system.\n"),_c('ul',[_c('li',[_v("1a1.1: Returns an error indicating that the student with the provided ID does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1b. User specifies to delete student by email.\n"),_c('ul',[_c('li',[_v("1b1. Email does not exist in the system.\n"),_c('ul',[_c('li',[_v("1b1.1. Returns an error indicating that the student with the provided email does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1c. User specifies to delete student by index.\n"),_c('ul',[_c('li',[_v("1c1. Index does not exist in the tutorial class.\n"),_c('ul',[_c('li',[_v("1c1.1. Returns an error indicating that the student with the provided index does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1d. Invalid module specified.\n"),_c('ul',[_c('li',[_v("1d1: Returns an error indicating that the module does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1e. Invalid tutorial specified.\n"),_c('ul',[_c('li',[_v("1e1: Returns an error indicating that the tutorial does not exist in the specified module.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1f. Invalid input command.\n"),_c('ul',[_c('li',[_v("1f1: Returns an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
-},function anonymous(
-) {
-with(this){return _c('h4',{attrs:{"id":"use-case-11-add-new-tutorial-team"}},[_v("Use case 11: Add new tutorial team"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-11-add-new-tutorial-team","onclick":"event.stopPropagation()"}})])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("System")]),_v(": TAHelper")])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
-},function anonymous(
-) {
-with(this){return _c('ol',[_c('li',[_v("User specifies the team to be added, along with the module and tutorial class to add the team to.")]),_v(" "),_c('li',[_v("System adds the tutorial team to the tutorial class.\nUse case ends.")])])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
-},function anonymous(
-) {
-with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. Invalid tutorial team attributes are specified.\n"),_c('ul',[_c('li',[_v("2a1. Returns an error indicating that user has to specify tutorial team in the correct format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1c. Invalid module specified.\n"),_c('ul',[_c('li',[_v("1c1: Returns an error indicating that the module does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1d. Invalid tutorial specified.\n"),_c('ul',[_c('li',[_v("1d1: Returns an error indicating that the tutorial does not exist in the specified module.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1e. The specified tutorial team (i.e with same name) already exists.\n"),_c('ul',[_c('li',[_v("1e1: Returns an error indicating that the tutorial team already exists in the specified module and tutorial.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
-},function anonymous(
-) {
-with(this){return _c('h4',{attrs:{"id":"use-case-12-delete-tutorial-team"}},[_v("Use case 12: Delete tutorial team"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-12-delete-tutorial-team","onclick":"event.stopPropagation()"}})])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("System")]),_v(": TAHelper")])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
-},function anonymous(
-) {
-with(this){return _c('ol',[_c('li',[_v("User specifies the team to be deleted, along with the module and tutorial class to delete the team from.")]),_v(" "),_c('li',[_v("System deletes the tutorial team from the tutorial class.\nUse case ends.")])])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
-},function anonymous(
-) {
-with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. Invalid module specified.\n"),_c('ul',[_c('li',[_v("1b1: Returns an error indicating that the module does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1c. Invalid tutorial specified.\n"),_c('ul',[_c('li',[_v("1c1: Returns an error indicating that the tutorial does not exist in the specified module.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1d. The tutorial team specified does not exist in the specified module and tutorial.\n"),_c('ul',[_c('li',[_v("1d1. Returns an error indicating tutorial team does not exist.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
-},function anonymous(
-) {
-with(this){return _c('h4',{attrs:{"id":"use-case-13-delete-student-from-team"}},[_v("Use case 13: Delete student from team"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-13-delete-student-from-team","onclick":"event.stopPropagation()"}})])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
-},function anonymous(
-) {
-with(this){return _c('ol',[_c('li',[_v("User specifies the student to be deleted.")]),_v(" "),_c('li',[_v("System deletes the student from the list of students and tutorial group (if any).\nUse case ends.")])])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
-},function anonymous(
-) {
-with(this){return _c('ul',[_c('li',[_v("1a. User specifies to delete student by student ID.\n"),_c('ul',[_c('li',[_v("1a1. Student ID does not exist in the system.\n"),_c('ul',[_c('li',[_v("1a1.1: Returns an error indicating that the student with the provided ID does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1a2. Module code does not exist in the system.\n"),_c('ul',[_c('li',[_v("1a2.1: Returns an error indicating that the module with that module code does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1a3. Tutorial class does not exist in the module specified.\n"),_c('ul',[_c('li',[_v("1a3.1: Returns an error indicating that the tutorial class does not exist in the module specified.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1a4. Team does not exist in the tutorial class specified\n"),_c('ul',[_c('li',[_v("1a4.1: Returns an error indicating that the tutorial team does not exist in the tutorial class specified.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1b. User specifies to delete student by email.\n"),_c('ul',[_c('li',[_v("1b1. Email does not exist in the system.\n"),_c('ul',[_c('li',[_v("1b1.1. Returns an error indicating that the student with the provided email does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b2. Module code does not exist in the system.\n"),_c('ul',[_c('li',[_v("1b2.1: Returns an error indicating that the module with that module code does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b3. Tutorial class does not exist in the module specified.\n"),_c('ul',[_c('li',[_v("1b3.1: Returns an error indicating that the tutorial class does not exist in the module specified.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b4. Team does not exist in the tutorial class specified\n"),_c('ul',[_c('li',[_v("1b4.1: Returns an error indicating that the tutorial team does not exist in the tutorial class specified.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1c. User specifies to delete student by index.\n"),_c('ul',[_c('li',[_v("1c1. Index does not exist in the tutorial class.\n"),_c('ul',[_c('li',[_v("1c1.1. Returns an error indicating that the student with the provided index does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1c2. Module code does not exist in the system.\n"),_c('ul',[_c('li',[_v("1c2.1: Returns an error indicating that the module with that module code does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1c3 Tutorial class does not exist in the module specified.\n"),_c('ul',[_c('li',[_v("1c3.1: Returns an error indicating that the tutorial class does not exist in the module specified.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1c4. Team does not exist in the tutorial class specified\n"),_c('ul',[_c('li',[_v("1c4.1: Returns an error indicating that the tutorial team does not exist in the tutorial class specified.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1d. Invalid input command.\n"),_c('ul',[_c('li',[_v("1d1: Returns an error indicating command not recognised and provides the correct command format.\n"),_c('br')])])])])}
-},function anonymous(
-) {
-with(this){return _c('h4',{attrs:{"id":"use-case-14-allocate-student-to-tutorial-team"}},[_v("Use case 14: Allocate Student to tutorial team"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-14-allocate-student-to-tutorial-team","onclick":"event.stopPropagation()"}})])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("System")]),_v(": TAHelper")])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("MSS")])])}
-},function anonymous(
-) {
-with(this){return _c('ol',[_c('li',[_v("User specifies the student id of the student, the module code, tutorial class, and the tutorial team name\nin the tutorial class to allocate the student into.")]),_v(" "),_c('li',[_v("User enters the command and along with the details.")]),_v(" "),_c('li',[_v("System allocates student into tutorial team and displays a message.\nUse case ends.")])])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Extensions")])])}
-},function anonymous(
-) {
-with(this){return _c('ul',[_c('li',[_v("1a. The specified student is not in the system.\n"),_c('ul',[_c('li',[_v("1a1. TAHelper returns an error indicating that student is not in the system.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. The specified student is not in the tutorial class of the specified module.\n"),_c('ul',[_c('li',[_v("1b1. TAHelper returns an error indicating that student needs to be in the specified tutorial class of the specified module first.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1c. The specified tutorial team is not in the tutorial class.\n"),_c('ul',[_c('li',[_v("1c1: TAHelper returns an error indicating that the team does not exist in the tutorial class.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1d. The tutorial class is not in the system.\n"),_c('ul',[_c('li',[_v("1d1: TAHelper returns an error indicating that the tutorial class is not in the specified module.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
-},function anonymous(
-) {
-with(this){return _c('h4',{attrs:{"id":"use-case-12-randomly-allocating-a-list-of-students-in-the-tutorial-class-into-teams"}},[_v("Use case 12: Randomly allocating a list of students in the tutorial class into teams."),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-12-randomly-allocating-a-list-of-students-in-the-tutorial-class-into-teams","onclick":"event.stopPropagation()"}})])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("System")]),_v(": TAHelper")])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("MSS")])])}
-},function anonymous(
-) {
-with(this){return _c('ol',[_c('li',[_v("User specifies the module code, tutorial class, and number of teams to split the list of students in the tutorial class into.")]),_v(" "),_c('li',[_v("User enters the command along with the details.")]),_v(" "),_c('li',[_v("System allocates the list of students in the tutorial class into different tutorial teams and displays a message.\nUse case ends.")])])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("Extensions")])])}
-},function anonymous(
-) {
-with(this){return _c('ul',[_c('li',[_v("1a. The specified tutorial class does not exist under the module specified.\n"),_c('ul',[_c('li',[_v("1a1. TAHelper returns an error message.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. The specified module does not exist.\n"),_c('ul',[_c('li',[_v("1b1. TAHelper returns an error message indicating that module does not exist in the system.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1c. The specified number of teams is invalid.\n"),_c('ul',[_c('li',[_v("1c1. TAHelper returns an error message indicating that the number of teams is invalid.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
-},function anonymous(
-) {
-with(this){return _c('h4',{attrs:{"id":"use-case-13-view-all-students-in-a-class"}},[_v("Use case 13: View all students in a class"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-13-view-all-students-in-a-class","onclick":"event.stopPropagation()"}})])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("MSS")])])}
-},function anonymous(
-) {
-with(this){return _c('ol',[_c('li',[_v("User wants to view all students in a class.")]),_v(" "),_c('li',[_v("System shows a list of all students in the class.")])])}
-},function anonymous(
-) {
-with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. Additional arguments are specified after the command.\n"),_c('ul',[_c('li',[_v("1b1. System will ignore those arguments and execute the command as usual.")])])]),_v(" "),_c('li',[_v("2a. There is no class matching the specified class.\n"),_c('ul',[_c('li',[_v("2a1. System will return a message indicating that there is no such class in the list.")])])]),_v(" "),_c('li',[_v("2b. There are no students in the class.\n"),_c('ul',[_c('li',[_v("2b1. System will return a message indicating that there are no existing students in the class in the list.\n"),_c('br')])])])])}
-},function anonymous(
-) {
-with(this){return _c('h4',{attrs:{"id":"use-case-14-view-team-information"}},[_v("Use case 14: View team information"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-14-view-team-information","onclick":"event.stopPropagation()"}})])}
-},function anonymous(
-) {
-with(this){return _c('p',[_c('strong',[_v("MSS")])])}
-},function anonymous(
-) {
-with(this){return _c('ol',[_c('li',[_v("User wants to view information of a particular team in a class.")]),_v(" "),_c('li',[_v("System shows the information of the team in the class.\n=======")])])}
-},function anonymous(
-) {
-with(this){return _c('ul',[_c('li',[_v("1a. The specified student is not in the system.\n"),_c('ul',[_c('li',[_v("1a1. TAHelper returns an error indicating that student is not in the system.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. The specified student is not in the tutorial class of the specified module.\n"),_c('ul',[_c('li',[_v("1b1. TAHelper returns an error indicating that student needs to be in the specified tutorial class of the specified module first.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1c. The specified tutorial team is not in the tutorial class.\n"),_c('ul',[_c('li',[_v("1c1: TAHelper returns an error indicating that the team does not exist in the tutorial class.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1d. The tutorial class is not in the system.\n"),_c('ul',[_c('li',[_v("1d1: TAHelper returns an error indicating that the tutorial class is not in the specified module.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
-},function anonymous(
-) {
-with(this){return _c('h4',{attrs:{"id":"use-case-15-sort-students"}},[_v("Use case 15: Sort students"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-15-sort-students","onclick":"event.stopPropagation()"}})])}
+with(this){return _c('h4',{attrs:{"id":"use-case-6-sort-students"}},[_v("Use case 6: Sort students"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-6-sort-students","onclick":"event.stopPropagation()"}})])}
 },function anonymous(
 ) {
 with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
@@ -1277,7 +1067,49 @@ with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
 with(this){return _c('ul',[_c('li',[_v("1a. User specifies to sort the list by an invalid parameter.\n"),_c('ul',[_c('li',[_v("1a1. Returns an error indicating parameter is not valid for sorting.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. Invalid input command.\n"),_c('ul',[_c('li',[_v("1b1: Returns an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
 },function anonymous(
 ) {
-with(this){return _c('h4',{attrs:{"id":"use-case-16-edit-students"}},[_v("Use case 16: Edit students"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-16-edit-students","onclick":"event.stopPropagation()"}})])}
+with(this){return _c('h4',{attrs:{"id":"use-case-7-add-new-tutorial-class"}},[_v("Use case 7: Add new tutorial class"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-7-add-new-tutorial-class","onclick":"event.stopPropagation()"}})])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("System")]),_v(": TAHelper")])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
+},function anonymous(
+) {
+with(this){return _c('ol',[_c('li',[_v("User specifies the class to be added.")]),_v(" "),_c('li',[_v("System adds the tutorial class.\nUse case ends.")])])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
+},function anonymous(
+) {
+with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. Invalid tutorial class attributes are specified.\n"),_c('ul',[_c('li',[_v("1b1. Returns an error indicating that user has to specify tutorial class in the correct format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1c. The specified tutorial class already exists.\n"),_c('ul',[_c('li',[_v("1c1: Returns an error indicating that the tutorial class already exists")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
+},function anonymous(
+) {
+with(this){return _c('h4',{attrs:{"id":"use-case-8-delete-tutorial-class"}},[_v("Use case 8: Delete tutorial class"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-8-delete-tutorial-class","onclick":"event.stopPropagation()"}})])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("System")]),_v(": TAHelper")])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
+},function anonymous(
+) {
+with(this){return _c('ol',[_c('li',[_v("User specifies the class to be deleted.")]),_v(" "),_c('li',[_v("System deletes the tutorial class.\nUse case ends.")])])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
+},function anonymous(
+) {
+with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. The tutorial class specified does not exist.\n"),_c('ul',[_c('li',[_v("1b1. Returns an error indicating invalid tutorial class and shows the list of tutorial classes available.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
+},function anonymous(
+) {
+with(this){return _c('h4',{attrs:{"id":"use-case-9-view-all-classes"}},[_v("Use case 9: View all classes"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-9-view-all-classes","onclick":"event.stopPropagation()"}})])}
 },function anonymous(
 ) {
 with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
@@ -1289,13 +1121,181 @@ with(this){return _c('p',[_c('strong',[_v("System")]),_v(": TAHelper")])}
 with(this){return _c('p',[_c('strong',[_v("MSS")])])}
 },function anonymous(
 ) {
-with(this){return _c('ol',[_c('li',[_v("User specifies the student to be edited along with the new information.")]),_v(" "),_c('li',[_v("System edits the student from the list of students.\nUse case ends.")])])}
+with(this){return _c('ol',[_c('li',[_v("User wants to view all classes.")]),_v(" "),_c('li',[_v("System shows a list of all available classes.\nUse case ends.")])])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Extensions")])])}
+},function anonymous(
+) {
+with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. Additional arguments are specified after the command.\n"),_c('ul',[_c('li',[_v("1b1. System will ignore those arguments and execute the command as usual.")])])]),_v(" "),_c('li',[_v("2a. There are no existing classes.\n"),_c('ul',[_c('li',[_v("2a1. System will return a message indicating that there are no existing classes in the list.\n"),_c('br')])])])])}
+},function anonymous(
+) {
+with(this){return _c('h4',{attrs:{"id":"use-case-10-delete-module"}},[_v("Use case 10: Delete module"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-10-delete-module","onclick":"event.stopPropagation()"}})])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
+},function anonymous(
+) {
+with(this){return _c('ol',[_c('li',[_v("User specifies the module to be deleted.")]),_v(" "),_c('li',[_v("System deletes the module.\nUse case ends.")])])}
 },function anonymous(
 ) {
 with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
 },function anonymous(
 ) {
-with(this){return _c('ul',[_c('li',[_v("1a. User specifies the same information as the student to be edited\n"),_c('ul',[_c('li',[_v("1a1: Returns an error indicating that the student already exists.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. User specifies to edit student's ID.\n"),_c('ul',[_c('li',[_v("1b1. Student ID already exists in the system.\n"),_c('ul',[_c('li',[_v("1b1.1: Returns an error indicating that the student with the provided ID already exists.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1c. User specifies to edit student's email.\n"),_c('ul',[_c('li',[_v("1c1. Email already exists in the system.\n"),_c('ul',[_c('li',[_v("1c1.1. Returns an error indicating that the student with the provided email already exists.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1d. Invalid index.\n"),_c('ul',[_c('li',[_v("1d1. Index does not exist in the system.\n"),_c('ul',[_c('li',[_v("1d1.1: Returns an error indicating that the index is out of bounds.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1e. Invalid input command.\n"),_c('ul',[_c('li',[_v("1e1: Returns an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
+with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. The module specified does not exist.\n"),_c('ul',[_c('li',[_v("1b1. Returns an error indicating invalid module.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
+},function anonymous(
+) {
+with(this){return _c('h4',{attrs:{"id":"use-case-11-add-student-to-class"}},[_v("Use case 11: Add student to class"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-11-add-student-to-class","onclick":"event.stopPropagation()"}})])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
+},function anonymous(
+) {
+with(this){return _c('ol',[_c('li',[_v("User specifies the student to be added, along with the module code and tutorial class to add the student to.")]),_v(" "),_c('li',[_v("System adds the student from the list of students to the tutorial class.\nUse case ends.")])])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
+},function anonymous(
+) {
+with(this){return _c('ul',[_c('li',[_v("1a. User specifies to add student by student ID.\n"),_c('ul',[_c('li',[_v("1a1. Student ID does not exist in the system.\n"),_c('ul',[_c('li',[_v("1a1.1: Returns an error indicating that the student with the provided ID does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1b. User specifies to add student by email.\n"),_c('ul',[_c('li',[_v("1b1. Email does not exist in the system.\n"),_c('ul',[_c('li',[_v("1b1.1. Returns an error indicating that the student with the provided email does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1c. User specifies to add student by index.\n"),_c('ul',[_c('li',[_v("1c1. Index does not exist in the tutorial class.\n"),_c('ul',[_c('li',[_v("1c1.1. Returns an error indicating that the student with the provided index does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1d. Invalid module specified.\n"),_c('ul',[_c('li',[_v("1d1: Returns an error indicating that the module does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1e. Invalid tutorial specified.\n"),_c('ul',[_c('li',[_v("1e1: Returns an error indicating that the tutorial does not exist in the specified module.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1f. Invalid input command.\n"),_c('ul',[_c('li',[_v("1f1: Returns an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
+},function anonymous(
+) {
+with(this){return _c('h4',{attrs:{"id":"use-case-12-delete-student-from-class"}},[_v("Use case 12: Delete student from class"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-12-delete-student-from-class","onclick":"event.stopPropagation()"}})])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
+},function anonymous(
+) {
+with(this){return _c('ol',[_c('li',[_v("User specifies the student to be deleted and the module code and tutorial class name of the class to be deleted from.")]),_v(" "),_c('li',[_v("System deletes the student from the list of students in the tutorial class.\nUse case ends.")])])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
+},function anonymous(
+) {
+with(this){return _c('ul',[_c('li',[_v("1a. User specifies to delete student by student ID.\n"),_c('ul',[_c('li',[_v("1a1. Student ID does not exist in the system.\n"),_c('ul',[_c('li',[_v("1a1.1: Returns an error indicating that the student with the provided ID does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1b. User specifies to delete student by email.\n"),_c('ul',[_c('li',[_v("1b1. Email does not exist in the system.\n"),_c('ul',[_c('li',[_v("1b1.1. Returns an error indicating that the student with the provided email does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1c. User specifies to delete student by index.\n"),_c('ul',[_c('li',[_v("1c1. Index does not exist in the tutorial class.\n"),_c('ul',[_c('li',[_v("1c1.1. Returns an error indicating that the student with the provided index does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1d. Invalid module specified.\n"),_c('ul',[_c('li',[_v("1d1: Returns an error indicating that the module does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1e. Invalid tutorial specified.\n"),_c('ul',[_c('li',[_v("1e1: Returns an error indicating that the tutorial does not exist in the specified module.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1f. Invalid input command.\n"),_c('ul',[_c('li',[_v("1f1: Returns an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
+},function anonymous(
+) {
+with(this){return _c('h4',{attrs:{"id":"use-case-13-view-all-students-in-a-class"}},[_v("Use case 13: View all students in a class"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-13-view-all-students-in-a-class","onclick":"event.stopPropagation()"}})])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("MSS")])])}
+},function anonymous(
+) {
+with(this){return _c('ol',[_c('li',[_v("User wants to view all students in a class.")]),_v(" "),_c('li',[_v("System shows a list of all students in the class.")])])}
+},function anonymous(
+) {
+with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. Additional arguments are specified after the command.\n"),_c('ul',[_c('li',[_v("1b1. System will ignore those arguments and execute the command as usual.")])])]),_v(" "),_c('li',[_v("2a. There is no class matching the specified class.\n"),_c('ul',[_c('li',[_v("2a1. System will return a message indicating that there is no such class in the list.")])])]),_v(" "),_c('li',[_v("2b. There are no students in the class.\n"),_c('ul',[_c('li',[_v("2b1. System will return a message indicating that there are no existing students in the class in the list.\n"),_c('br')])])])])}
+},function anonymous(
+) {
+with(this){return _c('h4',{attrs:{"id":"use-case-14-add-new-tutorial-team"}},[_v("Use case 14: Add new tutorial team"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-14-add-new-tutorial-team","onclick":"event.stopPropagation()"}})])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("System")]),_v(": TAHelper")])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
+},function anonymous(
+) {
+with(this){return _c('ol',[_c('li',[_v("User specifies the team to be added, along with the module and tutorial class to add the team to.")]),_v(" "),_c('li',[_v("System adds the tutorial team to the tutorial class.\nUse case ends.")])])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
+},function anonymous(
+) {
+with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. Invalid tutorial team attributes are specified.\n"),_c('ul',[_c('li',[_v("2a1. Returns an error indicating that user has to specify tutorial team in the correct format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1c. Invalid module specified.\n"),_c('ul',[_c('li',[_v("1c1: Returns an error indicating that the module does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1d. Invalid tutorial specified.\n"),_c('ul',[_c('li',[_v("1d1: Returns an error indicating that the tutorial does not exist in the specified module.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1e. The specified tutorial team (i.e with same name) already exists.\n"),_c('ul',[_c('li',[_v("1e1: Returns an error indicating that the tutorial team already exists in the specified module and tutorial.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
+},function anonymous(
+) {
+with(this){return _c('h4',{attrs:{"id":"use-case-15-delete-tutorial-team"}},[_v("Use case 15: Delete tutorial team"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-15-delete-tutorial-team","onclick":"event.stopPropagation()"}})])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("System")]),_v(": TAHelper")])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
+},function anonymous(
+) {
+with(this){return _c('ol',[_c('li',[_v("User specifies the team to be deleted, along with the module and tutorial class to delete the team from.")]),_v(" "),_c('li',[_v("System deletes the tutorial team from the tutorial class.\nUse case ends.")])])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
+},function anonymous(
+) {
+with(this){return _c('ul',[_c('li',[_v("1a. Invalid input command.\n"),_c('ul',[_c('li',[_v("1a1. Return an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. Invalid module specified.\n"),_c('ul',[_c('li',[_v("1b1: Returns an error indicating that the module does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1c. Invalid tutorial specified.\n"),_c('ul',[_c('li',[_v("1c1: Returns an error indicating that the tutorial does not exist in the specified module.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1d. The tutorial team specified does not exist in the specified module and tutorial.\n"),_c('ul',[_c('li',[_v("1d1. Returns an error indicating tutorial team does not exist.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
+},function anonymous(
+) {
+with(this){return _c('h4',{attrs:{"id":"use-case-16-delete-student-from-team"}},[_v("Use case 16: Delete student from team"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-16-delete-student-from-team","onclick":"event.stopPropagation()"}})])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("MSS:")])])}
+},function anonymous(
+) {
+with(this){return _c('ol',[_c('li',[_v("User specifies the student to be deleted.")]),_v(" "),_c('li',[_v("System deletes the student from the list of students and tutorial group (if any).\nUse case ends.")])])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Extensions:")])])}
+},function anonymous(
+) {
+with(this){return _c('ul',[_c('li',[_v("1a. User specifies to delete student by student ID.\n"),_c('ul',[_c('li',[_v("1a1. Student ID does not exist in the system.\n"),_c('ul',[_c('li',[_v("1a1.1: Returns an error indicating that the student with the provided ID does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1b. User specifies to delete student by email.\n"),_c('ul',[_c('li',[_v("1b1. Email does not exist in the system.\n"),_c('ul',[_c('li',[_v("1b1.1. Returns an error indicating that the student with the provided email does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1c. User specifies to delete student by index.\n"),_c('ul',[_c('li',[_v("1c1. Index does not exist in the tutorial class.\n"),_c('ul',[_c('li',[_v("1c1.1. Returns an error indicating that the student with the provided index does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])])])]),_v(" "),_c('li',[_v("1d. Invalid module specified.\n"),_c('ul',[_c('li',[_v("1d1: Returns an error indicating that the module does not exist.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1e. Invalid tutorial specified.\n"),_c('ul',[_c('li',[_v("1e1: Returns an error indicating that the tutorial does not exist in the specified module.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1f. Invalid team specified.\n"),_c('ul',[_c('li',[_v("1f1: Returns an error indicating that the team does not exist in the specified tutorial.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1g. Invalid input command.\n"),_c('ul',[_c('li',[_v("1g1: Returns an error indicating command not recognised and provides the correct command format.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
+},function anonymous(
+) {
+with(this){return _c('h4',{attrs:{"id":"use-case-17-allocate-student-to-tutorial-team"}},[_v("Use case 17: Allocate Student to tutorial team"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-17-allocate-student-to-tutorial-team","onclick":"event.stopPropagation()"}})])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("System")]),_v(": TAHelper")])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("MSS")])])}
+},function anonymous(
+) {
+with(this){return _c('ol',[_c('li',[_v("User specifies the student id of the student, the module code, tutorial class, and the tutorial team name\nin the tutorial class to allocate the student into.")]),_v(" "),_c('li',[_v("User enters the command and along with the details.")]),_v(" "),_c('li',[_v("System allocates student into tutorial team and displays a message.\nUse case ends.")])])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Extensions")])])}
+},function anonymous(
+) {
+with(this){return _c('ul',[_c('li',[_v("1a. The specified student is not in the system.\n"),_c('ul',[_c('li',[_v("1a1. TAHelper returns an error indicating that student is not in the system.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. The specified student is not in the tutorial class of the specified module.\n"),_c('ul',[_c('li',[_v("1b1. TAHelper returns an error indicating that student needs to be in the specified tutorial class of the specified module first.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1c. The specified tutorial team is not in the tutorial class.\n"),_c('ul',[_c('li',[_v("1c1: TAHelper returns an error indicating that the team does not exist in the tutorial class.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1d. The tutorial class is not in the system.\n"),_c('ul',[_c('li',[_v("1d1: TAHelper returns an error indicating that the tutorial class is not in the specified module.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
+},function anonymous(
+) {
+with(this){return _c('h4',{attrs:{"id":"use-case-18-randomly-allocating-a-list-of-students-in-the-tutorial-class-into-teams"}},[_v("Use case 18: Randomly allocating a list of students in the tutorial class into teams."),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-18-randomly-allocating-a-list-of-students-in-the-tutorial-class-into-teams","onclick":"event.stopPropagation()"}})])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Actor")]),_v(": User")])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("System")]),_v(": TAHelper")])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("MSS")])])}
+},function anonymous(
+) {
+with(this){return _c('ol',[_c('li',[_v("User specifies the module code, tutorial class, and number of teams to split the list of students in the tutorial class into.")]),_v(" "),_c('li',[_v("User enters the command along with the details.")]),_v(" "),_c('li',[_v("System allocates the list of students in the tutorial class into different tutorial teams and displays a message.\nUse case ends.")])])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("Extensions")])])}
+},function anonymous(
+) {
+with(this){return _c('ul',[_c('li',[_v("1a. The specified tutorial class does not exist under the module specified.\n"),_c('ul',[_c('li',[_v("1a1. TAHelper returns an error message.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. The specified module does not exist.\n"),_c('ul',[_c('li',[_v("1b1. TAHelper returns an error message indicating that module does not exist in the system.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1c. The specified number of teams is invalid.\n"),_c('ul',[_c('li',[_v("1c1. TAHelper returns an error message indicating that the number of teams is invalid.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
+},function anonymous(
+) {
+with(this){return _c('h4',{attrs:{"id":"use-case-19-view-team-information"}},[_v("Use case 19: View team information"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#use-case-19-view-team-information","onclick":"event.stopPropagation()"}})])}
+},function anonymous(
+) {
+with(this){return _c('p',[_c('strong',[_v("MSS")])])}
+},function anonymous(
+) {
+with(this){return _c('ol',[_c('li',[_v("User wants to view information of a particular team in a class.")]),_v(" "),_c('li',[_v("System shows the information of the team in the class.\n=======")])])}
+},function anonymous(
+) {
+with(this){return _c('ul',[_c('li',[_v("1a. The specified student is not in the system.\n"),_c('ul',[_c('li',[_v("1a1. TAHelper returns an error indicating that student is not in the system.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1b. The specified student is not in the tutorial class of the specified module.\n"),_c('ul',[_c('li',[_v("1b1. TAHelper returns an error indicating that student needs to be in the specified tutorial class of the specified module first.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1c. The specified tutorial team is not in the tutorial class.\n"),_c('ul',[_c('li',[_v("1c1: TAHelper returns an error indicating that the team does not exist in the tutorial class.")]),_v(" "),_c('li',[_v("Use case ends.")])])]),_v(" "),_c('li',[_v("1d. The tutorial class is not in the system.\n"),_c('ul',[_c('li',[_v("1d1: TAHelper returns an error indicating that the tutorial class is not in the specified module.")]),_v(" "),_c('li',[_v("Use case ends.\n"),_c('br')])])])])}
 },function anonymous(
 ) {
 with(this){return _c('h3',{attrs:{"id":"non-functional-requirements"}},[_v("Non-Functional Requirements"),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#non-functional-requirements","onclick":"event.stopPropagation()"}})])}
@@ -1508,6 +1508,6 @@ with(this){return _c('p',[_c('strong',[_v("Proposed enhancement(s)")])])}
 with(this){return _c('ol',[_c('li',[_v("We will introduce a seed command to initialise sample data. By executing the seed command, developers/users can populate the database with mock students, modules, tutorials and teams. This automated approach will not only save time but aslo reduce the likelihood of errors. Clear documentation and usage guidelines will accompany the seed command too.")])])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.4.0")]),_v(", generated on Mon, 15 Apr 2024, 15:44:51 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.4.0")]),_v(", generated on Mon, 15 Apr 2024, 15:50:52 GMT+8]")])])])}
 }];
   
