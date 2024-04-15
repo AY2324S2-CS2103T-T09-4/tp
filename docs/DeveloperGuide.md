@@ -1771,3 +1771,24 @@ Where some groups might not even have students inside.
 **Proposed enhancement(s)**
 1. We will look into improving the random allocation algorithm, where the algorithm will allocate in batches, first batch ensuring that every team will have 1 member, next batch ensuring that they have 2 members, until the last batch where it will allocate the remaining students. 
 2. It will be random too as the people in the first batch will be randomly generated and then removed after being added, and so on.
+---
+### Add custom exceptions
+
+**Current implementation**
+1. When an error occurs, the command will return a generic command exception along with the specified error message. However, this can potentially pose several problems:
+a. **Lack of specificity**: It is difficult to determine the nature and cause of the encountered issue, aside from relying on the error message. This makes it challenging to accurately diagnose, leading to longer troubleshooting times.
+b.**Difficulty in error identification**: Without distinct error types, it becomes difficult to classify and identify different types of errors.
+c.**Limited error handling capabilities**: A generic command exception approach may not adequately support specialised error handling, such as conditional error handling based on error types. Having a wider range of error handling for different types can help with flexibility.
+
+**Proposed enhancement(s)**
+1. We will introduce custom exceptions tailored to specific error scenarios, allowing for more precise identification and error handling.
+2. By doing so, we can potentially add custom error handling depending on the type of error thrown too, making the system more flexible and robust.
+---
+### Seed command for generating sample data
+
+**Current implementation**
+1. Currently, there is no seed command implemented. Developers/end-users are required to manually create sample data for testing or initialisation purposes. This approach can be time-consuming and error-prone
+
+**Proposed enhancement(s)**
+1. We will introduce a seed command to initialise sample data. By executing the seed command, developers/users can populate the database with mock students, modules, tutorials and teams. This automated approach will not only save time but aslo reduce the likelihood of errors. Clear documentation and usage guidelines will accompany the seed command too.
+
