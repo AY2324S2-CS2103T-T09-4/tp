@@ -114,8 +114,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddStudentCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddStudentCommand`) which the `AddressBookParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddStudentCommandParser`, `DeleteClassCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
@@ -173,6 +173,7 @@ Given below is an example usage scenario and how the add mechanism behaves at ea
 Example: `/add_student name/john email/john@example.com id/A1234567L tags/`
 
 <puml src="diagrams/AddStudentSequence.puml" alt="AddStudentSequence" />
+<puml src="diagrams/AddStudentActivityDiagram.puml" alt="AddStudentSequence" />
 
 Execution steps:
 Step 1. The user inputs and executes `/add_student name/john email/john@example.com id/A1234567L tags/` command to add a student with name `john`, along with
